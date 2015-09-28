@@ -68,7 +68,7 @@ class VerifyProfileViewController:
     // MARK: - Data Source
     
     private func populateData() {
-        profile = AuthViewController.getLoggedInUserProfile()
+        profile = AuthenticationViewController.getLoggedInUserProfile()
         profileImageView.imageProfileIdentifier = profile.id
         profileImageView.setLargerProfileImage(profile, successHandler: {(image) -> Void in
             self.profileImageView.image = image
@@ -171,7 +171,7 @@ class VerifyProfileViewController:
         builder.verified = true
         Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
-                AuthViewController.updateUserProfile(profile)
+                AuthenticationViewController.updateUserProfile(profile)
                 self.profile = profile
             }
             completion()

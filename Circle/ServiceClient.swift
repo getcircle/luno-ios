@@ -21,7 +21,7 @@ public class ServiceClient {
     convenience init(serviceName: String) {
         self.init(
             serviceName: serviceName,
-            token: AuthViewController.getLoggedInUserToken()
+            token: AuthenticationViewController.getLoggedInUserToken()
         )
     }
     

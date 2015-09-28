@@ -52,7 +52,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     private func addTabsForAuthenticatedUserAndSelectProfileTab(selectProfileTab: Bool) {
         var tabBarViewControllers = viewControllers ?? [UIViewController]()
 
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile() {
             // Reloading tabs
             // Keep only the first one and re-add organization & profile tabs
             // This allows us to switch between organizations easily.
@@ -97,7 +97,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didLogin",
-            name: AuthNotifications.onLoginNotification,
+            name: AuthenticationNotifications.onLoginNotification,
             object: nil
         )
     }

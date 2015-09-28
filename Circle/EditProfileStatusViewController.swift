@@ -47,7 +47,7 @@ class EditProfileStatusViewController: TextInputViewController {
         profileBuilder.status = try! statusBuilder.build()
         Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
             if let profile = profile {
-                AuthViewController.updateUserProfile(profile)
+                AuthenticationViewController.updateUserProfile(profile)
             }
             
             self.onDataSaved(profile)

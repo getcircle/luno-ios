@@ -1,5 +1,5 @@
 //
-//  AuthViewController.swift
+//  AuthenticationViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 11/28/14.
@@ -24,17 +24,16 @@ struct LoggedInUserHolder {
     static var token: String?
 }
 
-struct AuthNotifications {
+struct AuthenticationNotifications {
     static let onLoginNotification = "com.rhlabs.notification:onLoginNotification"
     static let onLogoutNotification = "com.rhlabs.notification:onLogoutNotification"
     static let onProfileChangedNotification = "com.rhlabs.notification:onProfileChangedNotification"
     static let onUserChangedNotification = "com.rhlabs.notifcation:onUserChangedNotification"
 }
 
-private let AuthPasscode = "AuthPasscode"
+private let AuthenticationPasscode = "AuthenticationPasscode"
 private let LocksmithMainUserAccount = "LocksmithMainUserAccount"
-private let LocksmithAuthTokenService = "LocksmithAuthTokenService"
-private let LocksmithAuthDetailsService = "LocksmithAuthDetailsService"
+private let LocksmithAuthenticationTokenService = "LocksmithAuthenticationTokenService"
 private let DefaultsUserKey = "DefaultsUserKey"
 private let DefaultsProfileKey = "DefaultsProfileKey"
 private let DefaultsLastLoggedInUserEmail = "DefaultsLastLoggedInUserEmail"
@@ -44,7 +43,7 @@ private let DefaultsIdentitiesKey = "DefaultsIdentitiesKey"
 private let GoogleClientID = "1077014421904-pes3pbf96obmp75kb00qouoiqf18u78h.apps.googleusercontent.com"
 private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8s2.apps.googleusercontent.com"
 
-class AuthViewController: UIViewController {
+class AuthenticationViewController: UIViewController {
 
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var workEmailTextField: UITextField!
@@ -55,7 +54,7 @@ class AuthViewController: UIViewController {
     private var activityIndicator: CircleActivityIndicatorView?
     private var googleSignInButtonText: String?
     private var passwordFieldBottomBorder: UIView!
-    private var socialConnectVC = SocialConnectViewController()
+    private var authorizationVC = AuthorizationViewController()
     private var isNewAccount = false
     
     override func viewDidLoad() {
@@ -65,7 +64,6 @@ class AuthViewController: UIViewController {
         configureView()
         configureGoogleAuthentication()
         configurePasswordField()
-        trySilentAuthentication()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -120,9 +118,9 @@ class AuthViewController: UIViewController {
         // Do not unregister this notification in viewDidDisappear
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "onSocialAccountConnected:",
-            name: SocialConnectNotifications.onServiceConnectedNotification,
-            object: socialConnectVC
+            selector: "onServiceAuthorized:",
+            name: AuthorizationNotifications.onServiceAuthorizedNotification,
+            object: authorizationVC
         )
     }
 
@@ -132,36 +130,30 @@ class AuthViewController: UIViewController {
         workEmailTextField.resignFirstResponder()
     }
 
-    func onSocialAccountConnected(notification: NSNotification) {
-        if let
-            userInfo = notification.userInfo,
-            authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1
-        {
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
-            credentials.key = authDetails.code
-            credentials.secret = authDetails.idToken
-            let data = [authDetails.data().base64EncodedStringWithOptions([]): "\(NSDate())"]
-            do {
-                try Locksmith.saveData(data, forUserAccount: LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
+    func onServiceAuthorized(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1 {
+                googleLogin(authDetails)
+
+            } else if let samlDetails = userInfo["saml_details"] as? Services.User.Containers.SAMLDetailsV1 {
+                oktaLogin(samlDetails)
             }
-            catch {
-                print("error saving authDetails: \(error)")
-            }
-            login(.Google, credentials: try! credentials.build())
         }
     }
     
     // MARK: - Helpers
     
-    private func trySilentAuthentication() {
-        let dict = Locksmith.loadDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
-        if let authDetailsString = dict?.keys.first, data = NSData(base64EncodedString: authDetailsString, options: []) {
-            let authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-            let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
-            credentials.key = authDetails.code
-            credentials.secret = authDetails.idToken
-            login(.Google, credentials: try! credentials.build(), silent: true)
-        }
+    private func googleLogin(authDetails: Services.User.Containers.OAuthSDKDetailsV1) {
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+        credentials.key = authDetails.code
+        credentials.secret = authDetails.idToken
+        login(.Google, credentials: try! credentials.build())
+    }
+    
+    private func oktaLogin(samlDetails: Services.User.Containers.SAMLDetailsV1) {
+        let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
+        credentials.secret = samlDetails.authState
+        login(.Okta, credentials: try! credentials.build())
     }
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
@@ -229,7 +221,7 @@ class AuthViewController: UIViewController {
             try Locksmith.updateData(
                 [token: "\(NSDate())"],
                 forUserAccount: user.id,
-                inService: LocksmithAuthTokenService)
+                inService: LocksmithAuthenticationTokenService)
         }
         catch {
             // XXX what is the correct way to report errors?
@@ -307,7 +299,7 @@ class AuthViewController: UIViewController {
                 }
                 
                 NSNotificationCenter.defaultCenter().postNotificationName(
-                    AuthNotifications.onLoginNotification,
+                    AuthenticationNotifications.onLoginNotification,
                     object: nil
                 )
                 
@@ -376,9 +368,8 @@ class AuthViewController: UIViewController {
             // Clear keychain
             do {
                 if let user = LoggedInUserHolder.user {
-                    try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                    try Locksmith.deleteDataForUserAccount(user.id, inService: LocksmithAuthenticationTokenService)
                 }
-                try Locksmith.deleteDataForUserAccount(LocksmithMainUserAccount, inService: LocksmithAuthDetailsService)
             }
             catch {
                 print("Error: \(error)")
@@ -397,14 +388,14 @@ class AuthViewController: UIViewController {
             
             // Notify everyone
             NSNotificationCenter.defaultCenter().postNotificationName(
-                AuthNotifications.onLogoutNotification,
+                AuthenticationNotifications.onLogoutNotification,
                 object: nil
             )
             
             // Switch to default theme on logout
             AppTheme.switchToDefaultTheme()
             
-            // Present auth view
+            // Present Authentication view
             self.presentSplashViewController()
         }
     }
@@ -416,15 +407,15 @@ class AuthViewController: UIViewController {
     }
 
     static func presentSplashViewController() {
-        // Check if user is logged in. If not, present auth view controller
+        // Check if user is logged in. If not, present authentication view controller
         let splashViewController = SplashViewController(nibName: "SplashViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(splashViewController)
     }
     
     static func presentAuthViewController() {
-        // Check if user is logged in. If not, present auth view controller
-        let authViewController = AuthViewController(nibName: "AuthViewController", bundle: nil)
-        self.presentViewControllerWithNavigationController(authViewController)
+        // Check if user is logged in. If not, present authentication view controller
+        let authenticationViewController = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
+        self.presentViewControllerWithNavigationController(authenticationViewController)
     }
 
     static func presentWelcomeView(goToPhoneVerification: Bool) {
@@ -478,7 +469,7 @@ class AuthViewController: UIViewController {
             return token
         } else {
             if let user = self.getLoggedInUser() {
-                let dict = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthTokenService)
+                let dict = Locksmith.loadDataForUserAccount(user.id, inService: LocksmithAuthenticationTokenService)
                 if let token = dict?.keys.first {
                     cacheTokenAndUserInMemory(token, user: user)
                     return token
@@ -503,7 +494,7 @@ class AuthViewController: UIViewController {
         LoggedInUserHolder.profile = profile
         cacheProfileData(profile)
         NSNotificationCenter.defaultCenter().postNotificationName(
-            AuthNotifications.onProfileChangedNotification,
+            AuthenticationNotifications.onProfileChangedNotification,
             object: profile
         )
     }
@@ -512,7 +503,7 @@ class AuthViewController: UIViewController {
         LoggedInUserHolder.user = user
         cacheUserData(user)
         NSNotificationCenter.defaultCenter().postNotificationName(
-            AuthNotifications.onUserChangedNotification,
+            AuthenticationNotifications.onUserChangedNotification,
             object: user
         )
     }
@@ -585,8 +576,8 @@ class AuthViewController: UIViewController {
     
     static func initializeSplashViewWithPasscodeAndTouchID() {
         VENTouchLock.sharedInstance().setKeychainService(
-            LocksmithAuthTokenService, 
-            keychainAccount: AuthPasscode, 
+            LocksmithAuthenticationTokenService, 
+            keychainAccount: AuthenticationPasscode, 
             touchIDReason: NSLocalizedString("Touch to unlock circle", comment: "Help text for touch ID alert"),
             passcodeAttemptLimit: 10, 
             splashViewControllerClass: PasscodeTouchIDSplashViewController.self
@@ -626,14 +617,22 @@ class AuthViewController: UIViewController {
     }
     
     private func checkAuthenticationMethod() {
-        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (accountExists, authorizationURL, error) -> Void in
+        Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (backend, accountExists, authorizationURL, providerName, error) -> Void in
             self.hideLoadingState()
+            
+            var provider: Services.User.Containers.IdentityV1.ProviderV1
+            switch backend! {
+            case .Okta:
+                provider = .Okta
+            default:
+                provider = .Google
+            }
             
             if error != nil {
                 self.googleSignInButton.addShakeAnimation()
             }
-            else if let authorizationURL = authorizationURL where authorizationURL.trimWhitespace() != "" {
-                self.openExternalAuth(authorizationURL)
+            else if let authorizationURL = authorizationURL, providerName = providerName where authorizationURL.trimWhitespace() != "" {
+                self.openExternalAuthentication(provider, authorizationURL: authorizationURL, providerName: providerName)
             }
             else {
                 let newAccount = (accountExists != nil) ? !(accountExists!) : true
@@ -666,13 +665,14 @@ class AuthViewController: UIViewController {
         login(.Internal, credentials: try! credentials.build())
     }
     
-    private func openExternalAuth(authorizationURL: String) {
-        socialConnectVC.provider = .Google
-        socialConnectVC.loginHint = workEmailTextField.text
+    private func openExternalAuthentication(provider: Services.User.Containers.IdentityV1.ProviderV1, authorizationURL: String, providerName: String) {
+        authorizationVC.provider = provider
+        authorizationVC.loginHint = workEmailTextField.text
+        authorizationVC.providerName = providerName
         if authorizationURL.trimWhitespace() != "" {
-            socialConnectVC.authorizationURL = authorizationURL
+            authorizationVC.authorizationURL = authorizationURL
         }
-        let socialNavController = UINavigationController(rootViewController: socialConnectVC)
+        let socialNavController = UINavigationController(rootViewController: authorizationVC)
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
             socialNavController.modalPresentationStyle = .FormSheet
         }

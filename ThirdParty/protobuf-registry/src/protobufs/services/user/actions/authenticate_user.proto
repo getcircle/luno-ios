@@ -12,6 +12,7 @@ message RequestV1 {
     enum AuthBackendV1 {
         INTERNAL = 0;
         GOOGLE = 1;
+        OKTA = 2;
     }
 
     message CredentialsV1 {

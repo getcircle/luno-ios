@@ -176,7 +176,7 @@ class LocationDetailViewController:
     
     func onProfileAddButton(checked: Bool) {
         if let officeDataSource = dataSource as? LocationDetailDataSource, 
-            loggedInUserProfile = AuthViewController.getLoggedInUserProfile()
+            loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
         {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             let pointsOfContact = NSMutableOrderedSet(array: officeDataSource.location.pointsOfContact)

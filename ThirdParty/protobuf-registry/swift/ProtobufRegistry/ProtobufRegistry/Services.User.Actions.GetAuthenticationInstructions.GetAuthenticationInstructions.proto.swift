@@ -12,6 +12,8 @@ public func == (lhs: Services.User.Actions.GetAuthenticationInstructions.Request
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
+  fieldCheck = fieldCheck && (lhs.hasRedirectUri == rhs.hasRedirectUri) && (!lhs.hasRedirectUri || lhs.redirectUri == rhs.redirectUri)
+  fieldCheck = fieldCheck && (lhs.hasOrganizationDomain == rhs.hasOrganizationDomain) && (!lhs.hasOrganizationDomain || lhs.organizationDomain == rhs.organizationDomain)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -25,6 +27,7 @@ public func == (lhs: Services.User.Actions.GetAuthenticationInstructions.Respons
   fieldCheck = fieldCheck && (lhs.hasBackend == rhs.hasBackend) && (!lhs.hasBackend || lhs.backend == rhs.backend)
   fieldCheck = fieldCheck && (lhs.hasUserExists == rhs.hasUserExists) && (!lhs.hasUserExists || lhs.userExists == rhs.userExists)
   fieldCheck = fieldCheck && (lhs.hasAuthorizationUrl == rhs.hasAuthorizationUrl) && (!lhs.hasAuthorizationUrl || lhs.authorizationUrl == rhs.authorizationUrl)
+  fieldCheck = fieldCheck && (lhs.hasProviderName == rhs.hasProviderName) && (!lhs.hasProviderName || lhs.providerName == rhs.providerName)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -42,7 +45,7 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
-      Services.User.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Containers.Token.TokenRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.User.Actions.AuthenticateUser.AuthenticateUserRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -56,6 +59,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
     public private(set) var hasEmail:Bool = false
     public private(set) var email:String = ""
 
+    public private(set) var hasRedirectUri:Bool = false
+    public private(set) var redirectUri:String = ""
+
+    public private(set) var hasOrganizationDomain:Bool = false
+    public private(set) var organizationDomain:String = ""
+
     required public init() {
          super.init()
     }
@@ -68,6 +77,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
       }
       if hasEmail {
         try output.writeString(2, value:email)
+      }
+      if hasRedirectUri {
+        try output.writeString(3, value:redirectUri)
+      }
+      if hasOrganizationDomain {
+        try output.writeString(4, value:organizationDomain)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -83,6 +98,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
       }
       if hasEmail {
         serialize_size += email.computeStringSize(2)
+      }
+      if hasRedirectUri {
+        serialize_size += redirectUri.computeStringSize(3)
+      }
+      if hasOrganizationDomain {
+        serialize_size += organizationDomain.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -141,6 +162,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
       if hasEmail {
         output += "\(indent) email: \(email) \n"
       }
+      if hasRedirectUri {
+        output += "\(indent) redirectUri: \(redirectUri) \n"
+      }
+      if hasOrganizationDomain {
+        output += "\(indent) organizationDomain: \(organizationDomain) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -151,6 +178,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
             }
             if hasEmail {
                hashCode = (hashCode &* 31) &+ email.hashValue
+            }
+            if hasRedirectUri {
+               hashCode = (hashCode &* 31) &+ redirectUri.hashValue
+            }
+            if hasOrganizationDomain {
+               hashCode = (hashCode &* 31) &+ organizationDomain.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -226,6 +259,52 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
            builderResult.email = ""
            return self
       }
+      public var hasRedirectUri:Bool {
+           get {
+                return builderResult.hasRedirectUri
+           }
+      }
+      public var redirectUri:String {
+           get {
+                return builderResult.redirectUri
+           }
+           set (value) {
+               builderResult.hasRedirectUri = true
+               builderResult.redirectUri = value
+           }
+      }
+      public func setRedirectUri(value:String) -> Services.User.Actions.GetAuthenticationInstructions.RequestV1.Builder {
+        self.redirectUri = value
+        return self
+      }
+      public func clearRedirectUri() -> Services.User.Actions.GetAuthenticationInstructions.RequestV1.Builder{
+           builderResult.hasRedirectUri = false
+           builderResult.redirectUri = ""
+           return self
+      }
+      public var hasOrganizationDomain:Bool {
+           get {
+                return builderResult.hasOrganizationDomain
+           }
+      }
+      public var organizationDomain:String {
+           get {
+                return builderResult.organizationDomain
+           }
+           set (value) {
+               builderResult.hasOrganizationDomain = true
+               builderResult.organizationDomain = value
+           }
+      }
+      public func setOrganizationDomain(value:String) -> Services.User.Actions.GetAuthenticationInstructions.RequestV1.Builder {
+        self.organizationDomain = value
+        return self
+      }
+      public func clearOrganizationDomain() -> Services.User.Actions.GetAuthenticationInstructions.RequestV1.Builder{
+           builderResult.hasOrganizationDomain = false
+           builderResult.organizationDomain = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -256,6 +335,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
         if other.hasEmail {
              email = other.email
         }
+        if other.hasRedirectUri {
+             redirectUri = other.redirectUri
+        }
+        if other.hasOrganizationDomain {
+             organizationDomain = other.organizationDomain
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -276,6 +361,12 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
 
           case 18 :
             email = try input.readString()
+
+          case 26 :
+            redirectUri = try input.readString()
+
+          case 34 :
+            organizationDomain = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
@@ -301,6 +392,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
     public private(set) var hasAuthorizationUrl:Bool = false
     public private(set) var authorizationUrl:String = ""
 
+    public private(set) var hasProviderName:Bool = false
+    public private(set) var providerName:String = ""
+
     required public init() {
          super.init()
     }
@@ -319,6 +413,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
       }
       if hasAuthorizationUrl {
         try output.writeString(4, value:authorizationUrl)
+      }
+      if hasProviderName {
+        try output.writeString(5, value:providerName)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -340,6 +437,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
       }
       if hasAuthorizationUrl {
         serialize_size += authorizationUrl.computeStringSize(4)
+      }
+      if hasProviderName {
+        serialize_size += providerName.computeStringSize(5)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -404,6 +504,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
       if hasAuthorizationUrl {
         output += "\(indent) authorizationUrl: \(authorizationUrl) \n"
       }
+      if hasProviderName {
+        output += "\(indent) providerName: \(providerName) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -420,6 +523,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
             }
             if hasAuthorizationUrl {
                hashCode = (hashCode &* 31) &+ authorizationUrl.hashValue
+            }
+            if hasProviderName {
+               hashCode = (hashCode &* 31) &+ providerName.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -541,6 +647,29 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
            builderResult.authorizationUrl = ""
            return self
       }
+      public var hasProviderName:Bool {
+           get {
+                return builderResult.hasProviderName
+           }
+      }
+      public var providerName:String {
+           get {
+                return builderResult.providerName
+           }
+           set (value) {
+               builderResult.hasProviderName = true
+               builderResult.providerName = value
+           }
+      }
+      public func setProviderName(value:String) -> Services.User.Actions.GetAuthenticationInstructions.ResponseV1.Builder {
+        self.providerName = value
+        return self
+      }
+      public func clearProviderName() -> Services.User.Actions.GetAuthenticationInstructions.ResponseV1.Builder{
+           builderResult.hasProviderName = false
+           builderResult.providerName = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -577,6 +706,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
         if other.hasAuthorizationUrl {
              authorizationUrl = other.authorizationUrl
         }
+        if other.hasProviderName {
+             providerName = other.providerName
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -608,6 +740,9 @@ public extension Services.User.Actions.GetAuthenticationInstructions {
 
           case 34 :
             authorizationUrl = try input.readString()
+
+          case 42 :
+            providerName = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

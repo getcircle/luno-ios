@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Services.User.Actions.recordDevice(nil, completionHandler: nil)
 
         // Initialize splash view with passcode & touch ID
-        AuthViewController.initializeSplashViewWithPasscodeAndTouchID()
+        AuthenticationViewController.initializeSplashViewWithPasscodeAndTouchID()
         
         // Register app level notifications
         registerNotifications()

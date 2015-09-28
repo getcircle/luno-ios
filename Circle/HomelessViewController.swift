@@ -68,7 +68,7 @@ class HomelessViewController: UIViewController {
     // MARK: - Status check
     
     private func updateUIAsPerRequestStatus() {
-        if let loggedInUser = AuthViewController.getLoggedInUser() {
+        if let loggedInUser = AuthenticationViewController.getLoggedInUser() {
             if let alreadyRequestedAccessUserID = NSUserDefaults.standardUserDefaults().objectForKey("requested_access_to_app") as? String {
                 if alreadyRequestedAccessUserID == loggedInUser.id {
                     requestAccessButton.alpha = 0.0
@@ -103,7 +103,7 @@ class HomelessViewController: UIViewController {
     
     @IBAction func tryAgainButtonTapped() {
         dismissViewControllerAnimated(false, completion: { () -> Void in
-            AuthViewController.logOut()
+            AuthenticationViewController.logOut()
         })
     }
 }

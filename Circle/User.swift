@@ -15,7 +15,7 @@ typealias UpdateUserCompletionHandler = (user: Services.User.Containers.UserV1?,
 typealias SendVerificationCodeCompletionHandler = (error: NSError?) -> Void
 typealias VerifyVerificationCodeCompletionHandler = (verified: Bool?, error: NSError?) -> Void
 typealias GetAuthorizationInstructionsCompletionHandler = (authorizationURL: String?, error: NSError?) -> Void
-typealias GetAuthenticationInstructionsCompletionHandler = (accountExists: Bool?, authorizationURL: String?, error: NSError?) -> Void
+typealias GetAuthenticationInstructionsCompletionHandler = (backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1?, accountExists: Bool?, authorizationURL: String?, providerName: String?, error: NSError?) -> Void
 typealias CompleteAuthorizationCompletionHandler = (user: Services.User.Containers.UserV1?, identity: Services.User.Containers.IdentityV1?, error: NSError?) -> Void
 typealias GetIdentitiesCompletionHandler = (identities: Array<Services.User.Containers.IdentityV1>?, error: NSError?) -> Void
 typealias RecordDeviceCompletionHandler = (device: Services.User.Containers.DeviceV1?, error: NSError?) -> Void
@@ -143,7 +143,7 @@ extension Services.User.Actions {
                 let response = wrapped?.response?.result.getExtension(
                     Services.Registry.Responses.User.getAuthenticationInstructions()
                 ) as? Services.User.Actions.GetAuthenticationInstructions.ResponseV1
-                completionHandler?(accountExists: response?.userExists, authorizationURL: response?.authorizationUrl, error: error)
+                completionHandler?(backend: response?.backend, accountExists: response?.userExists, authorizationURL: response?.authorizationUrl, providerName: response?.providerName, error: error)
             }
     }
     
@@ -192,7 +192,7 @@ extension Services.User.Actions {
 
     static func recordDevice(pushToken: String?, completionHandler: RecordDeviceCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-            if let loggedInUser = AuthViewController.getLoggedInUser(), deviceUuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
+            if let loggedInUser = AuthenticationViewController.getLoggedInUser(), deviceUuid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
                 let deviceBuilder = Services.User.Containers.DeviceV1.Builder()
                 let currentDevice = UIDevice.currentDevice()
                 let appVersion = NSBundle.appVersion()
@@ -229,7 +229,7 @@ extension Services.User.Actions {
 
     static func requestAccess(completionHandler: RequestAccessCompletionHandler?) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), { () -> Void in
-            if let loggedInUser = AuthViewController.getLoggedInUser() {
+            if let loggedInUser = AuthenticationViewController.getLoggedInUser() {
                 let requestBuilder = Services.User.Actions.RequestAccess.RequestV1.Builder()
                 requestBuilder.userId = loggedInUser.id
                 

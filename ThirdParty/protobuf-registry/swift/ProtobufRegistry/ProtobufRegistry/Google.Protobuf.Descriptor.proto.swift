@@ -7606,9 +7606,7 @@ public extension Google.Protobuf {
 
       final public class Location : GeneratedMessage, GeneratedMessageProtocol {
         public private(set) var path:Array<Int32> = Array<Int32>()
-        private var pathMemoizedSerializedSize:Int32 = -1
         public private(set) var span:Array<Int32> = Array<Int32>()
-        private var spanMemoizedSerializedSize:Int32 = -1
         public private(set) var hasLeadingComments:Bool = false
         public private(set) var leadingComments:String = ""
 
@@ -7623,17 +7621,13 @@ public extension Google.Protobuf {
         }
         override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
           if !path.isEmpty {
-            try output.writeRawVarint32(10)
-            try output.writeRawVarint32(pathMemoizedSerializedSize)
             for oneValuepath in path {
-              try output.writeInt32NoTag(oneValuepath)
+              try output.writeInt32(1, value:oneValuepath)
             }
           }
           if !span.isEmpty {
-            try output.writeRawVarint32(18)
-            try output.writeRawVarint32(spanMemoizedSerializedSize)
             for oneValuespan in span {
-              try output.writeInt32NoTag(oneValuespan)
+              try output.writeInt32(2, value:oneValuespan)
             }
           }
           if hasLeadingComments {
@@ -7656,21 +7650,13 @@ public extension Google.Protobuf {
               dataSizePath += oneValuepath.computeInt32SizeNoTag()
           }
           serialize_size += dataSizePath
-          if !path.isEmpty {
-            serialize_size += 1
-            serialize_size += dataSizePath.computeInt32SizeNoTag()
-          }
-          pathMemoizedSerializedSize = dataSizePath
+          serialize_size += 1 * Int32(path.count)
           var dataSizeSpan:Int32 = 0
           for oneValuespan in span {
               dataSizeSpan += oneValuespan.computeInt32SizeNoTag()
           }
           serialize_size += dataSizeSpan
-          if !span.isEmpty {
-            serialize_size += 1
-            serialize_size += dataSizeSpan.computeInt32SizeNoTag()
-          }
-          spanMemoizedSerializedSize = dataSizeSpan
+          serialize_size += 1 * Int32(span.count)
           if hasLeadingComments {
             serialize_size += leadingComments.computeStringSize(3)
           }
@@ -7918,21 +7904,11 @@ public extension Google.Protobuf {
                 self.unknownFields = try unknownFieldsBuilder.build()
                 return self
 
-              case 10 :
-                let length:Int32 = try input.readRawVarint32()
-                let limit:Int32 = try input.pushLimit(length)
-                while (input.bytesUntilLimit() > 0) {
-                  builderResult.path += [try input.readInt32()]
-                }
-                input.popLimit(limit)
+              case 8 :
+                path += [try input.readInt32()]
 
-              case 18 :
-                let length:Int32 = try input.readRawVarint32()
-                let limit:Int32 = try input.pushLimit(length)
-                while (input.bytesUntilLimit() > 0) {
-                  builderResult.span += [try input.readInt32()]
-                }
-                input.popLimit(limit)
+              case 16 :
+                span += [try input.readInt32()]
 
               case 26 :
                 leadingComments = try input.readString()

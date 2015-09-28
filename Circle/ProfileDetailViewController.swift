@@ -30,7 +30,7 @@ class ProfileDetailViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile() {
             if profile.id != loggedInUserProfile.id {
                 CircleCache.recordProfileVisit(profile)
             }

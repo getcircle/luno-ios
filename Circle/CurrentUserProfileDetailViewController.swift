@@ -113,7 +113,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "onProfileUpdated:",
-            name: AuthNotifications.onProfileChangedNotification,
+            name: AuthenticationNotifications.onProfileChangedNotification,
             object: nil
         )
     }
@@ -121,7 +121,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     // MARK: - Notification handlers
 
     func onProfileUpdated(notification: NSNotification) {
-        profile = AuthViewController.getLoggedInUserProfile()!
+        profile = AuthenticationViewController.getLoggedInUserProfile()!
         reloadData()
     }
     
@@ -160,7 +160,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
                     profileBuilder.imageUrl = mediaURL
                     Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
                         if let profile = profile {
-                            AuthViewController.updateUserProfile(profile)
+                            AuthenticationViewController.updateUserProfile(profile)
                             self.profile = profile
                             hud.hide(true)
                             completion()
@@ -174,7 +174,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     // MARK: - EditProfileDelegate
     
     func didFinishEditingProfile() {
-        if let loggedInUserProfile = AuthViewController.getLoggedInUserProfile() {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile() {
             if profile.id == loggedInUserProfile.id {
                 profile = loggedInUserProfile
                 reloadData()

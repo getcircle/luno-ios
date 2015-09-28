@@ -2115,9 +2115,9 @@ public extension Google.Protobuf {
     public private(set) var hasNumber:Bool = false
     public private(set) var number:Int32 = Int32(0)
 
-    public private(set) var label:FieldDescriptorProto.Label = FieldDescriptorProto.Label.LabelOptional
+    public private(set) var label:Google.Protobuf.FieldDescriptorProto.Label = Google.Protobuf.FieldDescriptorProto.Label.LabelOptional
     public private(set) var hasLabel:Bool = false
-    public private(set) var types:FieldDescriptorProto.Types = FieldDescriptorProto.Types.TypeDouble
+    public private(set) var types:Google.Protobuf.FieldDescriptorProto.Types = Google.Protobuf.FieldDescriptorProto.Types.TypeDouble
     public private(set) var hasTypes:Bool = false
     public private(set) var hasTypeName:Bool = false
     public private(set) var typeName:String = ""
@@ -2403,7 +2403,7 @@ public extension Google.Protobuf {
                 return builderResult.hasLabel
             }
         }
-        public var label:FieldDescriptorProto.Label {
+        public var label:Google.Protobuf.FieldDescriptorProto.Label {
             get {
                 return builderResult.label
             }
@@ -2412,7 +2412,7 @@ public extension Google.Protobuf {
                 builderResult.label = value
             }
         }
-        public func setLabel(value:FieldDescriptorProto.Label) -> Google.Protobuf.FieldDescriptorProto.Builder {
+        public func setLabel(value:Google.Protobuf.FieldDescriptorProto.Label) -> Google.Protobuf.FieldDescriptorProto.Builder {
           self.label = value
           return self
         }
@@ -2426,7 +2426,7 @@ public extension Google.Protobuf {
                 return builderResult.hasTypes
             }
         }
-        public var types:FieldDescriptorProto.Types {
+        public var types:Google.Protobuf.FieldDescriptorProto.Types {
             get {
                 return builderResult.types
             }
@@ -2435,7 +2435,7 @@ public extension Google.Protobuf {
                 builderResult.types = value
             }
         }
-        public func setTypes(value:FieldDescriptorProto.Types) -> Google.Protobuf.FieldDescriptorProto.Builder {
+        public func setTypes(value:Google.Protobuf.FieldDescriptorProto.Types) -> Google.Protobuf.FieldDescriptorProto.Builder {
           self.types = value
           return self
         }
@@ -2664,7 +2664,7 @@ public extension Google.Protobuf {
 
           case 32 :
             let valueIntlabel = try input.readEnum()
-            if let enumslabel = FieldDescriptorProto.Label(rawValue:valueIntlabel){
+            if let enumslabel = Google.Protobuf.FieldDescriptorProto.Label(rawValue:valueIntlabel){
                  label = enumslabel
             } else {
                  try unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntlabel))
@@ -2672,7 +2672,7 @@ public extension Google.Protobuf {
 
           case 40 :
             let valueInttypes = try input.readEnum()
-            if let enumstypes = FieldDescriptorProto.Types(rawValue:valueInttypes){
+            if let enumstypes = Google.Protobuf.FieldDescriptorProto.Types(rawValue:valueInttypes){
                  types = enumstypes
             } else {
                  try unknownFieldsBuilder.mergeVarintField(5, value:Int64(valueInttypes))
@@ -4298,7 +4298,7 @@ public extension Google.Protobuf {
     public private(set) var hasJavaStringCheckUtf8:Bool = false
     public private(set) var javaStringCheckUtf8:Bool = false
 
-    public private(set) var optimizeFor:FileOptions.OptimizeMode = FileOptions.OptimizeMode.Speed
+    public private(set) var optimizeFor:Google.Protobuf.FileOptions.OptimizeMode = Google.Protobuf.FileOptions.OptimizeMode.Speed
     public private(set) var hasOptimizeFor:Bool = false
     public private(set) var hasGoPackage:Bool = false
     public private(set) var goPackage:String = ""
@@ -4701,7 +4701,7 @@ public extension Google.Protobuf {
                 return builderResult.hasOptimizeFor
             }
         }
-        public var optimizeFor:FileOptions.OptimizeMode {
+        public var optimizeFor:Google.Protobuf.FileOptions.OptimizeMode {
             get {
                 return builderResult.optimizeFor
             }
@@ -4710,7 +4710,7 @@ public extension Google.Protobuf {
                 builderResult.optimizeFor = value
             }
         }
-        public func setOptimizeFor(value:FileOptions.OptimizeMode) -> Google.Protobuf.FileOptions.Builder {
+        public func setOptimizeFor(value:Google.Protobuf.FileOptions.OptimizeMode) -> Google.Protobuf.FileOptions.Builder {
           self.optimizeFor = value
           return self
         }
@@ -4934,7 +4934,7 @@ public extension Google.Protobuf {
 
           case 72 :
             let valueIntoptimizeFor = try input.readEnum()
-            if let enumsoptimizeFor = FileOptions.OptimizeMode(rawValue:valueIntoptimizeFor){
+            if let enumsoptimizeFor = Google.Protobuf.FileOptions.OptimizeMode(rawValue:valueIntoptimizeFor){
                  optimizeFor = enumsoptimizeFor
             } else {
                  try unknownFieldsBuilder.mergeVarintField(9, value:Int64(valueIntoptimizeFor))
@@ -5329,7 +5329,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration start 
 
-      public enum Ctype:Int32 {
+      public enum CType:Int32 {
         case String = 0
         case Cord = 1
         case StringPiece = 2
@@ -5338,7 +5338,7 @@ public extension Google.Protobuf {
 
       //Enum type declaration end 
 
-    public private(set) var ctype:FieldOptions.Ctype = FieldOptions.Ctype.String
+    public private(set) var ctype:Google.Protobuf.FieldOptions.CType = Google.Protobuf.FieldOptions.CType.String
     public private(set) var hasCtype:Bool = false
     public private(set) var hasPacked:Bool = false
     public private(set) var packed:Bool = false
@@ -5566,7 +5566,7 @@ public extension Google.Protobuf {
                 return builderResult.hasCtype
             }
         }
-        public var ctype:FieldOptions.Ctype {
+        public var ctype:Google.Protobuf.FieldOptions.CType {
             get {
                 return builderResult.ctype
             }
@@ -5575,7 +5575,7 @@ public extension Google.Protobuf {
                 builderResult.ctype = value
             }
         }
-        public func setCtype(value:FieldOptions.Ctype) -> Google.Protobuf.FieldOptions.Builder {
+        public func setCtype(value:Google.Protobuf.FieldOptions.CType) -> Google.Protobuf.FieldOptions.Builder {
           self.ctype = value
           return self
         }
@@ -5778,7 +5778,7 @@ public extension Google.Protobuf {
 
           case 8 :
             let valueIntctype = try input.readEnum()
-            if let enumsctype = FieldOptions.Ctype(rawValue:valueIntctype){
+            if let enumsctype = Google.Protobuf.FieldOptions.CType(rawValue:valueIntctype){
                  ctype = enumsctype
             } else {
                  try unknownFieldsBuilder.mergeVarintField(1, value:Int64(valueIntctype))
@@ -7606,9 +7606,7 @@ public extension Google.Protobuf {
 
       final public class Location : GeneratedMessage, GeneratedMessageProtocol {
         public private(set) var path:Array<Int32> = Array<Int32>()
-        private var pathMemoizedSerializedSize:Int32 = -1
         public private(set) var span:Array<Int32> = Array<Int32>()
-        private var spanMemoizedSerializedSize:Int32 = -1
         public private(set) var hasLeadingComments:Bool = false
         public private(set) var leadingComments:String = ""
 
@@ -7623,17 +7621,13 @@ public extension Google.Protobuf {
         }
         override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
           if !path.isEmpty {
-            try output.writeRawVarint32(10)
-            try output.writeRawVarint32(pathMemoizedSerializedSize)
             for oneValuepath in path {
-              try output.writeInt32NoTag(oneValuepath)
+              try output.writeInt32(1, value:oneValuepath)
             }
           }
           if !span.isEmpty {
-            try output.writeRawVarint32(18)
-            try output.writeRawVarint32(spanMemoizedSerializedSize)
             for oneValuespan in span {
-              try output.writeInt32NoTag(oneValuespan)
+              try output.writeInt32(2, value:oneValuespan)
             }
           }
           if hasLeadingComments {
@@ -7656,21 +7650,13 @@ public extension Google.Protobuf {
               dataSizePath += oneValuepath.computeInt32SizeNoTag()
           }
           serialize_size += dataSizePath
-          if !path.isEmpty {
-            serialize_size += 1
-            serialize_size += dataSizePath.computeInt32SizeNoTag()
-          }
-          pathMemoizedSerializedSize = dataSizePath
+          serialize_size += 1 * Int32(path.count)
           var dataSizeSpan:Int32 = 0
           for oneValuespan in span {
               dataSizeSpan += oneValuespan.computeInt32SizeNoTag()
           }
           serialize_size += dataSizeSpan
-          if !span.isEmpty {
-            serialize_size += 1
-            serialize_size += dataSizeSpan.computeInt32SizeNoTag()
-          }
-          spanMemoizedSerializedSize = dataSizeSpan
+          serialize_size += 1 * Int32(span.count)
           if hasLeadingComments {
             serialize_size += leadingComments.computeStringSize(3)
           }
@@ -7918,21 +7904,11 @@ public extension Google.Protobuf {
                 self.unknownFields = try unknownFieldsBuilder.build()
                 return self
 
-              case 10 :
-                let length:Int32 = try input.readRawVarint32()
-                let limit:Int32 = try input.pushLimit(length)
-                while (input.bytesUntilLimit() > 0) {
-                  builderResult.path += [try input.readInt32()]
-                }
-                input.popLimit(limit)
+              case 8 :
+                path += [try input.readInt32()]
 
-              case 18 :
-                let length:Int32 = try input.readRawVarint32()
-                let limit:Int32 = try input.pushLimit(length)
-                while (input.bytesUntilLimit() > 0) {
-                  builderResult.span += [try input.readInt32()]
-                }
-                input.popLimit(limit)
+              case 16 :
+                span += [try input.readInt32()]
 
               case 26 :
                 leadingComments = try input.readString()

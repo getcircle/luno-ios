@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/user/containers.proto',
   package='services.user.containers',
   syntax='proto2',
-  serialized_pb=_b('\n(protobufs/services/user/containers.proto\x12\x18services.user.containers\"B\n\x0f\x41\x63\x63\x65ssRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\"\xaa\x02\n\x08\x44\x65viceV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1a\n\x12notification_token\x18\x03 \x01(\t\x12\x10\n\x08platform\x18\x04 \x01(\t\x12\x12\n\nos_version\x18\x05 \x01(\t\x12\x13\n\x0b\x61pp_version\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65vice_uuid\x18\x07 \x01(\t\x12\x0f\n\x07user_id\x18\x08 \x01(\t\x12\x1b\n\x13language_preference\x18\t \x01(\t\x12?\n\x08provider\x18\n \x01(\x0e\x32-.services.user.containers.DeviceV1.ProviderV1\"#\n\nProviderV1\x12\t\n\x05\x41PPLE\x10\x00\x12\n\n\x06GOOGLE\x10\x01\"\xaf\x02\n\nIdentityV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x41\n\x08provider\x18\x03 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x11\n\tfull_name\x18\x04 \x01(\t\x12\r\n\x05\x65mail\x18\x05 \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x06 \x01(\t\x12\x12\n\nexpires_at\x18\x07 \x01(\t\x12\x14\n\x0cprovider_uid\x18\x08 \x01(\t\x12\x0f\n\x07user_id\x18\t \x01(\t\x12\x15\n\rrefresh_token\x18\n \x01(\t\"4\n\nProviderV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\x0c\n\x08LINKEDIN\x10\x01\x12\n\n\x06GOOGLE\x10\x02\"B\n\x0fOAuth2DetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\"G\n\x11OAuthSDKDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\x10\n\x08id_token\x18\x03 \x01(\t\"\xab\x01\n\x06UserV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x15\n\rprimary_email\x18\x03 \x01(\t\x12\x10\n\x08is_admin\x18\x04 \x01(\x08\x12\x11\n\tis_active\x18\x05 \x01(\x08\x12\x14\n\x0cphone_number\x18\x06 \x01(\t\x12\x1d\n\x15phone_number_verified\x18\x07 \x01(\x08\x12\x10\n\x08password\x18\x08 \x01(\tB/\n-com.rhlabs.protobufs.services.user.containers')
+  serialized_pb=_b('\n(protobufs/services/user/containers.proto\x12\x18services.user.containers\"B\n\x0f\x41\x63\x63\x65ssRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\x03 \x01(\t\"\xaa\x02\n\x08\x44\x65viceV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x1a\n\x12notification_token\x18\x03 \x01(\t\x12\x10\n\x08platform\x18\x04 \x01(\t\x12\x12\n\nos_version\x18\x05 \x01(\t\x12\x13\n\x0b\x61pp_version\x18\x06 \x01(\t\x12\x13\n\x0b\x64\x65vice_uuid\x18\x07 \x01(\t\x12\x0f\n\x07user_id\x18\x08 \x01(\t\x12\x1b\n\x13language_preference\x18\t \x01(\t\x12?\n\x08provider\x18\n \x01(\x0e\x32-.services.user.containers.DeviceV1.ProviderV1\"#\n\nProviderV1\x12\t\n\x05\x41PPLE\x10\x00\x12\n\n\x06GOOGLE\x10\x01\"\xb9\x02\n\nIdentityV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x41\n\x08provider\x18\x03 \x01(\x0e\x32/.services.user.containers.IdentityV1.ProviderV1\x12\x11\n\tfull_name\x18\x04 \x01(\t\x12\r\n\x05\x65mail\x18\x05 \x01(\t\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x06 \x01(\t\x12\x12\n\nexpires_at\x18\x07 \x01(\t\x12\x14\n\x0cprovider_uid\x18\x08 \x01(\t\x12\x0f\n\x07user_id\x18\t \x01(\t\x12\x15\n\rrefresh_token\x18\n \x01(\t\">\n\nProviderV1\x12\x0c\n\x08INTERNAL\x10\x00\x12\x0c\n\x08LINKEDIN\x10\x01\x12\n\n\x06GOOGLE\x10\x02\x12\x08\n\x04OKTA\x10\x03\"B\n\x0fOAuth2DetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\r\n\x05state\x18\x03 \x01(\t\"G\n\x11OAuthSDKDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\x12\x10\n\x08id_token\x18\x03 \x01(\t\"\xab\x01\n\x06UserV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x15\n\rprimary_email\x18\x03 \x01(\t\x12\x10\n\x08is_admin\x18\x04 \x01(\x08\x12\x11\n\tis_active\x18\x05 \x01(\x08\x12\x14\n\x0cphone_number\x18\x06 \x01(\t\x12\x1d\n\x15phone_number_verified\x18\x07 \x01(\x08\x12\x10\n\x08password\x18\x08 \x01(\t\"s\n\rSAMLDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x15\n\rsaml_response\x18\x02 \x01(\t\x12\x13\n\x0brelay_state\x18\x03 \x01(\t\x12\x0e\n\x06\x64omain\x18\x04 \x01(\t\x12\x12\n\nauth_state\x18\x05 \x01(\tB/\n-com.rhlabs.protobufs.services.user.containers')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -65,11 +65,15 @@ _IDENTITYV1_PROVIDERV1 = _descriptor.EnumDescriptor(
       name='GOOGLE', index=2, number=2,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='OKTA', index=3, number=3,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=691,
-  serialized_end=743,
+  serialized_end=753,
 )
 _sym_db.RegisterEnumDescriptor(_IDENTITYV1_PROVIDERV1)
 
@@ -305,7 +309,7 @@ _IDENTITYV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=440,
-  serialized_end=743,
+  serialized_end=753,
 )
 
 
@@ -349,8 +353,8 @@ _OAUTH2DETAILSV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=745,
-  serialized_end=811,
+  serialized_start=755,
+  serialized_end=821,
 )
 
 
@@ -394,8 +398,8 @@ _OAUTHSDKDETAILSV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=813,
-  serialized_end=884,
+  serialized_start=823,
+  serialized_end=894,
 )
 
 
@@ -474,8 +478,67 @@ _USERV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=887,
-  serialized_end=1058,
+  serialized_start=897,
+  serialized_end=1068,
+)
+
+
+_SAMLDETAILSV1 = _descriptor.Descriptor(
+  name='SAMLDetailsV1',
+  full_name='services.user.containers.SAMLDetailsV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version', full_name='services.user.containers.SAMLDetailsV1.version', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='saml_response', full_name='services.user.containers.SAMLDetailsV1.saml_response', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='relay_state', full_name='services.user.containers.SAMLDetailsV1.relay_state', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='domain', full_name='services.user.containers.SAMLDetailsV1.domain', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='auth_state', full_name='services.user.containers.SAMLDetailsV1.auth_state', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1070,
+  serialized_end=1185,
 )
 
 _DEVICEV1.fields_by_name['provider'].enum_type = _DEVICEV1_PROVIDERV1
@@ -488,6 +551,7 @@ DESCRIPTOR.message_types_by_name['IdentityV1'] = _IDENTITYV1
 DESCRIPTOR.message_types_by_name['OAuth2DetailsV1'] = _OAUTH2DETAILSV1
 DESCRIPTOR.message_types_by_name['OAuthSDKDetailsV1'] = _OAUTHSDKDETAILSV1
 DESCRIPTOR.message_types_by_name['UserV1'] = _USERV1
+DESCRIPTOR.message_types_by_name['SAMLDetailsV1'] = _SAMLDETAILSV1
 
 AccessRequestV1 = _reflection.GeneratedProtocolMessageType('AccessRequestV1', (_message.Message,), dict(
   DESCRIPTOR = _ACCESSREQUESTV1,
@@ -530,6 +594,13 @@ UserV1 = _reflection.GeneratedProtocolMessageType('UserV1', (_message.Message,),
   # @@protoc_insertion_point(class_scope:services.user.containers.UserV1)
   ))
 _sym_db.RegisterMessage(UserV1)
+
+SAMLDetailsV1 = _reflection.GeneratedProtocolMessageType('SAMLDetailsV1', (_message.Message,), dict(
+  DESCRIPTOR = _SAMLDETAILSV1,
+  __module__ = 'protobufs.services.user.containers_pb2'
+  # @@protoc_insertion_point(class_scope:services.user.containers.SAMLDetailsV1)
+  ))
+_sym_db.RegisterMessage(SAMLDetailsV1)
 
 
 DESCRIPTOR.has_options = True

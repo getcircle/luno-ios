@@ -192,8 +192,8 @@ extension UIViewController {
     
     // MARK: - Authentication
     
-    func checkUserAndPresentAuthViewController() -> Bool {
-        return AuthViewController.checkUser(
+    func checkUserAndPresentAuthenticationViewController() -> Bool {
+        return AuthenticationViewController.checkUser(
             unverifiedPhoneHandler: nil, 
             unverifiedProfileHandler: nil
         )
