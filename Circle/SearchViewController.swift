@@ -350,7 +350,7 @@ class SearchViewController: UIViewController,
         ]
         
         switch selectedCard.type {
-        case .Profiles:
+        case .SearchResult:
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
