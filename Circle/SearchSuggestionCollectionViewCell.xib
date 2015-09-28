@@ -14,20 +14,20 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SearchSuggestionCollectionViewCell" customModule="luno" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="detail_group" translatesAutoresizingMaskIntoConstraints="NO" id="gM9-QV-h3Z">
-                        <rect key="frame" x="30" y="29" width="12" height="12"/>
+                        <rect key="frame" x="30" y="24" width="12" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="gM9-QV-h3Z" secondAttribute="height" multiplier="1:1" id="Xv6-vl-INs"/>
                             <constraint firstAttribute="width" constant="12" id="uEk-2y-YMc"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QYh-SF-P9B">
-                        <rect key="frame" x="70" y="24" width="515" height="22"/>
+                        <rect key="frame" x="70" y="19" width="515" height="22"/>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

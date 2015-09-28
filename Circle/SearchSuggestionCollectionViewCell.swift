@@ -11,7 +11,7 @@ import UIKit
 class SearchSuggestionCollectionViewCell: CircleCollectionViewCell {
         
     override class var height: CGFloat {
-        return 50.0
+        return 60.0
     }
 
     @IBOutlet weak private(set) var imageView: UIImageView!

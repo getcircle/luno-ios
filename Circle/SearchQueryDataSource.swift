@@ -165,7 +165,7 @@ class SearchQueryDataSource: CardDataSource {
             resultsCard.sectionInset = UIEdgeInsetsZero
             resultsCard.addContent(content: searchResults)
             if emptySearchTerm {
-                resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+                resultsCard.addHeader(headerClass: SearchSectionHeaderCollectionReusableView.self)
             }
             
             appendCard(resultsCard)
@@ -189,7 +189,7 @@ class SearchQueryDataSource: CardDataSource {
             
             if emptySearchTerm {
                 // Explore options are shown here
-                searchSuggestionsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+                searchSuggestionsCard.addHeader(headerClass: SearchSectionHeaderCollectionReusableView.self)
             }
             
             searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
