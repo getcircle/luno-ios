@@ -15,7 +15,7 @@ class ProfilesDataSource: CardDataSource {
     private(set) var searchAttributeValue: String?
     
     private var card: Card!
-    private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
+    internal var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
     private var data = [AnyObject]()
     
     override class var cardSeparatorInset: UIEdgeInsets {

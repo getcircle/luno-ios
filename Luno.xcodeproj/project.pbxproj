@@ -15,6 +15,7 @@
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
 		47CAC38F1BB9C13900A11652 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		47CAC3921BB9C24C00A11652 /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		47CAC3941BB9C87300A11652 /* ProfilesSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
 		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; settings = {ASSET_TAGS = (); }; };
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; settings = {ASSET_TAGS = (); }; };
@@ -350,6 +351,7 @@
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
+		47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesSearchDataSource.swift; sourceTree = "<group>"; };
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -1070,6 +1072,7 @@
 				8F306B921A74171C0024EB03 /* LocationsOverviewDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
+				47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
 				8F9F60D11A8C46C100FCAA25 /* SettingsDataSource.swift */,
 				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
@@ -1626,6 +1629,7 @@
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* User.swift in Sources */,
 				8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */,
+				47CAC3941BB9C87300A11652 /* ProfilesSearchDataSource.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
 				BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */,

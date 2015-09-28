@@ -380,7 +380,7 @@ class SearchViewController: UIViewController,
             if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
                 switch searchCategory.type {
                 case .People:
-                    let profilesDataSource = ProfilesDataSource()
+                    let profilesDataSource = ProfilesSearchDataSource()
                     profilesDataSource.delegate = self
                     profilesDataSource.configureForOrganization()
                     
