@@ -17,7 +17,8 @@ class SearchViewController: UIViewController,
     MFMailComposeViewControllerDelegate,
     MFMessageComposeViewControllerDelegate,
     SearchHeaderViewDelegate,
-    CircleTextFieldDelegate
+    CircleTextFieldDelegate,
+    CardDataSourceDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var orgImageView: CircleImageView!
@@ -380,6 +381,7 @@ class SearchViewController: UIViewController,
                 switch searchCategory.type {
                 case .People:
                     let profilesDataSource = ProfilesDataSource()
+                    profilesDataSource.delegate = self
                     profilesDataSource.configureForOrganization()
                     
                     collectionView.dataSource = profilesDataSource
@@ -408,6 +410,7 @@ class SearchViewController: UIViewController,
                     dataSource = locationsDataSource
                 case .Teams:
                     let teamsDataSource = TeamsOverviewDataSource()
+                    teamsDataSource.delegate = self
                     teamsDataSource.configureForOrganization()
                     
                     collectionView.dataSource = teamsDataSource
@@ -603,5 +606,13 @@ class SearchViewController: UIViewController,
         default:
             break;
         }
+    }
+    
+    // MARK: - CardDataSourceDelegate
+    
+    func onDataLoaded(indexPaths: [NSIndexPath]) {
+        collectionView.performBatchUpdates({ () -> Void in
+            self.collectionView.insertItemsAtIndexPaths(indexPaths)
+            }, completion: nil)
     }
 }
