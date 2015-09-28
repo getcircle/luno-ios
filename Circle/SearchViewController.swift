@@ -71,8 +71,8 @@ class SearchViewController: UIViewController,
 
         if searchHeaderContainerViewTopConstraint.constant == 0 {
             navigationController?.setNavigationBarHidden(true, animated: false)
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         }
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -219,6 +219,7 @@ class SearchViewController: UIViewController,
         }
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         
         searchHeaderContainerViewTopConstraint.constant = 0
         searchHeaderContainerViewLeftConstraint.constant = 0
@@ -249,6 +250,7 @@ class SearchViewController: UIViewController,
         }
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         
         searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2
         searchHeaderContainerViewLeftConstraint.constant = 15
