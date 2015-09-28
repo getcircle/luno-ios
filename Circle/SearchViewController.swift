@@ -16,7 +16,8 @@ class SearchViewController: UIViewController,
     UITextFieldDelegate,
     MFMailComposeViewControllerDelegate,
     MFMessageComposeViewControllerDelegate,
-    SearchHeaderViewDelegate
+    SearchHeaderViewDelegate,
+    CircleTextFieldDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var orgImageView: CircleImageView!
@@ -124,6 +125,7 @@ class SearchViewController: UIViewController,
             searchHeaderView = nibViews.first as! SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.delegate = self
+            searchHeaderView.searchTextField.helperDelegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
@@ -277,6 +279,18 @@ class SearchViewController: UIViewController,
         errorMessageView.hide()
         search()
         setNavigationTitle(true)
+    }
+    
+    func textFieldDidDeleteBackwardWhenEmpty(textField: CircleTextField) {
+        if !dataSource.isKindOfClass(SearchQueryDataSource) {
+            searchHeaderView.hideTag()
+            resetSearchFieldPlaceholderText()
+            
+            dataSource = SearchQueryDataSource()
+            search()
+            collectionView.dataSource = dataSource
+            collectionView.reloadData()
+        }
     }
     
     // MARK: - SearchHeaderViewDelegate

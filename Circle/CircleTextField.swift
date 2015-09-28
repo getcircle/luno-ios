@@ -8,8 +8,14 @@
 
 import UIKit
 
+@objc protocol CircleTextFieldDelegate {
+    optional func textFieldDidDeleteBackwardWhenEmpty(textField: CircleTextField)
+}
+
 class CircleTextField: UITextField {
 
+    weak var helperDelegate: CircleTextFieldDelegate?
+    
     var placeholderColor: UIColor? {
         didSet {
             let defaultPlaceholderColor = UIColor.grayColor().colorWithAlphaComponent(0.75)
@@ -22,6 +28,16 @@ class CircleTextField: UITextField {
                     ]
                 )
             }
+        }
+    }
+    
+    override func deleteBackward() {
+        let alreadyEmpty = text?.isEmpty ?? true
+        
+        super.deleteBackward()
+        
+        if alreadyEmpty {
+            helperDelegate?.textFieldDidDeleteBackwardWhenEmpty?(self)
         }
     }
 }
