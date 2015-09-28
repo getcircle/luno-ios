@@ -14,7 +14,7 @@ protocol SearchHeaderViewDelegate {
 
 class SearchHeaderView: UIView {
     
-    let searchFieldLeftViewDefaultWidth = CGFloat(36.0)
+    let searchFieldLeftViewDefaultWidth = CGFloat(44.0)
     
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: CircleTextField!
@@ -33,7 +33,7 @@ class SearchHeaderView: UIView {
     private var leftViewImageView: UIImageView!
     
     class var height: CGFloat {
-        return 50.0
+        return 44.0
     }
     
     override func awakeFromNib() {
@@ -87,7 +87,7 @@ class SearchHeaderView: UIView {
         
         let tagPadding = CGFloat(8.0)
         
-        searchFieldLeftView.frameWidth = searchFieldLeftViewDefaultWidth + tagPadding + tag.frameWidth
+        searchFieldLeftView.frameWidth = searchFieldLeftViewDefaultWidth + tag.frameWidth
         tag.frame = CGRectMake(leftViewImageView.frameRight + tagPadding, floor((searchFieldLeftView.frameHeight - tag.frameHeight) / 2), tag.frameWidth, tag.frameHeight)
         searchFieldLeftView.addSubview(tag)
         

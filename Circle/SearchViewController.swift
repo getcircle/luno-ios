@@ -39,6 +39,7 @@ class SearchViewController: UIViewController,
     private var searchHeaderView: SearchHeaderView!
     private var shadowAdded = false
     private var wasErrorViewVisible = false
+    private weak var searchHeaderViewHeightConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +131,7 @@ class SearchViewController: UIViewController,
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
-            searchHeaderView.autoSetDimension(.Height, toSize: 50.0)
+            searchHeaderViewHeightConstraint = searchHeaderView.autoSetDimension(.Height, toSize: 50.0)
             searchHeaderView.layer.cornerRadius = 10.0
             resetSearchFieldPlaceholderText()
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
@@ -224,7 +225,8 @@ class SearchViewController: UIViewController,
         searchHeaderContainerViewTopConstraint.constant = 0
         searchHeaderContainerViewLeftConstraint.constant = 0
         searchHeaderContainerViewRightConstraint.constant = 0
-        searchHeaderContainerViewHeightConstraint.constant = 70
+        searchHeaderContainerViewHeightConstraint.constant = 64
+        searchHeaderViewHeightConstraint?.constant = searchHeaderContainerViewHeightConstraint.constant - 20
         searchHeaderContainerView.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
@@ -256,6 +258,7 @@ class SearchViewController: UIViewController,
         searchHeaderContainerViewLeftConstraint.constant = 15
         searchHeaderContainerViewRightConstraint.constant = 15
         searchHeaderContainerViewHeightConstraint.constant = 50
+        searchHeaderViewHeightConstraint?.constant = searchHeaderContainerViewHeightConstraint.constant
         searchHeaderContainerView.setNeedsUpdateConstraints()
 
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
