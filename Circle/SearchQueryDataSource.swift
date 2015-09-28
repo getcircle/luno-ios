@@ -53,35 +53,38 @@ class SearchQueryDataSource: CardDataSource {
         }
         
         searchTerm = string.trimWhitespace()
-        if searchTerm == "" {
-            clearData()
-            searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
-            populateDefaultSearchSuggestions()
-            addCards()
+        if let results = searchCache[searchTerm] {
+            self.clearData()
+            searchResults.appendContentsOf(results)
+            self.addCards()
             completionHandler(error: nil)
         }
         else {
-            if let results = searchCache[searchTerm] {
-                self.clearData()
-                searchResults.appendContentsOf(results)
-                self.addCards()
-                completionHandler(error: nil)
+            self.completionHandler = completionHandler
+            if let timer = searchTriggerTimer {
+                timer.invalidate()
             }
-            else {
-                self.completionHandler = completionHandler
-                if let timer = searchTriggerTimer {
-                    timer.invalidate()
-                }
-                
-                searchTriggerTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    queryTriggerTimer,
-                    target: self, 
-                    selector: "search", 
-                    userInfo: nil, 
-                    repeats: false
-                )
-            }
+            
+            searchTriggerTimer = NSTimer.scheduledTimerWithTimeInterval(
+                queryTriggerTimer,
+                target: self,
+                selector: "search",
+                userInfo: nil,
+                repeats: false
+            )
         }
+    }
+    
+    override func clearFilter(completionHandler: () -> Void) {
+        super.clearFilter(completionHandler)
+
+        searchTerm = ""
+        
+        clearData()
+        searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
+        populateDefaultSearchSuggestions()
+        addCards()
+        completionHandler()
     }
     
     func search() {

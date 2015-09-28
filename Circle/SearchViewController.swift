@@ -311,10 +311,15 @@ class SearchViewController: UIViewController,
     }
     
     func search() {
-        if let term = searchHeaderView.searchTextField.text {
+        if let term = searchHeaderView.searchTextField.text?.trimWhitespace() where !term.isEmpty {
             dataSource.filter(term.trimWhitespace()) { (error) -> Void in
                 self.collectionView.reloadData()
             }
+        }
+        else {
+            dataSource.clearFilter({ () -> Void in
+                self.collectionView.reloadData()
+            })
         }
     }
     
