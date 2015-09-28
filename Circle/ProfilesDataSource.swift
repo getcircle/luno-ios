@@ -18,10 +18,6 @@ class ProfilesDataSource: CardDataSource {
     internal var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
     private var data = [AnyObject]()
     
-    override class var cardSeparatorInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
-    }
-    
     // MARK: - Configuration
     
     func configureForLocation(locationId: String, setupOnlySearch: Bool) {

@@ -10,6 +10,10 @@ import UIKit
 
 class ProfilesSearchDataSource: ProfilesDataSource {
     
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+    }
+    
     override init() {
         super.init()
         
