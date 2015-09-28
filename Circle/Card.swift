@@ -89,6 +89,7 @@ class Card: Equatable {
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
         case SearchSuggestion = "SearchSuggestion"
+        case SearchResult = "SearchResult"
         case ContactMethods = "ContactMethods"
         case TextValue = "TextValue"
 
@@ -224,6 +225,13 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: String(),
                     classType: SearchSuggestionCollectionViewCell.self,
+                    contentType: .Flat
+                )
+                
+            case SearchResult:
+                return CardTypeInfo(
+                    imageName: "detail_group",
+                    classType: SearchResultCollectionViewCell.self,
                     contentType: .Flat
                 )
 

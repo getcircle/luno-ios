@@ -161,7 +161,8 @@ class SearchQueryDataSource: CardDataSource {
         let emptySearchTerm = searchTerm.trimWhitespace() == ""
         if searchResults.count > 0 {
             let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recents", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
-            let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
+            let resultsCard = Card(cardType: .SearchResult, title: profilesCardTitle, showContentCount: false)
+            resultsCard.sectionInset = UIEdgeInsetsZero
             resultsCard.addContent(content: searchResults)
             if emptySearchTerm {
                 resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
@@ -184,6 +185,7 @@ class SearchQueryDataSource: CardDataSource {
                 ),
                 showContentCount: false
             )
+            searchSuggestionsCard.sectionInset = UIEdgeInsetsZero
             
             if emptySearchTerm {
                 // Explore options are shown here
