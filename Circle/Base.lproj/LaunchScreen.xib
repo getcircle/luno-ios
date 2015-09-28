@@ -18,14 +18,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="hHL-t5-kR3">
-                    <rect key="frame" x="225" y="225" width="150" height="150"/>
+                    <rect key="frame" x="225" y="205" width="150" height="150"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hHL-t5-kR3" secondAttribute="height" multiplier="1:1" id="5Rf-rz-1cg"/>
                         <constraint firstAttribute="width" constant="150" id="tbX-de-c56"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organizing your company's knowledge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="gfJ-vX-FgB" userLabel="Tagline">
-                    <rect key="frame" x="20" y="355" width="560" height="22"/>
+                    <rect key="frame" x="20" y="335" width="560" height="22"/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="gfJ-vX-FgB" secondAttribute="trailing" constant="20" symbolic="YES" id="EMr-VZ-4VV"/>
                 <constraint firstAttribute="centerX" secondItem="hHL-t5-kR3" secondAttribute="centerX" id="MIf-gK-Vio"/>
-                <constraint firstItem="hHL-t5-kR3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VYw-3q-f2Y"/>
+                <constraint firstItem="hHL-t5-kR3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="VYw-3q-f2Y"/>
                 <constraint firstItem="gfJ-vX-FgB" firstAttribute="leading" secondItem="hHL-t5-kR3" secondAttribute="trailing" id="egK-P7-k7g"/>
                 <constraint firstItem="gfJ-vX-FgB" firstAttribute="top" secondItem="hHL-t5-kR3" secondAttribute="bottom" constant="-20" id="kOF-FS-dBD"/>
                 <constraint firstItem="gfJ-vX-FgB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="laD-Rd-sy1"/>

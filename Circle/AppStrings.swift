@@ -114,7 +114,7 @@ struct AppStrings {
     static let SignUpCTA = NSLocalizedString("Sign Up", comment: "Generic button title to sign up for the service")
     static let SocialConnectDefaultCTA = NSLocalizedString("Connect", comment: "Button title for connecting with generic social account")
     static let SocialSignInCTA = NSLocalizedString("Sign in with %@", comment: "Button title for sign in with provider button")
-    static let StartUsingAppCTA = NSLocalizedString("Start using circle", comment: "Button title shown on the first screen to prompt user to sign up")
+    static let StartUsingAppCTA = NSLocalizedString("Start using luno", comment: "Button title shown on the first screen to prompt user to sign up")
 
     static let TeamEditButtonTitle = NSLocalizedString("Edit team", comment: "Title of the button to edit detail of a team")
     static let TeamSubTeamsSectionTitle = NSLocalizedString("Teams", comment: "Title of the section showing sub-teams of a team")

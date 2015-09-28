@@ -11,8 +11,6 @@ import UIKit
 class SplashViewController: UIViewController {
 
     @IBOutlet weak var appLogoImageView: UIImageView!
-    @IBOutlet weak var appNameLabel: UILabel!
-    @IBOutlet weak var appNameYConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLineLabel: UILabel!
     @IBOutlet weak var getStartedButton: UIButton!
     @IBOutlet weak var getStartedButtonBottomConstraint: NSLayoutConstraint!
@@ -21,9 +19,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        // TODO: Possibly try silent authentication
-        configureAppNameLabel()
-        configureGoogleAuthentication()
+        configureGetStartedButton()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,15 +36,11 @@ class SplashViewController: UIViewController {
 
     // MARK: - Configuration
     
-    private func configureAppNameLabel() {
-        appNameLabel.text = NSBundle.appName()
-    }
-
     private func configureView() {
         view.backgroundColor = UIColor.appUIBackgroundColor()
     }
     
-    private func configureGoogleAuthentication() {
+    private func configureGetStartedButton() {
         getStartedButton.alpha = 0.0
         getStartedButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         getStartedButton.addRoundCorners(radius: 2.0)
@@ -64,11 +56,8 @@ class SplashViewController: UIViewController {
     
     private func moveAppNameLabel() {
         getStartedButtonBottomConstraint.constant = 20.0
-        // appNameYConstraint.constant = 95.0
-        appNameLabel.setNeedsUpdateConstraints()
         UIView.animateWithDuration(0.7, animations: { () -> Void in
             self.appLogoImageView.layoutIfNeeded()
-            self.appNameLabel.layoutIfNeeded()
             self.getStartedButton.layoutIfNeeded()
             self.tagLineLabel.layoutIfNeeded()
             self.getStartedButton.alpha = 1.0
