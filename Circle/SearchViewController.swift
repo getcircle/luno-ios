@@ -390,7 +390,6 @@ class SearchViewController: UIViewController,
                     searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
                     
                     profilesDataSource.loadData({ (error) -> Void in
-                        self.collectionView.reloadData()
                     })
                     
                     dataSource = profilesDataSource
@@ -419,7 +418,6 @@ class SearchViewController: UIViewController,
                     searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
                     
                     teamsDataSource.loadData({ (error) -> Void in
-                        self.collectionView.reloadData()
                     })
                     
                     dataSource = teamsDataSource
