@@ -14,6 +14,8 @@ protocol SearchHeaderViewDelegate {
 
 class SearchHeaderView: UIView {
     
+    let searchFieldLeftViewDefaultWidth = CGFloat(36.0)
+    
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: CircleTextField!
     @IBOutlet weak private(set) var searchTextFieldHeightConstraint: NSLayoutConstraint!    
@@ -24,6 +26,9 @@ class SearchHeaderView: UIView {
     var searchFieldBackgroundColor = UIColor.appSearchTextFieldBackground()
     var searchFieldTextColor = UIColor.appPrimaryTextColor()
     var searchFieldTintColor = UIColor.appHighlightColor()
+    var searchFieldLeftView = UIView()
+    
+    weak var searchFieldTagView: UIView?
 
     private var leftViewImageView: UIImageView!
     
@@ -43,21 +48,16 @@ class SearchHeaderView: UIView {
     // MARK: - Configuration
     
     private func customizeSearchField() {
-        let leftView = UIView(frame: CGRectMake(
-            10.0,
-            0.0,
-            36.0,
-            searchTextField.frame.height
-        ))
-        leftView.backgroundColor = UIColor.clearColor()
+        searchFieldLeftView.frame = CGRectMake(0.0, 0.0, searchFieldLeftViewDefaultWidth, searchTextField.frame.height)
+        searchFieldLeftView.backgroundColor = UIColor.clearColor()
         leftViewImageView = UIImageView(image: UIImage(named: "searchbar_search")?.imageWithRenderingMode(.AlwaysTemplate))
         leftViewImageView.contentMode = .Center
-        leftViewImageView.frame = CGRectMake(10.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
+        leftViewImageView.frame = CGRectMake(14.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
         leftViewImageView.tintColor = UIColor.appSearchIconTintColor()
-        leftView.addSubview(leftViewImageView)
+        searchFieldLeftView.addSubview(leftViewImageView)
         
         searchTextField.leftViewMode = .Always
-        searchTextField.leftView = leftView
+        searchTextField.leftView = searchFieldLeftView
         searchTextField.clearButtonMode = .WhileEditing
         
         searchFieldBackgroundColor = UIColor.whiteColor()
@@ -71,6 +71,35 @@ class SearchHeaderView: UIView {
         searchTextField.tintColor = searchFieldTintColor
         searchTextField.superview?.backgroundColor = containerBackgroundColor
         cancelButton.setTitleColor(UIColor.appHighlightColor(), forState: .Normal)
+    }
+    
+    // MARK: - Tag View
+    
+    func showTagWithTitle(title: String) {
+        searchFieldTagView?.removeFromSuperview()
+        
+        let tag = UIButton()
+        tag.backgroundColor = UIColor.appHighlightColor()
+        tag.contentEdgeInsets = UIEdgeInsetsMake(9.0, 14.0, 9.0, 14.0)
+        tag.setAttributedTitle(NSAttributedString(string: title, attributes: [NSFontAttributeName: UIFont.boldFont(11.0), NSKernAttributeName: 1.0, NSForegroundColorAttributeName: UIColor.whiteColor()]), forState: .Normal)
+        tag.sizeToFit()
+        tag.layer.cornerRadius = 3.0
+        
+        let tagPadding = CGFloat(8.0)
+        
+        searchFieldLeftView.frameWidth = searchFieldLeftViewDefaultWidth + tagPadding + tag.frameWidth
+        tag.frame = CGRectMake(leftViewImageView.frameRight + tagPadding, floor((searchFieldLeftView.frameHeight - tag.frameHeight) / 2), tag.frameWidth, tag.frameHeight)
+        searchFieldLeftView.addSubview(tag)
+        
+        searchFieldTagView = tag
+        
+        searchTextField.placeholder = nil
+    }
+    
+    func hideTag() {
+        searchFieldTagView?.removeFromSuperview()
+        
+        searchFieldLeftView.frameWidth = searchFieldLeftViewDefaultWidth
     }
 
     // MARK: - CancelButtonState
