@@ -90,9 +90,6 @@ class ProfilesDataSource: CardDataSource {
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType? = nil) {
         data.appendContentsOf(content)
-        if let type = ofType {
-            cardType = type
-        }
     }
     
     override func setInitialData(content content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {
