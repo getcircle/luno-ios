@@ -395,7 +395,7 @@ class SearchViewController: UIViewController,
                     dataSource = profilesDataSource
                 case .Locations:
                     // TODO This should be coming from a paginated data source
-                    let locationsDataSource = LocationsOverviewDataSource()
+                    let locationsDataSource = LocationsSearchDataSource()
                     
                     collectionView.dataSource = locationsDataSource
                     collectionView.reloadData()
@@ -408,7 +408,7 @@ class SearchViewController: UIViewController,
                     
                     dataSource = locationsDataSource
                 case .Teams:
-                    let teamsDataSource = TeamsOverviewDataSource()
+                    let teamsDataSource = TeamsSearchDataSource()
                     teamsDataSource.delegate = self
                     teamsDataSource.configureForOrganization()
                     

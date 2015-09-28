@@ -12,7 +12,7 @@ import ProtobufRegistry
 class TeamsOverviewDataSource: CardDataSource {
     
     private var card: Card!
-    private var cardType: Card.CardType = .Profiles
+    internal var cardType: Card.CardType = .Profiles
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: String?
     private var teams = Array<Services.Organization.Containers.TeamV1>()

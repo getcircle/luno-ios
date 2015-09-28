@@ -12,6 +12,8 @@ import ProtobufRegistry
 class LocationsOverviewDataSource: CardDataSource {
     
     private(set) var locations = Array<Services.Organization.Containers.LocationV1>()
+    internal var cardType: Card.CardType = .Locations
+    internal var card: Card!
     
     // MARK: - Load Data
 
@@ -23,11 +25,11 @@ class LocationsOverviewDataSource: CardDataSource {
                 self.locations.removeAll(keepCapacity: true)
                 
                 if let locations = locations {
-                    let officesCard = Card(cardType: .Locations, title: "")
-                    officesCard.addContent(content: locations)
+                    self.card = Card(cardType: self.cardType, title: "")
+                    self.card.addContent(content: locations)
                     self.locations.appendContentsOf(locations)
-                    officesCard.sectionInset = UIEdgeInsetsZero
-                    self.appendCard(officesCard)
+                    self.card.sectionInset = UIEdgeInsetsZero
+                    self.appendCard(self.card)
                 }
                 
                 completionHandler(error: nil)
