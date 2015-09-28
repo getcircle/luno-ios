@@ -20,6 +20,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
     var showSeparator = false {
         didSet {
             bottomBorder?.hidden = !showSeparator
+            setNeedsDisplay()
         }
     }
     var separatorInset = UIEdgeInsetsZero {
