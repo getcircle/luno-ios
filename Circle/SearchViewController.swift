@@ -320,6 +320,16 @@ class SearchViewController: UIViewController,
         }
     }
     
+    func didSelectTag() {
+        searchHeaderView.hideTag()
+        resetSearchFieldPlaceholderText()
+        
+        dataSource = SearchQueryDataSource()
+        collectionView.dataSource = dataSource
+        collectionView.reloadData()
+        search()
+    }
+    
     // MARK: Search Targets
     
     func activateSearch(isQuickAction: Bool) {

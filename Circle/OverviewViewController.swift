@@ -209,6 +209,10 @@ class OverviewViewController:
         }
     }
     
+    func didSelectTag() {
+        // We aren't using the tag in overview views right now, so do nothing.
+    }
+    
     func filterChanged(sender: AnyObject?) {
         if searchHeaderView != nil && addSearchFilterView {
             if isFilterView && searchHeaderView!.searchTextField.text == "" {

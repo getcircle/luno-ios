@@ -10,6 +10,7 @@ import UIKit
 
 protocol SearchHeaderViewDelegate {
     func didCancel(sender: UIView)
+    func didSelectTag()
 }
 
 class SearchHeaderView: UIView {
@@ -84,6 +85,9 @@ class SearchHeaderView: UIView {
         tag.setAttributedTitle(NSAttributedString(string: title, attributes: [NSFontAttributeName: UIFont.boldFont(11.0), NSKernAttributeName: 1.0, NSForegroundColorAttributeName: UIColor.whiteColor()]), forState: .Normal)
         tag.sizeToFit()
         tag.layer.cornerRadius = 3.0
+        if let searchHeaderViewDelegate = delegate as? AnyObject {
+            tag.addTarget(searchHeaderViewDelegate, action: "didSelectTag", forControlEvents: .TouchUpInside)
+        }
         
         let tagPadding = CGFloat(8.0)
         
