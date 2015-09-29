@@ -135,6 +135,7 @@ class SearchViewController: UIViewController,
             searchHeaderView.layer.cornerRadius = 10.0
             resetSearchFieldPlaceholderText()
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
+            addShadowToSearchField()
         }
     }
     
@@ -184,16 +185,11 @@ class SearchViewController: UIViewController,
     
     private func addShadowToSearchField() {
         if !shadowAdded {
-            let path = UIBezierPath()
-            path.moveToPoint(CGPointMake(-0.1, 5.0))
-            path.addLineToPoint(CGPointMake(-0.1, searchHeaderView.frame.height - 0.9))
-            path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, searchHeaderView.frame.height - 0.9))
-            path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, 5.0))
-            searchHeaderView.layer.shadowPath = path.CGPath
-            searchHeaderView.layer.shadowOpacity = 0.0
-            searchHeaderView.layer.shadowOffset = CGSizeMake(1.0, 0.5)
-            searchHeaderView.layer.shouldRasterize = true
-            searchHeaderView.layer.rasterizationScale = UIScreen.mainScreen().scale
+            searchHeaderContainerView.layer.shadowOpacity = 0.09
+            searchHeaderContainerView.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+            searchHeaderContainerView.layer.shouldRasterize = true
+            searchHeaderContainerView.layer.rasterizationScale = UIScreen.mainScreen().scale
+            view.bringSubviewToFront(searchHeaderContainerView)
             shadowAdded = true
         }
     }
