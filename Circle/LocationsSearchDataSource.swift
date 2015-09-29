@@ -9,7 +9,11 @@
 import UIKit
 import ProtobufRegistry
 
-class LocationsSearchDataSource: LocationsOverviewDataSource {
+class LocationsSearchDataSource: CardDataSource {
+    
+    private(set) var locations = Array<Services.Organization.Containers.LocationV1>()
+    internal var cardType: Card.CardType = .Locations
+    internal var card: Card!
     
     override class var cardSeparatorInset: UIEdgeInsets {
         return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
@@ -21,9 +25,32 @@ class LocationsSearchDataSource: LocationsOverviewDataSource {
         cardType = .SearchResult
     }
     
-    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        super.configureCell(cell, atIndexPath: indexPath)
+    // MARK: - Load Data
+    
+    override func loadData(completionHandler: (error: NSError?) -> Void) {
         
+        if AuthenticationViewController.getLoggedInUserOrganization() != nil {
+            Services.Organization.Actions.getLocations() { (locations, error) -> Void in
+                self.resetCards()
+                self.locations.removeAll(keepCapacity: true)
+                
+                if let locations = locations {
+                    self.card = Card(cardType: self.cardType, title: "")
+                    self.card.addContent(content: locations)
+                    self.locations.appendContentsOf(locations)
+                    self.card.sectionInset = UIEdgeInsetsZero
+                    self.appendCard(self.card)
+                }
+                
+                completionHandler(error: nil)
+            }
+        }
+    }
+    
+    // MARK: - Configuration
+    
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        cell.showSeparator = !cellAtIndexPathIsBottomOfSection(indexPath)
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
     }
     
