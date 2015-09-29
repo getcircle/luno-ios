@@ -340,7 +340,6 @@ class Card: Equatable {
         subType = withSubType
     }
 
-
     func addContent(content withContent: [AnyObject], maxVisibleItems withMaxVisibleItems: Int) {
         switch cardContentType {
         case .Aggregate:

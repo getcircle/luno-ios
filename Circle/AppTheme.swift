@@ -26,7 +26,6 @@ protocol Theme {
     var status_bar_style: UIStatusBarStyle { get }
 }
 
-
 struct DefaultTheme: Theme {
     var app_tint_color = UIColor(red: 0, green: 201, blue: 255)
     var app_ui_background_color = UIColor(red: 47, green: 55, blue: 62)

@@ -10,7 +10,6 @@ import MessageUI
 import UIKit
 import ProtobufRegistry
 
-
 class DetailViewController: BaseDetailViewController,
     UICollectionViewDelegate,
     UIImagePickerControllerDelegate,
