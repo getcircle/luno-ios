@@ -106,17 +106,17 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
     // MARK: - WKNavigationDelegate
     
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        let url = navigationAction.request.URL
-        if (
-            url!.host!.hasSuffix(ServiceHttpRequest.environment.redirectHostSuffix) &&
-            (url!.path!.hasSuffix("success") || url!.path!.hasSuffix("error") || url!.path!.hasSuffix("auth"))
+        
+        if let url = navigationAction.request.URL, host = url.host, path = url.path where (
+            host.hasSuffix(ServiceHttpRequest.environment.redirectHostSuffix) &&
+            (path.hasSuffix("success") || path.hasSuffix("error") || path.hasSuffix("auth"))
         ) {
-            if url!.path!.hasSuffix("success") || url!.path!.hasSuffix("auth") {
+            if path.hasSuffix("success") || path.hasSuffix("auth") {
                 var user: Services.User.Containers.UserV1?
                 var identity: Services.User.Containers.IdentityV1?
                 var authDetails: Services.User.Containers.OAuthSDKDetailsV1?
                 var samlDetails: Services.User.Containers.SAMLDetailsV1?
-                if let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: false) {
+                if let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: false) {
                     let items = components.queryItems!
                     for item in items {
                         if let value = item.value, data = NSData(base64EncodedString: value, options: []) {
