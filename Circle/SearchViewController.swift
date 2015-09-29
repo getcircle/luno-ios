@@ -424,7 +424,9 @@ class SearchViewController: UIViewController,
                     dataSource = teamsDataSource
                 }
             }
-            else if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
+                
+        case .SearchAction:
+            if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
                 handleSearchAction(searchAction)
             }
             
