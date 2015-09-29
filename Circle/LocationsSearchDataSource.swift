@@ -12,17 +12,11 @@ import ProtobufRegistry
 class LocationsSearchDataSource: CardDataSource {
     
     private(set) var locations = Array<Services.Organization.Containers.LocationV1>()
-    internal var cardType: Card.CardType = .Locations
+    internal var cardType: Card.CardType = .SearchResult
     internal var card: Card!
     
     override class var cardSeparatorInset: UIEdgeInsets {
         return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
-    }
-    
-    override init() {
-        super.init()
-        
-        cardType = .SearchResult
     }
     
     // MARK: - Load Data
