@@ -65,21 +65,20 @@ class SearchViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.translucent = false
         if firstLoad {
             moveSearchToCenter(false)        
         }
-
-        if searchHeaderContainerViewTopConstraint.constant == 0 {
-            navigationController?.setNavigationBarHidden(true, animated: false)
-            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
-        }
+        
+        configureNavigationBarForSearch(true)
+        
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        configureNavigationBarForSearch(false)
+        
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
     
@@ -110,6 +109,27 @@ class SearchViewController: UIViewController,
     
     private func setNavigationTitle(isSearchActive: Bool) {
         navigationItem.title = isSearchActive ? "Search" : "Home"
+    }
+    
+    private func configureNavigationBarForSearch(forSearch: Bool) {
+        navigationController?.navigationBar.tintColor = forSearch ? UIColor.blackColor() : UIColor.appNavigationBarTintColor()
+        navigationController?.navigationBar.barTintColor = forSearch ? UIColor.whiteColor() : UIColor.appNavigationBarBarTintColor()
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.navigationBarFont(),
+            NSForegroundColorAttributeName: forSearch ? UIColor.blackColor() : UIColor.appNavigationBarTitleColor(),
+        ]
+        
+        navigationController?.navigationBar.layer.shadowOpacity = forSearch ? 0.09 : 0.0
+        if forSearch {
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            navigationController?.navigationBar.layer.shadowOpacity = 0.09
+            navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+            navigationController?.navigationBar.layer.shadowRadius = 4.0
+        }
+        
+        let isSearchActive = (searchHeaderContainerViewTopConstraint.constant == 0)
+        navigationController?.setNavigationBarHidden((forSearch && isSearchActive), animated: false)
     }
     
     private func configureLaunchScreenView() {
@@ -248,7 +268,7 @@ class SearchViewController: UIViewController,
         }
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         
         searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2
         searchHeaderContainerViewLeftConstraint.constant = 15
