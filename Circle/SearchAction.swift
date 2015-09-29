@@ -50,7 +50,7 @@ class SearchAction: SearchSuggestion {
         let messageAction = SearchAction(
             title: "Message " + profile.firstName,
             ofType: .MessagePerson,
-            withImageSource: "Sms"
+            withImageSource: "detail_chat"
         )
         messageAction.underlyingObject = profile as AnyObject
         searchActions.append(messageAction)
@@ -69,7 +69,7 @@ class SearchAction: SearchSuggestion {
         let reportsToAction = SearchAction(
             title: "Reports to " + profile.firstName,
             ofType: .ReportsToPerson,
-            withImageSource: "SearchTab"
+            withImageSource: "results_search"
         )
         reportsToAction.underlyingObject = profile as AnyObject
         searchActions.append(reportsToAction)

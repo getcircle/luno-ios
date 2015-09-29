@@ -179,7 +179,7 @@ class SearchQueryDataSource: CardDataSource {
 
         if searchSuggestions.count > 0 {
             let searchSuggestionsCard = Card(
-                cardType: .SearchSuggestion, 
+                cardType: emptySearchTerm ? .SearchSuggestion : .SearchAction,
                 title: NSLocalizedString("Explore",
                     comment: "Title which presents options to explore the content"
                 ),

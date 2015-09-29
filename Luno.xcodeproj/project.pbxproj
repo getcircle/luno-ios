@@ -23,6 +23,8 @@
 		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
 		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; settings = {ASSET_TAGS = (); }; };
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; settings = {ASSET_TAGS = (); }; };
+		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
@@ -363,6 +365,8 @@
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchActionCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* luno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = luno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -841,6 +845,7 @@
 				BFCFDB181A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
 				47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */,
+				47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */,
 				BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */,
 				47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
@@ -946,6 +951,7 @@
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */,
+				47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */,
 				BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */,
 				47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */,
 				8F29F6391B656CBC00E5D76C /* SearchViewController.xib */,
@@ -1355,6 +1361,7 @@
 				8F07ACB81AE878F100D1F41D /* MPSurvey.storyboard in Resources */,
 				8F0ADD361AC5344E00A44B68 /* Loader_00026@2x.png in Resources */,
 				8F0ADD3E1AC5344E00A44B68 /* Loader_00034@2x.png in Resources */,
+				47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */,
 				8F15A4121B79B40700693E26 /* ContactCollectionViewCell.xib in Resources */,
 				8F0ADD391AC5344E00A44B68 /* Loader_00029@2x.png in Resources */,
 				BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */,
@@ -1706,6 +1713,7 @@
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
 				8FA6A4B61AFEB47D00ACC39D /* Group.swift in Sources */,
 				8F15A4001B756AF700693E26 /* EditProfileStatusViewController.swift in Sources */,
+				47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */,
 				8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */,
 				BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
