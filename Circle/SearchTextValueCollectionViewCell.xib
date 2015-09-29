@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Italic.ttf">
+            <string>OpenSans-Italic</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchTextValueCollectionViewCell" id="gTV-IL-0wX" customClass="SearchTextValueCollectionViewCell" customModule="luno" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
+                <subviews>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENTLY WORKING ON" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-bC-d90">
+                        <rect key="frame" x="70" y="0.0" width="280" height="14"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="JJ3-qo-gBK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="10"/>
+                        <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZc-gJ-L6C">
+                        <rect key="frame" x="70" y="16" width="280" height="140"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <string key="text">I'm a designer living in San Francisco, food lover, photographer and traveler. Designing products is my biggest passion, products that make people's lives more enjoyable.</string>
+                        <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="xcQ-bC-d90" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="70" id="0eS-50-nNP"/>
+                <constraint firstAttribute="bottom" secondItem="hZc-gJ-L6C" secondAttribute="bottom" constant="10" id="1xk-Sj-iSa"/>
+                <constraint firstAttribute="trailing" secondItem="xcQ-bC-d90" secondAttribute="trailing" constant="25" id="9R6-YC-3AK"/>
+                <constraint firstAttribute="trailing" secondItem="hZc-gJ-L6C" secondAttribute="trailing" constant="25" id="A1I-j7-eHi"/>
+                <constraint firstItem="hZc-gJ-L6C" firstAttribute="top" secondItem="xcQ-bC-d90" secondAttribute="bottom" constant="2" id="CIu-FW-ZrL"/>
+                <constraint firstItem="hZc-gJ-L6C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="70" id="xcW-dN-c9u"/>
+                <constraint firstItem="xcQ-bC-d90" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zQY-Cd-1Xh"/>
+            </constraints>
+            <size key="customSize" width="375" height="132"/>
+            <connections>
+                <outlet property="textLabel" destination="hZc-gJ-L6C" id="NZS-Cd-Mmh"/>
+                <outlet property="textLabelBottomConstraint" destination="1xk-Sj-iSa" id="zzf-wk-CJB"/>
+                <outlet property="textLabelTopConstraint" destination="CIu-FW-ZrL" id="GQj-tr-dSG"/>
+                <outlet property="titleLabel" destination="xcQ-bC-d90" id="dXn-lg-Znp"/>
+            </connections>
+            <point key="canvasLocation" x="356.5" y="137"/>
+        </collectionViewCell>
+    </objects>
+</document>

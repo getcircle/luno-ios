@@ -224,7 +224,9 @@ class SearchQueryDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
-        cell.showSeparator = true
+        
+        let isLoneProfileCell = (searchResults.count == 1 && cell is ProfileCollectionViewCell)
+        cell.showSeparator = !isLoneProfileCell
     }
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
@@ -235,29 +237,31 @@ class SearchQueryDataSource: CardDataSource {
     
     private func addStatusCard(profile: Services.Profile.Containers.ProfileV1) {
         if let status = profile.status where status.value.trimWhitespace() != "" {
-            let statusCard = Card(cardType: .TextValue, title: "")
+            let statusCard = Card(cardType: .SearchTextValue, title: AppStrings.ProfileSectionStatusTitle.localizedUppercaseString())
             statusCard.addContent(content: [
                 TextData(
                     type: .ProfileStatus,
-                    andValue: "I'm currently working on " + status.value,
+                    andValue: status.value,
                     andTimestamp: status.created
                 )
                 ])
+            statusCard.sectionInset = UIEdgeInsetsZero
             appendCard(statusCard)
         }
     }
 
     private func addStatusCard(team: Services.Organization.Containers.TeamV1) {
         if let status = team.status where status.value.trimWhitespace() != "" {
-            let statusCard = Card(cardType: .TextValue, title: "")
+            let statusCard = Card(cardType: .SearchTextValue, title: AppStrings.ProfileSectionStatusTitle.localizedUppercaseString())
             statusCard.addContent(content: [
                 TextData(
                     type: .TeamStatus,
-                    andValue: "We are currently working on " + status.value,
+                    andValue: status.value,
                     andTimestamp: status.created,
                     andAuthor: status.byProfile
                 )
             ])
+            statusCard.sectionInset = UIEdgeInsetsZero
             appendCard(statusCard)
         }
     }

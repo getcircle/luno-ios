@@ -129,7 +129,7 @@ class TeamDetailDataSource: CardDataSource {
         
         if hasStatus || canEdit() {
             
-            let statusCard = Card(cardType: .TextValue, title: "Currently working on")
+            let statusCard = Card(cardType: .TextValue, title: AppStrings.ProfileSectionStatusTitle)
             let textData = TextData(
                 type: .TeamStatus,
                 andValue: team.status?.value ?? "",

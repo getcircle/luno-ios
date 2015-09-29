@@ -25,6 +25,8 @@
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; settings = {ASSET_TAGS = (); }; };
 		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		47E674FF1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		47E675011BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E675001BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
@@ -367,6 +369,8 @@
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchActionCollectionViewCell.xib; sourceTree = "<group>"; };
+		47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextValueCollectionViewCell.swift; sourceTree = "<group>"; };
+		47E675001BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTextValueCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* luno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = luno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -848,6 +852,7 @@
 				47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */,
 				BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */,
 				47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */,
+				47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
 				4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */,
@@ -954,6 +959,7 @@
 				47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */,
 				BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */,
 				47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */,
+				47E675001BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib */,
 				8F29F6391B656CBC00E5D76C /* SearchViewController.xib */,
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */,
@@ -1352,6 +1358,7 @@
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */,
 				8FA6A4AB1AFDCA8100ACC39D /* GroupCollectionViewCell.xib in Resources */,
+				47E675011BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib in Resources */,
 				8F07ACAB1AE878F100D1F41D /* MPArrowLeft.png in Resources */,
 				8F0ADD441AC5344E00A44B68 /* Loader_00040@2x.png in Resources */,
 				8F07ACB61AE878F100D1F41D /* MPLogo@2x.png in Resources */,
@@ -1622,6 +1629,7 @@
 				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
 				8F15A4081B75889900693E26 /* TextData.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* Organization.swift in Sources */,
+				47E674FF1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift in Sources */,
 				BFE213C81A5EE63F0033E2F5 /* Search.swift in Sources */,
 				8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */,
 				8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */,
