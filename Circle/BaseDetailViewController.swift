@@ -48,7 +48,7 @@ MFMessageComposeViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = .Top
+        edgesForExtendedLayout = [.Top, .Bottom]
     }
     
     override func viewWillAppear(animated: Bool) {

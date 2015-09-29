@@ -25,6 +25,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func configureTabBar() {
+        tabBar.layer.shadowOpacity = 0.2
+        tabBar.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        tabBar.layer.shadowPath = UIBezierPath(rect: tabBar.bounds).CGPath
+        tabBar.layer.shadowRadius = 4.0
+        
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = tabBar.bounds
+        tabBar.addSubview(blurView)
+        
         delegate = self
         var tabBarViewControllers = [UIViewController]()
 

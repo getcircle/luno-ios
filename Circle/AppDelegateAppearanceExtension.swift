@@ -29,9 +29,8 @@ extension AppDelegate {
 
         UITabBar.appearance().tintColor = UIColor.appTabBarTintColor()
         UITabBar.appearance().barTintColor = UIColor.appTabBarBarTintColor()
-        UITabBar.appearance().translucent = false
         UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage.imageFromColor(UIColor.appTabBarBarTintColor(), withRect: CGRectMake(0.0, 0.0, 1.0, 1.0))
 
         let navBarTitleAttributes = [
             NSFontAttributeName: UIFont.navigationBarFont(),

@@ -68,7 +68,7 @@ class OverviewViewController:
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = .None
+        edgesForExtendedLayout = .Bottom
         configureSearchHeaderView()
         configureCollectionView()
         configureActivityIndicator()
@@ -125,6 +125,8 @@ class OverviewViewController:
         (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
+        collectionView.contentInset = UIEdgeInsetsMake(0.0, 0.0, tabBarController?.tabBar.frameHeight ?? 0.0, 0.0)
+        collectionView.scrollIndicatorInsets = collectionView.contentInset
         
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
         collectionViewVerticalSpaceConstraint = collectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: addSearchFilterView ? 44.0 : 0.0)
