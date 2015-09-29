@@ -180,6 +180,15 @@ class SearchViewController: UIViewController,
         searchHeaderView.searchTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.QuickActionNonePlaceholder, attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor()])
     }
     
+    private func useSearchQueryDataSource() {
+        dataSource.delegate = nil
+        
+        dataSource = SearchQueryDataSource()
+        search()
+        collectionView.dataSource = dataSource
+        collectionView.reloadData()
+    }
+    
     // MARK: - Launch View
     
     private func hideAndRemoveLaunchView() {
@@ -308,10 +317,7 @@ class SearchViewController: UIViewController,
             searchHeaderView.hideTag()
             resetSearchFieldPlaceholderText()
             
-            dataSource = SearchQueryDataSource()
-            search()
-            collectionView.dataSource = dataSource
-            collectionView.reloadData()
+            useSearchQueryDataSource()
         }
     }
     
@@ -334,9 +340,7 @@ class SearchViewController: UIViewController,
             searchQueryDataSource.clearCache()
         }
         else {
-            dataSource = SearchQueryDataSource()
-            collectionView.dataSource = dataSource
-            collectionView.reloadData()
+            useSearchQueryDataSource()
         }
     }
     
@@ -344,10 +348,7 @@ class SearchViewController: UIViewController,
         searchHeaderView.hideTag()
         resetSearchFieldPlaceholderText()
         
-        dataSource = SearchQueryDataSource()
-        collectionView.dataSource = dataSource
-        collectionView.reloadData()
-        search()
+        useSearchQueryDataSource()
     }
     
     // MARK: Search Targets
