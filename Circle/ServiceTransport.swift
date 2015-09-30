@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import ProtobufRegistry
 
-let ServiceErrorDomain = "co.circlehq.circle.services"
+let ServiceErrorDomain = "com.lunohq.luno.services"
 
 let AttributionsURL = "http://www.lunohq.com/attributions.html"
 let PrivacyPolicyURL = "http://www.lunohq.com/privacy.html"

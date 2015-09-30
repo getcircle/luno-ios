@@ -10,7 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 struct ToggleSocialConnectionCollectionViewCellNotifications {
-    static let onProviderToggled = "com.circlehq.notification:onProviderToggledNotification"
+    static let onProviderToggled = "com.lunohq.notification:onProviderToggledNotification"
 }
 
 class ToggleSocialConnectionCollectionViewCell: CircleCollectionViewCell {
