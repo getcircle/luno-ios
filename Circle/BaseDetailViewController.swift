@@ -49,6 +49,7 @@ MFMessageComposeViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = [.Top, .Bottom]
+        navigationController?.view.backgroundColor = UIColor.appNavigationBarBarTintColor()
     }
     
     override func viewWillAppear(animated: Bool) {
