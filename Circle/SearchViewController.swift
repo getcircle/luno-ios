@@ -47,7 +47,6 @@ class SearchViewController: UIViewController,
         // Do any additional setup after loading the view.
         firstLoad = true
         configureView()
-        configureNavigationBarForSearch(true)
         configureLaunchScreenView()
         configureSearchHeaderView()
         configureCollectionView()
@@ -72,9 +71,17 @@ class SearchViewController: UIViewController,
         
         let isSearchActive = (searchHeaderContainerViewTopConstraint.constant == 0)
         navigationController?.setNavigationBarHidden(isSearchActive, animated: false)
-        configureNavigationBarForSearch(true)
         
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        if let transitionCoordinator = transitionCoordinator() {
+            transitionCoordinator.animateAlongsideTransition({ (context) -> Void in
+                UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+                self.configureNavigationBarForSearch(true)
+                }, completion: nil)
+        }
+        else {
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+            configureNavigationBarForSearch(true)
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -83,10 +90,9 @@ class SearchViewController: UIViewController,
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         transitionCoordinator()?.animateAlongsideTransition({ (context) -> Void in
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
             self.configureNavigationBarForSearch(false)
             }, completion: nil)
-        
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
