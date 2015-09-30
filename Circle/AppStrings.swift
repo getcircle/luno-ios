@@ -116,7 +116,7 @@ struct AppStrings {
     static let SocialSignInCTA = NSLocalizedString("Sign in with %@", comment: "Button title for sign in with provider button")
     static let StartUsingAppCTA = NSLocalizedString("Start using luno", comment: "Button title shown on the first screen to prompt user to sign up")
 
-    static let TeamEditButtonTitle = NSLocalizedString("Edit team", comment: "Title of the button to edit detail of a team")
+    static let TeamEditButtonTitle = NSLocalizedString("Edit Team Page", comment: "Title of the button to edit detail of a team")
     static let TeamSubTeamsSectionTitle = NSLocalizedString("Teams", comment: "Title of the section showing sub-teams of a team")
     static let TeamNameFieldLabel = NSLocalizedString("Team name", comment: "Label for team name input field")
     static let TeamNameErrorCannotBeEmpty = NSLocalizedString("Team name cannot be empty.", comment: "Error message indicating team name cannot be an empty string")
