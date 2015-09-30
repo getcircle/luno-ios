@@ -27,8 +27,8 @@ protocol Theme {
 }
 
 struct DefaultTheme: Theme {
-    var app_tint_color = UIColor(red: 0, green: 201, blue: 255)
-    var app_ui_background_color = UIColor(red: 47, green: 55, blue: 62)
+    var app_tint_color = UIColor.appHighlightColor()
+    var app_ui_background_color = UIColor(red: 72, green: 73, blue: 89)
     
     var app_nav_bar_color = UIColor(red: 72, green: 73, blue: 89)
     var app_nav_bar_text_controls_color = UIColor.whiteColor()
