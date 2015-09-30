@@ -16,7 +16,9 @@ class SearchViewController: UIViewController,
     UITextFieldDelegate,
     MFMailComposeViewControllerDelegate,
     MFMessageComposeViewControllerDelegate,
-    SearchHeaderViewDelegate
+    SearchHeaderViewDelegate,
+    CircleTextFieldDelegate,
+    CardDataSourceDelegate
 {
     @IBOutlet weak private(set) var collectionView: UICollectionView!
     @IBOutlet weak private(set) var orgImageView: CircleImageView!
@@ -25,17 +27,19 @@ class SearchViewController: UIViewController,
     @IBOutlet weak private(set) var searchHeaderContainerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var searchHeaderContainerViewRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var searchHeaderContainerViewHeightConstraint: NSLayoutConstraint!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
     private var errorMessageView: CircleErrorMessageView!
     private var data = [Card]()
     private var firstLoad = false
-    private let dataSource = SearchQueryDataSource()
+    private var dataSource: CardDataSource = SearchQueryDataSource()
     private var cardCollectionViewDelegate: CardCollectionViewDelegate?
     private var launchScreenView: UIView?
     private var searchHeaderView: SearchHeaderView!
     private var shadowAdded = false
     private var wasErrorViewVisible = false
+    private weak var searchHeaderViewHeightConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,14 +65,43 @@ class SearchViewController: UIViewController,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.translucent = false
         if firstLoad {
             moveSearchToCenter(false)        
         }
+        
+        let isSearchActive = (searchHeaderContainerViewTopConstraint.constant == 0)
+        navigationController?.setNavigationBarHidden(isSearchActive, animated: false)
+        
+        if let transitionCoordinator = transitionCoordinator() {
+            transitionCoordinator.animateAlongsideTransition({ (context) -> Void in
+                UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+                self.configureNavigationBarForSearch(true)
+                }, completion: nil)
+        }
+        else {
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+            configureNavigationBarForSearch(true)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        transitionCoordinator()?.animateAlongsideTransition({ (context) -> Void in
+            UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
+            self.configureNavigationBarForSearch(false)
+            }, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Sometimes setting this in viewWillAppear: will not work.
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        
         if firstLoad {
             firstLoad = false
             if checkUserAndPresentAuthenticationViewController() {
@@ -88,11 +121,28 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+        navigationController?.view.backgroundColor = view.backgroundColor
         setNavigationTitle(false)
     }
     
     private func setNavigationTitle(isSearchActive: Bool) {
         navigationItem.title = isSearchActive ? "Search" : "Home"
+    }
+    
+    private func configureNavigationBarForSearch(forSearch: Bool) {
+        navigationController?.navigationBar.tintColor = forSearch ? UIColor.blackColor() : UIColor.appNavigationBarTintColor()
+        navigationController?.navigationBar.barTintColor = forSearch ? UIColor.whiteColor() : UIColor.appNavigationBarBarTintColor()
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.navigationBarFont(),
+            NSForegroundColorAttributeName: forSearch ? UIColor.blackColor() : UIColor.appNavigationBarTitleColor(),
+        ]
+        
+        navigationController?.navigationBar.layer.shadowOpacity = forSearch ? 0.09 : 0.0
+        if forSearch {
+            navigationController?.navigationBar.layer.shadowOpacity = 0.09
+            navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+            navigationController?.navigationBar.layer.shadowRadius = 4.0
+        }
     }
     
     private func configureLaunchScreenView() {
@@ -110,12 +160,15 @@ class SearchViewController: UIViewController,
             searchHeaderView = nibViews.first as! SearchHeaderView
             searchHeaderView.delegate = self
             searchHeaderView.searchTextField.delegate = self
+            searchHeaderView.searchTextField.helperDelegate = self
             searchHeaderView.searchTextField.addTarget(self, action: "search", forControlEvents: .EditingChanged)
             searchHeaderContainerView.addSubview(searchHeaderView)
-            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero)
+            searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Top)
+            searchHeaderViewHeightConstraint = searchHeaderView.autoSetDimension(.Height, toSize: 50.0)
             searchHeaderView.layer.cornerRadius = 10.0
-            searchHeaderView.searchTextField.placeholder = AppStrings.QuickActionNonePlaceholder
+            resetSearchFieldPlaceholderText()
             searchHeaderContainerView.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.2).CGColor
+            addShadowToSearchField()
         }
     }
     
@@ -134,6 +187,19 @@ class SearchViewController: UIViewController,
                     NSFontAttributeName: poweredByLabel.font
                 ]
             )
+    }
+    
+    private func resetSearchFieldPlaceholderText() {
+        searchHeaderView.searchTextField.attributedPlaceholder = NSAttributedString(string: AppStrings.QuickActionNonePlaceholder, attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor()])
+    }
+    
+    private func useSearchQueryDataSource() {
+        dataSource.delegate = nil
+        
+        dataSource = SearchQueryDataSource()
+        search()
+        collectionView.dataSource = dataSource
+        collectionView.reloadData()
     }
     
     // MARK: - Launch View
@@ -161,16 +227,11 @@ class SearchViewController: UIViewController,
     
     private func addShadowToSearchField() {
         if !shadowAdded {
-            let path = UIBezierPath()
-            path.moveToPoint(CGPointMake(-0.1, 5.0))
-            path.addLineToPoint(CGPointMake(-0.1, searchHeaderView.frame.height - 0.9))
-            path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, searchHeaderView.frame.height - 0.9))
-            path.addLineToPoint(CGPointMake(searchHeaderView.frame.width + 0.1, 5.0))
-            searchHeaderView.layer.shadowPath = path.CGPath
-            searchHeaderView.layer.shadowOpacity = 0.0
-            searchHeaderView.layer.shadowOffset = CGSizeMake(1.0, 0.5)
-            searchHeaderView.layer.shouldRasterize = true
-            searchHeaderView.layer.rasterizationScale = UIScreen.mainScreen().scale
+            searchHeaderContainerView.layer.shadowOpacity = 0.09
+            searchHeaderContainerView.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+            searchHeaderContainerView.layer.shouldRasterize = true
+            searchHeaderContainerView.layer.rasterizationScale = UIScreen.mainScreen().scale
+            view.bringSubviewToFront(searchHeaderContainerView)
             shadowAdded = true
         }
     }
@@ -196,12 +257,18 @@ class SearchViewController: UIViewController,
             return
         }
         
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        
         searchHeaderContainerViewTopConstraint.constant = 0
         searchHeaderContainerViewLeftConstraint.constant = 0
         searchHeaderContainerViewRightConstraint.constant = 0
+        searchHeaderContainerViewHeightConstraint.constant = 64
+        searchHeaderViewHeightConstraint?.constant = searchHeaderContainerViewHeightConstraint.constant - 20
         searchHeaderContainerView.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
+            self.searchHeaderContainerView.backgroundColor = UIColor.whiteColor()
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
@@ -222,12 +289,18 @@ class SearchViewController: UIViewController,
             return
         }
         
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        
         searchHeaderContainerViewTopConstraint.constant = view.frameHeight / 2
         searchHeaderContainerViewLeftConstraint.constant = 15
         searchHeaderContainerViewRightConstraint.constant = 15
+        searchHeaderContainerViewHeightConstraint.constant = 50
+        searchHeaderViewHeightConstraint?.constant = searchHeaderContainerViewHeightConstraint.constant
         searchHeaderContainerView.setNeedsUpdateConstraints()
 
         UIView.animateWithDuration(animated ? 0.3 : 0.0, animations: { () -> Void in
+            self.searchHeaderContainerView.backgroundColor = self.view.backgroundColor
             self.searchHeaderContainerView.layoutIfNeeded()
             self.orgImageView.layoutIfNeeded()
             self.collectionView.layoutIfNeeded()
@@ -252,9 +325,21 @@ class SearchViewController: UIViewController,
         setNavigationTitle(true)
     }
     
+    func textFieldDidDeleteBackwardWhenEmpty(textField: CircleTextField) {
+        if !dataSource.isKindOfClass(SearchQueryDataSource) {
+            searchHeaderView.hideTag()
+            resetSearchFieldPlaceholderText()
+            
+            useSearchQueryDataSource()
+        }
+    }
+    
     // MARK: - SearchHeaderViewDelegate
     
     func didCancel(sender: UIView) {
+        searchHeaderView.hideTag()
+        resetSearchFieldPlaceholderText()
+        
         // Animate it down
         moveSearchToCenter(true)
         dataSource.resetCards()
@@ -264,7 +349,19 @@ class SearchViewController: UIViewController,
         }
         setNavigationTitle(false)
         // Clear cache at the end of a search session
-        dataSource.clearCache()
+        if let searchQueryDataSource = dataSource as? SearchQueryDataSource {
+            searchQueryDataSource.clearCache()
+        }
+        else {
+            useSearchQueryDataSource()
+        }
+    }
+    
+    func didSelectTag() {
+        searchHeaderView.hideTag()
+        resetSearchFieldPlaceholderText()
+        
+        useSearchQueryDataSource()
     }
     
     // MARK: Search Targets
@@ -274,10 +371,15 @@ class SearchViewController: UIViewController,
     }
     
     func search() {
-        if let term = searchHeaderView.searchTextField.text {
+        if let term = searchHeaderView.searchTextField.text?.trimWhitespace() where !term.isEmpty {
             dataSource.filter(term.trimWhitespace()) { (error) -> Void in
                 self.collectionView.reloadData()
             }
+        }
+        else {
+            dataSource.clearFilter({ () -> Void in
+                self.collectionView.reloadData()
+            })
         }
     }
     
@@ -293,7 +395,7 @@ class SearchViewController: UIViewController,
         ]
         
         switch selectedCard.type {
-        case .Profiles:
+        case .SearchResult:
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                 properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
                 properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
@@ -323,23 +425,52 @@ class SearchViewController: UIViewController,
             if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
                 switch searchCategory.type {
                 case .People:
-                    let viewController = ProfilesViewController()
-                    (viewController.dataSource as! ProfilesDataSource).configureForOrganization()
-                    viewController.title = "People"
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let profilesDataSource = ProfilesSearchDataSource()
+                    profilesDataSource.delegate = self
+                    profilesDataSource.configureForOrganization()
+                    
+                    collectionView.dataSource = profilesDataSource
+                    collectionView.reloadData()
+                    
+                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                    
+                    profilesDataSource.loadData({ (error) -> Void in
+                    })
+                    
+                    dataSource = profilesDataSource
                 case .Locations:
                     // TODO This should be coming from a paginated data source
-                    let viewController = LocationsOverviewViewController(nibName: "LocationsOverviewViewController", bundle: nil)
-                    viewController.title = "Offices"
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let locationsDataSource = LocationsSearchDataSource()
+                    
+                    collectionView.dataSource = locationsDataSource
+                    collectionView.reloadData()
+                    
+                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                    
+                    locationsDataSource.loadData({ (error) -> Void in
+                        self.collectionView.reloadData()
+                    })
+                    
+                    dataSource = locationsDataSource
                 case .Teams:
-                    let viewController = TeamsOverviewViewController()
-                    viewController.title = "Teams"
-                    (viewController.dataSource as! TeamsOverviewDataSource).configureForOrganization()
-                    navigationController?.pushViewController(viewController, animated: true)
+                    let teamsDataSource = TeamsSearchDataSource()
+                    teamsDataSource.delegate = self
+                    teamsDataSource.configureForOrganization()
+                    
+                    collectionView.dataSource = teamsDataSource
+                    collectionView.reloadData()
+
+                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                    
+                    teamsDataSource.loadData({ (error) -> Void in
+                    })
+                    
+                    dataSource = teamsDataSource
                 }
             }
-            else if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
+                
+        case .SearchAction:
+            if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
                 handleSearchAction(searchAction)
             }
             
@@ -520,5 +651,13 @@ class SearchViewController: UIViewController,
         default:
             break;
         }
+    }
+    
+    // MARK: - CardDataSourceDelegate
+    
+    func onDataLoaded(indexPaths: [NSIndexPath]) {
+        collectionView.performBatchUpdates({ () -> Void in
+            self.collectionView.insertItemsAtIndexPaths(indexPaths)
+            }, completion: nil)
     }
 }

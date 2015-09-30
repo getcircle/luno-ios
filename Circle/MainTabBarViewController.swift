@@ -25,6 +25,15 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
 
     private func configureTabBar() {
+        tabBar.layer.shadowOpacity = 0.2
+        tabBar.layer.shadowOffset = CGSizeMake(0.0, 1.0)
+        tabBar.layer.shadowPath = UIBezierPath(rect: tabBar.bounds).CGPath
+        tabBar.layer.shadowRadius = 4.0
+        
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView.frame = tabBar.bounds
+        tabBar.addSubview(blurView)
+        
         delegate = self
         var tabBarViewControllers = [UIViewController]()
 
@@ -115,18 +124,9 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         // Refresh data for selected view controllers
         if let sourceViewController = getActiveViewController(viewController) {
             
-            if sourceViewController.isViewLoaded() && sourceViewController.view.window == nil {
-                if sourceViewController is CurrentUserProfileDetailViewController {
-                    (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
-                }
-                
-                // Activate Search
-                if selectedIndex == 0 && sourceViewController is SearchViewController {
-                    let searchVC = sourceViewController as! SearchViewController
-                    if searchVC.view.window != nil {
-                        searchVC.activateSearch(false)
-                    }
-                }
+            if sourceViewController is CurrentUserProfileDetailViewController {
+                UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+                (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
             }
             
             if !(sourceViewController is BaseDetailViewController) {

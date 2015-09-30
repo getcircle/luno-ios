@@ -132,10 +132,7 @@ class ProfileDetailDataSource: CardDataSource {
         
         let card = Card(
             cardType: .TextValue, 
-            title: NSLocalizedString(
-                "Currently working on",
-                comment: "Title of the section showing what a person is working on"
-            )
+            title: AppStrings.ProfileSectionStatusTitle
         )
         card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
         card.showContentCount = false

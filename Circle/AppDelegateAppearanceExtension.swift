@@ -13,14 +13,6 @@ extension AppDelegate {
     func customizeAppearance(application: UIApplication) {
         UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .None)
         UIApplication.sharedApplication().setStatusBarStyle(AppTheme.currentTheme.status_bar_style, animated: false)
-
-        if let appWindow = window {
-            appWindow.layer.cornerRadius = 6.0
-            appWindow.layer.masksToBounds = true
-            appWindow.layer.opaque = false
-            appWindow.layer.shouldRasterize = true
-            appWindow.layer.rasterizationScale = UIScreen.mainScreen().scale
-        }
         
         window!.tintColor = UIColor.appUIBackgroundColor()
         UINavigationBar.appearance().tintColor = UIColor.appNavigationBarTintColor()
@@ -29,9 +21,8 @@ extension AppDelegate {
 
         UITabBar.appearance().tintColor = UIColor.appTabBarTintColor()
         UITabBar.appearance().barTintColor = UIColor.appTabBarBarTintColor()
-        UITabBar.appearance().translucent = false
         UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage.imageFromColor(UIColor.appTabBarBarTintColor(), withRect: CGRectMake(0.0, 0.0, 1.0, 1.0))
 
         let navBarTitleAttributes = [
             NSFontAttributeName: UIFont.navigationBarFont(),

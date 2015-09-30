@@ -13,8 +13,20 @@
 		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
+		47CAC38F1BB9C13900A11652 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		47CAC3921BB9C24C00A11652 /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		47CAC3941BB9C87300A11652 /* ProfilesSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		47CAC3961BB9CB0A00A11652 /* TeamsSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3951BB9CB0A00A11652 /* TeamsSearchDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		47CAC3981BB9CB9500A11652 /* LocationsSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3971BB9CB9500A11652 /* LocationsSearchDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		47CAC39A1BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */; settings = {ASSET_TAGS = (); }; };
+		47CAC39C1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */; settings = {ASSET_TAGS = (); }; };
 		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
 		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; settings = {ASSET_TAGS = (); }; };
+		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; settings = {ASSET_TAGS = (); }; };
+		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		47E674FF1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		47E675011BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E675001BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		7899CA44139AE8B96BACC3EA /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		8F0004961A2419730096477A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0004951A2419730096477A /* AppDelegate.swift */; };
 		8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F00049A1A2419730096477A /* ProfilesViewController.swift */; };
@@ -138,9 +150,6 @@
 		8F29F63A1B656CBC00E5D76C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F29F6381B656CBC00E5D76C /* SearchViewController.swift */; };
 		8F29F63B1B656CBC00E5D76C /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F29F6391B656CBC00E5D76C /* SearchViewController.xib */; };
 		8F2D7DF01A5B2412001D36B0 /* ProfilesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */; };
-		8F306B8D1A7416E00024EB03 /* LocationsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F306B8B1A7416E00024EB03 /* LocationsOverviewViewController.swift */; };
-		8F306B8E1A7416E00024EB03 /* LocationsOverviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F306B8C1A7416E00024EB03 /* LocationsOverviewViewController.xib */; };
-		8F306B931A74171C0024EB03 /* LocationsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F306B921A74171C0024EB03 /* LocationsOverviewDataSource.swift */; };
 		8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3569131A560B2D003D42F9 /* CGRectExtension.swift */; };
 		8F3F7AF91A799806002CD365 /* NSBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */; };
 		8F4805C41A5B643F00273731 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4805C31A5B643F00273731 /* Crashlytics.framework */; };
@@ -345,8 +354,20 @@
 		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
+		47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesSearchDataSource.swift; sourceTree = "<group>"; };
+		47CAC3951BB9CB0A00A11652 /* TeamsSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsSearchDataSource.swift; sourceTree = "<group>"; };
+		47CAC3971BB9CB9500A11652 /* LocationsSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsSearchDataSource.swift; sourceTree = "<group>"; };
+		47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchActionCollectionViewCell.xib; sourceTree = "<group>"; };
+		47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextValueCollectionViewCell.swift; sourceTree = "<group>"; };
+		47E675001BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchTextValueCollectionViewCell.xib; sourceTree = "<group>"; };
 		4BE4CE18D8FDD109BFC6307A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004901A2419730096477A /* luno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = luno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0004941A2419730096477A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -476,9 +497,6 @@
 		8F29F6381B656CBC00E5D76C /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8F29F6391B656CBC00E5D76C /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesDataSource.swift; sourceTree = "<group>"; };
-		8F306B8B1A7416E00024EB03 /* LocationsOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsOverviewViewController.swift; sourceTree = "<group>"; };
-		8F306B8C1A7416E00024EB03 /* LocationsOverviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsOverviewViewController.xib; sourceTree = "<group>"; };
-		8F306B921A74171C0024EB03 /* LocationsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsOverviewDataSource.swift; sourceTree = "<group>"; };
 		8F3569131A560B2D003D42F9 /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBundleExtension.swift; sourceTree = "<group>"; };
 		8F4805C31A5B643F00273731 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -672,6 +690,7 @@
 				478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */,
 				478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */,
 				47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */,
+				47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */,
 			);
 			path = OpenSans;
 			sourceTree = "<group>";
@@ -775,7 +794,6 @@
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
 				8F5933CA1AC9FD8B00905E14 /* NotificationsViewController.swift */,
 				8FD907F61A6033310025A17B /* LocationDetailViewController.swift */,
-				8F306B8B1A7416E00024EB03 /* LocationsOverviewViewController.swift */,
 				BFEDF2EE1ABA251C00E6F3D5 /* OverviewViewController.swift */,
 				8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */,
 				8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */,
@@ -823,7 +841,11 @@
 				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				BFCFDB181A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
+				47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */,
+				47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */,
 				BF768A721AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift */,
+				47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */,
+				47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */,
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
 				4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */,
@@ -912,7 +934,6 @@
 				8F22CBE71A27FDA70026376E /* KeyValueCollectionViewCell.xib */,
 				8F0004A31A2419730096477A /* LaunchScreen.xib */,
 				8F65C4FD1A51222100C7F3E6 /* LocationCollectionViewCell.xib */,
-				8F306B8C1A7416E00024EB03 /* LocationsOverviewViewController.xib */,
 				8F00049E1A2419730096477A /* Main.storyboard */,
 				8F4805E81A5DE4CE00273731 /* MapHeaderCollectionReusableView.xib */,
 				8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */,
@@ -926,7 +947,11 @@
 				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
+				47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */,
+				47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */,
 				BF768A731AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.xib */,
+				47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */,
+				47E675001BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib */,
 				8F29F6391B656CBC00E5D76C /* SearchViewController.xib */,
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */,
@@ -1058,13 +1083,15 @@
 				8FC8781C1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift */,
 				8FA6A4AF1AFE937300ACC39D /* GroupsDataSource.swift */,
 				8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */,
-				8F306B921A74171C0024EB03 /* LocationsOverviewDataSource.swift */,
+				47CAC3971BB9CB9500A11652 /* LocationsSearchDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
+				47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
 				8F9F60D11A8C46C100FCAA25 /* SettingsDataSource.swift */,
 				8F085A891A6B0CB300F8139B /* TeamDetailDataSource.swift */,
 				8F823E4E1A72A0850006264B /* TeamsOverviewDataSource.swift */,
+				47CAC3951BB9CB0A00A11652 /* TeamsSearchDataSource.swift */,
 				8FA6A4B31AFEAF5000ACC39D /* GroupDetailDataSource.swift */,
 			);
 			name = DataSources;
@@ -1322,6 +1349,7 @@
 				8F0004A01A2419730096477A /* Main.storyboard in Resources */,
 				8FCC95CE1A52828B00421E65 /* ProfileCollectionViewCell.xib in Resources */,
 				8FA6A4AB1AFDCA8100ACC39D /* GroupCollectionViewCell.xib in Resources */,
+				47E675011BBA5227007D3A28 /* SearchTextValueCollectionViewCell.xib in Resources */,
 				8F07ACAB1AE878F100D1F41D /* MPArrowLeft.png in Resources */,
 				8F0ADD441AC5344E00A44B68 /* Loader_00040@2x.png in Resources */,
 				8F07ACB61AE878F100D1F41D /* MPLogo@2x.png in Resources */,
@@ -1331,6 +1359,7 @@
 				8F07ACB81AE878F100D1F41D /* MPSurvey.storyboard in Resources */,
 				8F0ADD361AC5344E00A44B68 /* Loader_00026@2x.png in Resources */,
 				8F0ADD3E1AC5344E00A44B68 /* Loader_00034@2x.png in Resources */,
+				47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */,
 				8F15A4121B79B40700693E26 /* ContactCollectionViewCell.xib in Resources */,
 				8F0ADD391AC5344E00A44B68 /* Loader_00029@2x.png in Resources */,
 				BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */,
@@ -1357,7 +1386,6 @@
 				8F0ADD3A1AC5344E00A44B68 /* Loader_00030@2x.png in Resources */,
 				8F07ACB51AE878F100D1F41D /* MPLogo.png in Resources */,
 				8F0ADD241AC5344E00A44B68 /* Loader_00008@2x.png in Resources */,
-				8F306B8E1A7416E00024EB03 /* LocationsOverviewViewController.xib in Resources */,
 				8F07ACB21AE878F100D1F41D /* MPCloseBtn@2x.png in Resources */,
 				8F07ACB01AE878F100D1F41D /* MPCheckmark@2x.png in Resources */,
 				8F0ADD271AC5344E00A44B68 /* Loader_00011@2x.png in Resources */,
@@ -1376,6 +1404,7 @@
 				8F0ADD381AC5344E00A44B68 /* Loader_00028@2x.png in Resources */,
 				8F0ADD1C1AC5344E00A44B68 /* Loader_00000@2x.png in Resources */,
 				478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */,
+				47CAC3921BB9C24C00A11652 /* SearchResultCollectionViewCell.xib in Resources */,
 				8F0ADD3D1AC5344E00A44B68 /* Loader_00033@2x.png in Resources */,
 				8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */,
 				8F0ADD211AC5344E00A44B68 /* Loader_00005@2x.png in Resources */,
@@ -1402,9 +1431,11 @@
 				8F6501271B009986006BB260 /* VENTouchLockPasscodeView.xib in Resources */,
 				8F0ADD521AC5344E00A44B68 /* Loader_00054@2x.png in Resources */,
 				8F0ADD371AC5344E00A44B68 /* Loader_00027@2x.png in Resources */,
+				47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */,
 				8F0ADD3F1AC5344E00A44B68 /* Loader_00035@2x.png in Resources */,
 				BFCFDB1B1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib in Resources */,
 				8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */,
+				47CAC39C1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib in Resources */,
 				8F60AEAD1B842D6800FF0062 /* EditTitleViewController.xib in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
 				BFCFDB121A9165A9009A5FD4 /* PositionCollectionViewCell.xib in Resources */,
@@ -1561,8 +1592,8 @@
 				8F5424111B6B00E000AEFB11 /* SearchCategory.swift in Sources */,
 				4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */,
 				8F22CBE01A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift in Sources */,
-				8F306B8D1A7416E00024EB03 /* LocationsOverviewViewController.swift in Sources */,
 				BF8FC3D91A44DA83007FD8BA /* StringExtension.swift in Sources */,
+				47CAC38F1BB9C13900A11652 /* SearchResultCollectionViewCell.swift in Sources */,
 				8F834FA01A9FFC2F007B7095 /* AppStrings.swift in Sources */,
 				8FC878161AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift in Sources */,
 				8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */,
@@ -1573,18 +1604,21 @@
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
 				8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */,
 				BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */,
+				47CAC3981BB9CB9500A11652 /* LocationsSearchDataSource.swift in Sources */,
 				8FD7EC471AA530EF004A2CEA /* AddressCollectionViewCell.swift in Sources */,
 				BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */,
 				8F08A9F91A748F5200B93149 /* CardFooterCollectionReusableView.swift in Sources */,
 				8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */,
 				BF768A741AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift in Sources */,
 				8F22CBE51A27ED190026376E /* StickyHeaderCollectionViewLayout.swift in Sources */,
+				47CAC3961BB9CB0A00A11652 /* TeamsSearchDataSource.swift in Sources */,
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				8F15A40C1B75C57300693E26 /* Location.swift in Sources */,
 				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
 				8F15A4081B75889900693E26 /* TextData.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* Organization.swift in Sources */,
+				47E674FF1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift in Sources */,
 				BFE213C81A5EE63F0033E2F5 /* Search.swift in Sources */,
 				8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */,
 				8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */,
@@ -1614,9 +1648,11 @@
 				BF59AA931A2C152F00C0CDB9 /* UITableViewExtension.swift in Sources */,
 				BF2CBFD61A473E9100BE589D /* User.swift in Sources */,
 				8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */,
+				47CAC3941BB9C87300A11652 /* ProfilesSearchDataSource.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
 				BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */,
+				47CAC39A1BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
 				8F60AEAC1B842D6800FF0062 /* EditTitleViewController.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
@@ -1674,6 +1710,7 @@
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
 				8FA6A4B61AFEB47D00ACC39D /* Group.swift in Sources */,
 				8F15A4001B756AF700693E26 /* EditProfileStatusViewController.swift in Sources */,
+				47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */,
 				8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */,
 				BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
@@ -1693,7 +1730,6 @@
 				8F15A4061B75742B00693E26 /* EditLocationDescriptionViewController.swift in Sources */,
 				BFEDF2EF1ABA251C00E6F3D5 /* OverviewViewController.swift in Sources */,
 				8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */,
-				8F306B931A74171C0024EB03 /* LocationsOverviewDataSource.swift in Sources */,
 				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,
 				8F9F60CC1A8C439E00FCAA25 /* SettingsViewController.swift in Sources */,
 				8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */,

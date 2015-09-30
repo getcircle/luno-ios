@@ -88,7 +88,10 @@ class Card: Equatable {
         case Settings = "Settings"
         case SocialConnectCTAs = "SocialConnectCTAs"
         case SocialToggle = "SocialToggle"
+        case SearchAction = "SearchAction"
         case SearchSuggestion = "SearchSuggestion"
+        case SearchResult = "SearchResult"
+        case SearchTextValue = "SearchTextValue"
         case ContactMethods = "ContactMethods"
         case TextValue = "TextValue"
 
@@ -220,10 +223,31 @@ class Card: Equatable {
                     contentType: .Flat
                 )
 
+            case SearchAction:
+                return CardTypeInfo(
+                    imageName: String(),
+                    classType: SearchActionCollectionViewCell.self,
+                    contentType: .Flat
+                )
+                
             case SearchSuggestion:
                 return CardTypeInfo(
                     imageName: String(),
                     classType: SearchSuggestionCollectionViewCell.self,
+                    contentType: .Flat
+                )
+                
+            case SearchResult:
+                return CardTypeInfo(
+                    imageName: "detail_group",
+                    classType: SearchResultCollectionViewCell.self,
+                    contentType: .Flat
+                )
+                
+            case SearchTextValue:
+                return CardTypeInfo(
+                    imageName: "Info",
+                    classType: SearchTextValueCollectionViewCell.self,
                     contentType: .Flat
                 )
 
@@ -315,7 +339,6 @@ class Card: Equatable {
         
         subType = withSubType
     }
-
 
     func addContent(content withContent: [AnyObject], maxVisibleItems withMaxVisibleItems: Int) {
         switch cardContentType {

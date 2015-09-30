@@ -26,17 +26,16 @@ protocol Theme {
     var status_bar_style: UIStatusBarStyle { get }
 }
 
-
 struct DefaultTheme: Theme {
     var app_tint_color = UIColor(red: 0, green: 201, blue: 255)
     var app_ui_background_color = UIColor(red: 47, green: 55, blue: 62)
     
-    var app_nav_bar_color = UIColor(red: 47, green: 55, blue: 62)
+    var app_nav_bar_color = UIColor(red: 72, green: 73, blue: 89)
     var app_nav_bar_text_controls_color = UIColor.whiteColor()
     
-    var app_tab_bar_color = UIColor(red: 47, green: 55, blue: 62)
-    var app_tab_bar_text_controls_color = UIColor(red: 0, green: 201, blue: 255)
-    var app_tab_bar_deselected_text_controls_color = UIColor(red: 145, green: 145, blue: 145)
+    var app_tab_bar_color = UIColor(white: 1.0, alpha: 0.5)
+    var app_tab_bar_text_controls_color = UIColor.appHighlightColor()
+    var app_tab_bar_deselected_text_controls_color = UIColor(red: 176, green: 176, blue: 177)
     
     var app_light_text_color = UIColor.whiteColor()
     var app_dark_text_color = UIColor(red: 38, green: 38, blue: 38)

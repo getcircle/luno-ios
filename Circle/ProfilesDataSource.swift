@@ -15,12 +15,8 @@ class ProfilesDataSource: CardDataSource {
     private(set) var searchAttributeValue: String?
     
     private var card: Card!
-    private var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
+    internal var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
     private var data = [AnyObject]()
-    
-    override class var cardSeparatorInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
-    }
     
     // MARK: - Configuration
     
@@ -94,9 +90,6 @@ class ProfilesDataSource: CardDataSource {
     
     override func setInitialData(content: [AnyObject], ofType: Card.CardType? = nil) {
         data.appendContentsOf(content)
-        if let type = ofType {
-            cardType = type
-        }
     }
     
     override func setInitialData(content content: [AnyObject], ofType: Card.CardType?, nextRequest withNextRequest: Soa.ServiceRequestV1?) {

@@ -53,35 +53,38 @@ class SearchQueryDataSource: CardDataSource {
         }
         
         searchTerm = string.trimWhitespace()
-        if searchTerm == "" {
-            clearData()
-            searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
-            populateDefaultSearchSuggestions()
-            addCards()
+        if let results = searchCache[searchTerm] {
+            self.clearData()
+            searchResults.appendContentsOf(results)
+            self.addCards()
             completionHandler(error: nil)
         }
         else {
-            if let results = searchCache[searchTerm] {
-                self.clearData()
-                searchResults.appendContentsOf(results)
-                self.addCards()
-                completionHandler(error: nil)
+            self.completionHandler = completionHandler
+            if let timer = searchTriggerTimer {
+                timer.invalidate()
             }
-            else {
-                self.completionHandler = completionHandler
-                if let timer = searchTriggerTimer {
-                    timer.invalidate()
-                }
-                
-                searchTriggerTimer = NSTimer.scheduledTimerWithTimeInterval(
-                    queryTriggerTimer,
-                    target: self, 
-                    selector: "search", 
-                    userInfo: nil, 
-                    repeats: false
-                )
-            }
+            
+            searchTriggerTimer = NSTimer.scheduledTimerWithTimeInterval(
+                queryTriggerTimer,
+                target: self,
+                selector: "search",
+                userInfo: nil,
+                repeats: false
+            )
         }
+    }
+    
+    override func clearFilter(completionHandler: () -> Void) {
+        super.clearFilter(completionHandler)
+
+        searchTerm = ""
+        
+        clearData()
+        searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
+        populateDefaultSearchSuggestions()
+        addCards()
+        completionHandler()
     }
     
     func search() {
@@ -134,19 +137,19 @@ class SearchQueryDataSource: CardDataSource {
                     categoryTitle: peopleTitle,
                     ofType: .People,
                     withCount: peopleCount,
-                    withImageSource: "results_search"
+                    withImageSource: "searchbar_search"
                 ),
                 SearchCategory(
                     categoryTitle: locationsTitle,
                     ofType: .Locations,
                     withCount: locationsCount,
-                    withImageSource: "results_search"
+                    withImageSource: "searchbar_search"
                 ),
                 SearchCategory(
                     categoryTitle: teamsTitle,
                     ofType: .Teams,
                     withCount: teamsCount,
-                    withImageSource: "results_search"
+                    withImageSource: "searchbar_search"
                 )
             ])
         }
@@ -157,11 +160,12 @@ class SearchQueryDataSource: CardDataSource {
 
         let emptySearchTerm = searchTerm.trimWhitespace() == ""
         if searchResults.count > 0 {
-            let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recent", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
-            let resultsCard = Card(cardType: .Profiles, title: profilesCardTitle, showContentCount: false)
+            let profilesCardTitle = emptySearchTerm ? NSLocalizedString("Recents", comment: "Title of the section showing recent search results") : NSLocalizedString("Results", comment: "Title of the section showing search results")
+            let resultsCard = Card(cardType: .SearchResult, title: profilesCardTitle, showContentCount: false)
+            resultsCard.sectionInset = UIEdgeInsetsZero
             resultsCard.addContent(content: searchResults)
             if emptySearchTerm {
-                resultsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+                resultsCard.addHeader(headerClass: SearchSectionHeaderCollectionReusableView.self)
             }
             
             appendCard(resultsCard)
@@ -175,16 +179,17 @@ class SearchQueryDataSource: CardDataSource {
 
         if searchSuggestions.count > 0 {
             let searchSuggestionsCard = Card(
-                cardType: .SearchSuggestion, 
+                cardType: emptySearchTerm ? .SearchSuggestion : .SearchAction,
                 title: NSLocalizedString("Explore",
                     comment: "Title which presents options to explore the content"
                 ),
                 showContentCount: false
             )
+            searchSuggestionsCard.sectionInset = UIEdgeInsetsZero
             
             if emptySearchTerm {
                 // Explore options are shown here
-                searchSuggestionsCard.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+                searchSuggestionsCard.addHeader(headerClass: SearchSectionHeaderCollectionReusableView.self)
             }
             
             searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
@@ -219,7 +224,9 @@ class SearchQueryDataSource: CardDataSource {
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
-        cell.showSeparator = true
+        
+        let isLoneProfileCell = (searchResults.count == 1 && cell is ProfileCollectionViewCell)
+        cell.showSeparator = !isLoneProfileCell
     }
     
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
@@ -230,29 +237,31 @@ class SearchQueryDataSource: CardDataSource {
     
     private func addStatusCard(profile: Services.Profile.Containers.ProfileV1) {
         if let status = profile.status where status.value.trimWhitespace() != "" {
-            let statusCard = Card(cardType: .TextValue, title: "")
+            let statusCard = Card(cardType: .SearchTextValue, title: AppStrings.ProfileSectionStatusTitle.localizedUppercaseString())
             statusCard.addContent(content: [
                 TextData(
                     type: .ProfileStatus,
-                    andValue: "I'm currently working on " + status.value,
+                    andValue: status.value,
                     andTimestamp: status.created
                 )
                 ])
+            statusCard.sectionInset = UIEdgeInsetsZero
             appendCard(statusCard)
         }
     }
 
     private func addStatusCard(team: Services.Organization.Containers.TeamV1) {
         if let status = team.status where status.value.trimWhitespace() != "" {
-            let statusCard = Card(cardType: .TextValue, title: "")
+            let statusCard = Card(cardType: .SearchTextValue, title: AppStrings.ProfileSectionStatusTitle.localizedUppercaseString())
             statusCard.addContent(content: [
                 TextData(
                     type: .TeamStatus,
-                    andValue: "We are currently working on " + status.value,
+                    andValue: status.value,
                     andTimestamp: status.created,
                     andAuthor: status.byProfile
                 )
             ])
+            statusCard.sectionInset = UIEdgeInsetsZero
             appendCard(statusCard)
         }
     }

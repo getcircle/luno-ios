@@ -26,6 +26,6 @@ class SearchCategory: SearchSuggestion {
     }
     
     override func getTitle() -> String {
-        return (title + " (" + String(count) + ")").uppercaseString
+        return (title + " (" + String(count) + ")")
     }
 }

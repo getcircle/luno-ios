@@ -44,7 +44,6 @@ typealias AddMembersCompletionHandler = (
     error: NSError?
 ) -> Void
 
-
 extension Services.Group.Actions {
     
     static func getGroup(groupId: String, completionHandler: GetGroupCompletionHandler?) {

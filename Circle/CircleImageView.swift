@@ -115,7 +115,6 @@ class CircleImageView: UIImageView {
                 failure: { (imageURLRequest, response, error) -> Void in
                     self.addImageLabelForProfile(profile)
                     self.makeImageVisible(false)
-                    print("Response \(response.statusCode) \(response)")
                     print("failed to fetch image for profile: \(profileImageURL) error: \(error.localizedDescription)")
                 }
             )
@@ -146,9 +145,7 @@ class CircleImageView: UIImageView {
                         self.image = image
                     }
                 },
-                failure: { (imageURLRequest, response, error) -> Void in
-                    print("Response \(response.statusCode) \(response)")
-            
+                failure: { (imageURLRequest, response, error) -> Void in            
                     print("failed to fetch image for location: \(location.imageUrl) error: \(error.localizedDescription)")
                 }
             )
@@ -177,8 +174,6 @@ class CircleImageView: UIImageView {
                     }
                 },
                 failure: { (imageURLRequest, response, error) -> Void in
-                    print("Response \(response.statusCode) \(response)")
-                    
                     print("failed to fetch image for team: \(team.imageUrl) error: \(error.localizedDescription)")
                 }
             )
