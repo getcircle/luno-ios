@@ -33,6 +33,7 @@ class SettingsCollectionViewCell: CircleCollectionViewCell {
         
         // Initialization code
         initialFontSize = itemLabel.font.pointSize
+        itemLabel.font = UIFont.regularFont(initialFontSize)
         defaultSelectionBackgroundView = selectedBackgroundView
         pushesNewViewImage.image = pushesNewViewImage.image?.imageWithRenderingMode(.AlwaysTemplate)
         pushesNewViewImage.tintColor = UIColor.appKeyValueNextImageTintColor()

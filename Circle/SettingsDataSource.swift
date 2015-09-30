@@ -60,10 +60,6 @@ class SettingsDataSource: CardDataSource {
                 "text": NSLocalizedString("Email us feedback", comment: "Title of button used to email app feedback"),
                 "type": SettingsCellType.ContactEmail.rawValue
             ],
-//            [
-//                "text": NSLocalizedString("Call us", comment: "Title of button to call us"),
-//                "type": SettingsCellType.ContactPhone.rawValue
-//            ]
         ])
         appendCard(contactCard)
 
@@ -168,7 +164,7 @@ class SettingsDataSource: CardDataSource {
                 textAlignment = .Center
                 font = UIFont(
                     name: settingsCell.itemLabel.font.familyName,
-                    size: 14.0
+                    size: 12.0
                 )
                 backgroundView = nil
             
