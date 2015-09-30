@@ -1883,7 +1883,7 @@
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhlabs.circle;
 				PRODUCT_NAME = luno;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
@@ -1907,7 +1907,7 @@
 				);
 				INFOPLIST_FILE = Circle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rhlabs.circle;
 				PRODUCT_NAME = luno;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Circle/Circle-Bridging-Header.h";
