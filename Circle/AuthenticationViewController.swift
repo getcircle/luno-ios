@@ -302,21 +302,7 @@ class AuthenticationViewController: UIViewController {
                     AuthenticationNotifications.onLoginNotification,
                     object: nil
                 )
-                
-                AppTheme.updateThemeForOrganization()
-                
-                let allInfoVerified = self.dynamicType.checkUser(unverifiedPhoneHandler: { () -> Void in
-                    let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
-                    self.navigationController?.setViewControllers([welcomeVC], animated: true)
-                }, unverifiedProfileHandler: {
-                    let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
-                    welcomeVC.goToPhoneVerification = false
-                    self.navigationController?.setViewControllers([welcomeVC], animated: true)
-                })
-                
-                if allInfoVerified {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
@@ -532,26 +518,6 @@ class AuthenticationViewController: UIViewController {
             // Check if the counts are zero. If yes, fetch and update organization details in local cache
             if let organization = getLoggedInUserOrganization() where organization.profileCount == 0 {
                 fetchAndCacheUserOrganization(user.id, completion: nil)
-            }
-            
-            AppTheme.updateThemeForOrganization()
-            if !user.phoneNumberVerified {
-                if let handler = unverifiedPhoneHandler {
-                    handler()
-                } else {
-                    presentWelcomeView(true)
-                }
-                return false
-            }
-            
-            if let profile = getLoggedInUserProfile() {
-                if !profile.verified {
-                    if let handler = unverifiedProfileHandler {
-                        handler()
-                    } else {
-                        presentWelcomeView(false)
-                    }
-                }
             }
         } else {
             presentSplashViewController()
