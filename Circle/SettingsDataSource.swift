@@ -99,7 +99,7 @@ class SettingsDataSource: CardDataSource {
         logoutCard.addHeader(headerClass: sectionHeaderClass)
         logoutCard.sectionInset = sectionInset
         logoutCard.showContentCount = false
-        var accountContent = [[
+        let accountContent = [[
             "text": AuthenticationViewController.getLoggedInUser()!.primaryEmail,
             "type": SettingsCellType.AccountEmail.rawValue
         ],
@@ -108,17 +108,17 @@ class SettingsDataSource: CardDataSource {
             "type": SettingsCellType.LogOut.rawValue
         ]]
         
-        if let identities = AuthenticationViewController.getLoggedInUserIdentities() where identities.count > 0 {
-            for identity in identities {
-                if identity.provider == .Google {
-                    accountContent.append([
-                        "text": AppStrings.SignOutDisconnectButtonTitle,
-                        "type": SettingsCellType.Disconnect.rawValue
-                    ])
-                    break
-                }
-            }
-        }
+//        if let identities = AuthenticationViewController.getLoggedInUserIdentities() where identities.count > 0 {
+//            for identity in identities {
+//                if identity.provider == .Google {
+//                    accountContent.append([
+//                        "text": AppStrings.SignOutDisconnectButtonTitle,
+//                        "type": SettingsCellType.Disconnect.rawValue
+//                    ])
+//                    break
+//                }
+//            }
+//        }
 
         logoutCard.addContent(content: accountContent)
         appendCard(logoutCard)
