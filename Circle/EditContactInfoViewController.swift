@@ -8,6 +8,7 @@
 
 import UIKit
 import ProtobufRegistry
+import MBProgressHUD
 
 protocol EditProfileDelegate {
     func didFinishEditingProfile()
@@ -24,6 +25,8 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
 
     private var existingContactMethodsByType = Dictionary<Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, Services.Profile.Containers.ContactMethodV1>()
     private var formBuilder = FormBuilder()
+    private var imageToUpload: UIImage?
+    private var addImageActionSheet: UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,91 +80,40 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     private func configureFormFields() {
         let formSections = [
             FormBuilder.Section(
-                title: AppStrings.QuickActionCallLabel,
-                imageSource: "TitlePhone",
+                title: "Photo",
+                items: [
+                    FormBuilder.ProfileSectionItem(
+                        placeholder: "Update Photo",
+                        type: .Photo,
+                        fieldType: .Photo
+                    )
+                ]),
+            FormBuilder.Section(
+                title: "Title",
+                items: [
+                    FormBuilder.ProfileSectionItem(
+                        type: .TextField,
+                        fieldType: .Title
+                    )
+                ]),
+            FormBuilder.Section(
+                title: "Start Date",
+                items: [
+                    FormBuilder.ProfileSectionItem(
+                        type: .DatePicker,
+                        fieldType: .HireDate
+                    )
+                ]),
+            FormBuilder.Section(
+                title: "Contact",
                 items: [
                     FormBuilder.ContactSectionItem(
-                        placeholder: AppStrings.ContactLabelCellPhone,
+                        placeholder: "Phone",
                         type: .TextField,
                         keyboardType: .PhonePad,
                         contactMethodType: .CellPhone
                     ),
-                    FormBuilder.ContactSectionItem(
-                        placeholder: AppStrings.ContactLabelWorkPhone,
-                        type: .TextField,
-                        keyboardType: .PhonePad,
-                        contactMethodType: .Phone
-                    )
-            ]),
-            FormBuilder.Section(
-                title: AppStrings.QuickActionEmailLabel,
-                imageSource: "TitleEmail",
-                items: [
-                FormBuilder.ContactSectionItem(
-                    placeholder: AppStrings.ContactLabelWorkEmail,
-                    type: .TextField,
-                    keyboardType: .EmailAddress,
-                    contactMethodType: .Email
-                ),
-                FormBuilder.ContactSectionItem(
-                    placeholder: AppStrings.ContactLabelPersonalEmail,
-                    type: .TextField,
-                    keyboardType: .EmailAddress,
-                    contactMethodType: .Email
-                )
-            ]),
-            FormBuilder.Section(
-                title: AppStrings.QuickActionMessageLabel,
-                imageSource: "TitleChat",
-                items: [
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "Slack",
-                        type: .TextField,
-                        keyboardType: .ASCIICapable,
-                        contactMethodType: .Slack
-                    ),
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "Hipchat",
-                        type: .TextField,
-                        keyboardType: .ASCIICapable,
-                        contactMethodType: .Hipchat
-                    ),
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "Facebook",
-                        type: .TextField,
-                        keyboardType: .ASCIICapable,
-                        contactMethodType: .Facebook
-                    ),
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "SMS",
-                        type: .TextField,
-                        keyboardType: .PhonePad,
-                        contactMethodType: .CellPhone
-                    ),
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "Twitter",
-                        type: .TextField,
-                        keyboardType: .Twitter,
-                        contactMethodType: .Twitter
-                    ),
-            ]),
-            FormBuilder.Section(
-                title: AppStrings.QuickActionVideoLabel,
-                imageSource: "TitleVideo",
-                items: [
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "Skype",
-                        type: .TextField,
-                        keyboardType: .ASCIICapable,
-                        contactMethodType: .Skype
-                    ),
-                    FormBuilder.ContactSectionItem(
-                        placeholder: "Hangouts",
-                        type: .TextField,
-                        keyboardType: .EmailAddress,
-                        contactMethodType: .Skype
-                    )
-            ]),
+                ]),
         ]
         
         for contactMethod in profile.contactMethods {
@@ -183,6 +135,20 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                     
                     if contactItem.contactMethodType == .CellPhone && contactItem.placeholder == "SMS" {
                         item.inputEnabled = false
+                    }
+                }
+                else if let profileItem = item as? FormBuilder.ProfileSectionItem {
+                    
+                    switch profileItem.fieldType {
+                    case .Photo:
+                        break
+                        
+                    case .Title:
+                        item.value = profile.title
+                        
+                    case .HireDate:
+                        item.value = profile.hireDate
+                        
                     }
                 }
             }
@@ -291,6 +257,21 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.contactMethodType = contactItem.contactMethodType
                             contactMethods.append(try! contactMethod.build())
+                        }
+                    }
+                    else if let profileItem = item as? FormBuilder.ProfileSectionItem {
+                        if value.trimWhitespace() != "" && (profileItem.inputEnabled == nil || profileItem.inputEnabled == true) {
+                            switch profileItem.fieldType {
+                            case .Photo:
+                                break
+                                
+                            case .Title:
+                                builder.title = value.trimWhitespace()
+                                
+                            case .HireDate:
+                                builder.hireDate = value
+                                
+                            }
                         }
                     }
                 }

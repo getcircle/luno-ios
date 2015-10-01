@@ -100,6 +100,19 @@ extension NSDateFormatter {
         return Static.instance
     }
     
+    class var sharedHireDateFormatter: NSDateFormatter {
+        struct Static {
+            static let instance = dateFormatter
+            static var dateFormatter: NSDateFormatter {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.locale = NSLocale.currentLocale()
+                dateFormatter.dateFormat = "YYYY-MM-dd"
+                return dateFormatter
+            }
+        }
+        return Static.instance
+    }
+    
     static func stringFromDateWithStyles(
         date: NSDate,
         dateStyle: NSDateFormatterStyle,

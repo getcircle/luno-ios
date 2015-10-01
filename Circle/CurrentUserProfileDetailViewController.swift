@@ -92,11 +92,11 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
     
     override func editButtonTapped(sender: AnyObject) {
-        let editTitleVC = EditTitleViewController(nibName: "EditTitleViewController", bundle: nil)
-        editTitleVC.profile = profile
-        editTitleVC.editProfileDelegate = self
-        let editTitleNavController = UINavigationController(rootViewController: editTitleVC)
-        navigationController?.presentViewController(editTitleNavController, animated: true, completion: nil)
+        let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
+        editProfileVC.profile = profile
+        editProfileVC.editProfileDelegate = self
+        let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
+        navigationController?.presentViewController(editProfileNavVC, animated: true, completion: nil)
     }
     
     // MARK: - Notifications
@@ -129,12 +129,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     
     func cardHeaderTapped(sender: AnyObject!, card: Card!) {
         switch card.type {
-        case .ContactMethods:
-            let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
-            editProfileVC.profile = profile
-            editProfileVC.editProfileDelegate = self
-            let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
-            navigationController?.presentViewController(editProfileNavVC, animated: true, completion: nil)
             
         case .TextValue:
             let editStatusViewController = EditProfileStatusViewController(addCharacterLimit: true, withDelegate: self)
