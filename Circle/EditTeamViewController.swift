@@ -20,6 +20,12 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet weak private(set) var teamNameFieldLabel: UILabel!
     @IBOutlet weak private(set) var teamDescriptionField: UITextView!
     @IBOutlet weak private(set) var teamDescriptionFieldLabel: UILabel!
+    @IBOutlet weak private(set) var teamDescriptionFieldLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var teamDescriptionFieldLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var teamDescriptionFieldContainerView: UIView!
+    @IBOutlet weak private(set) var teamDescriptionFieldContainerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var scrollView: UIScrollView!
+    @IBOutlet weak private(set) var contentViewHeightConstraint: NSLayoutConstraint!
 
     private weak var saveButton: UIBarButtonItem?
     
@@ -30,6 +36,9 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
 
         // Do any additional setup after loading the view.
         configureView()
@@ -45,6 +54,16 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         teamNameField.becomeFirstResponder()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        updateLayoutToFitDescription()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - Configuration
@@ -81,6 +100,26 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
         title = AppStrings.TeamEditButtonTitle
     }
     
+    // MARK: - Keyboard
+    
+    @objc private func keyboardWasShown(notification: NSNotification) {
+        if teamDescriptionField.isFirstResponder() {
+            if let info = notification.userInfo, keyboardFrame = info[UIKeyboardFrameEndUserInfoKey], keyboardRect = keyboardFrame.CGRectValue {
+                let keyboardSize = keyboardRect.size
+                
+                scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+                scrollView.scrollIndicatorInsets = scrollView.contentInset
+    
+                scrollView.scrollRectToVisible(teamDescriptionFieldContainerView.frame, animated: true)
+            }
+        }
+    }
+    
+    @objc private func keyboardWillBeHidden(notification: NSNotification) {
+        scrollView.contentInset = UIEdgeInsetsZero
+        scrollView.scrollIndicatorInsets = scrollView.contentInset;
+    }
+    
     // MARK: - Data
     
     private func populateData() {
@@ -92,6 +131,12 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
             teamDescriptionField.text = team.description_.value
             teamDescriptionField.textColor = UIColor.appPrimaryTextColor()
         }
+    }
+    
+    private func updateLayoutToFitDescription() {
+        teamDescriptionFieldContainerViewHeightConstraint.constant = max(100, teamDescriptionField.intrinsicContentSize().height + teamDescriptionFieldLabelTopConstraint.constant + teamDescriptionFieldLabelBottomConstraint.constant)
+        contentViewHeightConstraint.constant = teamDescriptionFieldContainerView.frameBottom
+        scrollView.contentSize = CGSizeMake(view.bounds.size.width, contentViewHeightConstraint.constant)
     }
     
     // MARK: - UITextFieldDelegate
@@ -118,6 +163,9 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let nameMatches = (teamNameField.text == team.name)
         let descriptionMatches = (team.hasDescription && teamDescriptionField.text == team.description_.value) || (!team.hasDescription && teamDescriptionField.text.trimWhitespace().characters.count == 0)
         saveButton?.enabled = !(nameMatches && descriptionMatches)
+
+        updateLayoutToFitDescription()
+        view.layoutIfNeeded()
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
