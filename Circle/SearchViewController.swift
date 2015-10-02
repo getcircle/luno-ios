@@ -10,6 +10,7 @@ import UIKit
 import MBProgressHUD
 import MessageUI
 import ProtobufRegistry
+import UIViewPlusPosition
 
 class SearchViewController: UIViewController,
     UICollectionViewDelegate,

@@ -167,7 +167,6 @@
 		8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933CA1AC9FD8B00905E14 /* NotificationsViewController.swift */; };
 		8F5933CD1AC9FD8B00905E14 /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */; };
 		8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933CF1ACA331700905E14 /* UIDeviceExtension.swift */; };
-		8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933D11ACB5B4300905E14 /* ABTestUtils.m */; };
 		8F5933E31ACBC12400905E14 /* ProfileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933E21ACBC12400905E14 /* ProfileExtension.swift */; };
 		8F5933E81ACCF91C00905E14 /* CircleErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933E71ACCF91C00905E14 /* CircleErrorMessageView.swift */; };
 		8F60AEAC1B842D6800FF0062 /* EditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60AEAA1B842D6800FF0062 /* EditTitleViewController.swift */; };
@@ -231,8 +230,6 @@
 		8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9A1A84172800B17569 /* FormBuilder.swift */; };
 		8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
-		8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */; };
-		8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */; };
 		8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298081A4B490E00306CFC /* SearchHeaderView.swift */; };
 		8FF2980B1A4B490E00306CFC /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298091A4B490E00306CFC /* SearchHeaderView.xib */; };
 		8FF2984D1A4E29F400306CFC /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */; };
@@ -498,8 +495,6 @@
 		8F5933CB1AC9FD8B00905E14 /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
 		8F5933CE1ACA142300905E14 /* circle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = circle.entitlements; sourceTree = "<group>"; };
 		8F5933CF1ACA331700905E14 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
-		8F5933D11ACB5B4300905E14 /* ABTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTestUtils.m; sourceTree = "<group>"; };
-		8F5933D31ACB5CF100905E14 /* ABTestUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABTestUtils.h; sourceTree = "<group>"; };
 		8F5933E21ACBC12400905E14 /* ProfileExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileExtension.swift; sourceTree = "<group>"; };
 		8F5933E71ACCF91C00905E14 /* CircleErrorMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleErrorMessageView.swift; sourceTree = "<group>"; };
 		8F60AEAA1B842D6800FF0062 /* EditTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleViewController.swift; sourceTree = "<group>"; };
@@ -563,8 +558,6 @@
 		8FEE3D9A1A84172800B17569 /* FormBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilder.swift; sourceTree = "<group>"; };
 		8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditContactInfoViewController.xib; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImagesCollectionViewCell.swift; sourceTree = "<group>"; };
-		8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FF298081A4B490E00306CFC /* SearchHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		8FF298091A4B490E00306CFC /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
 		8FF2984C1A4E29F400306CFC /* PaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
@@ -714,8 +707,6 @@
 				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 				8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */,
 				8F0004941A2419730096477A /* Info.plist */,
-				8F5933D11ACB5B4300905E14 /* ABTestUtils.m */,
-				8F5933D31ACB5CF100905E14 /* ABTestUtils.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -798,7 +789,6 @@
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
 				8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
-				8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */,
 				BFCFDB181A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift */,
 				8FF298081A4B490E00306CFC /* SearchHeaderView.swift */,
 				47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */,
@@ -898,7 +888,6 @@
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
-				8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */,
 				BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */,
 				8FF298091A4B490E00306CFC /* SearchHeaderView.xib */,
 				47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */,
@@ -1280,7 +1269,6 @@
 				8F0ADD481AC5344E00A44B68 /* Loader_00044@2x.png in Resources */,
 				8F0ADD2F1AC5344E00A44B68 /* Loader_00019@2x.png in Resources */,
 				8F0ADD4A1AC5344E00A44B68 /* Loader_00046@2x.png in Resources */,
-				8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */,
 				8F0ADD301AC5344E00A44B68 /* Loader_00020@2x.png in Resources */,
 				8F0ADD331AC5344E00A44B68 /* Loader_00023@2x.png in Resources */,
 				8F0ADD221AC5344E00A44B68 /* Loader_00006@2x.png in Resources */,
@@ -1557,7 +1545,6 @@
 				BF25722D1A6450F20052C3E3 /* VerifyPhoneNumberViewController.swift in Sources */,
 				8F22CBFB1A29AF450026376E /* UIViewExtension.swift in Sources */,
 				8F15A40C1B75C57300693E26 /* Location.swift in Sources */,
-				8F5933D21ACB5B4300905E14 /* ABTestUtils.m in Sources */,
 				8F15A4081B75889900693E26 /* TextData.swift in Sources */,
 				BF004C501A5CF91200AB8A6F /* Organization.swift in Sources */,
 				47E674FF1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift in Sources */,
@@ -1664,7 +1651,6 @@
 				8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */,
 				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,
 				8F9F60CC1A8C439E00FCAA25 /* SettingsViewController.swift in Sources */,
-				8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */,
 				BFB791891A2C346A0048E8FB /* CALayerExtension.swift in Sources */,
 				8F5933E81ACCF91C00905E14 /* CircleErrorMessageView.swift in Sources */,
 			);
