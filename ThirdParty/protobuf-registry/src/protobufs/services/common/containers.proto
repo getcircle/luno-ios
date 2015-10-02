@@ -39,3 +39,9 @@ message InflationsV1 {
     repeated string only = 3;
     repeated string exclude = 4;
 }
+
+message FieldsV1 {
+    optional uint32 version = 1 [default = 1];
+    repeated string only = 2;
+    repeated string exclude = 3;
+}

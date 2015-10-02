@@ -15,14 +15,11 @@ class ProfileDetailDataSource: CardDataSource {
     var profileHeaderView: ProfileHeaderCollectionReusableView?
     
     private(set) var directReports: Array<Services.Profile.Containers.ProfileV1>?
-    private(set) var groups: Array<Services.Group.Containers.GroupV1>?
     private(set) var location: Services.Organization.Containers.LocationV1?
     private(set) var manager: Services.Profile.Containers.ProfileV1?
     private(set) var managesTeam: Services.Organization.Containers.TeamV1?
     private(set) var peers: Array<Services.Profile.Containers.ProfileV1>?
     private(set) var team: Services.Organization.Containers.TeamV1?
-
-    private var supportGoogleGroups = false
     
     override class var cardSeparatorInset: UIEdgeInsets {
         return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
@@ -63,18 +60,6 @@ class ProfileDetailDataSource: CardDataSource {
             completionHandler(error: error)
         }
         
-        dispatch_group_enter(actionsGroup)
-        Services.Organization.Actions.getIntegrationStatus(.GoogleGroups, completionHandler: { (status, error) -> Void in
-            
-            if let error = error {
-                storedError = error
-            }
-            else if status {
-                self.supportGoogleGroups = status
-            }
-            dispatch_group_leave(actionsGroup)
-        })
-        
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
             self.populateData()
             completionHandler(error: storedError)
@@ -92,7 +77,6 @@ class ProfileDetailDataSource: CardDataSource {
         addManagerCard()
         addTeamCard()
         addManagesTeamCard()
-        addGroupsCard()
         setDataInHeader()
     }
     
@@ -222,12 +206,6 @@ class ProfileDetailDataSource: CardDataSource {
         }
         
         return nil
-    }
-
-    internal func addGroupsCard() {
-        if supportGoogleGroups {
-            //TODO: Add groups card
-        }
     }
 
     // MARK: - Cell Type

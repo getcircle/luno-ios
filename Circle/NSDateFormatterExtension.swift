@@ -30,34 +30,6 @@ extension NSDateFormatter {
         
         return Static.instance
     }
-
-    class var sharedBirthdayFormatter: NSDateFormatter {
-        struct Static {
-            static let instance = dateFormatter
-            static var dateFormatter: NSDateFormatter {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MMMM d"
-                dateFormatter.locale = NSLocale.currentLocale()
-                return dateFormatter
-            }
-        }
-        
-        return Static.instance
-    }
-
-    class var sharedAnniversaryFormatter: NSDateFormatter {
-        struct Static {
-            static let instance = dateFormatter
-            static var dateFormatter: NSDateFormatter {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "MMMM YYYY"
-                dateFormatter.locale = NSLocale.currentLocale()
-                return dateFormatter
-            }
-        }
-        
-        return Static.instance
-    }
     
     class var sharedRelativeDateFormatter: NSDateFormatter {
         struct Static {

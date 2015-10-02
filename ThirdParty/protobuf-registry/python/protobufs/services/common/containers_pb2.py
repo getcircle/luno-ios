@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/common/containers.proto',
   package='services.common.containers',
   syntax='proto2',
-  serialized_pb=_b('\n*protobufs/services/common/containers.proto\x12\x1aservices.common.containers\x1a+protobufs/services/profile/containers.proto\"<\n\nKeyValueV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"T\n\x05MapV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07\x63ontent\x18\x02 \x03(\x0b\x32&.services.common.containers.KeyValueV1\"Z\n\rPermissionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08\x63\x61n_edit\x18\x02 \x01(\x08\x12\x12\n\ncan_delete\x18\x03 \x01(\x08\x12\x0f\n\x07\x63\x61n_add\x18\x04 \x01(\x08\"\x96\x01\n\rDescriptionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05value\x18\x02 \x01(\t\x12\x15\n\rby_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x04 \x01(\t\x12:\n\nby_profile\x18\x05 \x01(\x0b\x32&.services.profile.containers.ProfileV1\"X\n\x0cInflationsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x15\n\x07\x65nabled\x18\x02 \x01(\x08:\x04true\x12\x0c\n\x04only\x18\x03 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x04 \x03(\tB1\n/com.rhlabs.protobufs.services.common.containers')
+  serialized_pb=_b('\n*protobufs/services/common/containers.proto\x12\x1aservices.common.containers\x1a+protobufs/services/profile/containers.proto\"<\n\nKeyValueV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"T\n\x05MapV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x37\n\x07\x63ontent\x18\x02 \x03(\x0b\x32&.services.common.containers.KeyValueV1\"Z\n\rPermissionsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x10\n\x08\x63\x61n_edit\x18\x02 \x01(\x08\x12\x12\n\ncan_delete\x18\x03 \x01(\x08\x12\x0f\n\x07\x63\x61n_add\x18\x04 \x01(\x08\"\x96\x01\n\rDescriptionV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\r\n\x05value\x18\x02 \x01(\t\x12\x15\n\rby_profile_id\x18\x03 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x04 \x01(\t\x12:\n\nby_profile\x18\x05 \x01(\x0b\x32&.services.profile.containers.ProfileV1\"X\n\x0cInflationsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x15\n\x07\x65nabled\x18\x02 \x01(\x08:\x04true\x12\x0c\n\x04only\x18\x03 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x04 \x03(\t\"=\n\x08\x46ieldsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04only\x18\x02 \x03(\t\x12\x0f\n\x07\x65xclude\x18\x03 \x03(\tB1\n/com.rhlabs.protobufs.services.common.containers')
   ,
   dependencies=[protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -273,6 +273,51 @@ _INFLATIONSV1 = _descriptor.Descriptor(
   serialized_end=600,
 )
 
+
+_FIELDSV1 = _descriptor.Descriptor(
+  name='FieldsV1',
+  full_name='services.common.containers.FieldsV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='version', full_name='services.common.containers.FieldsV1.version', index=0,
+      number=1, type=13, cpp_type=3, label=1,
+      has_default_value=True, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='only', full_name='services.common.containers.FieldsV1.only', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='exclude', full_name='services.common.containers.FieldsV1.exclude', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=602,
+  serialized_end=663,
+)
+
 _MAPV1.fields_by_name['content'].message_type = _KEYVALUEV1
 _DESCRIPTIONV1.fields_by_name['by_profile'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
 DESCRIPTOR.message_types_by_name['KeyValueV1'] = _KEYVALUEV1
@@ -280,6 +325,7 @@ DESCRIPTOR.message_types_by_name['MapV1'] = _MAPV1
 DESCRIPTOR.message_types_by_name['PermissionsV1'] = _PERMISSIONSV1
 DESCRIPTOR.message_types_by_name['DescriptionV1'] = _DESCRIPTIONV1
 DESCRIPTOR.message_types_by_name['InflationsV1'] = _INFLATIONSV1
+DESCRIPTOR.message_types_by_name['FieldsV1'] = _FIELDSV1
 
 KeyValueV1 = _reflection.GeneratedProtocolMessageType('KeyValueV1', (_message.Message,), dict(
   DESCRIPTOR = _KEYVALUEV1,
@@ -315,6 +361,13 @@ InflationsV1 = _reflection.GeneratedProtocolMessageType('InflationsV1', (_messag
   # @@protoc_insertion_point(class_scope:services.common.containers.InflationsV1)
   ))
 _sym_db.RegisterMessage(InflationsV1)
+
+FieldsV1 = _reflection.GeneratedProtocolMessageType('FieldsV1', (_message.Message,), dict(
+  DESCRIPTOR = _FIELDSV1,
+  __module__ = 'protobufs.services.common.containers_pb2'
+  # @@protoc_insertion_point(class_scope:services.common.containers.FieldsV1)
+  ))
+_sym_db.RegisterMessage(FieldsV1)
 
 
 DESCRIPTOR.has_options = True

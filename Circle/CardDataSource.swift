@@ -26,22 +26,14 @@ class ItemImage {
 }
 
 enum ContentType: Int {
-    case Birthday = 1
     case CellPhone
     case ContactPreferences
     case EditTeam
     case Email
     case Facebook
-    case Groups
     case HireDate
-    case JoinGroup
-    case LeaveGroup
-    case LinkedIn
-    case LinkedInConnect
     case Locations
     case Other
-    case RequestGroup
-    case SeatingInfo
     case Twitter
     case WorkPhone
 }
@@ -54,7 +46,7 @@ enum CardDataSourceState {
 }
 
 @objc protocol CardDataSourceDelegate {
-    // TODO we should combine these into like onSateChanged when @objc protocol can accept swift arguments
+    // TODO we should combine these into like onStateChanged when @objc protocol can accept swift arguments
     optional func onDataLoading()
     optional func onDataLoaded(indexPaths: [NSIndexPath])
     optional func onAllDataLoaded()

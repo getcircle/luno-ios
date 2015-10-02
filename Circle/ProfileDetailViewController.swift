@@ -58,10 +58,7 @@ class ProfileDetailViewController:
                         if let contactMethod = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ContactMethodV1 {
                             performQuickAction(contactMethod)
                         }
-                        
-                    case .KeyValue:
-                        handleKeyValueCardSelection(dataSource, indexPath: indexPath)
-                        
+
                     case .Profiles:
                         let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
                         if let team = data as? Services.Organization.Containers.TeamV1 {
@@ -72,13 +69,6 @@ class ProfileDetailViewController:
                         }
                         else if let profile = data as? Services.Profile.Containers.ProfileV1 {
                             showProfileDetail(profile)
-                        }
-                    
-                    case .Group:
-                        if let group = dataSource.contentAtIndexPath(indexPath) as? Services.Group.Containers.GroupV1 {
-                            let groupDetailVC = GroupDetailViewController()
-                            (groupDetailVC.dataSource as! GroupDetailDataSource).selectedGroup = group
-                            navigationController?.pushViewController(groupDetailVC, animated: true)
                         }
                         
                     default:
@@ -106,20 +96,6 @@ class ProfileDetailViewController:
                 profileHeaderView.backgroundImageView.addGestureRecognizer(tapGestureRecognizerBackgroundView)
                 profileHeaderView.backgroundImageView.userInteractionEnabled = true
             }
-        }
-    }
-    
-    internal func handleKeyValueCardSelection(dataSource: ProfileDetailDataSource, indexPath: NSIndexPath) {
-        switch dataSource.typeOfCell(indexPath) {
-        case .Groups:
-            let groupsViewController = GroupsViewController()
-            groupsViewController.title = AppStrings.ProfileSectionGroupsTitle
-            groupsViewController.addSearchFilterView = false
-            (groupsViewController.dataSource as! GroupsDataSource).profile = profile
-            navigationController?.pushViewController(groupsViewController, animated: true)
-
-        default:
-            break
         }
     }
     

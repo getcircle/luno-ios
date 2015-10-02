@@ -299,6 +299,11 @@ public var ServicesRegistryResponsesOrganizationgetSsoMetadata:ConcreateExtensio
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetSsoMetadataStatic
    }
 }
+public var ServicesRegistryResponsesOrganizationgetTeamsForProfileIds:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationgetTeamsForProfileIdsStatic
+   }
+}
 public var ServicesRegistryResponsesProfilecreateProfile:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfilecreateProfileStatic
@@ -372,6 +377,11 @@ public var ServicesRegistryResponsesProfilebulkUpdateProfiles:ConcreateExtension
 public var ServicesRegistryResponsesProfileremoveTags:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfileremoveTagsStatic
+   }
+}
+public var ServicesRegistryResponsesProfileprofileExists:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesProfileprofileExistsStatic
    }
 }
 public var ServicesRegistryResponsesSearchsearch:ConcreateExtensionField {
@@ -546,6 +556,7 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesOrganizationgetTeamsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetDescendantsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetSsoMetadataStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesOrganizationgetTeamsForProfileIdsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilecreateProfileStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetExtendedProfileStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilegetProfileStatic:ConcreateExtensionField
@@ -561,6 +572,7 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesProfilebulkCreateProfilesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfilebulkUpdateProfilesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesProfileremoveTagsStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesProfileprofileExistsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesSearchsearchStatic:ConcreateExtensionField
     var ServicesRegistryResponsesMediastartImageUploadStatic:ConcreateExtensionField
     var ServicesRegistryResponsesMediacompleteImageUploadStatic:ConcreateExtensionField
@@ -628,6 +640,7 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesOrganizationgetTeamsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 219, defaultValue:Services.Organization.Actions.GetTeams.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeams.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationgetDescendantsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 220, defaultValue:Services.Organization.Actions.GetDescendants.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetDescendants.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationgetSsoMetadataStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 221, defaultValue:Services.Organization.Actions.GetSsoMetadata.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetSsoMetadata.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesOrganizationgetTeamsForProfileIdsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 222, defaultValue:Services.Organization.Actions.GetTeamsForProfileIds.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeamsForProfileIds.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilecreateProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 300, defaultValue:Services.Profile.Actions.CreateProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.CreateProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilegetExtendedProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 301, defaultValue:Services.Profile.Actions.GetExtendedProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetExtendedProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilegetProfileStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 302, defaultValue:Services.Profile.Actions.GetProfile.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.GetProfile.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -643,6 +656,7 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesProfilebulkCreateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 312, defaultValue:Services.Profile.Actions.BulkCreateProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.BulkCreateProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfilebulkUpdateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 313, defaultValue:Services.Profile.Actions.BulkUpdateProfiles.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.BulkUpdateProfiles.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesProfileremoveTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 314, defaultValue:Services.Profile.Actions.RemoveTags.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.RemoveTags.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesProfileprofileExistsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 315, defaultValue:Services.Profile.Actions.ProfileExists.ResponseV1(), messageOrGroupClass:Services.Profile.Actions.ProfileExists.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesSearchsearchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 400, defaultValue:Services.Search.Actions.Search.ResponseV1(), messageOrGroupClass:Services.Search.Actions.Search.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesMediastartImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 600, defaultValue:Services.Media.Actions.StartImageUpload.ResponseV1(), messageOrGroupClass:Services.Media.Actions.StartImageUpload.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesMediacompleteImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 601, defaultValue:Services.Media.Actions.CompleteImageUpload.ResponseV1(), messageOrGroupClass:Services.Media.Actions.CompleteImageUpload.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -710,6 +724,7 @@ public extension Services.Registry.Responses {
       Services.Organization.Actions.GetTeams.GetTeamsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetDescendants.GetDescendantsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetSsoMetadata.GetSsoMetadataRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Organization.Actions.GetTeamsForProfileIds.GetTeamsForProfileIdsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.CreateProfile.CreateProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetExtendedProfile.GetExtendedProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.GetProfile.GetProfileRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -725,6 +740,7 @@ public extension Services.Registry.Responses {
       Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.RemoveTags.RemoveTagsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Profile.Actions.ProfileExists.ProfileExistsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.Search.SearchRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.StartImageUpload.StartImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.CompleteImageUpload.CompleteImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -791,6 +807,7 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamsStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetDescendantsStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetSsoMetadataStatic)
+      registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamsForProfileIdsStatic)
       registry.addExtension(ServicesRegistryResponsesProfilecreateProfileStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetExtendedProfileStatic)
       registry.addExtension(ServicesRegistryResponsesProfilegetProfileStatic)
@@ -806,6 +823,7 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesProfilebulkCreateProfilesStatic)
       registry.addExtension(ServicesRegistryResponsesProfilebulkUpdateProfilesStatic)
       registry.addExtension(ServicesRegistryResponsesProfileremoveTagsStatic)
+      registry.addExtension(ServicesRegistryResponsesProfileprofileExistsStatic)
       registry.addExtension(ServicesRegistryResponsesSearchsearchStatic)
       registry.addExtension(ServicesRegistryResponsesMediastartImageUploadStatic)
       registry.addExtension(ServicesRegistryResponsesMediacompleteImageUploadStatic)
@@ -1104,6 +1122,9 @@ public extension Services.Registry.Responses {
     public class func getSsoMetadata() -> ConcreateExtensionField {
          return ServicesRegistryResponsesOrganizationgetSsoMetadata
     }
+    public class func getTeamsForProfileIds() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesOrganizationgetTeamsForProfileIds
+    }
     required public init() {
          super.init()
     }
@@ -1300,6 +1321,9 @@ public extension Services.Registry.Responses {
     }
     public class func removeTags() -> ConcreateExtensionField {
          return ServicesRegistryResponsesProfileremoveTags
+    }
+    public class func profileExists() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesProfileprofileExists
     }
     required public init() {
          super.init()
