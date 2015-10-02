@@ -383,7 +383,6 @@ extension FormBuilder {
         }
         
         convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, imageSource andImageSource: String) {
-
             self.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType, imageSource: andImageSource)
         }
     }
