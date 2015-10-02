@@ -199,14 +199,6 @@ extension UIColor {
         return palette[Int(arc4random_uniform(UInt32(randomNumber!)))]
     }
     
-    static func appDetailViewBorderColor() -> UIColor {
-        return UIColor.blackColor().colorWithAlphaComponent(0.8)
-    }
-    
-    static func appActionButtonTintColor() -> UIColor {
-        return UIColor(red: 0, green: 128, blue: 189)
-    }
-    
     static func appActivityIndicatorViewColor() -> UIColor {
         return UIColor(red: 51, green: 51, blue: 51)
     }
@@ -223,14 +215,6 @@ extension UIColor {
         return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
     }
     
-    static func appSegmentedControlTitleNormalColor() -> UIColor {
-        return UIColor.whiteColor().colorWithAlphaComponent(0.8)
-    }
-
-    static func appSegmentedControlTitleSelectedColor() -> UIColor {
-        return UIColor.whiteColor()
-    }
-    
     static func appAttributeTitleLabelColor() -> UIColor {
         return UIColor(red: 119, green: 119, blue: 119)
     }
@@ -241,18 +225,6 @@ extension UIColor {
 
     static func appAttributeValueLabelColor() -> UIColor {
         return UIColor(red: 48, green: 48, blue: 48)
-    }
-    
-    static func appQuickActionsTintColor() -> UIColor {
-        return UIColor(red: 119, green: 119, blue: 119)
-    }
-    
-    static func appCTABackgroundColor() -> UIColor {
-        return UIColor(red: 48, green: 48, blue: 48)
-    }
-    
-    static func appCTATextColor() -> UIColor {
-        return UIColor.whiteColor()
     }
 
     static func appHighlightColor() -> UIColor {
