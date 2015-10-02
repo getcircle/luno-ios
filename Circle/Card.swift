@@ -78,7 +78,6 @@ class Card: Equatable {
         case KeyValue = "KeyValue"
         case Locations = "Locations"
         case LocationsAddress = "Locations Address"
-        case NewHires = "NewHires"
         case Profiles = "Profiles"
         case ProfilesGrid = "ProfilesGrid"
         case Placeholder = "Placeholder"
@@ -163,14 +162,7 @@ class Card: Equatable {
                     classType: ProfileGridItemCollectionViewCell.self,
                     contentType: .Flat
                 )
-                
-            case NewHires:
-                return CardTypeInfo(
-                    imageName: "FeedNewHire",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
-                )
-                
+                                
             case Placeholder:
                 return CardTypeInfo(
                     imageName: "Info",

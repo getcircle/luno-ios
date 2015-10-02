@@ -114,18 +114,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     private func setProfile(profile: Services.Profile.Containers.ProfileV1) {
         nameLabel.text = profile.fullName
-        var subtitle = profile.title
-        if card?.type != nil {
-            switch card!.type {                
-            case .NewHires:
-                if let date = profile.hireDate.toDate() {
-                    subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
-                }
-            default:
-                subtitle = profile.title
-            }
-        }
-        subTextLabel.text = subtitle
+        subTextLabel.text = profile.title
         
         profileImageView.imageProfileIdentifier = profile.id
         profileImageView.makeItCircular()
