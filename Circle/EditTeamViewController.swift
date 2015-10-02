@@ -82,7 +82,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     private func configureTeamDescriptionFieldLabel() {
         teamDescriptionFieldLabel.textColor = UIColor.appSecondaryTextColor()
-        teamDescriptionFieldLabel.attributedText = NSAttributedString.headerText(AppStrings.GroupDescriptionSectionTitle.localizedUppercaseString())
+        teamDescriptionFieldLabel.attributedText = NSAttributedString.headerText(AppStrings.TeamDescriptionFieldLabel.localizedUppercaseString())
     }
     
     private func configureTeamDescriptionField() {
