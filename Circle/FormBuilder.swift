@@ -197,20 +197,13 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     textField.textColor = UIColor.appAttributeValueLabelColor()
                     textField.font = UIFont.mainTextFont()
                     textField.textAlignment = .Left
-                    textField.keyboardType = item.keyboardType
-                    // TODO: Make these configurable
-                    // Not urgent since we are using the form builder for contact info
-                    // only, to which the following settings are fine
-                    textField.autocapitalizationType = .None
-                    textField.autocorrectionType = .No
-                    textField.spellCheckingType = .No
-                    textField.delegate = self
                     if let inputEnabled = item.inputEnabled {
                         textField.enabled = inputEnabled
                         if !inputEnabled {
                             textField.textColor = UIColor.lightGrayColor()
                         }
                     }
+                    
                     let datePicker = UIDatePicker()
                     datePicker.datePickerMode = .Date
                     datePicker.maximumDate = NSDate()
