@@ -258,7 +258,9 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     fieldNameLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
                     
                     let button = UIButton(forAutoLayout: ())
-                    button.addTarget((item as! ProfileSectionItem).photoFieldHandler as? AnyObject, action: "didTapOnPhotoField:", forControlEvents: .TouchUpInside)
+                    if let profileSectionItem = item as? ProfileSectionItem, target = profileSectionItem.photoFieldHandler as? AnyObject {
+                        button.addTarget(target, action: "didTapOnPhotoField:", forControlEvents: .TouchUpInside)
+                    }
                     containerView.addSubview(button)
                     button.autoPinEdgesToSuperviewEdges()
                     
