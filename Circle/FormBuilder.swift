@@ -121,7 +121,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                         iconImageView?.opaque = true
                         iconImageView?.backgroundColor = UIColor.whiteColor()
                         containerView.addSubview(iconImageView!)
-                        iconImageView?.autoPinEdgeToSuperviewEdge(.Left, withInset: 5.0)
+                        iconImageView?.autoPinEdgeToSuperviewEdge(.Left, withInset: 4.0)
                         iconImageView?.autoAlignAxisToSuperviewAxis(.Horizontal)
                         iconImageView?.autoSetDimensionsToSize(CGSizeMake(50.0, 50.0))
                     }
@@ -141,7 +141,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                             fieldNameLabel?.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
                         }
                         else {
-                            fieldNameLabel?.autoPinEdge(.Left, toEdge: .Right, ofView: iconImageView!, withOffset: 5.0)
+                            fieldNameLabel?.autoPinEdge(.Left, toEdge: .Right, ofView: iconImageView!)
                         }
                         fieldNameLabel?.autoAlignAxisToSuperviewAxis(.Horizontal)
                     }
