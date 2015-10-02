@@ -258,30 +258,6 @@ extension UIColor {
     static func appCTATextColor() -> UIColor {
         return UIColor.whiteColor()
     }
-    
-    static func appWorkAnniversaryBannerBackground() -> UIColor {
-        return UIColor(red: 0, green: 212, blue: 143)
-    }
-    
-    static func appWorkAnniversaryBannerCTABackground() -> UIColor {
-        return UIColor(red: 0, green: 169, blue: 115)
-    }
-
-    static func appBirthdayBannerBackground() -> UIColor {
-        return UIColor(red: 0, green: 172, blue: 203)
-    }
-    
-    static func appBirthdayBannerCTABackground() -> UIColor {
-        return UIColor(red: 0, green: 137, blue: 163)
-    }
-
-    static func appNewHireBannerBackground() -> UIColor {
-        return UIColor(red: 0, green: 172, blue: 203)
-    }
-    
-    static func appNewHireBannerCTABackground() -> UIColor {
-        return UIColor(red: 0, green: 137, blue: 163)
-    }
 
     static func appHighlightColor() -> UIColor {
         return UIColor(red: 122, green: 142, blue: 255)
