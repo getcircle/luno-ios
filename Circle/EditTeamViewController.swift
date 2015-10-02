@@ -200,7 +200,8 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
             let descriptionBuilder: Services.Common.Containers.DescriptionV1.Builder
             if let description = teamBuilder.description_ {
                 descriptionBuilder = try! description.toBuilder()
-            } else {
+            }
+            else {
                 descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
             }
             descriptionBuilder.value = teamDescription
