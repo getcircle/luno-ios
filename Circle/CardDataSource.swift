@@ -34,7 +34,6 @@ enum ContentType: Int {
     case HireDate
     case Locations
     case Other
-    case SeatingInfo
     case Twitter
     case WorkPhone
 }
@@ -47,7 +46,7 @@ enum CardDataSourceState {
 }
 
 @objc protocol CardDataSourceDelegate {
-    // TODO we should combine these into like onSateChanged when @objc protocol can accept swift arguments
+    // TODO we should combine these into like onStateChanged when @objc protocol can accept swift arguments
     optional func onDataLoading()
     optional func onDataLoaded(indexPaths: [NSIndexPath])
     optional func onAllDataLoaded()
