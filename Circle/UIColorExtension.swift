@@ -15,10 +15,6 @@ extension UIColor {
         static var colors = [String: UIColor]()
     }
 
-    struct GroupColorsHolder {
-        static var colors = [String: UIColor]()
-    }
-
     convenience init(red: Int, green: Int, blue: Int) {
         let newRed   = CGFloat(Double(red) / 255.0)
         let newGreen = CGFloat(Double(green) / 255.0)
@@ -145,18 +141,7 @@ extension UIColor {
             return color
         }
     }
-    
-    static func appGroupHeaderBackgroundColor(group: Services.Group.Containers.GroupV1) -> UIColor {
-        if let color = GroupColorsHolder.colors[group.id] {
-            return color
-        }
-        else {
-            let color = getRandomColor()
-            GroupColorsHolder.colors[group.id] = color
-            return color
-        }
-    }
-    
+
     private static func getRandomColor() -> UIColor {        
         // flatuicolors.com
         let palette = [

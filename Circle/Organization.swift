@@ -108,34 +108,4 @@ extension Services.Organization.Actions {
             completionHandler?(members: response?.members, childTeams: response?.childTeams, manager: response?.manager, error: error)
         }
     }
-    
-    static func getIntegrationStatus(type: Services.Organization.Containers.Integration.IntegrationTypeV1, completionHandler: GetIntegrationStatusCompletionHandler?) {
-        
-        if let integrationStatus = CircleCache.getIntegrationSetting(type) {
-            completionHandler?(status: integrationStatus, error: nil)
-            return
-        }
-        
-        let requestBuilder = Services.Organization.Actions.GetIntegration.RequestV1.Builder()
-        requestBuilder.integrationType = type
-
-        let client = ServiceClient(serviceName: "organization")
-        client.callAction(
-            "get_integration",
-            extensionField: Services.Registry.Requests.Organization.getIntegration(),
-            requestBuilder: requestBuilder
-        ) { (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Organization.getIntegration()
-            ) as? Services.Organization.Actions.GetIntegration.ResponseV1
-            
-            var status = false
-            if let response = response where response.integration != nil {
-                status = true
-            }
-
-            CircleCache.setIntegrationSetting(status, ofType: type)
-            completionHandler?(status: status, error: error)
-        }
-    }
 }

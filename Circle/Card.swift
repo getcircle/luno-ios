@@ -72,9 +72,7 @@ class Card: Equatable {
 
     enum CardType: String {
         case Empty = "Empty"
-        case Group = "Group"
         case GroupMemberImages = "GroupMemberImages"
-        case GroupRequest = "GroupRequest"
         case KeyValue = "KeyValue"
         case Locations = "Locations"
         case LocationsAddress = "Locations Address"
@@ -104,13 +102,6 @@ class Card: Equatable {
                     classType: EmptyCollectionViewCell.self,
                     contentType: .Flat
                 )
-
-            case Group:
-                return CardTypeInfo(
-                    imageName: "detail_group",
-                    classType: GroupCollectionViewCell.self,
-                    contentType: .Flat
-                )
                 
             case GroupMemberImages:
                 return CardTypeInfo(
@@ -119,13 +110,6 @@ class Card: Equatable {
                     contentType: .Aggregate
                 )
                 
-            case GroupRequest:
-                return CardTypeInfo(
-                    imageName: "FeedNotification",
-                    classType: GroupRequestCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
             case KeyValue:
                 return CardTypeInfo(
                     imageName: "Info",

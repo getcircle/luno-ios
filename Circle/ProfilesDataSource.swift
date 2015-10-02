@@ -65,23 +65,7 @@ class ProfilesDataSource: CardDataSource {
             registerNextRequest(nextRequest: serviceRequest)
         }
     }
-    
-    func configureForGroup(group: Services.Group.Containers.GroupV1, role: Services.Group.Containers.RoleV1) {
-        let requestBuilder = Services.Group.Actions.GetMembers.RequestV1.Builder()
-        requestBuilder.groupId = group.id
-        requestBuilder.role = role
-        let client = ServiceClient(serviceName: "group")
-        let serviceRequest = client.buildRequest(
-            "get_members",
-            extensionField: Services.Registry.Requests.Group.getMembers(),
-            requestBuilder: requestBuilder,
-            paginatorBuilder: nil
-        )
-        if nextRequest == nil {
-            registerNextRequest(nextRequest: serviceRequest)
-        }
-    }
-    
+
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.showSeparator = !cellAtIndexPathIsBottomOfSection(indexPath)
     }

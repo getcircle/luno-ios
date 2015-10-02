@@ -31,13 +31,9 @@ enum ContentType: Int {
     case EditTeam
     case Email
     case Facebook
-    case Groups
     case HireDate
-    case JoinGroup
-    case LeaveGroup
     case Locations
     case Other
-    case RequestGroup
     case SeatingInfo
     case Twitter
     case WorkPhone
