@@ -14,7 +14,7 @@ protocol EditProfileDelegate {
     func didFinishEditingProfile()
 }
 
-class EditContactInfoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class EditContactInfoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FormBuilderPhotoFieldHandler, FormBuilderDelegate {
     
     @IBOutlet weak private(set) var rootContentView: UIView!
     @IBOutlet weak private(set) var rootContentViewHeightConstraint: NSLayoutConstraint!
@@ -27,6 +27,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     private var formBuilder = FormBuilder()
     private var imageToUpload: UIImage?
     private var addImageActionSheet: UIAlertController?
+    private var saveButton: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
         configureNavigationButtons()
         configureFormFields()
         formBuilder.build(rootContentView)
+        formBuilder.delegate = self
         registerNotifications()
     }
     
@@ -85,7 +87,8 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                     FormBuilder.ProfileSectionItem(
                         placeholder: "Update Photo",
                         type: .Photo,
-                        fieldType: .Photo
+                        fieldType: .Photo,
+                        photoFieldHandler: self
                     )
                 ]),
             FormBuilder.Section(
@@ -111,7 +114,8 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                         placeholder: "Phone",
                         type: .TextField,
                         keyboardType: .PhonePad,
-                        contactMethodType: .CellPhone
+                        contactMethodType: .CellPhone,
+                        imageSource: "detail_phone"
                     ),
                 ]),
         ]
@@ -141,7 +145,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
                     
                     switch profileItem.fieldType {
                     case .Photo:
-                        break
+                        item.value = profile.imageUrl
                         
                     case .Title:
                         item.value = profile.title
@@ -158,7 +162,7 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     }
     
     private func configureView() {
-        title = AppStrings.ProfileSectionContactPreferencesTitle
+        title = AppStrings.ProfileEditTitle
         view.backgroundColor = UIColor.appViewBackgroundColor()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "viewTapped:")
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -167,10 +171,11 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     private func configureNavigationButtons() {
 
         if isBeingPresentedModally() {
-            addCloseButtonWithAction("cancelButtonTapped:")
+            addCancelTextButtonWithAction("cancelButtonTapped:")
         }
-
-        addDoneButtonWithAction("saveButtonTapped:")
+        
+        saveButton = addSaveTextButtonWithAction("saveButtonTapped:")
+        saveButton?.enabled = false
     }
     
     // MARK: - IBAction
@@ -180,16 +185,20 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject!) {
-        updateProfile { () -> Void in
-            if let delegate = self.editProfileDelegate {
-                delegate.didFinishEditingProfile()
-            }
+        handleImageUpload { () -> Void in
+            self.imageToUpload = nil
             
-            if self.isBeingPresentedModally() {
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-            else {
-                self.navigationController?.popViewControllerAnimated(true)
+            self.updateProfile { () -> Void in
+                if let delegate = self.editProfileDelegate {
+                    delegate.didFinishEditingProfile()
+                }
+                
+                if self.isBeingPresentedModally() {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                else {
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
             }
         }
     }
@@ -295,6 +304,142 @@ class EditContactInfoViewController: UIViewController, UINavigationControllerDel
     // MARK: - Gesture Recognizer
     
     func viewTapped(sender: AnyObject!) {
-        dismissKeyboard()
+        dismissKeyboard() 
+    }
+    
+    // MARK: - FormBuilderDelegate
+    
+    func formValuesDidChange(newValues: Bool) {
+        saveButton?.enabled = newValues
+    }
+    
+    // MARK: - FormBuilderPhotoFieldHandler
+    
+    func didTapOnPhotoField(sender: UIView) {
+        let actionSheet = UIAlertController(
+            title: AppStrings.ActionSheetAddAPictureButtonTitle,
+            message: nil,
+            preferredStyle: .ActionSheet
+        )
+        actionSheet.view.tintColor = UIColor.appActionSheetControlsTintColor()
+        
+        let takeAPictureActionControl = UIAlertAction(
+            title: AppStrings.ActionSheetTakeAPictureButtonTitle,
+            style: .Default,
+            handler: takeAPictureAction
+        )
+        actionSheet.addAction(takeAPictureActionControl)
+        
+        let pickAPhotoActionControl = UIAlertAction(
+            title: AppStrings.ActionSheetPickAPhotoButtonTitle,
+            style: .Default,
+            handler: pickAPhotoAction
+        )
+        actionSheet.addAction(pickAPhotoActionControl)
+        
+        let cancelControl = UIAlertAction(
+            title: AppStrings.GenericCancelButtonTitle,
+            style: .Cancel,
+            handler: { (action) -> Void in
+                self.dismissAddImageActionSheet(true)
+            }
+        )
+        actionSheet.addAction(cancelControl)
+        addImageActionSheet = actionSheet
+        if let popoverViewController = actionSheet.popoverPresentationController {
+            popoverViewController.sourceRect = sender.bounds
+            popoverViewController.sourceView = sender
+        }
+        presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    func selectedImageForPhotoFieldItem(item: FormBuilder.ProfileSectionItem) -> UIImage? {
+        return imageToUpload
+    }
+    
+    // MARK: - Image Upload
+    
+    func takeAPictureAction(action: UIAlertAction!) {
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            let pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .Camera
+            pickerVC.cameraCaptureMode = .Photo
+            if UIImagePickerController.isCameraDeviceAvailable(.Front) {
+                pickerVC.cameraDevice = .Front
+            }
+            else {
+                pickerVC.cameraDevice = .Rear
+            }
+            
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    func pickAPhotoAction(action: UIAlertAction!) {
+        dismissAddImageActionSheet(false)
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            let pickerVC = UIImagePickerController()
+            pickerVC.sourceType = .PhotoLibrary
+            pickerVC.allowsEditing = true
+            pickerVC.delegate = self
+            presentViewController(pickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    private func dismissAddImageActionSheet(animated: Bool) {
+        if addImageActionSheet != nil {
+            addImageActionSheet!.dismissViewControllerAnimated(animated, completion: {() -> Void in
+                self.addImageActionSheet = nil
+            })
+        }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageToUpload = pickedImage
+        }
+        else {
+            imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        
+        formBuilder.updateValues()
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    internal func handleImageUpload(completion: () -> Void) {
+        if let newImage = imageToUpload {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            Services.Media.Actions.uploadImage(
+                newImage,
+                forMediaType: .Profile,
+                withKey: profile.id
+                ) { (mediaURL, error) -> Void in
+                    if let mediaURL = mediaURL {
+                        let profileBuilder = try! self.profile.toBuilder()
+                        profileBuilder.imageUrl = mediaURL
+                        Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
+                            if let profile = profile {
+                                AuthenticationViewController.updateUserProfile(profile)
+                                self.profile = profile
+                                hud.hide(true)
+                                completion()
+                            }
+                        }
+                    }
+            }
+        }
+        else {
+            completion()
+        }
     }
 }

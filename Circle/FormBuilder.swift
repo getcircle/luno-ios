@@ -9,6 +9,15 @@
 import UIKit
 import ProtobufRegistry
 
+protocol FormBuilderDelegate {
+    func formValuesDidChange(newValues: Bool)
+}
+
+protocol FormBuilderPhotoFieldHandler {
+    func didTapOnPhotoField(sender: UIView)
+    func selectedImageForPhotoFieldItem(item: FormBuilder.ProfileSectionItem) -> UIImage?
+}
+
 class FormBuilder: NSObject, UITextFieldDelegate {
     
     enum FormFieldType {
@@ -29,14 +38,23 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         var keyboardType: UIKeyboardType
         var placeholder: String
         var type: FormFieldType
-        var value: String?
+        var value: String? {
+            didSet {
+                if originalValue == nil {
+                    originalValue = value
+                }
+            }
+        }
+        private(set) var originalValue: String?
+        var imageSource: String?
         
-        init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String) {
+        init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, imageSource andImageSource: String? = nil) {
             placeholder = withPlaceholder
             type = andType
             keyboardType = andKeyboardType
             container = andContainer
             containerKey = andContainerKey
+            imageSource = andImageSource
         }
     }
     
@@ -46,7 +64,9 @@ class FormBuilder: NSObject, UITextFieldDelegate {
     }
     
     private(set) var activeField: UIView?
+    private var activeFieldOriginalValue: String?
     var sections = [Section]()
+    var delegate: FormBuilderDelegate?
 
     func build(parentView: UIView, afterSubView: UIView? = nil) {
         
@@ -94,6 +114,18 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     containerView.autoPinEdge(.Top, toEdge: .Bottom, ofView: previousView!, withOffset: (previousView == sectionTitleLabel ? 5.0 : 1.0))
                     containerView.autoSetDimension(.Height, toSize: 60.0)
                     
+                    var iconImageView: UIImageView?
+                    if let imageSource = item.imageSource {
+                        iconImageView = UIImageView(image: UIImage(named: imageSource)?.imageWithRenderingMode(.AlwaysTemplate))
+                        iconImageView?.tintColor = UIColor.appIconColor()
+                        iconImageView?.opaque = true
+                        iconImageView?.backgroundColor = UIColor.whiteColor()
+                        containerView.addSubview(iconImageView!)
+                        iconImageView?.autoPinEdgeToSuperviewEdge(.Left, withInset: 5.0)
+                        iconImageView?.autoAlignAxisToSuperviewAxis(.Horizontal)
+                        iconImageView?.autoSetDimensionsToSize(CGSizeMake(50.0, 50.0))
+                    }
+                    
                     let hasPlaceholder = (item.placeholder.characters.count > 0)
                     
                     var fieldNameLabel: UILabel?
@@ -105,7 +137,12 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                         fieldNameLabel?.font = UIFont.mainTextFont()
                         fieldNameLabel?.textColor = UIColor.appSecondaryTextColor()
                         containerView.addSubview(fieldNameLabel!)
-                        fieldNameLabel?.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
+                        if iconImageView == nil {
+                            fieldNameLabel?.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
+                        }
+                        else {
+                            fieldNameLabel?.autoPinEdge(.Left, toEdge: .Right, ofView: iconImageView!, withOffset: 5.0)
+                        }
                         fieldNameLabel?.autoAlignAxisToSuperviewAxis(.Horizontal)
                     }
                     
@@ -204,16 +241,35 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     containerView.autoPinEdge(.Top, toEdge: .Bottom, ofView: previousView!, withOffset: (previousView == sectionTitleLabel ? 5.0 : 1.0))
                     containerView.autoSetDimension(.Height, toSize: 60.0)
                     
+                    let imageView = CircleImageView(frame: CGRectMake(0.0, 0.0, 50.0, 50.0))
+                    imageView.opaque = true
+                    imageView.backgroundColor = UIColor.whiteColor()
+                    containerView.addSubview(imageView)
+                    imageView.autoSetDimensionsToSize(CGSizeMake(50.0, 50.0))
+                    imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
+                    imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
+                    imageView.makeItCircular()
+                    
+                    if let imageUrlString = item.value, imageUrl = NSURL(string: imageUrlString) {
+                        imageView.setImageWithURL(imageUrl, animated: true)
+                    }
+                    
                     let fieldNameLabel = UILabel(forAutoLayout: ())
                     fieldNameLabel.opaque = true
                     fieldNameLabel.backgroundColor = UIColor.whiteColor()
                     fieldNameLabel.text = item.placeholder
                     fieldNameLabel.font = UIFont.mainTextFont()
-                    fieldNameLabel.textColor = UIColor.appSecondaryTextColor()
+                    fieldNameLabel.textColor = UIColor.appPrimaryTextColor()
                     containerView.addSubview(fieldNameLabel)
-                    fieldNameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: formFieldEdgeInset.left)
+                    fieldNameLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 15.0)
                     fieldNameLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
                     
+                    let button = UIButton(forAutoLayout: ())
+                    button.addTarget((item as! ProfileSectionItem).photoFieldHandler as? AnyObject, action: "didTapOnPhotoField:", forControlEvents: .TouchUpInside)
+                    containerView.addSubview(button)
+                    button.autoPinEdgesToSuperviewEdges()
+                    
+                    item.input = imageView
                     previousView = containerView
                     break
                     
@@ -230,6 +286,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(textField: UITextField) {
         activeField = textField
+        activeFieldOriginalValue = textField.text
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -241,8 +298,20 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         return true
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text {
+            let finalString = (text as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            let textFieldHasOriginalValue = (finalString == activeFieldOriginalValue)
+            
+            delegate?.formValuesDidChange(valuesNotOriginal() || !textFieldHasOriginalValue)
+        }
+        
+        return true
+    }
+    
     private func textFieldEditingComplete(textField: UITextField) {
         activeField = nil
+        activeFieldOriginalValue = nil
         updateValues()
     }
     
@@ -266,9 +335,20 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                         item.value = (input as! UITextField).text
                         
                     case .DatePicker:
-                        if let textField = input as? UITextField, let datePicker = input.inputView as? UIDatePicker {
+                        if let textField = input as? UITextField, datePicker = input.inputView as? UIDatePicker {
                             item.value = NSDateFormatter.sharedHireDateFormatter.stringFromDate(datePicker.date)
                             textField.text = item.value
+                        }
+                        
+                    case .Photo:
+                        if let imageView = item.input as? CircleImageView, profileSectionItem = item as? ProfileSectionItem {
+                            if let image = profileSectionItem.photoFieldHandler?.selectedImageForPhotoFieldItem(profileSectionItem) {
+                                item.value = nil
+                                imageView.image = image
+                            }
+                            else if let itemValue = item.originalValue, imageUrl = NSURL(string: itemValue) {
+                                imageView.setImageWithURL(imageUrl, animated: true)
+                            }
                         }
                         
                     default:
@@ -277,21 +357,39 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                 }
             }
         }
+        
+        delegate?.formValuesDidChange(valuesNotOriginal())
+    }
+    
+    func valuesNotOriginal() -> Bool {
+        var valuesChanged = false
+        
+        for section in sections {
+            for item in section.items {
+                if item.value != item.originalValue {
+                    valuesChanged = true
+                    break
+                }
+            }
+        }
+        
+        return valuesChanged
     }
 }
 
 extension FormBuilder {
+    
     class ContactSectionItem: SectionItem {
         var contactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1
         
-        required init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1) {
+        required init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, imageSource andImageSource: String) {
             contactMethodType = andContactMethodType
-            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: andContainer, containerKey: andContainerKey)
+            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: andContainer, containerKey: andContainerKey, imageSource: andImageSource)
         }
         
-        convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1) {
-         
-            self.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType)
+        convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, imageSource andImageSource: String) {
+
+            self.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType, imageSource: andImageSource)
         }
     }
     
@@ -304,9 +402,11 @@ extension FormBuilder {
         }
         
         var fieldType: ProfileFieldType
+        var photoFieldHandler: FormBuilderPhotoFieldHandler?
         
-        required init(placeholder withPlaceholder: String = "", type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType = .Default, fieldType andFieldType: ProfileFieldType) {
+        required init(placeholder withPlaceholder: String = "", type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType = .Default, fieldType andFieldType: ProfileFieldType, photoFieldHandler andPhotoFieldHandler: FormBuilderPhotoFieldHandler? = nil) {
             fieldType = andFieldType
+            photoFieldHandler = andPhotoFieldHandler
             super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "")
         }
     }
