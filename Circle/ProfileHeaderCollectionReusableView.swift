@@ -105,7 +105,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         nameLabel.text = userProfile.nameWithNickName()
         nameNavLabel.text = nameLabel.text
         titleLabel.attributedText = NSAttributedString(
-            string: userProfile.title.localizedUppercaseString(),
+            string: userProfile.displayTitle.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
         if let titleLabelAttributedText = titleLabel.attributedText {

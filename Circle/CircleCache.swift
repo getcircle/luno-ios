@@ -24,11 +24,7 @@ class CircleCache {
         static let Integration = "cache_org_integration_%d"
         private static let KeyValidationTimers = "cache_key_validation_timers"
     }
-    
-    struct ValidTimes {
-        static let GoogleGroupsIntegrationValidTime = (2 * 60 * 60)
-    }
-    
+
     // Key Name - (Time of entry, number of seconds valid)
     private var timeForKeys = [String: AnyObject]()
     
@@ -202,23 +198,5 @@ extension CircleCache {
         }
         
         return searchResults
-    }
-    
-    static func setIntegrationSetting(value: Bool, ofType type: Services.Organization.Containers.Integration.IntegrationTypeV1) {
-        CircleCache.sharedInstance.setObject(
-            value,
-            forKey: NSString(format: CircleCache.Keys.Integration, type.rawValue) as String,
-            forTimeInSeconds: CircleCache.ValidTimes.GoogleGroupsIntegrationValidTime
-        )
-    }
-    
-    static func getIntegrationSetting(type: Services.Organization.Containers.Integration.IntegrationTypeV1) -> Bool? {
-        if let value = CircleCache.sharedInstance.objectForKey(
-            NSString(format: CircleCache.Keys.Integration, type.rawValue) as String
-        ) as? Bool {
-            return value
-        }
-        
-        return nil
     }
 }

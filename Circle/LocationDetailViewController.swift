@@ -209,19 +209,4 @@ class LocationDetailViewController:
         
         super.onTextInputValueUpdated(updatedObject)
     }
-    
-    // MARK: - Actions
-    
-    override func editButtonTapped(sender: AnyObject) {
-        let editDescriptionViewController = EditLocationDescriptionViewController(addCharacterLimit: false, withDelegate: self)
-        editDescriptionViewController.location = (dataSource as! LocationDetailDataSource).location
-        let editDescriptionViewNavController = UINavigationController(
-            rootViewController: editDescriptionViewController
-        )
-        navigationController?.presentViewController(
-            editDescriptionViewNavController,
-            animated: true,
-            completion: nil
-        )
-    }
 }

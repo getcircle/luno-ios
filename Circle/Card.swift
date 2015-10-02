@@ -40,7 +40,6 @@ class Card: Equatable {
     private(set) var allContent = [AnyObject]()
     private(set) var addHeader = false
     private(set) var addFooter = false
-    private(set) var cardContentType: CardContentType
     private(set) var content = [AnyObject]()
     private(set) var contentClass: CircleCollectionViewCell.Type
     private(set) var contentClassName: String
@@ -65,29 +64,15 @@ class Card: Equatable {
     private(set) var type: CardType
     private(set) var subType: CardSubType = .None
 
-    enum CardContentType {
-        case Flat
-        case Aggregate
-    }
-
     enum CardType: String {
-        case Anniversaries = "Anniversaries"
-        case Banners = "Banners"
-        case Birthdays = "Birthdays"
         case Empty = "Empty"
-        case Group = "Group"
-        case GroupMemberImages = "GroupMemberImages"
-        case GroupRequest = "GroupRequest"
         case KeyValue = "KeyValue"
         case Locations = "Locations"
         case LocationsAddress = "Locations Address"
-        case NewHires = "NewHires"
         case Profiles = "Profiles"
         case ProfilesGrid = "ProfilesGrid"
         case Placeholder = "Placeholder"
         case Settings = "Settings"
-        case SocialConnectCTAs = "SocialConnectCTAs"
-        case SocialToggle = "SocialToggle"
         case SearchAction = "SearchAction"
         case SearchSuggestion = "SearchSuggestion"
         case SearchResult = "SearchResult"
@@ -98,171 +83,93 @@ class Card: Equatable {
         struct CardTypeInfo {
             var imageName: String
             var classType: CircleCollectionViewCell.Type
-            var contentType: CardContentType
         }
 
         static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
 
-            case Anniversaries:
-                return CardTypeInfo(
-                    imageName: "FeedWork",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Banners:
-                return CardTypeInfo(
-                    imageName: "Balloons",
-                    classType: BannerCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Birthdays:
-                return CardTypeInfo(
-                    imageName: "FeedBirthday",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
             case Empty:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: EmptyCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Group:
-                return CardTypeInfo(
-                    imageName: "detail_group",
-                    classType: GroupCollectionViewCell.self,
-                    contentType: .Flat
-                )
-                
-            case GroupMemberImages:
-                return CardTypeInfo(
-                    imageName: "detail_group",
-                    classType: ProfileImagesCollectionViewCell.self,
-                    contentType: .Aggregate
-                )
-                
-            case GroupRequest:
-                return CardTypeInfo(
-                    imageName: "FeedNotification",
-                    classType: GroupRequestCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: EmptyCollectionViewCell.self
                 )
 
             case KeyValue:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: KeyValueCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: KeyValueCollectionViewCell.self
                 )
 
             case Locations:
                 return CardTypeInfo(
                     imageName: "detail_location",
-                    classType: LocationCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: LocationCollectionViewCell.self
                 )
 
             case LocationsAddress:
                 return CardTypeInfo(
                     imageName: "detail_location",
-                    classType: AddressCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: AddressCollectionViewCell.self
                 )
 
             case Profiles:
                 return CardTypeInfo(
                     imageName: "detail_group",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: ProfileCollectionViewCell.self
                 )
 
             case ProfilesGrid:
                 return CardTypeInfo(
                     imageName: "detail_group",
-                    classType: ProfileGridItemCollectionViewCell.self,
-                    contentType: .Flat
-                )
-                
-            case NewHires:
-                return CardTypeInfo(
-                    imageName: "FeedNewHire",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: ProfileGridItemCollectionViewCell.self
                 )
                 
             case Placeholder:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: CircleCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: CircleCollectionViewCell.self
                 )
 
             case Settings:
                 return CardTypeInfo(
                     imageName: "Settings",
-                    classType: SettingsCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case SocialConnectCTAs:
-                return CardTypeInfo(
-                    imageName: "Info",
-                    classType: SocialConnectCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case SocialToggle:
-                return CardTypeInfo(
-                    imageName: "Info",
-                    classType: ToggleSocialConnectionCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: SettingsCollectionViewCell.self
                 )
 
             case SearchAction:
                 return CardTypeInfo(
                     imageName: String(),
-                    classType: SearchActionCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: SearchActionCollectionViewCell.self
                 )
                 
             case SearchSuggestion:
                 return CardTypeInfo(
                     imageName: String(),
-                    classType: SearchSuggestionCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: SearchSuggestionCollectionViewCell.self
                 )
                 
             case SearchResult:
                 return CardTypeInfo(
                     imageName: "detail_group",
-                    classType: SearchResultCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: SearchResultCollectionViewCell.self
                 )
                 
             case SearchTextValue:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: SearchTextValueCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: SearchTextValueCollectionViewCell.self
                 )
 
             case .ContactMethods:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: ContactCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: ContactCollectionViewCell.self
                 )
 
             case TextValue:
                 return CardTypeInfo(
                     imageName: "Info",
-                    classType: TextValueCollectionViewCell.self,
-                    contentType: .Flat
+                    classType: TextValueCollectionViewCell.self
                 )
             }
         }
@@ -289,7 +196,6 @@ class Card: Equatable {
         imageSource = infoByCardType.imageName
         contentClass = infoByCardType.classType
         contentClassName = contentClass.classReuseIdentifier
-        cardContentType = infoByCardType.contentType
         title = withTitle
         contentCount = withContentCount ?? 0
         content = withContent ?? []
@@ -341,14 +247,7 @@ class Card: Equatable {
     }
 
     func addContent(content withContent: [AnyObject], maxVisibleItems withMaxVisibleItems: Int) {
-        switch cardContentType {
-        case .Aggregate:
-            content.append(withContent)
-
-        default:
-            content.appendContentsOf(withContent)
-        }
-
+        content.appendContentsOf(withContent)
         allContent = content
         maxVisibleItems = withMaxVisibleItems
     }
@@ -373,17 +272,7 @@ class Card: Equatable {
     }
 
     func isContentAllContent() -> Bool {
-        switch cardContentType {
-        case .Flat:
-            return allContent.count == content.count && content.count > 0
-
-        case .Aggregate:
-            if content.count > 0 {
-                return allContent[0].count == content[0].count && content[0].count > 0
-            }
-        }
-
-        return false
+        return allContent.count == content.count && content.count > 0
     }
 
     func addDefaultFooter() {
@@ -434,14 +323,8 @@ class Card: Equatable {
     }
 
     func setContentToVisibleItems() {
-        if maxVisibleItems > 0 {
-
-            if cardContentType == .Flat && content.count > maxVisibleItems {
-                content = Array(allContent[0..<maxVisibleItems])
-            }
-            else if cardContentType == .Aggregate && content.first!.count > maxVisibleItems {
-                content[0] = Array((allContent.first! as![AnyObject])[0..<maxVisibleItems])
-            }
+        if maxVisibleItems > 0 && content.count > maxVisibleItems {
+            content = Array(allContent[0..<maxVisibleItems])
         }
     }
 

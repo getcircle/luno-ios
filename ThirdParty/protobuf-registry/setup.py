@@ -20,7 +20,7 @@ def get_version():
 
 requirements = [
     'protobuf-soa>=0.1.1',
-    'protobuf==2.6.1',
+    'protobuf==3.0.0a3',
 ]
 
 setup(

@@ -20,4 +20,5 @@ message ResponseV1 {
     optional bool user_exists = 3;
     optional string authorization_url = 4;
     optional string provider_name = 5;
+    optional string organization_image_url = 6;
 }

@@ -61,30 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Error registering for notifications \(error)")
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        // Display an alert when the notification is received in the foreground
-        handleRemoteNotification(userInfo)
-        completionHandler(.NewData)
-    }
-    
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        if let identifier = identifier {
-
-            if identifier == NotificationAction.Approve.rawValue {
-                if let requestID = userInfo[NotificationUserInfoKey.GroupRequestID.rawValue] as? String {
-                    actOnGroupRequest(requestID, shouldApprove: true)
-                }
-            }
-            else if identifier == NotificationAction.Deny.rawValue {
-                if let requestID = userInfo[NotificationUserInfoKey.GroupRequestID.rawValue] as? String {
-                    actOnGroupRequest(requestID, shouldApprove: false)
-                }
-            }
-        }
-        
-        completionHandler()
-    }
-    
     // MARK: - Notification
     
     func registerNotifications() {
