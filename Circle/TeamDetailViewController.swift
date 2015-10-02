@@ -147,18 +147,6 @@ class TeamDetailViewController:
                             completion: nil
                         )
 
-                    case .TeamDescription:
-                        let editDescriptionViewController = EditTeamDescriptionViewController(addCharacterLimit: false, withDelegate: self)
-                        editDescriptionViewController.team = (dataSource as! TeamDetailDataSource).team
-                        let editDescriptionViewNavController = UINavigationController(
-                            rootViewController: editDescriptionViewController
-                        )
-                        navigationController?.presentViewController(
-                            editDescriptionViewNavController,
-                            animated: true,
-                            completion: nil
-                        )
-
                     default:
                         break
                     }

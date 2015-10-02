@@ -284,6 +284,33 @@ extension UIViewController {
         return nil
     }
     
+    func addCancelTextButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        if isBeingPresentedModally() {
+            let cancelButtonItem = UIBarButtonItem(
+                title: AppStrings.GenericCancelButtonTitle,
+                style: .Plain,
+                target: self,
+                action: callbackMethod
+            )
+            navigationItem.leftBarButtonItem = cancelButtonItem
+            return cancelButtonItem
+        }
+        
+        return nil
+    }
+    
+    func addSaveTextButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        let saveButtonItem = UIBarButtonItem(
+            title: AppStrings.GenericSaveButtonTitle,
+            style: .Plain,
+            target: self,
+            action: callbackMethod
+        )
+        
+        navigationItem.rightBarButtonItem = saveButtonItem
+        return saveButtonItem
+    }
+    
     func showToast(message: String, title: String? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let okAction = UIAlertAction(title: AppStrings.GenericOKButtonTitle, style: .Default, handler: nil)
