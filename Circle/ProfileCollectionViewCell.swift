@@ -114,7 +114,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     private func setProfile(profile: Services.Profile.Containers.ProfileV1) {
         nameLabel.text = profile.fullName
-        subTextLabel.text = profile.title
+        subTextLabel.text = profile.displayTitle
         
         profileImageView.imageProfileIdentifier = profile.id
         profileImageView.makeItCircular()
