@@ -116,14 +116,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         nameLabel.text = profile.fullName
         var subtitle = profile.title
         if card?.type != nil {
-            switch card!.type {
-            case .Birthdays:
-                if let date = profile.birthDate.toDate() {
-                    subtitle = NSDateFormatter.sharedBirthdayFormatter.stringFromDate(date)
-                }
-            case .Anniversaries:
-                subtitle = getAnniversarySubtitle(profile)
-                
+            switch card!.type {                
             case .NewHires:
                 if let date = profile.hireDate.toDate() {
                     subtitle = NSDateFormatter.stringFromDateWithStyles(date, dateStyle: .LongStyle, timeStyle: .NoStyle)
@@ -165,37 +158,6 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     }
 
     // MARK: - Helpers
-    
-    private func getAnniversarySubtitle(profile: Services.Profile.Containers.ProfileV1) -> String {
-        var subtitle = ""
-        if let hireDate = profile.hireDate.toDate() {
-            let dateFormatter = NSDateFormatter.sharedAnniversaryFormatter
-            let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-            
-            let dateString = dateFormatter.stringFromDate(hireDate)
-            
-            // calculate the upcoming anniversary to get the accurate number of years the anniversary represents
-            let nowComponents = calendar?.components(.Year, fromDate: NSDate())
-            let upcomingAnniveraryComponents = calendar?.components([.Day, .Month], fromDate: hireDate)
-            upcomingAnniveraryComponents?.year = nowComponents!.year
-            let upcomingAnniversary = calendar?.dateFromComponents(upcomingAnniveraryComponents!)
-            
-            let components = calendar?.components(
-                .Year,
-                fromDate: hireDate,
-                toDate: upcomingAnniversary!,
-                options: .WrapComponents
-            )
-            if let years = components?.year {
-                if years == 1 {
-                    subtitle = "\(years) year - \(dateString)"
-                } else {
-                    subtitle = "\(years) years - \(dateString)"
-                }
-            }
-        }
-        return subtitle
-    }
     
     private func getCountLabel(count: UInt32) -> String {
         var label = String(count)

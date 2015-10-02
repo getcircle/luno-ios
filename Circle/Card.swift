@@ -71,8 +71,6 @@ class Card: Equatable {
     }
 
     enum CardType: String {
-        case Anniversaries = "Anniversaries"
-        case Birthdays = "Birthdays"
         case Empty = "Empty"
         case Group = "Group"
         case GroupMemberImages = "GroupMemberImages"
@@ -102,20 +100,6 @@ class Card: Equatable {
 
         static func infoByCardType(type: CardType) -> CardTypeInfo {
             switch type {
-
-            case Anniversaries:
-                return CardTypeInfo(
-                    imageName: "FeedWork",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case Birthdays:
-                return CardTypeInfo(
-                    imageName: "FeedBirthday",
-                    classType: ProfileCollectionViewCell.self,
-                    contentType: .Flat
-                )
 
             case Empty:
                 return CardTypeInfo(

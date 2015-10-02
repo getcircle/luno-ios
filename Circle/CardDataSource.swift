@@ -26,7 +26,6 @@ class ItemImage {
 }
 
 enum ContentType: Int {
-    case Birthday = 1
     case CellPhone
     case ContactPreferences
     case EditTeam
