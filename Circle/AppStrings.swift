@@ -83,7 +83,8 @@ struct AppStrings {
     static let TeamSubTeamsSectionTitle = NSLocalizedString("Teams", comment: "Title of the section showing sub-teams of a team")
     static let TeamNameFieldLabel = NSLocalizedString("Team name", comment: "Label for team name input field")
     static let TeamNameErrorCannotBeEmpty = NSLocalizedString("Team name cannot be empty.", comment: "Error message indicating team name cannot be an empty string")
-
+    static let TeamDescriptionFieldPlaceholder = NSLocalizedString("What is your team responsible for? Your team description should help your fellow coworkers understand if members of your team can answer their questions.", comment: "Placeholder text for team description text field")
+    
     static let TitleEditButtonTitle = NSLocalizedString("Edit Title", comment: "Title of the view which allows a person to edit their job title")
     static let TitleFieldLabel = NSLocalizedString("Title", comment: "Label for title input field")
     static let TitleErrorCannotBeEmpty = NSLocalizedString("Title cannot be empty.", comment: "Error message indicating a person's title cannot be an empty string")

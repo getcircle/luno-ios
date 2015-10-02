@@ -32,8 +32,6 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     var editTeamViewControllerDelegate: EditTeamViewControllerDelegate?
     var team: Services.Organization.Containers.TeamV1!
     
-    private let teamDescriptionFieldPlaceholderText = "Add your team description here. Its best to add your team's mission statement or high level goals, and how your team impacts the business."
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,7 +88,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     private func configureTeamDescriptionField() {
         teamDescriptionField.font = UIFont.mainTextFont()
         teamDescriptionField.textColor = UIColor.appSecondaryTextColor()
-        teamDescriptionField.text = teamDescriptionFieldPlaceholderText
+        teamDescriptionField.text = AppStrings.TeamDescriptionFieldPlaceholder
     }
     
     private func configureNavBar() {
@@ -169,7 +167,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        if textView.text == teamDescriptionFieldPlaceholderText {
+        if textView.text == AppStrings.TeamDescriptionFieldPlaceholder {
             textView.text = ""
             textView.textColor = UIColor.appPrimaryTextColor()
         }
@@ -177,7 +175,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text == "" {
-            textView.text = teamDescriptionFieldPlaceholderText
+            textView.text = AppStrings.TeamDescriptionFieldPlaceholder
             textView.textColor = UIColor.appSecondaryTextColor()
         }
     }
