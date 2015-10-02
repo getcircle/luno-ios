@@ -82,8 +82,6 @@ class Card: Equatable {
         case ProfilesGrid = "ProfilesGrid"
         case Placeholder = "Placeholder"
         case Settings = "Settings"
-        case SocialConnectCTAs = "SocialConnectCTAs"
-        case SocialToggle = "SocialToggle"
         case SearchAction = "SearchAction"
         case SearchSuggestion = "SearchSuggestion"
         case SearchResult = "SearchResult"
@@ -162,7 +160,7 @@ class Card: Equatable {
                     classType: ProfileGridItemCollectionViewCell.self,
                     contentType: .Flat
                 )
-                                
+                
             case Placeholder:
                 return CardTypeInfo(
                     imageName: "Info",
@@ -174,20 +172,6 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "Settings",
                     classType: SettingsCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case SocialConnectCTAs:
-                return CardTypeInfo(
-                    imageName: "Info",
-                    classType: SocialConnectCollectionViewCell.self,
-                    contentType: .Flat
-                )
-
-            case SocialToggle:
-                return CardTypeInfo(
-                    imageName: "Info",
-                    classType: ToggleSocialConnectionCollectionViewCell.self,
                     contentType: .Flat
                 )
 

@@ -202,8 +202,6 @@
 		8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */; };
 		8F93E2BC1B26BBFD004671D7 /* EditTeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */; };
 		8F93E2BF1B26C08D004671D7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F93E2BE1B26C08D004671D7 /* Team.swift */; };
-		8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */; };
-		8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */; };
 		8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */; };
 		8F9F60CC1A8C439E00FCAA25 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */; };
 		8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */; };
@@ -288,8 +286,6 @@
 		BFCFDB1B1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */; };
 		BFCFDB211A91951A009A5FD4 /* TextValueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */; };
 		BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB201A91951A009A5FD4 /* TextValueCollectionViewCell.xib */; };
-		BFCFDB2B1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */; };
-		BFCFDB2C1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFCFDB2A1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib */; };
 		BFE213C81A5EE63F0033E2F5 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213C71A5EE63F0033E2F5 /* Search.swift */; };
 		BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */; };
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
@@ -549,8 +545,6 @@
 		8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamViewController.swift; sourceTree = "<group>"; };
 		8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTeamViewController.xib; sourceTree = "<group>"; };
 		8F93E2BE1B26C08D004671D7 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConnectCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialConnectCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		8F9F60CA1A8C439E00FCAA25 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -634,8 +628,6 @@
 		BFCFDB191A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextValueCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFCFDB201A91951A009A5FD4 /* TextValueCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextValueCollectionViewCell.xib; sourceTree = "<group>"; };
-		BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleSocialConnectionCollectionViewCell.swift; sourceTree = "<group>"; };
-		BFCFDB2A1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToggleSocialConnectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		BFE213C71A5EE63F0033E2F5 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchQueryDataSource.swift; sourceTree = "<group>"; };
 		BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewFlowLayoutExtension.swift; sourceTree = "<group>"; };
@@ -844,10 +836,8 @@
 				8F22CBEC1A283D3D0026376E /* SeparatorDecorationView.swift */,
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
 				4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */,
-				8F9F60AD1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift */,
 				BF2B34591ACD307200667B50 /* TagToken.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
-				BFCFDB291A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift */,
 				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
 			);
 			name = Views;
@@ -950,12 +940,10 @@
 				8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */,
 				4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */,
 				8F9F60CB1A8C439E00FCAA25 /* SettingsViewController.xib */,
-				8F9F60AE1A88738100FCAA25 /* SocialConnectCollectionViewCell.xib */,
 				8FAA14BB1B093D190098CC45 /* SplashViewController.xib */,
 				8F823E4B1A729E1B0006264B /* TeamsOverviewViewController.xib */,
 				8F0544AD1ABA3C7800570327 /* TextInputViewController.xib */,
 				BFCFDB201A91951A009A5FD4 /* TextValueCollectionViewCell.xib */,
-				BFCFDB2A1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib */,
 				BF25722C1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib */,
 				8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */,
 				8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */,
@@ -1359,7 +1347,6 @@
 				BF6A2D101AAD08DA00692315 /* EmptyCollectionViewCell.xib in Resources */,
 				8F93E2BC1B26BBFD004671D7 /* EditTeamViewController.xib in Resources */,
 				8F0ADD431AC5344E00A44B68 /* Loader_00039@2x.png in Resources */,
-				8F9F60B01A88738100FCAA25 /* SocialConnectCollectionViewCell.xib in Resources */,
 				8F07ACB71AE878F100D1F41D /* MPNotification.storyboard in Resources */,
 				8F0ADD2B1AC5344E00A44B68 /* Loader_00015@2x.png in Resources */,
 				8F0ADD4B1AC5344E00A44B68 /* Loader_00047@2x.png in Resources */,
@@ -1450,7 +1437,6 @@
 				8F0ADD551AC5344E00A44B68 /* Loader_00057@2x.png in Resources */,
 				8F0ADD1E1AC5344E00A44B68 /* Loader_00002@2x.png in Resources */,
 				BF25722E1A6450F20052C3E3 /* VerifyPhoneNumberViewController.xib in Resources */,
-				BFCFDB2C1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1580,7 +1566,6 @@
 				BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				BFCFDB1A1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift in Sources */,
-				8F9F60AF1A88738100FCAA25 /* SocialConnectCollectionViewCell.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
 				8F5424111B6B00E000AEFB11 /* SearchCategory.swift in Sources */,
 				4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */,
@@ -1616,7 +1601,6 @@
 				8F0544AE1ABA3C7800570327 /* TextInputViewController.swift in Sources */,
 				8F57AD351B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift in Sources */,
 				4744B6F91BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift in Sources */,
-				BFCFDB2B1A92759A009A5FD4 /* ToggleSocialConnectionCollectionViewCell.swift in Sources */,
 				8FC8781D1AB539F6003FDB27 /* CurrentUserProfileDetailDataSource.swift in Sources */,
 				8F0004BB1A241BDE0096477A /* UIColorExtension.swift in Sources */,
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,

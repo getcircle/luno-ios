@@ -99,10 +99,6 @@ extension UIColor {
         return UIColor(red: 247, green: 248, blue: 250)
     }
     
-    static func appLinkedinConnectCTABackgroundColor() -> UIColor {
-        return UIColor(red: 36, green: 104, blue: 167)
-    }
-
     static func appKeyValueNextImageTintColor() -> UIColor {
         return UIColor(red: 150, green: 150, blue: 150)
     }
@@ -269,31 +265,5 @@ extension UIColor {
     
     static func appIconColor() -> UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.5)
-    }
-    
-    // MARK: - Social
-    
-    static func twitterColor() -> UIColor {
-        return UIColor(red: 85, green: 172, blue: 238)
-    }
-    
-    static func facebookColor() -> UIColor {
-        return UIColor(red: 45, green: 68, blue: 134)
-    }
-    
-    static func pinterestColor() -> UIColor {
-        return UIColor(red: 197, green: 34, blue: 34)
-    }
-    
-    static func googlePlusColor() -> UIColor {
-        return UIColor(red: 211, green: 53, blue: 44)
-    }
-    
-    static func linkedinColor() -> UIColor {
-        return UIColor(red: 30, green: 136, blue: 190)
-    }
-    
-    static func githubColor() -> UIColor {
-        return UIColor(red: 83, green: 83, blue: 83)
     }
 }

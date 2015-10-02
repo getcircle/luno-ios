@@ -35,8 +35,6 @@ enum ContentType: Int {
     case HireDate
     case JoinGroup
     case LeaveGroup
-    case LinkedIn
-    case LinkedInConnect
     case Locations
     case Other
     case RequestGroup
