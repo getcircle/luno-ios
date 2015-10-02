@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditContactInfoViewController" customModule="luno" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileViewController" customModule="luno" customModuleProvider="target">
             <connections>
                 <outlet property="rootContentView" destination="6zo-7h-i8l" id="aSt-H8-03q"/>
                 <outlet property="rootContentViewHeightConstraint" destination="0ls-Gs-RQp" id="F1G-Rq-bBG"/>

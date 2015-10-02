@@ -1,5 +1,5 @@
 //
-//  EditContactInfoViewController.swift
+//  EditProfileViewController.swift
 //  Circle
 //
 //  Created by Ravi Rani on 2/4/15.
@@ -14,7 +14,7 @@ protocol EditProfileDelegate {
     func didFinishEditingProfile()
 }
 
-class EditContactInfoViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FormBuilderPhotoFieldHandler, FormBuilderDelegate {
+class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FormBuilderPhotoFieldHandler, FormBuilderDelegate {
     
     @IBOutlet weak private(set) var rootContentView: UIView!
     @IBOutlet weak private(set) var rootContentViewHeightConstraint: NSLayoutConstraint!

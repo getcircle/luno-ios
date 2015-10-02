@@ -241,9 +241,9 @@
 		8FD907F71A6033310025A17B /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F61A6033310025A17B /* LocationDetailViewController.swift */; };
 		8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD907F81A6070D70025A17B /* MapViewController.swift */; };
 		8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */; };
-		8FEE3D961A8309A400B17569 /* EditContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */; };
+		8FEE3D961A8309A400B17569 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */; };
 		8FEE3D9B1A84172800B17569 /* FormBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9A1A84172800B17569 /* FormBuilder.swift */; };
-		8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */; };
+		8FEE3D9D1A85B97E00B17569 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */; };
 		8FEE88471A411BA90011CE4A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */; };
 		8FF298031A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */; };
 		8FF298041A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */; };
@@ -589,9 +589,9 @@
 		8FD907F61A6033310025A17B /* LocationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		8FD907F81A6070D70025A17B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailDataSource.swift; sourceTree = "<group>"; };
-		8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactInfoViewController.swift; sourceTree = "<group>"; };
+		8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8FEE3D9A1A84172800B17569 /* FormBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormBuilder.swift; sourceTree = "<group>"; };
-		8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditContactInfoViewController.xib; sourceTree = "<group>"; };
+		8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		8FF298011A4A4E3600306CFC /* ProfileImagesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FF298021A4A4E3600306CFC /* ProfileImagesCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImagesCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -778,7 +778,7 @@
 				8F834F951A9E9F21007B7095 /* ContactInfoViewController.swift */,
 				8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
-				8FEE3D951A8309A400B17569 /* EditContactInfoViewController.swift */,
+				8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */,
 				8F15A4051B75742B00693E26 /* EditLocationDescriptionViewController.swift */,
 				8F15A3FF1B756AF700693E26 /* EditProfileStatusViewController.swift */,
 				8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */,
@@ -919,7 +919,7 @@
 				8F08A9F81A748F5200B93149 /* CardFooterCollectionReusableView.xib */,
 				8F65C4F41A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib */,
 				8F15A4101B79B40700693E26 /* ContactCollectionViewCell.xib */,
-				8FEE3D9C1A85B97E00B17569 /* EditContactInfoViewController.xib */,
+				8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */,
 				8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */,
 				8F60AEAB1B842D6800FF0062 /* EditTitleViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
@@ -1337,7 +1337,7 @@
 				8F0ADD531AC5344E00A44B68 /* Loader_00055@2x.png in Resources */,
 				478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */,
 				BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */,
-				8FEE3D9D1A85B97E00B17569 /* EditContactInfoViewController.xib in Resources */,
+				8FEE3D9D1A85B97E00B17569 /* EditProfileViewController.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
 				4744B6FC1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD451AC5344E00A44B68 /* Loader_00041@2x.png in Resources */,
@@ -1687,7 +1687,7 @@
 				8FD7EC4D1AA53EB7004A2CEA /* LocationExtension.swift in Sources */,
 				8F00049D1A2419730096477A /* DetailViewController.swift in Sources */,
 				8FA6A4B91AFED58B00ACC39D /* GroupHeaderCollectionReusableView.swift in Sources */,
-				8FEE3D961A8309A400B17569 /* EditContactInfoViewController.swift in Sources */,
+				8FEE3D961A8309A400B17569 /* EditProfileViewController.swift in Sources */,
 				BF7DF98F1A44E53200A4F924 /* ServiceTransport.swift in Sources */,
 				8F2068941B708F7400E498AC /* SearchAction.swift in Sources */,
 				BF220F041AB0221D00C948D0 /* ServiceRequestExtension.swift in Sources */,

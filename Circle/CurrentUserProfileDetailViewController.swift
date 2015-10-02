@@ -92,7 +92,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     }
     
     override func editButtonTapped(sender: AnyObject) {
-        let editProfileVC = EditContactInfoViewController(nibName: "EditContactInfoViewController", bundle: nil)
+        let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
         editProfileVC.profile = profile
         editProfileVC.editProfileDelegate = self
         let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
