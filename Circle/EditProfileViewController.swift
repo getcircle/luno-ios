@@ -359,7 +359,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     // MARK: - Image Upload
     
-    func takeAPictureAction(action: UIAlertAction!) {
+    private func takeAPictureAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             let pickerVC = UIImagePickerController()
@@ -378,7 +378,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    func pickAPhotoAction(action: UIAlertAction!) {
+    private func pickAPhotoAction(action: UIAlertAction!) {
         dismissAddImageActionSheet(false)
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
             let pickerVC = UIImagePickerController()
@@ -397,26 +397,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    // MARK: - UIImagePickerControllerDelegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            imageToUpload = pickedImage
-        }
-        else {
-            imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
-        }
-        
-        formBuilder.updateValues()
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    internal func handleImageUpload(completion: () -> Void) {
+    private func handleImageUpload(completion: () -> Void) {
         if let newImage = imageToUpload {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Media.Actions.uploadImage(
@@ -441,5 +422,24 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         else {
             completion()
         }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageToUpload = pickedImage
+        }
+        else {
+            imageToUpload = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        
+        formBuilder.updateValues()
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
