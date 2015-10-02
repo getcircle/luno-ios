@@ -13,9 +13,6 @@ struct AppStrings {
     static let ActionSheetAddAPictureButtonTitle = NSLocalizedString("Add a picture", comment: "Title of window which asks user to add a picture")
     static let ActionSheetPickAPhotoButtonTitle = NSLocalizedString("Pick a photo", comment: "Button prompt to pick a photo from user's photos")
     static let ActionSheetTakeAPictureButtonTitle = NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera")
-
-    static let AddTagsNavigationTitle = NSLocalizedString("Add Tags", comment: "Title of the view to add interests")
-    static let AppreciateCTATitle = NSLocalizedString("Appreciate", comment: "Title of the button to leave an appreciation for a co-worker")
     
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")
@@ -54,28 +51,12 @@ struct AppStrings {
     static let PasswordTextFieldPlaceholder = NSLocalizedString("Password", comment: "Placeholder for password text field")
     static let PrivateBetaInfoText = NSLocalizedString("luno is currently available only to employees at participating companies! You can request access below or try logging into a different account.", comment: "Message indicating that the app is only available to employees of participating companies and the user can either request access or try a different account")
     
-    static let ProfileInfoAddButtonTitle = NSLocalizedString("Add", comment: "Title of the button to add info")
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
     static let ProfileInfoUpdateButtonTitle = NSLocalizedString("Update", comment: "Title of the button to update info")
-    
-    static let ProfileAppreciationTabTitle = NSLocalizedString("Appreciation", comment: "Title of the Appreciation section")
-    
-    static let ProfileSectionAboutTitle = NSLocalizedString("About", comment: "Title of the section which shows user bio, nick name and other personal info")
-    static let ProfileSectionStatusTitle = NSLocalizedString("Currently working on", comment: "Title of the section which shows user's status")
-    static let ProfileSectionBioTitle = NSLocalizedString("Bio", comment: "Title of the section which shows user's bio")
-    static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
-    static let ProfileSectionInfoTitle = NSLocalizedString("Info", comment: "Title of the Info section")
-    static let ProfileSectionOfficeTitle = NSLocalizedString("Office", comment: "Title of the section which shows a user's office")
-    static let ProfileSectionOfficeTeamTitle = NSLocalizedString("Office & Team", comment: "Title of the section which shows a user's office and team")
-    static let ProfileSectionOtherTitle = NSLocalizedString("Other", comment: "Title of the section which consists of misc. other info")
-    static let ProfileSectionManagerTitle = NSLocalizedString("Manager", comment: "Title of the section which shows a user's manager")
-    static let ProfileSectionManagerTeamTitle = NSLocalizedString("Manager & Team", comment: "Title of the section which shows a user's manager and team")
-    static let ProfileSectionTagsTitle = NSLocalizedString("Tags", comment: "Title of the section which shows a user's interests")
-    static let ProfileSectionExperienceTitle = NSLocalizedString("Experience", comment: "Title of the section which shows a user's experience")
-    static let ProfileSectionEducationTitle = NSLocalizedString("Education", comment: "Title of the section which shows a user's education")
-    static let ProfileSectionExpertiseTitle = NSLocalizedString("Expertise", comment: "Title of the section which shows a user's expertise")
-    static let ProfileSectionInterestsTitle = NSLocalizedString("Interests", comment: "Title of the section which shows a user's interests")
 
+    static let ProfileSectionStatusTitle = NSLocalizedString("Currently working on", comment: "Title of the section which shows user's status")
+    static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
+    
     static let QuickActionNoneLabel = ""
     static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
     static let QuickActionEmailLabel = NSLocalizedString("Email", comment: "Title for button used to send an email")
