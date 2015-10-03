@@ -70,7 +70,7 @@ extension Services.Organization.Containers.LocationV1 {
     }
     
     func officeCurrentDateAndTimeLabel() -> String {
-        return "Local Time: " + officeCurrentDateLabel() + ", " + officeCurrentTimeLabel()
+        return AppStrings.LocalTimeLabel + ": " + officeCurrentDateLabel() + ", " + officeCurrentTimeLabel()
     }
     
     func officeCurrentDateLabel() -> String {
