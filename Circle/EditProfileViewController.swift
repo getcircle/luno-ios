@@ -100,14 +100,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                     )
                 ]),
             FormBuilder.Section(
-                title: "Start Date",
-                items: [
-                    FormBuilder.ProfileSectionItem(
-                        type: .DatePicker,
-                        fieldType: .HireDate
-                    )
-                ]),
-            FormBuilder.Section(
                 title: "Contact",
                 items: [
                     FormBuilder.ContactSectionItem(
