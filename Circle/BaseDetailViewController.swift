@@ -43,42 +43,27 @@ MFMessageComposeViewControllerDelegate {
     
     func customInit() {
         automaticallyAdjustsScrollViewInsets = false
-        extendedLayoutIncludesOpaqueBars = true
+        extendedLayoutIncludesOpaqueBars = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = [.Top, .Bottom]
-        navigationController?.view.backgroundColor = UIColor.appNavigationBarBarTintColor()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-            self.navigationController?.navigationBar.makeTransparent()
-            return
-            },
-            completion: nil
-        )
         navigationItem.title = ""
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         registerNotifications()
-        navigationController?.navigationBar.makeTransparent()
         navigationItem.title = ""
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        transitionCoordinator()?.animateAlongsideTransition({ (transitionContext) -> Void in
-            let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as UIViewController!
-            if !(toViewController is BaseDetailViewController) {
-                toViewController.navigationController?.navigationBar.makeOpaque()
-            }
-            return
-        }, completion: nil)
         unregisterNotifications()
     }
 

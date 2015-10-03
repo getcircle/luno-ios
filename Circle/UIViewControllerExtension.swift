@@ -131,7 +131,6 @@ extension UIViewController {
                 
                 mailVC.navigationBar.tintColor = UIColor.appNavigationBarTintColor()
                 presentViewController(mailVC, animated: true, completion: { () -> Void in
-                    UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                     if let handler = completionHandler {
                         handler()
                     }
@@ -179,7 +178,6 @@ extension UIViewController {
             
             messageVC.navigationBar.tintColor = UIColor.appNavigationBarTintColor()
             presentViewController(messageVC, animated: true, completion: { () -> Void in
-                UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                 if let handler = completionHandler {
                     handler()
                 }
@@ -198,12 +196,7 @@ extension UIViewController {
             unverifiedProfileHandler: nil
         )
     }
-    
-    func setStatusBarHidden(hidden: Bool, animated: Bool? = true) {
-        let withAnimation: UIStatusBarAnimation = animated != nil ? (animated! ? .Fade : .None) : .Fade
-        UIApplication.sharedApplication().setStatusBarHidden(hidden, withAnimation: withAnimation)
-    }
-    
+
     func navigationBarHeight() -> CGFloat {
         if let navBarHidden = navigationController?.navigationBarHidden {
             return (navBarHidden ? 0.0 : (navigationController?.navigationBar.frame.height ?? 0.0))

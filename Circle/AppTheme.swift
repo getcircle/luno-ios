@@ -30,8 +30,8 @@ struct DefaultTheme: Theme {
     var app_tint_color = UIColor.appHighlightColor()
     var app_ui_background_color = UIColor(red: 72, green: 73, blue: 89)
     
-    var app_nav_bar_color = UIColor(red: 72, green: 73, blue: 89)
-    var app_nav_bar_text_controls_color = UIColor.whiteColor()
+    var app_nav_bar_color = UIColor.whiteColor()
+    var app_nav_bar_text_controls_color = UIColor.blackColor().colorWithAlphaComponent(0.9)
     
     var app_tab_bar_color = UIColor(white: 1.0, alpha: 0.5)
     var app_tab_bar_text_controls_color = UIColor.appHighlightColor()
@@ -40,7 +40,7 @@ struct DefaultTheme: Theme {
     var app_light_text_color = UIColor.whiteColor()
     var app_dark_text_color = UIColor(red: 38, green: 38, blue: 38)
     
-    var status_bar_style = UIStatusBarStyle.LightContent
+    var status_bar_style = UIStatusBarStyle.Default
 }
 
 struct AppTheme {
