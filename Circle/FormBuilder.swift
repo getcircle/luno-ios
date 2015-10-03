@@ -242,7 +242,11 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 10.0)
                     imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
                     imageView.makeItCircular()
-                    
+                    imageView.tintColor = UIColor.appIconColor()
+
+                    if let imageSource = item.imageSource {
+                        imageView.image = UIImage(named: imageSource)
+                    }
                     if let imageUrlString = item.value, imageUrl = NSURL(string: imageUrlString) {
                         imageView.setImageWithURL(imageUrl, animated: true)
                     }
@@ -398,10 +402,10 @@ extension FormBuilder {
         var fieldType: ProfileFieldType
         var photoFieldHandler: FormBuilderPhotoFieldHandler?
         
-        required init(placeholder withPlaceholder: String = "", type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType = .Default, fieldType andFieldType: ProfileFieldType, photoFieldHandler andPhotoFieldHandler: FormBuilderPhotoFieldHandler? = nil) {
+        required init(placeholder withPlaceholder: String = "", type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType = .Default, fieldType andFieldType: ProfileFieldType, photoFieldHandler andPhotoFieldHandler: FormBuilderPhotoFieldHandler? = nil, imageSource andImageSource: String? = nil) {
             fieldType = andFieldType
             photoFieldHandler = andPhotoFieldHandler
-            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "")
+            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", imageSource: andImageSource)
         }
     }
 }
