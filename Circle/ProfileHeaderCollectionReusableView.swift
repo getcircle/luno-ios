@@ -20,7 +20,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var profileImage: CircleImageView!
     @IBOutlet weak private(set) var profileImageCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
-    @IBOutlet weak private(set) var daylightIndicatorImage: UIImageView!
     
     // Secondary Info
     
@@ -163,12 +162,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             )
         }
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
-        if let indicatorImage = office.officeDaylightIndicator() {
-            daylightIndicatorImage.alpha = 1.0
-            daylightIndicatorImage.image = indicatorImage
-            daylightIndicatorImage.tintColor = secondaryInfoLabel.textColor
-        }
-        
         profileImage.image = UIImage(named: "hero_office")
         profileImage.makeItCircular(true)
         

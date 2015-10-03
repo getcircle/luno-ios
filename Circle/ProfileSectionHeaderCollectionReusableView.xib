@@ -44,24 +44,15 @@
                                 <action selector="updateButtonTapped:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="U7L-0X-oas"/>
                             </connections>
                         </button>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Today, 12:41 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-AN-GNI" userLabel="Subtitle Label">
-                            <rect key="frame" x="207" y="0.0" width="84" height="32"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today, 12:41 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-AN-GNI" userLabel="Subtitle Label">
+                            <rect key="frame" x="206" y="0.0" width="84" height="32"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r7a-mM-dwe">
-                            <rect key="frame" x="179" y="2" width="28" height="28"/>
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="28" id="dmw-OR-IK0"/>
-                                <constraint firstAttribute="height" constant="28" id="glI-CI-dmJ"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="centerY" secondItem="r7a-mM-dwe" secondAttribute="centerY" id="1JE-Wq-cng"/>
                         <constraint firstAttribute="trailing" secondItem="49R-WV-QsX" secondAttribute="trailing" id="EIN-Fk-eDs"/>
                         <constraint firstAttribute="bottom" secondItem="Zqy-AN-GNI" secondAttribute="bottom" id="HVR-BO-WYv"/>
                         <constraint firstAttribute="bottom" secondItem="49R-WV-QsX" secondAttribute="bottom" id="NNz-fM-uTH"/>
@@ -72,7 +63,6 @@
                         <constraint firstItem="Zqy-AN-GNI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="20" id="cvh-DM-td5"/>
                         <constraint firstItem="Zqy-AN-GNI" firstAttribute="top" secondItem="FUa-tk-nIn" secondAttribute="top" id="lkS-3R-HC0"/>
                         <constraint firstItem="49R-WV-QsX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="538-Iu-4CO" secondAttribute="trailing" constant="20" id="mDj-gE-TI2"/>
-                        <constraint firstItem="Zqy-AN-GNI" firstAttribute="leading" secondItem="r7a-mM-dwe" secondAttribute="trailing" id="w00-mZ-G6r"/>
                     </constraints>
                 </view>
             </subviews>
@@ -87,7 +77,6 @@
                 <outlet property="cardSubtitleLabel" destination="Zqy-AN-GNI" id="G6m-Ec-U4C"/>
                 <outlet property="cardTitleLabel" destination="538-Iu-4CO" id="3mV-jS-vRw"/>
                 <outlet property="cardView" destination="FUa-tk-nIn" id="yTe-Ub-9fY"/>
-                <outlet property="daylightIndicatorImageView" destination="r7a-mM-dwe" id="TSR-cr-whe"/>
                 <outlet property="updateButton" destination="49R-WV-QsX" id="75d-Vh-6qw"/>
             </connections>
             <point key="canvasLocation" x="-359" y="35"/>

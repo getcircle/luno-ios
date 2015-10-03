@@ -71,7 +71,7 @@ extension Services.Organization.Containers.LocationV1 {
     
     func officeCurrentDateAndTimeLabel() -> String {
         let currentDate = NSDate()
-        return officeCurrentDateLabel(currentDate) + ", " + officeCurrentTimeLabel(currentDate)
+        return "Local Time: " + officeCurrentDateLabel(currentDate) + ", " + officeCurrentTimeLabel(currentDate)
     }
     
     func officeCurrentDateLabel(date: NSDate?) -> String {
@@ -117,19 +117,4 @@ extension Services.Organization.Containers.LocationV1 {
         
         return currentTime
     }
-    
-    func officeDaylightIndicator() -> UIImage? {
-        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        calendar?.timeZone = NSTimeZone(name: timezone)!
-        let components = calendar?.components(.Hour, fromDate: NSDate())
-        var image: UIImage?
-        if components?.hour >= 18 || components?.hour < 6 {
-            image = UIImage(named: "hero_moon")
-        } else {
-            image = UIImage(named: "hero_sun")
-        }
-
-        return image?.imageWithRenderingMode(.AlwaysTemplate)
-    }
-
 }
