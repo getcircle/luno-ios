@@ -42,6 +42,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Don't rasterize because this view is frequently re-drawn which makes rasterizing it costly.
+        layer.shouldRasterize = false
 
         // Initialization code
         addBlurEffect()
