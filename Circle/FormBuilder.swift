@@ -144,6 +144,9 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                             fieldNameLabel?.autoPinEdge(.Left, toEdge: .Right, ofView: iconImageView!)
                         }
                         fieldNameLabel?.autoAlignAxisToSuperviewAxis(.Horizontal)
+                        NSLayoutConstraint.autoSetPriority(UILayoutPriorityRequired, forConstraints: { () -> Void in
+                            fieldNameLabel?.autoSetContentHuggingPriorityForAxis(.Horizontal)
+                        })
                     }
                     
                     let textField = UITextField(forAutoLayout: ())
