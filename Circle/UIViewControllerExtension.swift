@@ -30,7 +30,7 @@ enum QuickAction: Int {
             return MetaInfo(
                 actionLabel: AppStrings.QuickActionNoneLabel,
                 imageSource: "", 
-                placeholder: AppStrings.QuickActionNonePlaceholder
+                placeholder: AppStrings.SearchPlaceholder
             )
 
         case .Email:
