@@ -19,7 +19,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var titleNavLabel: UILabel!
     @IBOutlet weak private(set) var profileImage: CircleImageView!
     @IBOutlet weak private(set) var profileImageCenterYConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var verifiedProfileButton: UIButton!
     
     // Secondary Info
     
@@ -51,7 +50,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         secondaryViews.appendContentsOf([secondaryInfoLabel])
         configureLabels()
         configureContainerView()
-        configureVerifiedProfileButton()
     }
     
     override func prepareForReuse() {
@@ -78,14 +76,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         containerView.autoMatchDimension(.Height, toDimension: .Height, ofView: backgroundImageView)
         containerView.backgroundColor = UIColor(red: 85, green: 85, blue: 85)
-    }
-    
-    private func configureVerifiedProfileButton() {
-        verifiedProfileButton.convertToTemplateImageForState(.Normal)
-        verifiedProfileButton.tintColor = UIColor.whiteColor()
-        verifiedProfileButton.backgroundColor = UIColor.appTintColor()
-        verifiedProfileButton.makeItCircular()
-        verifiedProfileButton.hidden = true
     }
 
     func setProfile(
@@ -124,7 +114,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                     self.loadLargeProfileImage(userProfile)
                     self.addBlurEffect()
                 }
-                self.verifiedProfileButton.hidden = !userProfile.verified
             })
         }
     }
@@ -179,7 +168,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
                 }
             }
         }
-        verifiedProfileButton.hidden = true
         location = office
     }
     
@@ -242,18 +230,15 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             // Scale down the image and reduce opacity
             let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileImage.frame.origin.y
             profileImage.alpha = profileImageFractionValue
-            verifiedProfileButton.alpha = profileImageFractionValue
 
             if profileImageFractionValue >= 0 {
                 let transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
                 profileImage.transform = transform
-                verifiedProfileButton.transform = transform
-                verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
             }
             
             let delta: CGFloat = 40.0
             let navViews = Set([nameNavLabel, titleNavLabel] as [UIView])
-            let excludedViews = Set([profileImage, verifiedProfileButton])
+            let excludedViews = Set([profileImage])
             for view: UIView in (containerView.subviews ) {
                 if excludedViews.contains(view) {
                     continue
@@ -280,9 +265,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             containerView.alpha = otherViewsAlpha
             profileImage.alpha = profileImageAlpha
             profileImage.transform = CGAffineTransformIdentity
-            verifiedProfileButton.alpha = profileImageAlpha
-            verifiedProfileButton.transform = CGAffineTransformIdentity
-            verifiedProfileButton.center = CGPointMake(profileImage.center.x + (profileImage.frame.width/2.0), verifiedProfileButton.center.y)
         }
     }
 }
