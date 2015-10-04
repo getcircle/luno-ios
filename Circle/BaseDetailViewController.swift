@@ -42,24 +42,19 @@ MFMessageComposeViewControllerDelegate {
     }
     
     func customInit() {
-        automaticallyAdjustsScrollViewInsets = false
-        extendedLayoutIncludesOpaqueBars = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = [.Top, .Bottom]
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.title = ""
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         registerNotifications()
-        navigationItem.title = ""
     }
     
     override func viewWillDisappear(animated: Bool) {

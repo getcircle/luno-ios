@@ -27,7 +27,7 @@ class SearchViewController: UIViewController,
     @IBOutlet weak private(set) var fakeSearchTextField: UITextField!
     @IBOutlet weak private(set) var orgImageView: CircleImageView!
     @IBOutlet weak private(set) var poweredByLabel: UILabel!
-    @IBOutlet weak private(set) var searchHeaderContainerView: UIView!
+    @IBOutlet private(set) var searchHeaderContainerView: UIView!
     
     private var activityIndicatorView: CircleActivityIndicatorView!
     private var cardCollectionViewDelegate: CardCollectionViewDelegate?
@@ -61,34 +61,10 @@ class SearchViewController: UIViewController,
         registerNotifications()
         loadData()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if let transitionCoordinator = transitionCoordinator() {
-            transitionCoordinator.animateAlongsideTransition({ (context) -> Void in
-                self.configureNavigationBarForSearch(true)
-            }, completion: nil)
-        }
-        else {
-            configureNavigationBarForSearch(true)
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        transitionCoordinator()?.animateAlongsideTransition({ (context) -> Void in
-            self.configureNavigationBarForSearch(false)
-        }, completion: nil)
-    }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // Sometimes setting this in viewWillAppear: will not work.
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        
+
         if firstLoad {
             firstLoad = false
             if checkUserAndPresentAuthenticationViewController() {
@@ -100,6 +76,14 @@ class SearchViewController: UIViewController,
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if searchHeaderView.searchTextField.isFirstResponder() {
+            searchHeaderView.searchTextField.resignFirstResponder()
+        }
+    }
+    
     deinit {
         unregisterNotifications()
     }
@@ -108,23 +92,13 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
-        navigationController?.view.backgroundColor = view.backgroundColor
         setNavigationTitle(false)
     }
     
     private func setNavigationTitle(isSearchActive: Bool) {
         navigationItem.title = isSearchActive ? "Search" : "Home"
     }
-    
-    private func configureNavigationBarForSearch(forSearch: Bool) {
-        navigationController?.navigationBar.layer.shadowOpacity = forSearch ? 0.09 : 0.0
-        if forSearch {
-            navigationController?.navigationBar.layer.shadowOpacity = 0.09
-            navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
-            navigationController?.navigationBar.layer.shadowRadius = 4.0
-        }
-    }
-    
+
     private func configureLaunchScreenView() {
         let nibViews = NSBundle.mainBundle().loadNibNamed("LaunchScreen", owner: nil, options: nil)
         launchScreenView = nibViews.first as? UIView
@@ -145,10 +119,6 @@ class SearchViewController: UIViewController,
             searchHeaderContainerView.addSubview(searchHeaderView)
             searchHeaderView.autoPinEdgesToSuperviewEdges()
             resetSearchFieldPlaceholderText()
-            searchHeaderContainerView.translatesAutoresizingMaskIntoConstraints = true
-            searchHeaderContainerView.frame = CGRectMake(0.0, 0.0, view.frameWidth, navigationBarHeight())
-            navigationItem.titleView = searchHeaderContainerView
-            searchHeaderContainerView.alpha = 0.0
         }
     }
     
@@ -264,6 +234,7 @@ class SearchViewController: UIViewController,
             self.collectionView.layoutIfNeeded()
             self.fakeSearchContainer.alpha = 0.0
         }) { (completed) -> Void in
+            self.addSearchToNavBar()
             UIView.animateWithDuration(animated ? 0.1 : 0.0, animations: { () -> Void in
                 self.collectionView.alpha = 1.0
                 self.searchHeaderContainerView.alpha = 1.0
@@ -275,6 +246,7 @@ class SearchViewController: UIViewController,
         fakeSearchContainerCenterYConstraint.constant = 0
         fakeSearchContainer.setNeedsUpdateConstraints()
 
+        view.bringSubviewToFront(fakeSearchContainer)
         UIView.animateWithDuration(0.1) { () -> Void in
             self.searchHeaderContainerView.alpha = 0.0
         }
@@ -283,13 +255,32 @@ class SearchViewController: UIViewController,
             self.fakeSearchContainer.alpha = 1.0
             self.collectionView.layoutIfNeeded()
             self.collectionView.alpha = 0.0
-        })
+        }) { (completed) -> Void in
+            self.removeSearchFromNavBar()
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    func addSearchToNavBar() {
+        if let titleView = navigationItem.titleView where titleView == searchHeaderContainerView {
+            return
+        }
+        searchHeaderContainerView.translatesAutoresizingMaskIntoConstraints = true
+        searchHeaderContainerView.frame = CGRectMake(0.0, 0.0, view.frameWidth, navigationBarHeight())
+        navigationItem.titleView = searchHeaderContainerView
+        searchHeaderContainerView.alpha = 0.0
+    }
+    
+    func removeSearchFromNavBar() {
+        navigationItem.titleView = nil
     }
     
     // MARK: - TextField Delegate
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         if textField == fakeSearchTextField {
+            addSearchToNavBar()
             searchHeaderView.searchTextField.becomeFirstResponder()
             return false
         }
