@@ -59,12 +59,6 @@ class LocationDetailViewController:
         }
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (dataSource as! LocationDetailDataSource).profileHeaderView {
-            profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
-        }
-    }
-    
     // MARK: - Present Map View
     
     private func presentFullScreenMapView(animated: Bool) {

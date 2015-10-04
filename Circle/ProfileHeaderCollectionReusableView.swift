@@ -14,9 +14,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak private(set) var backgroundImageView: CircleImageView!
     @IBOutlet weak private(set) var containerView: UIView!
     @IBOutlet weak private(set) var nameLabel: UILabel!
-    @IBOutlet weak private(set) var nameNavLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
-    @IBOutlet weak private(set) var titleNavLabel: UILabel!
     @IBOutlet weak private(set) var profileImage: CircleImageView!
     @IBOutlet weak private(set) var profileImageCenterYConstraint: NSLayoutConstraint!
     
@@ -35,7 +33,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     override class var height: CGFloat {
-        return 280.0
+        return 258.0
     }
     
     class var heightWithoutSecondaryInfo: CGFloat {
@@ -62,7 +60,7 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     
     private func configureLabels() {
         
-        for label in [nameLabel, nameNavLabel, titleLabel, titleNavLabel, secondaryInfoLabel] {
+        for label in [nameLabel, titleLabel, secondaryInfoLabel] {
             label.text = ""
         }
     }
@@ -70,8 +68,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     private func configureContainerView() {
         profileImage.makeItCircular()
         backgroundImageView.addLabelIfImageLoadingFails = false
-        nameNavLabel.alpha = 0.0
-        titleNavLabel.alpha = 0.0
         visualEffectView!.contentView.addSubview(containerView)
         containerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
         containerView.autoMatchDimension(.Height, toDimension: .Height, ofView: backgroundImageView)
@@ -87,22 +83,12 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             secondaryInfoLabel.text = hireDateString
         }
 
-//        if let userLocation = userLocation {
-            containerView.backgroundColor = UIColor.clearColor()
-//        }
-        
+        containerView.backgroundColor = UIColor.clearColor()
         nameLabel.text = userProfile.nameWithNickName()
-        nameNavLabel.text = nameLabel.text
         titleLabel.attributedText = NSAttributedString(
             string: userProfile.displayTitle.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        if let titleLabelAttributedText = titleLabel.attributedText {
-            titleNavLabel.attributedText = NSAttributedString(
-                string: titleLabelAttributedText.string,
-                attributes: [NSKernAttributeName: 0.5]
-            )
-        }
         let hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
         profile = userProfile
         profileImage.imageProfileIdentifier = userProfile.id
@@ -139,17 +125,10 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
         }
         
         nameLabel.text = officeName
-        nameNavLabel.text = officeName
         titleLabel.attributedText = NSAttributedString(
             string: officeTitleText.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        if let titleLabelAttributedText = titleLabel.attributedText {
-            titleNavLabel.attributedText = NSAttributedString(
-                string: titleLabelAttributedText.string,
-                attributes: [NSKernAttributeName: 0.5]
-            )
-        }
         secondaryInfoLabel.text = office.officeCurrentDateAndTimeLabel()
         profileImage.image = UIImage(named: "hero_office")
         profileImage.makeItCircular(true)
@@ -174,7 +153,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     func setTeam(team: Services.Organization.Containers.TeamV1) {
         hideSecondaryViews()
         nameLabel.text = team.getName()
-        nameNavLabel.text = team.getName()
         
         containerView.backgroundColor = UIColor.clearColor()
         let teamCounts = team.getTeamCounts().uppercaseString
@@ -182,12 +160,6 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
             string: teamCounts.localizedUppercaseString(),
             attributes: [NSKernAttributeName: 2.0]
         )
-        if let titleLabelAttributedText = titleLabel.attributedText {
-            titleNavLabel.attributedText = NSAttributedString(
-                string: titleLabelAttributedText.string,
-                attributes: [NSKernAttributeName: 0.5]
-            )
-        }
         profileImage.image = UIImage(named: "hero_group")
         profileImage.makeItCircular(true)
         
@@ -222,49 +194,14 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
     }
     
     func adjustViewForScrollContentOffset(contentOffset: CGPoint) {
-        let minOffsetToMakeChanges: CGFloat = 20.0
+        // Change alpha faster for profile image
+        let profileImageAlpha = max(0.0, 1.0 - -contentOffset.y/80.0)
         
-        // Do not change anything unless user scrolls up more than 20 points
-        if contentOffset.y > minOffsetToMakeChanges {
-            
-            // Scale down the image and reduce opacity
-            let profileImageFractionValue = 1.0 - (contentOffset.y - minOffsetToMakeChanges)/profileImage.frame.origin.y
-            profileImage.alpha = profileImageFractionValue
-
-            if profileImageFractionValue >= 0 {
-                let transform = CGAffineTransformMakeScale(profileImageFractionValue, profileImageFractionValue)
-                profileImage.transform = transform
-            }
-            
-            let delta: CGFloat = 40.0
-            let navViews = Set([nameNavLabel, titleNavLabel] as [UIView])
-            let excludedViews = Set([profileImage])
-            for view: UIView in (containerView.subviews ) {
-                if excludedViews.contains(view) {
-                    continue
-                }
-                
-                let alpha = 1.0 - contentOffset.y/(view.frame.origin.y - delta)
-                if navViews.contains(view) {
-                    view.alpha = alpha <= 0.0 ? view.alpha + 1/20 : 0.0
-                }
-                else {
-                    view.alpha = alpha
-                }
-            }
-        }
-        else {
-            // Change alpha faster for profile image
-            let profileImageAlpha = max(0.0, 1.0 - -contentOffset.y/80.0)
-            
-            // Change it slower for everything else
-            let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
-            nameNavLabel.alpha = 0.0
-            titleNavLabel.alpha = 0.0
-            visualEffectView?.alpha = otherViewsAlpha
-            containerView.alpha = otherViewsAlpha
-            profileImage.alpha = profileImageAlpha
-            profileImage.transform = CGAffineTransformIdentity
-        }
+        // Change it slower for everything else
+        let otherViewsAlpha = max(0.0, 1.0 - -contentOffset.y/120.0)
+        visualEffectView?.alpha = otherViewsAlpha
+        containerView.alpha = otherViewsAlpha
+        profileImage.alpha = profileImageAlpha
+        profileImage.transform = CGAffineTransformIdentity
     }
 }
