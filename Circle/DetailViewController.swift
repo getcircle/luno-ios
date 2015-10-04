@@ -45,6 +45,12 @@ class DetailViewController: BaseDetailViewController,
         configureActivityIndicator()
         configureErrorMessageView()
         loadData()
+        navigationItem.title = dataSource.getTitle()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = dataSource.getTitle()
     }
     
     final func loadData() {

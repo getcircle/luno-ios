@@ -30,6 +30,10 @@ class ProfileDetailDataSource: CardDataSource {
         profile = withProfile
     }
     
+    override func getTitle() -> String {
+        return profile.fullName
+    }
+    
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         
         // If loading for the first time, add the placeholder card
