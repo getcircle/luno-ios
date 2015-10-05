@@ -205,6 +205,8 @@ class CircleImageView: UIImageView {
                 })
             },
             failure: { (imageURLRequest, response, error) -> Void in
+                self.alpha = 1.0
+                
                 print("failed to fetch image for URL: \(imageURL) error: \(error.localizedDescription)")
             }
         )

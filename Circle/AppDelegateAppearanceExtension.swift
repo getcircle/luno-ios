@@ -33,7 +33,7 @@ extension AppDelegate {
         ]
         let disabledBarButtonItemTitleAttributes = [
             NSFontAttributeName: UIFont.navigationBarFont(),
-            NSForegroundColorAttributeName: UIColor(white: 1.0, alpha: 0.5),
+            NSForegroundColorAttributeName: UIColor(white: 0.0, alpha: 0.2),
         ]
         UINavigationBar.appearance().titleTextAttributes = navBarTitleAttributes
         UIBarButtonItem.appearance().setTitleTextAttributes(navBarTitleAttributes, forState: .Normal)

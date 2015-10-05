@@ -23,6 +23,9 @@ struct AppStrings {
     static let ContactLabelWorkEmail = NSLocalizedString("Work Email", comment: "Label for showing work email")
     static let ContactLabelWorkPhone = NSLocalizedString("Work Phone", comment: "Label for showing work phone")
     
+    static let ContactPlaceholderAddNumber = NSLocalizedString("Add Number", comment: "Placeholder for phone field when current user does not have a number added")
+    static let ContactPlaceholderNumberNotAdded = NSLocalizedString("Number not added", comment: "Placeholder for phone field when a user does not have a number added")
+    
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
     
     static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")
@@ -57,6 +60,9 @@ struct AppStrings {
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
     static let ProfileInfoUpdateButtonTitle = NSLocalizedString("Update", comment: "Title of the button to update info")
 
+    static let ProfileEditTitle = NSLocalizedString("Edit Profile", comment: "Title of the view which allows the user to edit their profile")
+    static let ProfileEditUpdatePhoto = NSLocalizedString("Update Photo", comment: "Button prompt to update user's profile photo")
+    
     static let ProfileSectionStatusTitle = NSLocalizedString("Currently working on", comment: "Title of the section which shows user's status")
     static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
     
