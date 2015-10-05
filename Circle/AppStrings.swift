@@ -23,7 +23,7 @@ struct AppStrings {
     static let ContactLabelWorkEmail = NSLocalizedString("Work Email", comment: "Label for showing work email")
     static let ContactLabelWorkPhone = NSLocalizedString("Work Phone", comment: "Label for showing work phone")
     
-    static let EmailFeedbackSubject = NSLocalizedString("Feedback on circle", comment: "Subject of the feedback email")
+    static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
     
     static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")
 

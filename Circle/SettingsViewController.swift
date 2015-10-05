@@ -95,17 +95,17 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         switch dataSource.typeOfCell(indexPath) {
         case .ContactEmail:
-            var message = "\n\n\n\n\n"
+            var message = "<br/><br/><br/><br/><br/>"
             message += "------------------"
-            message += "\n"
+            message += "<br/>"
             message += NSString(format:"Version: %@ (%@)", NSBundle.appVersion(), NSBundle.appBuild()) as String
-            message += "\n"
+            message += "<br/>"
             message += NSString(format:"OS Version: %@ (%@)", UIDevice.currentDevice().systemName, UIDevice.currentDevice().systemVersion) as String
-            message += "\n"
+            message += "<br/>"
             message += NSString(format:"Device: %@", UIDevice.currentDevice().modelName) as String
             
             presentMailViewController(
-                ["Luno Feedback<feedback@lunohq.com>"],
+                ["Luno Feedback<support@lunohq.com>"],
                 subject: AppStrings.EmailFeedbackSubject + " - v" + NSBundle.appVersion(),
                 messageBody: message,
                 completionHandler: nil

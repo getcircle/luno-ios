@@ -122,8 +122,8 @@ extension UIViewController {
                 }
                 
                 var message: String = messageBody ?? ""
-                message += "\n\n\nSent from luno"
-                mailVC.setMessageBody(message, isHTML: false)
+                message += "<br/><br/><br/>Sent from <a href=\"https://itunes.apple.com/us/app/id981648781?mt=8\">luno</a>"
+                mailVC.setMessageBody(message, isHTML: true)
                 
                 if let composeDelegate = self as? MFMailComposeViewControllerDelegate {
                     mailVC.mailComposeDelegate = composeDelegate
