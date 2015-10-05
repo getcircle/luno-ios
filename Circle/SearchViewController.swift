@@ -195,8 +195,9 @@ class SearchViewController: UIViewController,
                     self.launchScreenView = nil
                 }
             )
-            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         }
+
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
     }
     
     // MARK: - Load Data
