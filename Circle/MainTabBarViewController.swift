@@ -86,13 +86,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             )
             profileNavController.tabBarItem.imageInsets = tabBarItemImageInset
             tabBarViewControllers.append(profileNavController)
-
             setViewControllers(tabBarViewControllers, animated: true)
-            
-            if selectProfileTab {
-                selectedViewController = profileNavController
-                profileNavController.navigationBar.makeTransparent()
-            }
         }
     }
 
