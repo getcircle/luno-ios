@@ -24,7 +24,6 @@ class ContactCollectionViewCell: CircleCollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         contactImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
     }
     

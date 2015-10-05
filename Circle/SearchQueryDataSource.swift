@@ -140,17 +140,17 @@ class SearchQueryDataSource: CardDataSource {
                     withImageSource: "searchbar_search"
                 ),
                 SearchCategory(
+                    categoryTitle: teamsTitle,
+                    ofType: .Teams,
+                    withCount: teamsCount,
+                    withImageSource: "searchbar_search"
+                ),
+                SearchCategory(
                     categoryTitle: locationsTitle,
                     ofType: .Locations,
                     withCount: locationsCount,
                     withImageSource: "searchbar_search"
                 ),
-                SearchCategory(
-                    categoryTitle: teamsTitle,
-                    ofType: .Teams,
-                    withCount: teamsCount,
-                    withImageSource: "searchbar_search"
-                )
             ])
         }
     }
