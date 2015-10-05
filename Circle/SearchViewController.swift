@@ -174,7 +174,6 @@ class SearchViewController: UIViewController,
     
     private func useSearchQueryDataSource() {
         dataSource.delegate = nil
-        
         dataSource = SearchQueryDataSource()
         search()
         collectionView.dataSource = dataSource
@@ -196,6 +195,7 @@ class SearchViewController: UIViewController,
                     self.launchScreenView = nil
                 }
             )
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         }
     }
     
