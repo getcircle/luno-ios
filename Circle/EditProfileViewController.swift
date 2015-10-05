@@ -178,10 +178,10 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     }
     
     @IBAction func saveButtonTapped(sender: AnyObject!) {
-        handleImageUpload { () -> Void in
+        handleImageUpload { (imageUrl: String?) -> Void in
             self.imageToUpload = nil
             
-            self.updateProfile { () -> Void in
+            self.updateProfile(newImageUrl: imageUrl, completion: { () -> Void in
                 if let delegate = self.editProfileDelegate {
                     delegate.didFinishEditingProfile()
                 }
@@ -192,7 +192,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 else {
                     self.navigationController?.popViewControllerAnimated(true)
                 }
-            }
+            })
         }
     }
     
@@ -236,7 +236,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     // MARK: - Helpers
 
-    private func updateProfile(completion: () -> Void) {
+    private func updateProfile(newImageUrl newImageUrl: String?, completion: () -> Void) {
         let builder = try! profile.toBuilder()
         builder.verified = true
         
@@ -280,6 +280,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             }
         }
         builder.contactMethods = contactMethods
+        if let uploadedImageUrl = newImageUrl {
+            builder.imageUrl = uploadedImageUrl
+        }
         Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthenticationViewController.updateUserProfile(profile)
@@ -390,7 +393,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    private func handleImageUpload(completion: () -> Void) {
+    private func handleImageUpload(completion: (imageUrl: String?) -> Void) {
         if let newImage = imageToUpload {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Media.Actions.uploadImage(
@@ -398,22 +401,12 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 forMediaType: .Profile,
                 withKey: profile.id
                 ) { (mediaURL, error) -> Void in
-                    if let mediaURL = mediaURL {
-                        let profileBuilder = try! self.profile.toBuilder()
-                        profileBuilder.imageUrl = mediaURL
-                        Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
-                            if let profile = profile {
-                                AuthenticationViewController.updateUserProfile(profile)
-                                self.profile = profile
-                                hud.hide(true)
-                                completion()
-                            }
-                        }
-                    }
+                    hud.hide(true)
+                    completion(imageUrl: mediaURL)
             }
         }
         else {
-            completion()
+            completion(imageUrl: nil)
         }
     }
     
