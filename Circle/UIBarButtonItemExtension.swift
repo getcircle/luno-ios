@@ -13,22 +13,19 @@ extension UIBarButtonItem {
     static func roundedItemWithTitle(title: String, target: AnyObject, action: Selector) -> UIBarButtonItem {
         let button = UIButton(frame: CGRectZero)
         button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
-        
         button.backgroundColor = UIColor.clearColor()
-
         button.addRoundCorners(radius: 2.0)
-        button.layer.borderWidth = 2.0
-        let borderColor = UIColor(white: 1.0, alpha: 0.2)
+        button.layer.borderWidth = 1.0
+        
+        let borderColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
         button.layer.borderColor = borderColor.CGColor
-
         button.titleLabel?.font = UIFont.headerTextFont()
-        button.setAttributedTitle(NSAttributedString(string: title, attributes: [NSKernAttributeName: 1.0, NSForegroundColorAttributeName: UIColor.whiteColor()]), forState: .Normal)
+        button.setAttributedTitle(NSAttributedString(string: title, attributes: [NSKernAttributeName: 1.0, NSForegroundColorAttributeName: UIColor.blackColor()]), forState: .Normal)
         button.setAttributedTitle(NSAttributedString(string: title, attributes: [NSKernAttributeName: 1.0, NSForegroundColorAttributeName: borderColor]), forState: .Highlighted)
         
         let verticalPadding = CGFloat(6.0)
         let horizontalPadding = verticalPadding * 2
         button.contentEdgeInsets = UIEdgeInsetsMake(verticalPadding, horizontalPadding, verticalPadding, horizontalPadding)
-        
         button.sizeToFit()
         
         let barButtonItem = UIBarButtonItem(customView: button)
