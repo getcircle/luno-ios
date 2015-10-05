@@ -89,7 +89,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                         fieldType: .Photo,
                         photoFieldHandler: self,
                         imageSource: "edit_profile_camera",
-                        name: "Update Photo"
+                        name: AppStrings.ProfileEditUpdatePhoto
                     )
                 ]),
             FormBuilder.Section(

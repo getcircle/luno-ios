@@ -61,7 +61,8 @@ struct AppStrings {
     static let ProfileInfoUpdateButtonTitle = NSLocalizedString("Update", comment: "Title of the button to update info")
 
     static let ProfileEditTitle = NSLocalizedString("Edit Profile", comment: "Title of the view which allows the user to edit their profile")
-
+    static let ProfileEditUpdatePhoto = NSLocalizedString("Update Photo", comment: "Button prompt to update user's profile photo")
+    
     static let ProfileSectionStatusTitle = NSLocalizedString("Currently working on", comment: "Title of the section which shows user's status")
     static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
     
