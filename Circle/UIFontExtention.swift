@@ -13,7 +13,7 @@ extension UIFont {
     // MARK: - v1
     
     static func navigationBarFont() -> UIFont! {
-        return UIFont(name: "Avenir-Roman", size: 17.0)
+        return UIFont.regularFont(17.0)
     }
     
     static func appVerificationCodeFieldFont() -> UIFont! {
@@ -48,14 +48,6 @@ extension UIFont {
         return UIFont(name: "Avenir-Light", size: 20.0)!
     }
 
-    static func appPrimaryTextFont() -> UIFont {
-        return UIFont(name: "Avenir-Medium", size: 15.0)!
-    }
-    
-    static func appSecondaryTextFont() -> UIFont {
-        return UIFont(name: "Avenir-Book", size: 13.0)!
-    }
-    
     static func appTagTokenFont() -> UIFont {
         return UIFont(name: "Avenir-Roman", size: 15.0)!
     }
