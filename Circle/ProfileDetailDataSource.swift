@@ -310,6 +310,20 @@ class ProfileDetailDataSource: CardDataSource {
         }
         
         cell.showSeparator = !cellIsBottomOfSection
+        
+        if let contactMethodCell = cell as? ContactCollectionViewCell {
+            contactMethodCell.contactMethodValueLabel.textColor = UIColor.appPrimaryTextColor()
+            
+            if let contactMethod = contentAtIndexPath(indexPath) as? Services.Profile.Containers.ContactMethodV1 where contactMethod.value.characters.count == 0 {
+                if isProfileLoggedInUserProfile() {
+                    contactMethodCell.contactMethodValueLabel.text = AppStrings.ContactPlaceholderAddNumber
+                    contactMethodCell.contactMethodValueLabel.textColor = UIColor.appMissingFieldValueColor()
+                }
+                else {
+                    contactMethodCell.contactMethodValueLabel.text = AppStrings.ContactPlaceholderNumberNotAdded
+                }
+            }
+        }
     }
 
     private func isProfileLoggedInUserProfile() -> Bool {

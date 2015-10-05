@@ -104,7 +104,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 title: "Contact",
                 items: [
                     FormBuilder.ContactSectionItem(
-                        placeholder: "Add Number",
+                        placeholder: AppStrings.ContactPlaceholderAddNumber,
                         placeholderColor: UIColor.appMissingFieldValueColor(),
                         type: .TextField,
                         keyboardType: .PhonePad,

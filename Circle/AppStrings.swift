@@ -23,6 +23,9 @@ struct AppStrings {
     static let ContactLabelWorkEmail = NSLocalizedString("Work Email", comment: "Label for showing work email")
     static let ContactLabelWorkPhone = NSLocalizedString("Work Phone", comment: "Label for showing work phone")
     
+    static let ContactPlaceholderAddNumber = NSLocalizedString("Add Number", comment: "Placeholder for phone field when current user does not have a number added")
+    static let ContactPlaceholderNumberNotAdded = NSLocalizedString("Number not added", comment: "Placeholder for phone field when a user does not have a number added")
+    
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
     
     static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")
