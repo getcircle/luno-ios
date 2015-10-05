@@ -66,13 +66,13 @@ class SearchAction: SearchSuggestion {
 
         // Reports To Action
         // TODO: Only show for managers
-        let reportsToAction = SearchAction(
-            title: "Reports to " + profile.firstName,
-            ofType: .ReportsToPerson,
-            withImageSource: "results_search"
-        )
-        reportsToAction.underlyingObject = profile as AnyObject
-        searchActions.append(reportsToAction)
+        //        let reportsToAction = SearchAction(
+        //            title: "Reports to " + profile.firstName,
+        //            ofType: .ReportsToPerson,
+        //            withImageSource: "results_search"
+        //        )
+        //        reportsToAction.underlyingObject = profile as AnyObject
+        //        searchActions.append(reportsToAction)
         return searchActions
     }
 
