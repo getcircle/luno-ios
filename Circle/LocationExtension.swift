@@ -70,25 +70,26 @@ extension Services.Organization.Containers.LocationV1 {
     }
     
     func officeCurrentDateAndTimeLabel() -> String {
-        let currentDate = NSDate()
-        return officeCurrentDateLabel(currentDate) + ", " + officeCurrentTimeLabel(currentDate)
+        return AppStrings.LocalTimeLabel + ": " + officeCurrentDateLabel() + ", " + officeCurrentTimeLabel()
     }
     
-    func officeCurrentDateLabel(date: NSDate?) -> String {
-        var currentDate = date ?? NSDate()
-        var currentDateString: String
-        let officeTimeZone = NSTimeZone(name: timezone)!
-        
-        // Convert date to the time zone the office is in.
-        currentDate = currentDate.dateByAddingTimeInterval(Double(officeTimeZone.secondsFromGMTForDate(currentDate)))
-        
-        currentDateString = NSDateFormatter.localizedRelativeDateString(currentDate)
-        
+    func officeCurrentDateLabel() -> String {
+        var currentDate = NSDate()
+        var currentDateString = ""
+        if let officeTimeZone = NSTimeZone(name: timezone) {
+            // Convert date to the time zone the office is in.
+            if officeTimeZone != NSTimeZone.localTimeZone() {
+                currentDate = currentDate.dateByAddingTimeInterval(
+                    Double(officeTimeZone.secondsFromGMTForDate(currentDate))
+                )
+            }
+            currentDateString = NSDateFormatter.localizedRelativeDateString(NSDate())
+        }
         return currentDateString
     }
     
-    func officeCurrentTimeLabel(date: NSDate?, addDifferenceText: Bool? = false) -> String {
-        let currentDate = date ?? NSDate()
+    func officeCurrentTimeLabel(addDifferenceText: Bool? = false) -> String {
+        let currentDate = NSDate()
         let officeTimeZone = NSTimeZone(name: timezone)!
         NSDateFormatter.sharedLocationsCurrentTimeFormatter.timeZone = officeTimeZone
         var currentTime = NSDateFormatter.sharedLocationsCurrentTimeFormatter.stringFromDate(currentDate)
@@ -117,19 +118,4 @@ extension Services.Organization.Containers.LocationV1 {
         
         return currentTime
     }
-    
-    func officeDaylightIndicator() -> UIImage? {
-        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        calendar?.timeZone = NSTimeZone(name: timezone)!
-        let components = calendar?.components(.Hour, fromDate: NSDate())
-        var image: UIImage?
-        if components?.hour >= 18 || components?.hour < 6 {
-            image = UIImage(named: "hero_moon")
-        } else {
-            image = UIImage(named: "hero_sun")
-        }
-
-        return image?.imageWithRenderingMode(.AlwaysTemplate)
-    }
-
 }

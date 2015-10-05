@@ -61,12 +61,6 @@ class TeamDetailViewController:
         collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let profileHeaderView = (dataSource as! TeamDetailDataSource).profileHeaderView {
-            profileHeaderView.adjustViewForScrollContentOffset(scrollView.contentOffset)
-        }
-    }
-
     // MARK: - EditTeamViewControllerDelegate
     
     func onTeamDetailsUpdated(team: Services.Organization.Containers.TeamV1) {

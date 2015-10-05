@@ -116,7 +116,7 @@ class SearchAction: SearchSuggestion {
         
         // Local time
         let timeAction = SearchAction(
-            title: "Local Time is " + location.officeCurrentTimeLabel(nil, addDifferenceText: true),
+            title: "Local Time is " + location.officeCurrentTimeLabel(true),
             ofType: .LocalTimeAtLocation,
             withImageSource: "Info"
         )

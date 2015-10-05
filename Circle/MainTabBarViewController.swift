@@ -86,13 +86,7 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             )
             profileNavController.tabBarItem.imageInsets = tabBarItemImageInset
             tabBarViewControllers.append(profileNavController)
-
             setViewControllers(tabBarViewControllers, animated: true)
-            
-            if selectProfileTab {
-                selectedViewController = profileNavController
-                profileNavController.navigationBar.makeTransparent()
-            }
         }
     }
 
@@ -118,19 +112,12 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - UITabBarControllerDelegate
 
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        
         trackTabSelected(viewController)
         
         // Refresh data for selected view controllers
         if let sourceViewController = getActiveViewController(viewController) {
-            
             if sourceViewController is CurrentUserProfileDetailViewController {
-                UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
                 (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
-            }
-            
-            if !(sourceViewController is BaseDetailViewController) {
-                sourceViewController.navigationController?.navigationBar.makeOpaque()
             }
         }
         return true

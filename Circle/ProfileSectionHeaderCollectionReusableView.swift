@@ -14,7 +14,6 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
     @IBOutlet weak var cardSubtitleLabel: UILabel!
     @IBOutlet weak var updateButton: CircleButton!
     @IBOutlet private(set) weak var cardView: UIView!
-    @IBOutlet private(set) weak var daylightIndicatorImageView: UIImageView!
     
     var addBottomBorder = false {
         didSet {
@@ -45,7 +44,6 @@ class ProfileSectionHeaderCollectionReusableView: CircleCollectionReusableView {
         updateButton.hidden = true
         addBottomBorder = false
         cardSubtitleLabel.hidden = true
-        daylightIndicatorImageView.image = nil
     }
     
     override func drawRect(rect: CGRect) {

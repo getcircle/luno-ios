@@ -40,7 +40,9 @@ struct AppStrings {
     static let GenericOKButtonTitle = NSLocalizedString("OK", comment: "Generic button title for positive affirmation of an action")
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     static let GenericSaveButtonTitle = NSLocalizedString("Save", comment: "Generic button title for saving changes a user has made")
-        
+
+    static let LocalTimeLabel = NSLocalizedString("Local Time", comment: "Label indicating the local time of a location")
+
     static let NotificationTitle = NSLocalizedString("Notification", comment: "Title for showing a notification message")
     static let NotificationsTitle = NSLocalizedString("Notifications", comment: "Title of the view that shows content related to notifications")
     static let NotificationInfoText = NSLocalizedString("We'd like to notify you when new people join, you are invited to events or when someone on your team is having a work anniversary. Turn notifications on?", comment: "Message indicating the users why we would like to notify them and asking for notifications permission")
@@ -68,7 +70,7 @@ struct AppStrings {
     static let QuickActionSlackLabel = NSLocalizedString("Slack", comment: "Title for button used send a message via Slack")
     static let QuickActionVideoLabel = NSLocalizedString("Video", comment: "Title for button used to initial a video call")
     
-    static let QuickActionNonePlaceholder = NSLocalizedString("Search People, Teams & Locations", comment: "Placeholder text for search field used to search people, teams and skills.")
+    static let SearchPlaceholder = NSLocalizedString("Search People, Teams, & Locations", comment: "Placeholder text for search field used to search people, teams and skills.")
     static let QuickActionEmailPlaceholder = NSLocalizedString("Who do you want to email?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionInfoPlaceholder = NSLocalizedString("Who do you want contact info on?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionMessagePlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")

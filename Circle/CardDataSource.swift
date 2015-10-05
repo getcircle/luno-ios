@@ -136,6 +136,10 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         
     }
     
+    func getTitle() -> String {
+        return ""
+    }
+    
     func canEdit() -> Bool {
         return false
     }

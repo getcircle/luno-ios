@@ -128,7 +128,6 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         teamNameLetterLabel.hidden = true
 
         profileImageView.imageProfileIdentifier = team.id
-        profileImageView.imageText = ""
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
         profileImageView.image = UIImage(named: "detail_group")
@@ -139,7 +138,6 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         subTextLabel.text = location.cityRegion() + " (\(getCountLabel(location.profileCount)))"
         
         profileImageView.imageProfileIdentifier = location.id
-        profileImageView.imageText = ""
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
         profileImageView.image = UIImage(named: "detail_office")

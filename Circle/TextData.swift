@@ -41,7 +41,7 @@ class TextData {
     
     func getFormattedTimestamp() -> String? {
         if let timestamp = updatedTimestamp where timestamp.trimWhitespace() != "" {
-            var formattedTimestamp = "\u{2013} "
+            var formattedTimestamp = "\u{000A} \u{2013} "
 
             let today = NSDate()
             if let updatedDate = NSDateFormatter.dateFromTimestampString(timestamp),

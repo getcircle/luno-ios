@@ -15,7 +15,7 @@ protocol SearchHeaderViewDelegate {
 
 class SearchHeaderView: UIView {
     
-    let searchFieldLeftViewDefaultWidth = CGFloat(44.0)
+    let searchFieldLeftViewDefaultWidth = CGFloat(30.0)
     
     @IBOutlet weak private(set) var cancelButton: UIButton!
     @IBOutlet weak private(set) var searchTextField: CircleTextField!
@@ -53,7 +53,7 @@ class SearchHeaderView: UIView {
         searchFieldLeftView.backgroundColor = UIColor.clearColor()
         leftViewImageView = UIImageView(image: UIImage(named: "searchbar_search")?.imageWithRenderingMode(.AlwaysTemplate))
         leftViewImageView.contentMode = .Center
-        leftViewImageView.frame = CGRectMake(14.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
+        leftViewImageView.frame = CGRectMake(0.0, (searchTextField.frame.height - 16.0)/2.0, 16.0, 16.0)
         leftViewImageView.tintColor = UIColor.appSearchIconTintColor()
         searchFieldLeftView.addSubview(leftViewImageView)
         
@@ -90,19 +90,15 @@ class SearchHeaderView: UIView {
         }
         
         let tagPadding = CGFloat(8.0)
-        
         searchFieldLeftView.frameWidth = searchFieldLeftViewDefaultWidth + tag.frameWidth
         tag.frame = CGRectMake(leftViewImageView.frameRight + tagPadding, floor((searchFieldLeftView.frameHeight - tag.frameHeight) / 2), tag.frameWidth, tag.frameHeight)
         searchFieldLeftView.addSubview(tag)
-        
         searchFieldTagView = tag
-        
         searchTextField.placeholder = nil
     }
     
     func hideTag() {
         searchFieldTagView?.removeFromSuperview()
-        
         searchFieldLeftView.frameWidth = searchFieldLeftViewDefaultWidth
     }
 
@@ -113,10 +109,6 @@ class SearchHeaderView: UIView {
         searchTextField.setNeedsUpdateConstraints()
         UIView.animateWithDuration(
             0.2,
-            delay: 0.0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0.8,
-            options: .CurveEaseInOut,
             animations: { () -> Void in
                 self.searchTextField.layoutIfNeeded()
                 self.cancelButton.alpha = 1.0
@@ -130,10 +122,6 @@ class SearchHeaderView: UIView {
         searchTextField.setNeedsUpdateConstraints()
         UIView.animateWithDuration(
             0.2,
-            delay: 0.0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0.8,
-            options: .CurveEaseInOut,
             animations: { () -> Void in
                 self.searchTextField.layoutIfNeeded()
                 self.cancelButton.alpha = 0.0

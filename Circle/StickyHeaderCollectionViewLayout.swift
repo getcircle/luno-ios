@@ -86,13 +86,6 @@ class StickyHeaderCollectionViewLayout: UICollectionViewFlowLayout, UICollection
                             headerHeight - contentOffset.y)
                         attribute.frame = frameToModify
                     }
-                    else {
-                        // Pin supplementary view to the top after it reaches nav bar height
-                        var frameToModify = attribute.frame
-                        frameToModify.origin.y = max(0.0, contentOffset.y - offsetToMakeHeaderSticky)
-                        attribute.frame = frameToModify
-                        attribute.zIndex = 100
-                    }
                 }
 
             default:
