@@ -36,7 +36,8 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         var input: AnyObject?
         var inputEnabled: Bool?
         var keyboardType: UIKeyboardType
-        var placeholder: String
+        var placeholder: String?
+        var placeholderColor: UIColor?
         var type: FormFieldType
         var value: String? {
             didSet {
@@ -47,14 +48,26 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         }
         private(set) var originalValue: String?
         var imageSource: String?
+        var name: String?
         
-        init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, imageSource andImageSource: String? = nil) {
+        init(
+            placeholder withPlaceholder: String? = nil,
+            placeholderColor andPlaceholderColor: UIColor? = nil,
+            type andType: FormFieldType,
+            keyboardType andKeyboardType: UIKeyboardType,
+            container andContainer: String,
+            containerKey andContainerKey: String,
+            imageSource andImageSource: String? = nil,
+            name andName: String? = nil)
+        {
             placeholder = withPlaceholder
+            placeholderColor = andPlaceholderColor
             type = andType
             keyboardType = andKeyboardType
             container = andContainer
             containerKey = andContainerKey
             imageSource = andImageSource
+            name = andName
         }
     }
     
@@ -126,14 +139,14 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                         iconImageView?.autoSetDimensionsToSize(CGSizeMake(50.0, 50.0))
                     }
                     
-                    let hasPlaceholder = (item.placeholder.characters.count > 0)
+                    let hasName = (item.name?.characters.count > 0)
                     
                     var fieldNameLabel: UILabel?
-                    if hasPlaceholder {
+                    if hasName {
                         fieldNameLabel = UILabel(forAutoLayout: ())
                         fieldNameLabel?.opaque = true
                         fieldNameLabel?.backgroundColor = UIColor.whiteColor()
-                        fieldNameLabel?.text = item.placeholder
+                        fieldNameLabel?.text = item.name
                         fieldNameLabel?.font = UIFont.mainTextFont()
                         fieldNameLabel?.textColor = UIColor.appSecondaryTextColor()
                         containerView.addSubview(fieldNameLabel!)
@@ -152,7 +165,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     let textField = UITextField(forAutoLayout: ())
                     textField.textColor = UIColor.appAttributeValueLabelColor()
                     textField.font = UIFont.mainTextFont()
-                    textField.textAlignment = hasPlaceholder ? .Right : .Left
+                    textField.textAlignment = hasName ? .Right : .Left
                     textField.keyboardType = item.keyboardType
                     // TODO: Make these configurable
                     // Not urgent since we are using the form builder for contact info
@@ -161,6 +174,13 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     textField.autocorrectionType = .No
                     textField.spellCheckingType = .No
                     textField.delegate = self
+                    if let itemPlaceholder = item.placeholder {
+                        let attributedPlaceholder = NSMutableAttributedString(string: itemPlaceholder)
+                        if let itemPlaceholderColor = item.placeholderColor {
+                            attributedPlaceholder.addAttribute(NSForegroundColorAttributeName, value: itemPlaceholderColor, range: NSMakeRange(0, itemPlaceholder.characters.count))
+                        }
+                        textField.attributedPlaceholder = attributedPlaceholder
+                    }
                     if let inputEnabled = item.inputEnabled {
                         textField.enabled = inputEnabled
                         if !inputEnabled {
@@ -257,7 +277,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     let fieldNameLabel = UILabel(forAutoLayout: ())
                     fieldNameLabel.opaque = true
                     fieldNameLabel.backgroundColor = UIColor.whiteColor()
-                    fieldNameLabel.text = item.placeholder
+                    fieldNameLabel.text = item.name
                     fieldNameLabel.font = UIFont.mainTextFont()
                     fieldNameLabel.textColor = UIColor.appPrimaryTextColor()
                     containerView.addSubview(fieldNameLabel)
@@ -384,13 +404,31 @@ extension FormBuilder {
     class ContactSectionItem: SectionItem {
         var contactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1
         
-        required init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, container andContainer: String, containerKey andContainerKey: String, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, imageSource andImageSource: String) {
+        required init(
+            placeholder withPlaceholder: String,
+            placeholderColor andPlaceholderColor: UIColor,
+            type andType: FormFieldType,
+            keyboardType andKeyboardType: UIKeyboardType,
+            container andContainer: String,
+            containerKey andContainerKey: String,
+            contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1,
+            imageSource andImageSource: String,
+            name andName: String)
+        {
             contactMethodType = andContactMethodType
-            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: andContainer, containerKey: andContainerKey, imageSource: andImageSource)
+            super.init(placeholder: withPlaceholder, placeholderColor: andPlaceholderColor, type: andType, keyboardType: andKeyboardType, container: andContainer, containerKey: andContainerKey, imageSource: andImageSource, name: andName)
         }
         
-        convenience init(placeholder withPlaceholder: String, type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType, contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, imageSource andImageSource: String) {
-            self.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType, imageSource: andImageSource)
+        convenience init(
+            placeholder withPlaceholder: String,
+            placeholderColor andPlaceholderColor: UIColor,
+            type andType: FormFieldType,
+            keyboardType andKeyboardType: UIKeyboardType,
+            contactMethodType andContactMethodType: Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1,
+            imageSource andImageSource: String,
+            name andName: String)
+        {
+            self.init(placeholder: withPlaceholder, placeholderColor: andPlaceholderColor, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", contactMethodType: andContactMethodType, imageSource: andImageSource, name: andName)
         }
     }
     
@@ -405,10 +443,18 @@ extension FormBuilder {
         var fieldType: ProfileFieldType
         var photoFieldHandler: FormBuilderPhotoFieldHandler?
         
-        required init(placeholder withPlaceholder: String = "", type andType: FormFieldType, keyboardType andKeyboardType: UIKeyboardType = .Default, fieldType andFieldType: ProfileFieldType, photoFieldHandler andPhotoFieldHandler: FormBuilderPhotoFieldHandler? = nil, imageSource andImageSource: String? = nil) {
+        required init(
+            placeholder withPlaceholder: String = "",
+            type andType: FormFieldType,
+            keyboardType andKeyboardType: UIKeyboardType = .Default,
+            fieldType andFieldType: ProfileFieldType,
+            photoFieldHandler andPhotoFieldHandler: FormBuilderPhotoFieldHandler? = nil,
+            imageSource andImageSource: String? = nil,
+            name andName: String? = nil)
+        {
             fieldType = andFieldType
             photoFieldHandler = andPhotoFieldHandler
-            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", imageSource: andImageSource)
+            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", imageSource: andImageSource, name: andName)
         }
     }
 }
