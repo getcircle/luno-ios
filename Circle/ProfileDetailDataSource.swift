@@ -104,6 +104,21 @@ class ProfileDetailDataSource: CardDataSource {
         emailContactMethod.label = "Email"
         contactMethods.append(try! emailContactMethod.build())
         contactMethods.appendContentsOf(profile.contactMethods)
+        
+        var profileHasPhoneContactMethod = false
+        for contactMethod in contactMethods {
+            if contactMethod.contactMethodType == .Phone || contactMethod.contactMethodType == .CellPhone {
+                profileHasPhoneContactMethod = true
+            }
+        }
+        
+        if !profileHasPhoneContactMethod {
+            let phoneContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
+            phoneContactMethod.contactMethodType = .Phone
+            phoneContactMethod.label = "Phone"
+            contactMethods.append(try! phoneContactMethod.build())
+        }
+        
         card.addContent(content: contactMethods)
         appendCard(card)
         return card
