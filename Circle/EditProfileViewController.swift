@@ -64,6 +64,12 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         rootContentViewHeightConstraint.constant = contentHeight
         rootContentView.setNeedsUpdateConstraints()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        formBuilder.activeField?.resignFirstResponder()
+    }
 
     // MARK - Configuration
     
