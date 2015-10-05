@@ -30,29 +30,10 @@ class ProfilesViewController: OverviewViewController {
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-            trackViewProfile(profile)
             showProfileDetail(profile)
         }
         else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
             showTeamDetail(team)
         }
     }
-    
-    // MARK: - Tracking
-    
-    private func trackViewProfile(profile: Services.Profile.Containers.ProfileV1) {
-        var properties = [
-            TrackerProperty.withDestinationId("profileId").withString(profile.id),
-            TrackerProperty.withKey(.Source).withSource(.Overview),
-            TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
-        
-        if let title = self.title {
-            properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
-        }
-        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-    }
-
 }

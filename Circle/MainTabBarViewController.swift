@@ -112,7 +112,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - UITabBarControllerDelegate
 
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        trackTabSelected(viewController)
         
         // Refresh data for selected view controllers
         if let sourceViewController = getActiveViewController(viewController) {
@@ -121,44 +120,6 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             }
         }
         return true
-    }
-
-    // MARK: - Tracking
-
-    private func trackTabSelected(viewController: UIViewController) {
-        let sourceViewController = getActiveViewController(selectedViewController)
-        let destinationViewController = getActiveViewController(viewController)
-
-        if sourceViewController == nil || destinationViewController == nil {
-            assert(false, "Invalid source \(sourceViewController) or destination \(destinationViewController) view controller.")
-        }
-
-        var source: Tracker.Source
-        if sourceViewController! is SearchViewController {
-            source = .Search
-        } else if sourceViewController! is CurrentUserProfileDetailViewController {
-            source = .UserProfile
-        } else {
-            assert(false, "Unhandled TabBar Source View Controller")
-            source = .Unknown
-        }
-
-        var destination: Tracker.Source
-        if destinationViewController! is SearchViewController {
-            destination = .Search
-        } else if destinationViewController! is CurrentUserProfileDetailViewController {
-            destination = .UserProfile
-        } else {
-            assert(false, "Unhandled TabBar Destination View Controller")
-            destination = .Unknown
-        }
-
-        let properties = [
-            TrackerProperty.withKey(.Source).withSource(source),
-            TrackerProperty.withKey(.Destination).withSource(destination),
-            TrackerProperty.withKey(.ActiveViewController).withString(sourceViewController!.description)
-        ]
-        Tracker.sharedInstance.track(.TabSelected, properties: properties)
     }
 
     private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {

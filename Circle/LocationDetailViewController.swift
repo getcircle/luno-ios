@@ -107,7 +107,7 @@ class LocationDetailViewController:
                     officeDetailDataSource.location.id,
                     setupOnlySearch: true
                 )
-                trackCardHeaderTapped(card, overviewType: .Profiles)
+
                 navigationController?.pushViewController(viewController, animated: true)
                 
             default:
@@ -117,21 +117,6 @@ class LocationDetailViewController:
         default:
             break
         }
-    }
-
-    // MARK: - Tracking
-    
-    func trackCardHeaderTapped(card: Card, overviewType: TrackerProperty.OverviewType) {
-        let properties = [
-            TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
-            TrackerProperty.withKey(.Source).withSource(.Detail),
-            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Location),
-            TrackerProperty.withKey(.Destination).withSource(.Overview),
-            TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(overviewType),
-            TrackerProperty.withKeyString("card_title").withString(card.title),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
-        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
     // Image Upload

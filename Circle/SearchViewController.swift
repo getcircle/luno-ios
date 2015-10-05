@@ -360,36 +360,17 @@ class SearchViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
-        var properties = [
-            TrackerProperty.withKeyString("card_type").withString(selectedCard.type.rawValue),
-            TrackerProperty.withKeyString("card_title").withString(selectedCard.title),
-            TrackerProperty.withKey(.Source).withSource(.Search),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
-        
         switch selectedCard.type {
         case .SearchResult:
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
-                properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showProfileDetail(profile)
                 CircleCache.recordProfileSearchResult(profile)
             }
             else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
-                properties.append(TrackerProperty.withDestinationId("team_id").withString(team.id))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showTeamDetail(team)
                 CircleCache.recordTeamSearchResult(team)
             }
             else if let location = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Location))
-                properties.append(TrackerProperty.withDestinationId("office_id").withString(location.id))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showLocationDetail(location)
                 CircleCache.recordLocationSearchResult(location)
             }
@@ -406,7 +387,6 @@ class SearchViewController: UIViewController,
                     collectionView.reloadData()
                     
                     searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
                     profilesDataSource.loadData({ (error) -> Void in
                     })
                     
@@ -452,20 +432,7 @@ class SearchViewController: UIViewController,
             
         }
     }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let properties = [
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.Source).withSource(.Search)
-        ]
-        Tracker.sharedInstance.trackMajorScrollEvents(
-            .ViewScrolled,
-            scrollView: scrollView,
-            direction: .Vertical,
-            properties: properties
-        )
-    }
-        
+
     // MARK: - Orientation change
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -547,20 +514,7 @@ class SearchViewController: UIViewController,
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - Tracking
-    
-    private func trackTagSelected(interest: Services.Profile.Containers.TagV1) {
-        let properties = [
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.Source).withSource(.Search),
-            TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Tag),
-            TrackerProperty.withDestinationId("interest_id").withString(interest.id)
-        ]
-        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-    }
-    
+
     // MARK: - Search Actions
     
     private func handleSearchAction(searchAction: SearchAction) {
