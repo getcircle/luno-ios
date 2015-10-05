@@ -85,11 +85,11 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 title: "Photo",
                 items: [
                     FormBuilder.ProfileSectionItem(
-                        placeholder: "Update Photo",
                         type: .Photo,
                         fieldType: .Photo,
                         photoFieldHandler: self,
-                        imageSource: "edit_profile_camera"
+                        imageSource: "edit_profile_camera",
+                        name: "Update Photo"
                     )
                 ]),
             FormBuilder.Section(
@@ -104,11 +104,13 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 title: "Contact",
                 items: [
                     FormBuilder.ContactSectionItem(
-                        placeholder: "Phone",
+                        placeholder: "Add Number",
+                        placeholderColor: UIColor.appMissingFieldValueColor(),
                         type: .TextField,
                         keyboardType: .PhonePad,
                         contactMethodType: .CellPhone,
-                        imageSource: "detail_phone"
+                        imageSource: "detail_phone",
+                        name: "Phone"
                     ),
                 ]),
         ]
@@ -246,7 +248,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             for item in section.items {
                 if let value = item.value {
                     if let contactItem = item as? FormBuilder.ContactSectionItem {
-                        if value.trimWhitespace() != "" && (contactItem.inputEnabled == nil || contactItem.inputEnabled == true) {
+                        if (contactItem.inputEnabled == nil || contactItem.inputEnabled == true) {
                             var contactMethod: Services.Profile.Containers.ContactMethodV1.Builder
                             if let existingContactMethod = existingContactMethodsByType[contactItem.contactMethodType] {
                                 contactMethod = try! existingContactMethod.toBuilder()
@@ -255,7 +257,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                                 contactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
                             }
 
-                            contactMethod.label = contactItem.placeholder
+                            if let contactItemName = contactItem.name {
+                                contactMethod.label = contactItemName
+                            }
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.contactMethodType = contactItem.contactMethodType
                             contactMethods.append(try! contactMethod.build())

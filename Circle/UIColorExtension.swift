@@ -223,4 +223,8 @@ extension UIColor {
     static func appIconColor() -> UIColor {
         return UIColor.blackColor().colorWithAlphaComponent(0.5)
     }
+
+    static func appMissingFieldValueColor() -> UIColor {
+        return UIColor(red: 232, green: 39, blue: 55).colorWithAlphaComponent(0.8)
+    }
 }
