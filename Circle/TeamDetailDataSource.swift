@@ -26,6 +26,10 @@ class TeamDetailDataSource: CardDataSource {
         return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
     }
     
+    override func getTitle() -> String {
+        return team.getName()
+    }
+    
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {

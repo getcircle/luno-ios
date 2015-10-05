@@ -46,13 +46,14 @@ private let GoogleServerClientID = "1077014421904-1a697ks3qvtt6975qfqhmed8529en8
 class AuthenticationViewController: UIViewController {
 
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var workEmailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var googleSignInButton: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signInButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var workEmailTextField: UITextField!
 
     private var activityIndicator: CircleActivityIndicatorView?
-    private var googleSignInButtonText: String?
+    private var signInButtonText: String?
     private var passwordFieldBottomBorder: UIView!
     private var authorizationVC = AuthorizationViewController()
     private var isNewAccount = false
@@ -68,7 +69,7 @@ class AuthenticationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.makeTransparent()
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -81,7 +82,7 @@ class AuthenticationViewController: UIViewController {
 
     private func configureView() {
         view.backgroundColor = UIColor.appUIBackgroundColor()
-        navigationItem.title = AppStrings.SignInCTA
+        titleLabel.text = AppStrings.SignInCTA
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapView:")
         view.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -93,14 +94,13 @@ class AuthenticationViewController: UIViewController {
         )
         workEmailTextField.tintColor = UIColor.whiteColor()
         workEmailTextField.addBottomBorder(color: UIColor.whiteColor())
-        googleSignInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
-        googleSignInButton.addRoundCorners(radius: 2.0)
-        googleSignInButton.backgroundColor = UIColor.appTintColor()
-        googleSignInButton.setCustomAttributedTitle(
+        signInButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
+        signInButton.addRoundCorners(radius: 2.0)
+        signInButton.backgroundColor = UIColor.appTintColor()
+        signInButton.setCustomAttributedTitle(
             AppStrings.SignInCTA.localizedUppercaseString(),
             forState: .Normal
         )
-        googleSignInButton.addTarget(self, action: "googlePlusSignInButtonTapped:", forControlEvents: .TouchUpInside)
     }
     
     private func configurePasswordField() {
@@ -243,23 +243,23 @@ class AuthenticationViewController: UIViewController {
     // MARK: - Loading State
     
     private func showLoadingState() {
-        googleSignInButtonText = googleSignInButton.titleLabel?.text
-        googleSignInButton.setCustomAttributedTitle("", forState: .Normal)
+        signInButtonText = signInButton.titleLabel?.text
+        signInButton.setCustomAttributedTitle("", forState: .Normal)
         if activityIndicator == nil {
-            activityIndicator = googleSignInButton.addActivityIndicator(UIColor.whiteColor(), start: false)
+            activityIndicator = signInButton.addActivityIndicator(UIColor.whiteColor(), start: false)
         }
         activityIndicator?.startAnimating()
-        googleSignInButton.enabled = false
+        signInButton.enabled = false
         workEmailTextField.enabled = false
     }
     
     private func hideLoadingState() {
         activityIndicator?.stopAnimating()
-        if googleSignInButtonText != nil {
-            googleSignInButton.setCustomAttributedTitle(googleSignInButtonText!, forState: .Normal)
+        if signInButtonText != nil {
+            signInButton.setCustomAttributedTitle(signInButtonText!, forState: .Normal)
         }
-        googleSignInButton.backgroundColor = UIColor.appTintColor()
-        googleSignInButton.enabled = true
+        signInButton.backgroundColor = UIColor.appTintColor()
+        signInButton.enabled = true
         workEmailTextField.enabled = true
     }
     
@@ -278,7 +278,7 @@ class AuthenticationViewController: UIViewController {
             if error != nil {
                 if !silent {
                     self.hideLoadingState()
-                    self.googleSignInButton.addShakeAnimation()
+                    self.signInButton.addShakeAnimation()
                 }
                 return
             }
@@ -392,24 +392,17 @@ class AuthenticationViewController: UIViewController {
         appDelegate.window!.rootViewController!.presentViewController(navController, animated: false, completion: nil)
     }
 
+    private static func presentViewControllerWithoutNavigationController(vc: UIViewController) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.window!.rootViewController!.presentViewController(vc, animated: false, completion: nil)
+    }
+
     static func presentSplashViewController() {
         // Check if user is logged in. If not, present authentication view controller
         let splashViewController = SplashViewController(nibName: "SplashViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(splashViewController)
     }
-    
-    static func presentAuthViewController() {
-        // Check if user is logged in. If not, present authentication view controller
-        let authenticationViewController = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
-        self.presentViewControllerWithNavigationController(authenticationViewController)
-    }
 
-    static func presentWelcomeView(goToPhoneVerification: Bool) {
-        let welcomeVC = WelcomeViewController(nibName: "WelcomeViewController", bundle: nil)
-        welcomeVC.goToPhoneVerification = goToPhoneVerification
-        self.presentViewControllerWithNavigationController(welcomeVC)
-    }
-    
     static func presentHomelessViewController() {
         let homelessVC = HomelessViewController(nibName: "HomelessViewController", bundle: nil)
         self.presentViewControllerWithNavigationController(homelessVC)
@@ -552,19 +545,19 @@ class AuthenticationViewController: UIViewController {
 
     // MARK: - IBActions
     
-    @IBAction func googlePlusSignInButtonTapped(sender: AnyObject!) {
+    @IBAction func signInButtonTapped(sender: AnyObject!) {
         // Check if there is an account for this email address
         // If yes, check if its google sign in or regular sign in
         // If google sign in, redirect to social connect
         // If password sign in, show password
         // If user does not have an account, show password and change title to create account
         if workEmailTextField.text?.trimWhitespace() == "" {
-            googleSignInButton.addShakeAnimation()
+            signInButton.addShakeAnimation()
             return
         }
         
         if passwordTextField.alpha == 1.0 && passwordTextField.text?.trimWhitespace() == "" {
-            googleSignInButton.addShakeAnimation()
+            signInButton.addShakeAnimation()
             return
         }
 
@@ -595,7 +588,7 @@ class AuthenticationViewController: UIViewController {
             }
             
             if error != nil {
-                self.googleSignInButton.addShakeAnimation()
+                self.signInButton.addShakeAnimation()
             }
             else if let authorizationURL = authorizationURL, providerName = providerName where authorizationURL.trimWhitespace() != "" {
                 self.openExternalAuthentication(provider, authorizationURL: authorizationURL, providerName: providerName)
@@ -613,7 +606,7 @@ class AuthenticationViewController: UIViewController {
             self.hideLoadingState()
             if error != nil {
                 print("Error \(error)")
-                self.googleSignInButton.addShakeAnimation()
+                self.signInButton.addShakeAnimation()
                 let alertController = UIAlertController(title: "Error signing up", message: "There was an error in creating your account. Please try again.", preferredStyle: .Alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                 self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
@@ -642,18 +635,21 @@ class AuthenticationViewController: UIViewController {
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
             socialNavController.modalPresentationStyle = .FormSheet
         }
-        navigationController?.presentViewController(socialNavController, animated: true, completion:nil)
+        
+        presentViewController(socialNavController, animated: true, completion: {() -> Void in
+            UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        })
     }
     
     private func showPasswordField(newAccount: Bool) {
         signInButtonTopConstraint.constant = 80.0
-        googleSignInButton.setNeedsUpdateConstraints()
+        signInButton.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(0.3,
             animations: { () -> Void in
                 self.passwordTextField.alpha = 1.0
                 self.passwordFieldBottomBorder.alpha = 1.0
-                self.googleSignInButton.layoutIfNeeded()
+                self.signInButton.layoutIfNeeded()
             },
             completion: { (completed) -> Void in
                 self.passwordTextField.becomeFirstResponder()
@@ -661,8 +657,8 @@ class AuthenticationViewController: UIViewController {
         )
         
         if newAccount {
-            navigationItem.title = AppStrings.SignUpCTA
-            googleSignInButton.setCustomAttributedTitle(
+            titleLabel.text = AppStrings.SignUpCTA
+            signInButton.setCustomAttributedTitle(
                 AppStrings.SignUpCTA.localizedUppercaseString(),
                 forState: .Normal
             )
@@ -676,7 +672,7 @@ class AuthenticationViewController: UIViewController {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == passwordTextField {
-            googlePlusSignInButtonTapped(textField)
+            signInButtonTapped(textField)
         }
 
         return true

@@ -27,6 +27,11 @@ class HomelessViewController: UIViewController {
         updateUIAsPerRequestStatus()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+    
     // MARK: - Configuration
     
     private func configureView() {

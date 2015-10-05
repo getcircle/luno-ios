@@ -34,7 +34,7 @@
                             </variation>
                         </textField>
                         <button contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4l-QU-6Cu">
-                            <rect key="frame" x="536" y="0.0" width="44" height="44"/>
+                            <rect key="frame" x="556" y="0.0" width="44" height="44"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <color key="tintColor" red="0.88235294119999996" green="0.15686274510000001" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Cancel">
@@ -53,7 +53,7 @@
                         <constraint firstAttribute="trailing" secondItem="gI9-Cf-jLM" secondAttribute="trailing" id="dXR-xJ-pzV"/>
                         <constraint firstAttribute="centerY" secondItem="k4l-QU-6Cu" secondAttribute="centerY" id="gqt-4g-6nS"/>
                         <constraint firstItem="k4l-QU-6Cu" firstAttribute="height" secondItem="Jif-sc-Wzd" secondAttribute="height" id="qTG-Ok-XEl"/>
-                        <constraint firstAttribute="trailing" secondItem="k4l-QU-6Cu" secondAttribute="trailing" constant="20" id="zlE-Ym-FIS"/>
+                        <constraint firstAttribute="trailing" secondItem="k4l-QU-6Cu" secondAttribute="trailing" id="zlE-Ym-FIS"/>
                     </constraints>
                 </view>
             </subviews>

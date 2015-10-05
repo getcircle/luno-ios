@@ -26,6 +26,10 @@ class LocationDetailDataSource: CardDataSource {
         return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
     }
     
+    override func getTitle() -> String {
+        return location.officeName()
+    }
+    
     // MARK: - Load Data
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {

@@ -192,9 +192,7 @@ SKStoreProductViewControllerDelegate {
                     ],
                     completionBlock: { (loaded, error) -> Void in
                         if loaded && error == nil {
-                            weakSelf?.presentViewController(productViewController, animated: true, completion: {() -> Void in
-                                UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
-                            })
+                            weakSelf?.presentViewController(productViewController, animated: true, completion: nil)
                         }
                     })
                 })

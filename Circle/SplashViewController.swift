@@ -25,6 +25,7 @@ class SplashViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.makeTransparent()
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -69,6 +70,6 @@ class SplashViewController: UIViewController {
     
     @IBAction func getStartedButtonTapped(sender: AnyObject) {
         let authenticationViewController = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
-        navigationController?.pushViewController(authenticationViewController, animated: true)
+        navigationController?.setViewControllers([authenticationViewController], animated: true)
     }
 }
