@@ -12,6 +12,12 @@ import ProtobufRegistry
 class EditProfileStatusViewController: TextInputViewController {
 
     var profile: Services.Profile.Containers.ProfileV1!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        textView.keyboardType = .Twitter
+    }
 
     override func assertRequiredData() {
         assert(profile != nil, "Profile should be set for this view controller")

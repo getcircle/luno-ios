@@ -12,6 +12,12 @@ import ProtobufRegistry
 class EditTeamStatusViewController: TextInputViewController {
 
     var team: Services.Organization.Containers.TeamV1!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        textView.keyboardType = .Twitter
+    }
 
     override func assertRequiredData() {
         assert(team != nil, "Team should be set for this view controller")
