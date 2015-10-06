@@ -180,10 +180,11 @@ class TeamDetailViewController:
                 viewController.title = "People in " + teamDetailDataSource.team.getName()
                 viewController.pageType = .TeamMembers
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 navigationController?.pushViewController(viewController, animated: true)
             
             case .Teams:
-                let viewController = ProfilesViewController()
+                let viewController = TeamsOverviewViewController()
                 viewController.dataSource.setInitialData(
                     content: card.allContent,
                     ofType: nil,
@@ -191,7 +192,8 @@ class TeamDetailViewController:
                 )
                 viewController.title = "Teams in " + teamDetailDataSource.team.getName()
                 viewController.pageType = .TeamSubTeams
-                (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                (viewController.dataSource as! TeamsOverviewDataSource).searchLocation = .Modal
+                (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
                 navigationController?.pushViewController(viewController, animated: true)
                 
             default:

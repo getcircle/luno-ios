@@ -12,6 +12,7 @@ import ProtobufRegistry
 class SearchQueryDataSource: CardDataSource {
     
     var isQuickAction: Bool = false
+    var searchCategory: TrackerProperty.SearchCategory?
 
     let queryTriggerTimer = 0.2
 
@@ -23,6 +24,7 @@ class SearchQueryDataSource: CardDataSource {
     private var searchCache = Dictionary<String, Array<AnyObject>>()
     private var completionHandler: ((error: NSError?) -> Void)?
     private var searchTriggerTimer: NSTimer?
+    private var searchStartTracked = false
     
     override class var cardSeparatorColor: UIColor {
         return UIColor.appSearchCardSeparatorViewColor()
@@ -48,11 +50,25 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
+        if string.characters.count < 2 {
+            searchStartTracked = false
+        }
+        
         if string == searchTerm && searchTerm.trimWhitespace() != "" {
             return
         }
         
         searchTerm = string.trimWhitespace()
+        if !searchStartTracked && searchTerm.characters.count >= 2 {
+            searchStartTracked = true
+            Tracker.sharedInstance.trackSearchStart(
+                query: searchTerm,
+                searchLocation: .Home,
+                category: searchCategory,
+                attribute: nil, value: nil
+            )
+        }
+        
         if let results = searchCache[searchTerm] {
             self.clearData()
             searchResults.appendContentsOf(results)

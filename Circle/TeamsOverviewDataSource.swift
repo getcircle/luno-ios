@@ -11,10 +11,13 @@ import ProtobufRegistry
 
 class TeamsOverviewDataSource: CardDataSource {
     
+    var searchLocation: TrackerProperty.SearchLocation!
+
     private var card: Card!
     internal var cardType: Card.CardType = .Profiles
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: String?
+    private var searchStartTracked = false
     private var teams = Array<Services.Organization.Containers.TeamV1>()
     
     override class var cardSeparatorInset: UIEdgeInsets {
@@ -108,6 +111,21 @@ class TeamsOverviewDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+
+        if query.characters.count < 2 {
+            searchStartTracked = false
+        }
+        else if query.characters.count >= 2 && !searchStartTracked {
+            searchStartTracked = true
+            Tracker.sharedInstance.trackSearchStart(
+                query: query,
+                searchLocation: searchLocation,
+                category: .Teams,
+                attribute: searchAttribute != nil ? .TeamId : nil,
+                value: searchAttributeValue
+            )
+        }
+
         Services.Search.Actions.search(
             query,
             category: .Teams,

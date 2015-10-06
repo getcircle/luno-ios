@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Mixpanel
+import ProtobufRegistry
 
 struct TrackerProperty {
     
@@ -34,6 +35,56 @@ struct TrackerProperty {
         // Editable forms
         case EditProfile = "Edit Profile"
         case EditTeam = "Edit Team"
+    }
+    
+    enum SearchLocation: String {
+        case Home = "Home"
+        // Modal should be used for search from list views. It is called "modal"
+        // to keep it consistent with the web.
+        case Modal = "Modal"
+    }
+
+    enum SearchResultSource: String {
+        case Explore = "Explore"
+        case Recents = "Recents"
+        case SmartAction = "Smart Action"
+        case Suggestion = "Suggestion"
+    }
+    
+    enum SearchResultType: String {
+        // Results
+        case Profile = "Profile"
+        case Team = "Team"
+        case Location = "Location"
+        
+        // Smart Actions
+        case EmailProfile = "Email Profile"
+        case LocationAddress = "Location Address"
+        
+        // Extended Results
+        case ReportsTo = "Direct Reports"
+        case TeamMembers = "Team Members"
+        case LocationMembers = "Location Members"
+        case TeamSubTeams = "Team Sub-Teams"
+    }
+    
+    // This is repeated from Protobuf values
+    // Ideally we would use the backend values but we expect
+    // these to be strings and they are integers right now.
+    enum SearchCategory: String {
+        // All caps to keep it consistent with the web
+        case Profiles = "PROFILES"
+        case Teams = "TEAMS"
+        case Locations = "LOCATIONS"
+    }
+    
+    // This is repeated from Protobuf values
+    // Ideally we would use the backend values but we expect
+    // these to be strings and they are integers right now.
+    enum SearchAttribute: String {
+        // All caps to keep it consistent with the web
+        case LocationId = "LOCATION_ID"
+        case TeamId = "TEAM_ID"
     }
 }
 
@@ -156,5 +207,47 @@ class Tracker {
         }
 
         track(.PageView, properties: properties)
+    }
+    
+    // Track Search Start
+    /*
+        Tracks the start of a search.
+    
+        Given the nature of real time search and auto-focus through specific gestures,
+        there are multiple ways to indicate search was started.
+        For e.g., a user can focus on search and immediately tap a recent search result,
+        which can be tracked as a person started on search but the Recents feature helped
+        take them to the result immediately. Same applies for Explore options as well.
+        
+        To simplify, we define search started when a user has typed at least two characters.
+        A flag is maintained to track whether this event was recorded and it is reset when
+        the character count reaches zero.
+    */
+    
+    func trackSearchStart(
+        query query: String,
+        searchLocation: TrackerProperty.SearchLocation,
+        category: TrackerProperty.SearchCategory?,
+        attribute: TrackerProperty.SearchAttribute?,
+        value: String?
+    ) {
+        var properties = [
+            "Search Query": query,
+            "Search Location": searchLocation.rawValue
+        ]
+
+        if let category = category {
+            properties["Search Category"] = category.rawValue
+        }
+        
+        if let attribute = attribute {
+            properties["Search Attribute"] = attribute.rawValue
+        }
+        
+        if let value = value {
+            properties["Search Attribute Value"] = value
+        }
+
+        track(.SearchStart, properties: properties)
     }
 }

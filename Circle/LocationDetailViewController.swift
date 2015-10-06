@@ -113,6 +113,7 @@ class LocationDetailViewController:
                     nextRequest: officeDetailDataSource.nextProfilesRequest
                 )
                 viewController.title = "People @ " + officeDetailDataSource.location.name
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(
                     officeDetailDataSource.location.id,
                     setupOnlySearch: true
