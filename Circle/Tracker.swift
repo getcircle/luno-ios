@@ -23,6 +23,7 @@ struct TrackerProperty {
         case LocationDetail = "Location Detail"
         case ProfileDetail = "Profile Detail"
         case TeamDetail = "Team Detail"
+        case LocationAddressMap = "Location Address Map"
         
         // Lists
         case DirectReports = "Direct Reports"
