@@ -44,6 +44,7 @@ class SearchViewController: UIViewController,
         
         // Do any additional setup after loading the view.
         firstLoad = true
+        Tracker.sharedInstance.trackPageView(pageType: .Home)
         configureView()
         configureLaunchScreenView()
         configureSearchHeaderView()
@@ -458,6 +459,7 @@ class SearchViewController: UIViewController,
     // MARK: - Notification Handlers
     
     func userLoggedIn(notification: NSNotification!) {
+        Tracker.sharedInstance.trackPageView(pageType: .Home)
         hideAndRemoveLaunchView()
         dataSource.resetCards()
         collectionView.reloadData()
@@ -541,6 +543,7 @@ class SearchViewController: UIViewController,
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
                 viewController.title = profile.firstName + "'s Direct Reports"
+                viewController.pageType = .DirectReports
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
@@ -549,6 +552,7 @@ class SearchViewController: UIViewController,
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
                 viewController.title = searchAction.getTitle()
+                viewController.pageType = .TeamMembers
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
@@ -572,6 +576,7 @@ class SearchViewController: UIViewController,
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
                 viewController.title = searchAction.getTitle()
+                viewController.pageType = .LocationMembers
                 navigationController?.pushViewController(viewController, animated: true)
             }
         

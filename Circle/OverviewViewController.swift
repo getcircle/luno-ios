@@ -33,6 +33,8 @@ class OverviewViewController:
     // a certain number, a search/filter view is added.
     var addSearchFilterView = true
     
+    var pageType: TrackerProperty.PageType?
+
     init() {
         super.init(nibName: nil, bundle: nil)
         customInit()

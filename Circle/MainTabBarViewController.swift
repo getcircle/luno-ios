@@ -114,15 +114,20 @@ class MainTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         
         // Refresh data for selected view controllers
-        if let sourceViewController = getActiveViewController(viewController) {
-            if sourceViewController is CurrentUserProfileDetailViewController {
-                (sourceViewController as! CurrentUserProfileDetailViewController).loadData()
+        if let actualViewController = getActualViewController(viewController) {
+            if actualViewController is CurrentUserProfileDetailViewController {
+                (actualViewController as! CurrentUserProfileDetailViewController).loadData()
+            }
+            else if actualViewController is SearchViewController {
+                // See explanation of why this is here and only for SearchViewController
+                // in the Tracker class
+                Tracker.sharedInstance.trackPageView(pageType: .Home)
             }
         }
         return true
     }
 
-    private func getActiveViewController(viewController: UIViewController?) -> UIViewController? {
+    private func getActualViewController(viewController: UIViewController?) -> UIViewController? {
         var activeViewController: UIViewController?
         if let navigationController = viewController as? UINavigationController {
             activeViewController = navigationController.viewControllers.first

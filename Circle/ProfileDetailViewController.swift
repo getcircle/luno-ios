@@ -35,6 +35,8 @@ class ProfileDetailViewController:
                 CircleCache.recordProfileVisit(profile)
             }
         }
+        
+        Tracker.sharedInstance.trackPageView(pageType: .ProfileDetail, pageId: profile.id)
     }
         
     // MARK: - Configuration
@@ -170,26 +172,30 @@ class ProfileDetailViewController:
         var content: Array<Services.Profile.Containers.ProfileV1>?
         var title: String?
         let profileDetailDataSource = dataSource as! ProfileDetailDataSource
+        var pageType: TrackerProperty.PageType?
         
         switch card.subType {
         case .Teams:
             if let peers = profileDetailDataSource.peers {
                 content = peers
                 title = profileDetailDataSource.profile.firstName + "'s Peers"
+                pageType = .Peers
             }
             
         case .ManagedTeams:
             if let directReports = profileDetailDataSource.directReports {
                 content = directReports
                 title = profileDetailDataSource.profile.firstName + "'s Direct Reports"
+                pageType = .DirectReports
             }
 
         default:
             break
         }
         
-        if let content = content, title = title {
+        if let content = content, title = title, pageType = pageType {
             let viewController = ProfilesViewController()
+            viewController.pageType = pageType
             viewController.dataSource.setInitialData(
                 content: content,
                 ofType: nil,

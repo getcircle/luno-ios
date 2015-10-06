@@ -25,6 +25,15 @@ class LocationDetailViewController:
         delegate = CardCollectionViewDelegate()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        Tracker.sharedInstance.trackPageView(
+            pageType: .LocationDetail,
+            pageId: (dataSource as! LocationDetailDataSource).location.id
+        )
+    }
+    
     // MARK: - Configuration
 
     override func configureCollectionView() {
@@ -97,6 +106,7 @@ class LocationDetailViewController:
             switch card.subType {
             case .Members:
                 let viewController = ProfilesViewController()
+                viewController.pageType = .LocationMembers
                 viewController.dataSource.setInitialData(
                     content: card.allContent,
                     ofType: nil,

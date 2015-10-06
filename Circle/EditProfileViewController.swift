@@ -33,6 +33,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Tracker.sharedInstance.trackPageView(pageType: .EditProfile, pageId: profile.id)
         configureView()
         configureScrollView()
         configureContentView()

@@ -22,6 +22,17 @@ class ProfilesViewController: OverviewViewController {
     
     // MARK: - Initialization
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        guard let pageType = pageType else {
+            print("Page Type needs to be set for ProfilesViewController")
+            return
+        }
+
+        Tracker.sharedInstance.trackPageView(pageType: pageType)
+    }
+    
     override func initializeDataSource() -> CardDataSource {
         return ProfilesDataSource()
     }

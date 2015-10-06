@@ -39,6 +39,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
 
         // Do any additional setup after loading the view.
+        Tracker.sharedInstance.trackPageView(pageType: .EditTeam, pageId: team.id)
         configureView()
         configureTeamNameFieldLabel()
         configureTeamNameField()

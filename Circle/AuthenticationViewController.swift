@@ -294,6 +294,11 @@ class AuthenticationViewController: UIViewController {
                     return
                 }
                 
+                // If we reach here, 
+                // - the user has correctly logged in and 
+                // - has a profile tied to her
+                // - has fetched all other related objects like organization
+                Tracker.sharedInstance.initSession()
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthenticationNotifications.onLoginNotification,
                     object: nil
@@ -356,6 +361,9 @@ class AuthenticationViewController: UIViewController {
             catch {
                 print("Error: \(error)")
             }
+            
+            // Clear locally stored tracker properties
+            Tracker.sharedInstance.clearSession()
             
             // Remove local cached date
             LoggedInUserHolder.profile = nil

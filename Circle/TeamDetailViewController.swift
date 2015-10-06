@@ -25,6 +25,15 @@ class TeamDetailViewController:
         delegate = CardCollectionViewDelegate()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Tracker.sharedInstance.trackPageView(
+            pageType: .TeamDetail, 
+            pageId: (dataSource as! TeamDetailDataSource).team.id
+        )
+    }
+    
     // MARK: - Configuration
     
     override func configureCollectionView() {
@@ -169,6 +178,7 @@ class TeamDetailViewController:
                     nextRequest: teamDetailDataSource.profilesNextRequest
                 )
                 viewController.title = "People in " + teamDetailDataSource.team.getName()
+                viewController.pageType = .TeamMembers
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
                 navigationController?.pushViewController(viewController, animated: true)
             
@@ -180,6 +190,7 @@ class TeamDetailViewController:
                     nextRequest: nil
                 )
                 viewController.title = "Teams in " + teamDetailDataSource.team.getName()
+                viewController.pageType = .TeamSubTeams
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
                 navigationController?.pushViewController(viewController, animated: true)
                 
