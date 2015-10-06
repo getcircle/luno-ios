@@ -21,7 +21,7 @@ extension UIFont {
     }
     
     static func appSocialCTATitleFont() -> UIFont {
-        return regularFont(16.0)
+        return regularFont(12.0)
     }
     
     static func appAttributeTitleLabelFont() -> UIFont {
