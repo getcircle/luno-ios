@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomelessViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomelessViewController" customModule="luno" customModuleProvider="target">
             <connections>
                 <outlet property="confirmationLabel" destination="HMw-Sd-WHT" id="LOj-7s-hKV"/>
                 <outlet property="infoLabel" destination="8yw-dr-h8B" id="DRl-0f-DVx"/>
@@ -21,12 +28,14 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="circle is currently in private beta! You can request access below or try logging into a different account." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yw-dr-h8B">
                     <rect key="frame" x="10" y="277" width="580" height="47"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="hOV-K7-phg">
                     <rect key="frame" x="255" y="127" width="90" height="90"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="2J2-ja-4e7"/>
                         <constraint firstAttribute="width" secondItem="hOV-K7-phg" secondAttribute="height" multiplier="1:1" id="hyG-f3-N4N"/>
@@ -34,6 +43,7 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbS-Zk-t9P">
                     <rect key="frame" x="10" y="470" width="580" height="50"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.0" green="0.50196078430000002" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="sh1-no-Q0U"/>
@@ -48,6 +58,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zt3-hY-rd0">
                     <rect key="frame" x="10" y="530" width="580" height="50"/>
+                    <animations/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="nw7-rh-rbN"/>
@@ -62,11 +73,13 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! We will notify you when your account is ready to access. Thanks!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMw-Sd-WHT" userLabel="ConfirmationLabel">
                     <rect key="frame" x="15" y="481" width="570" height="24"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.18431372549019609" green="0.21568627450980393" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="8yw-dr-h8B" firstAttribute="top" secondItem="hOV-K7-phg" secondAttribute="bottom" constant="60" id="0M4-Ex-7US"/>
@@ -97,6 +110,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Icon" width="90" height="90"/>
+        <image name="Icon" width="150" height="150"/>
     </resources>
 </document>
