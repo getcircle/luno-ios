@@ -42,6 +42,7 @@ class WelcomeViewController: UIViewController {
     }
     
     private func configureGetStartedButton() {
+        getStartedButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
         getStartedButton.setCustomAttributedTitle(
             AppStrings.GenericGetStartedButtonTitle.localizedUppercaseString(),
             forState: .Normal, 
@@ -50,7 +51,6 @@ class WelcomeViewController: UIViewController {
 
         getStartedButton.addRoundCorners(radius: 2.0)
         getStartedButton.backgroundColor = UIColor.whiteColor()
-        getStartedButton.titleLabel!.font = UIFont.appSocialCTATitleFont()
     }
     
     // MARK: - IBActions
