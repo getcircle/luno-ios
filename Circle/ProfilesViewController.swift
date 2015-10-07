@@ -41,9 +41,31 @@ class ProfilesViewController: OverviewViewController {
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
+            Tracker.sharedInstance.trackSearchResultTap(
+                query: dataSource.searchTerm,
+                searchSource: dataSource.getSearchTrackingSource(),
+                searchLocation: .Modal,
+                searchResultType: .Profile,
+                searchResultIndex: indexPath.row + 1,
+                searchResultId: profile.id,
+                category: dataSource.getSearchTrackingCategory(),
+                attribute: (dataSource as! ProfilesDataSource).searchTrackerAttribute,
+                value: (dataSource as! ProfilesDataSource).searchAttributeValue
+            )
             showProfileDetail(profile)
         }
         else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+            Tracker.sharedInstance.trackSearchResultTap(
+                query: dataSource.searchTerm,
+                searchSource: dataSource.getSearchTrackingSource(),
+                searchLocation: .Modal,
+                searchResultType: .Team,
+                searchResultIndex: indexPath.row + 1,
+                searchResultId: team.id,
+                category: dataSource.getSearchTrackingCategory(),
+                attribute: (dataSource as! ProfilesDataSource).searchTrackerAttribute,
+                value: (dataSource as! ProfilesDataSource).searchAttributeValue
+            )
             showTeamDetail(team)
         }
     }

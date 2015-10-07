@@ -123,7 +123,7 @@ class ProfilesDataSource: CardDataSource {
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
         }
-        
+
         appendCard(card)
         card.addContent(content: data)
         if data.count > 0 {

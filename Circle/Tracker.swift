@@ -251,4 +251,50 @@ class Tracker {
 
         track(.SearchStart, properties: properties)
     }
+    
+    func trackSearchResultTap(
+        query query: String?,
+        searchSource: TrackerProperty.SearchResultSource,
+        searchLocation: TrackerProperty.SearchLocation,
+        searchResultType: TrackerProperty.SearchResultType,
+        searchResultIndex: Int?,
+        searchResultId: String?,
+        category: TrackerProperty.SearchCategory?,
+        attribute: TrackerProperty.SearchAttribute?,
+        value: String?
+    ) {
+        var properties = [
+            "Search Source": searchSource.rawValue,
+            "Search Location": searchLocation.rawValue,
+            "Search Result Type": searchResultType.rawValue,
+        ] as [String: AnyObject]
+        
+        if let query = query where query.trimWhitespace() != "" {
+            properties["Search Query"] = query
+        }
+        
+        if let searchResultIndex = searchResultIndex {
+            properties["Search Result Index"] = searchResultIndex
+        }
+        
+        if let searchResultId = searchResultId {
+            properties["Search Result ID"] = searchResultId
+        }
+        
+        if let category = category {
+            properties["Search Category"] = category.rawValue
+        }
+        
+        if let attribute = attribute {
+            properties["Search Attribute"] = attribute.rawValue
+        }
+        
+        if let value = value {
+            properties["Search Attribute Value"] = value
+        }
+        
+        track(.SearchResultTap, properties: properties)
+    }
+    
+    
 }

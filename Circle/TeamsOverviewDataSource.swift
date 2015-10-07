@@ -16,6 +16,7 @@ class TeamsOverviewDataSource: CardDataSource {
     private var card: Card!
     internal var cardType: Card.CardType = .Profiles
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
+    private(set) var searchTrackerAttribute: TrackerProperty.SearchAttribute?
     private(set) var searchAttributeValue: String?
     private var searchStartTracked = false
     private var teams = Array<Services.Organization.Containers.TeamV1>()
@@ -34,6 +35,7 @@ class TeamsOverviewDataSource: CardDataSource {
         }
         
         searchAttribute = .TeamId
+        searchTrackerAttribute = .TeamId
         searchAttributeValue = teamId
     }
 
@@ -121,7 +123,7 @@ class TeamsOverviewDataSource: CardDataSource {
                 query: query,
                 searchLocation: searchLocation,
                 category: .Teams,
-                attribute: searchAttribute != nil ? .TeamId : nil,
+                attribute: searchTrackerAttribute,
                 value: searchAttributeValue
             )
         }

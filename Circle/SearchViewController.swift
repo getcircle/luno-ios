@@ -361,19 +361,43 @@ class SearchViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
+        
         switch selectedCard.type {
         case .SearchResult:
+            var searchResultType: TrackerProperty.SearchResultType?
+            var searchResultId: String?
+
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
                 showProfileDetail(profile)
+                searchResultId = profile.id
+                searchResultType = .Profile
                 CircleCache.recordProfileSearchResult(profile)
             }
             else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
                 showTeamDetail(team)
+                searchResultId = team.id
+                searchResultType = .Team
                 CircleCache.recordTeamSearchResult(team)
             }
             else if let location = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
                 showLocationDetail(location)
+                searchResultId = location.id
+                searchResultType = .Location
                 CircleCache.recordLocationSearchResult(location)
+            }
+            
+            if let searchResultType = searchResultType {
+                Tracker.sharedInstance.trackSearchResultTap(
+                    query: dataSource.searchTerm,
+                    searchSource: dataSource.getSearchTrackingSource(),
+                    searchLocation: .Home,
+                    searchResultType: searchResultType,
+                    searchResultIndex: indexPath.row + 1,
+                    searchResultId: searchResultId,
+                    category: dataSource.getSearchTrackingCategory(),
+                    attribute: nil,
+                    value: nil
+                )
             }
             
         case .SearchSuggestion:

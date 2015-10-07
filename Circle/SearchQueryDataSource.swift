@@ -18,7 +18,6 @@ class SearchQueryDataSource: CardDataSource {
 
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
-    private var searchTerm = ""
     private var searchResults = [AnyObject]()
     private var searchSuggestions = [SearchSuggestion]()
     private var searchCache = Dictionary<String, Array<AnyObject>>()
@@ -49,16 +48,12 @@ class SearchQueryDataSource: CardDataSource {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
-        if string.characters.count < 2 {
+    override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+
+        if searchTerm.characters.count < 2 {
             searchStartTracked = false
         }
-        
-        if string == searchTerm && searchTerm.trimWhitespace() != "" {
-            return
-        }
-        
-        searchTerm = string.trimWhitespace()
+
         if !searchStartTracked && searchTerm.characters.count >= 2 {
             searchStartTracked = true
             Tracker.sharedInstance.trackSearchStart(
@@ -92,15 +87,26 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     override func clearFilter(completionHandler: () -> Void) {
-        super.clearFilter(completionHandler)
-
-        searchTerm = ""
-        
+        super.clearFilter(completionHandler)        
         clearData()
         searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
         populateDefaultSearchSuggestions()
         addCards()
         completionHandler()
+    }
+    
+    private func isRecentSearchResult() -> Bool {
+        // If category isn't set and no query exists, the only way to tap
+        // a result is by Recents
+        return searchTerm.trimWhitespace() == "" && searchCategory == nil
+    }
+    
+    override func getSearchTrackingSource() -> TrackerProperty.SearchResultSource {
+        if isRecentSearchResult() {
+            return .Recents
+        }
+        
+        return super.getSearchTrackingSource()
     }
     
     func search() {
