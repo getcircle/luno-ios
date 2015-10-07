@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+        </mutableArray>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerifyPhoneNumberViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VerifyPhoneNumberViewController" customModule="luno" customModuleProvider="target">
             <connections>
                 <outlet property="actionButton" destination="r9c-Xa-sse" id="QEo-gL-KHf"/>
                 <outlet property="actionButtonWidth" destination="RSP-Yo-WbU" id="Vw2-P7-oCk"/>
@@ -26,29 +36,32 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify your phone number for your team to contact you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv6-p4-A3b" userLabel="instructionsLabel">
                     <rect key="frame" x="20" y="100" width="560" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i3-sJ-bdt" userLabel="phoneNumberField" customClass="CircleTextField" customModule="circle" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0i3-sJ-bdt" userLabel="phoneNumberField" customClass="CircleTextField" customModule="luno" customModuleProvider="target">
                     <rect key="frame" x="208" y="182" width="185" height="41"/>
+                    <animations/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="41" id="AOx-x7-cFd"/>
                         <constraint firstAttribute="width" constant="185" id="s9m-Qo-nYq"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="30"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="30"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9c-Xa-sse" userLabel="actionButton">
                     <rect key="frame" x="208" y="253" width="185" height="50"/>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="185" id="RSP-Yo-WbU"/>
                         <constraint firstAttribute="height" constant="50" id="Uev-Al-2nx"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
                     <color key="tintColor" red="0.0" green="0.50196078430000002" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Send Code"/>
                     <userDefinedRuntimeAttributes>
@@ -57,24 +70,26 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-YS-f45" userLabel="verificationCodeField" customClass="CircleTextField" customModule="circle" customModuleProvider="target">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-YS-f45" userLabel="verificationCodeField" customClass="CircleTextField" customModule="luno" customModuleProvider="target">
                     <rect key="frame" x="300" y="182" width="0.0" height="41"/>
+                    <animations/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" id="t2X-5r-kmj"/>
                         <constraint firstAttribute="height" constant="41" id="x29-Gq-OHv"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="30"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="30"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                 </textField>
                 <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYt-EZ-9Yk" userLabel="resendCodeButton">
-                    <rect key="frame" x="408" y="187" width="43" height="32"/>
+                    <rect key="frame" x="408" y="187" width="44" height="32"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="tT5-jD-mUk"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="resend"/>
                     <userDefinedRuntimeAttributes>
@@ -89,6 +104,7 @@
                     </variation>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" red="0.1843137255" green="0.2156862745" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="gv6-p4-A3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="8Qa-PF-tQA"/>
@@ -115,7 +131,6 @@
             </constraints>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="GcT-1c-Kdo"/>
                     <exclude reference="Oil-hP-8Ya"/>
                     <exclude reference="uzo-sx-Obv"/>
@@ -123,6 +138,7 @@
                     <exclude reference="Aze-Wr-7Bt"/>
                     <exclude reference="WtH-yo-6H7"/>
                     <exclude reference="xY8-Ee-ltb"/>
+                    <exclude reference="tfZ-Vy-bQP"/>
                     <exclude reference="Zgj-eR-jvt"/>
                 </mask>
             </variation>

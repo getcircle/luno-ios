@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeTouchIDSplashViewController" customModule="circle" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeTouchIDSplashViewController" customModule="luno" customModuleProvider="target">
             <connections>
                 <outlet property="passcodeButton" destination="k2U-e3-nEz" id="x3b-lg-RL8"/>
                 <outlet property="passcodeButtonLabel" destination="WNg-w1-Jto" id="d6g-7v-KKs"/>
@@ -23,6 +32,7 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBW-df-eRN">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="aAO-ru-GzX"/>
                     </constraints>
@@ -32,6 +42,7 @@
                 </navigationBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7L-Aa-tCd" userLabel="TouchIDButton">
                     <rect key="frame" x="175" y="275" width="50" height="50"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="q7L-Aa-tCd" secondAttribute="height" id="WKd-3T-R5b"/>
                         <constraint firstAttribute="width" constant="50" id="ujf-fq-sd4"/>
@@ -45,6 +56,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k2U-e3-nEz" userLabel="PasscodeButton">
                     <rect key="frame" x="375" y="275" width="50" height="50"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="k2U-e3-nEz" secondAttribute="height" multiplier="1:1" id="Vt7-2X-lcj"/>
                         <constraint firstAttribute="width" constant="50" id="rXj-ix-2CB"/>
@@ -57,8 +69,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ho0-CV-YUf">
-                    <rect key="frame" x="203" y="517" width="195" height="33"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <rect key="frame" x="199.5" y="517" width="202" height="33"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                     <state key="normal" title="Sign in as a different account">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -67,24 +80,28 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touch ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgZ-5J-cBV" userLabel="TouchIDLabel">
-                    <rect key="frame" x="155" y="335" width="90" height="21"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <rect key="frame" x="155" y="335" width="90" height="20.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                     <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passcode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNg-w1-Jto" userLabel="PasscodeLabel">
-                    <rect key="frame" x="355" y="335" width="90" height="21"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                    <rect key="frame" x="355" y="335" width="90" height="20.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                     <color key="textColor" red="0.1505631506" green="0.1505586505" blue="0.15056121350000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an option to unlock circle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30Y-2v-Fpa">
-                    <rect key="frame" x="172" y="140" width="256" height="24"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                    <rect key="frame" x="168.5" y="140" width="263" height="23.5"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <animations/>
             <constraints>
                 <constraint firstItem="qgZ-5J-cBV" firstAttribute="top" secondItem="q7L-Aa-tCd" secondAttribute="bottom" constant="10" id="5us-83-qpC"/>
                 <constraint firstAttribute="centerX" secondItem="ho0-CV-YUf" secondAttribute="centerX" id="9T3-V9-ei5"/>

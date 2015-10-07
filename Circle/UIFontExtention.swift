@@ -17,47 +17,47 @@ extension UIFont {
     }
     
     static func appVerificationCodeFieldFont() -> UIFont! {
-        return UIFont(name: "Avenir-Light", size: 30.0)
+        return lightFont(30.0)
     }
     
     static func appSocialCTATitleFont() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 12.0)!
+        return regularFont(12.0)
     }
     
     static func appAttributeTitleLabelFont() -> UIFont {
-        return UIFont(name: "Avenir-Medium", size: 13.0)!
+        return semiboldFont(13.0)
     }
 
     static func appAttributeValueLabelFont() -> UIFont {
-        return UIFont(name: "Avenir-Book", size: 16.0)!
+        return regularFont(16.0)
     }
 
     static func appModalTitleLabelFont() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 14.0)!
+        return regularFont(14.0)
     }
     
     static func appOnboardingModalTitle() -> UIFont {
-        return UIFont(name: "Avenir-Medium", size: 20.0)!
+        return semiboldFont(20.0)
     }
 
     static func appOnboardingModalText() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 16.0)!
+        return regularFont(16.0)
     }
     
     static func appOnboardingModalCTA() -> UIFont {
-        return UIFont(name: "Avenir-Light", size: 20.0)!
+        return lightFont(20.0)
     }
 
     static func appTagTokenFont() -> UIFont {
-        return UIFont(name: "Avenir-Roman", size: 15.0)!
+        return regularFont(15.0)
     }
     
     static func appMessageFont() -> UIFont {
-        return UIFont(name: "Avenir-Light", size: 16.0)!
+        return lightFont(16.0)
     }
 
     static func appSecondaryActionCTAFont() -> UIFont {
-        return UIFont(name: "Avenir-Light", size: 18.0)!
+        return lightFont(18.0)
     }
     
     // MARK: - v2
