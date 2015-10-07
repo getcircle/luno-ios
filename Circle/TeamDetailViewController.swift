@@ -131,6 +131,7 @@ class TeamDetailViewController:
                     switch data.type {
                     case .TeamStatus:
                         let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true, withDelegate: self)
+                        editStatusViewController.addPostButton = true
                         editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
                         let editStatusViewNavController = UINavigationController(
                             rootViewController: editStatusViewController

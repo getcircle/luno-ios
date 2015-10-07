@@ -304,6 +304,18 @@ extension UIViewController {
         return saveButtonItem
     }
     
+    func addPostTextButtonWithAction(callbackMethod: Selector) -> UIBarButtonItem? {
+        let postButtonItem = UIBarButtonItem(
+            title: AppStrings.GenericPostButtonTitle,
+            style: .Plain,
+            target: self,
+            action: callbackMethod
+        )
+        
+        navigationItem.rightBarButtonItem = postButtonItem
+        return postButtonItem
+    }
+    
     func showToast(message: String, title: String? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         let okAction = UIAlertAction(title: AppStrings.GenericOKButtonTitle, style: .Default, handler: nil)

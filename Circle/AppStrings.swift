@@ -43,6 +43,7 @@ struct AppStrings {
     static let GenericOKButtonTitle = NSLocalizedString("OK", comment: "Generic button title for positive affirmation of an action")
     static let GenericTryAgainButtonTitle = NSLocalizedString("Try Again", comment: "Generic button title to try some action again")
     static let GenericSaveButtonTitle = NSLocalizedString("Save", comment: "Generic button title for saving changes a user has made")
+    static let GenericPostButtonTitle = NSLocalizedString("Post", comment: "Generic button title for posting content")
 
     static let LocalTimeLabel = NSLocalizedString("Local Time", comment: "Label indicating the local time of a location")
 

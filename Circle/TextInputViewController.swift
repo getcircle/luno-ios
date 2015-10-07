@@ -21,7 +21,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
         case Regular
     }
     
-    var addNextButton: Bool = false
+    var addPostButton: Bool = false
     var theme: Themes = .Regular
     
     @IBOutlet weak private(set) var characterLimitLabel: UILabel!
@@ -88,15 +88,15 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     private func configureNavigationBar() {
         title = getViewTitle()
         
-        if addNextButton {
-            addNextButtonWithAction("done:")
+        if addPostButton {
+            addPostTextButtonWithAction("done:")
         }
         else {
             addDoneButtonWithAction("done:")
         }
         
         if isBeingPresentedModally() {
-            addCloseButtonWithAction("cancel:")
+            addCancelTextButtonWithAction("cancel:")
         }
     }
     
@@ -264,7 +264,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
         }
         
         delegate?.onTextInputValueUpdated(updatedObject)
-        if addNextButton {
+        if addPostButton {
             goToNextVC()
         }
         else {
