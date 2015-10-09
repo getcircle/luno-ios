@@ -26,8 +26,13 @@ class VerifyProfileViewController:
         didSet {
             // only set the staticProfile once
             if staticProfile == nil {
-                let profileBuilder = try! profile.toBuilder()
-                staticProfile = try! profileBuilder.build()
+                do {
+                    let profileBuilder = try profile.toBuilder()
+                    staticProfile = try profileBuilder.build()
+                }
+                catch {
+                    print("Error: \(error)")
+                }
             }
         }
     }
@@ -81,10 +86,15 @@ class VerifyProfileViewController:
     @IBAction func nextButtonTapped(sender: AnyObject!) {
         let activityIndicatorView = nextButton.addActivityIndicator(UIColor.appUIBackgroundColor())
         nextButton.setTitle("", forState: .Normal)
-        handleImageUpload { () -> Void in
-            activityIndicatorView.stopAnimating()
-            activityIndicatorView.removeFromSuperview()
-            self.verificationComplete()
+        do {
+            try handleImageUpload { () -> Void in
+                activityIndicatorView.stopAnimating()
+                activityIndicatorView.removeFromSuperview()
+                self.verificationComplete()
+            }
+        }
+        catch {
+            print("Error: \(error)")
         }
     }
     
@@ -166,10 +176,10 @@ class VerifyProfileViewController:
         return staticProfile!.hashValue != profile.hashValue
     }
     
-    private func updateProfile(completion: () -> Void) {
-        let builder = try! profile.toBuilder()
+    private func updateProfile(completion: () -> Void) throws {
+        let builder = try profile.toBuilder()
         builder.verified = true
-        Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(try builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthenticationViewController.updateUserProfile(profile)
                 self.profile = profile
@@ -178,7 +188,7 @@ class VerifyProfileViewController:
         }
     }
     
-    private func handleImageUpload(completion: () -> Void) {
+    private func handleImageUpload(completion: () -> Void) throws {
         if didUploadPhoto {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
             Services.Media.Actions.uploadImage(
@@ -187,15 +197,20 @@ class VerifyProfileViewController:
                 withKey: profile.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    let profileBuilder = try! self.profile.toBuilder()
-                    profileBuilder.imageUrl = mediaURL
-                    self.profile = try! profileBuilder.build()
-                    self.updateProfile(completion)
+                    do {
+                        let profileBuilder = try self.profile.toBuilder()
+                        profileBuilder.imageUrl = mediaURL
+                        self.profile = try profileBuilder.build()
+                        try self.updateProfile(completion)
+                    }
+                    catch {
+                        print("Error: \(error)")
+                    }
                     hud.hide(true)
                 }
             }
         } else {
-            updateProfile(completion)
+            try updateProfile(completion)
         }
     }
     
