@@ -120,12 +120,17 @@ class AuthorizationViewController: UIViewController, WKNavigationDelegate {
                     let items = components.queryItems!
                     for item in items {
                         if let value = item.value, data = NSData(base64EncodedString: value, options: []) {
-                            switch item.name {
-                            case "user": user = try! Services.User.Containers.UserV1.parseFromData(data)
-                            case "identity": identity = try! Services.User.Containers.IdentityV1.parseFromData(data)
-                            case "oauth_sdk_details": authDetails = try! Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
-                            case "saml_details": samlDetails = try! Services.User.Containers.SAMLDetailsV1.parseFromData(data)
-                            default: break
+                            do {
+                                switch item.name {
+                                case "user": user = try Services.User.Containers.UserV1.parseFromData(data)
+                                case "identity": identity = try Services.User.Containers.IdentityV1.parseFromData(data)
+                                case "oauth_sdk_details": authDetails = try Services.User.Containers.OAuthSDKDetailsV1.parseFromData(data)
+                                case "saml_details": samlDetails = try Services.User.Containers.SAMLDetailsV1.parseFromData(data)
+                                default: break
+                                }
+                            }
+                            catch {
+                                print("Error: \(error)")
                             }
                         }
                     }
