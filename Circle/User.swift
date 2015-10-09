@@ -207,7 +207,12 @@ extension Services.User.Actions {
                     deviceBuilder.notificationToken = pushToken
                 }
                 let requestBuilder = Services.User.Actions.RecordDevice.RequestV1.Builder()
-                requestBuilder.device = try! deviceBuilder.build()
+                do {
+                    requestBuilder.device = try deviceBuilder.build()
+                }
+                catch {
+                    print("Error: \(error)")
+                }
                 
                 let client = ServiceClient(serviceName: "user")
                 client.callAction(
