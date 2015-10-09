@@ -91,31 +91,36 @@ class LocationDetailViewController:
     // MARK: - CardFooterDelegate
     
     func cardFooterTapped(card: Card!) {
-        let officeDetailDataSource = dataSource as! LocationDetailDataSource
-        switch card.type {
-        case .Profiles:
-            switch card.subType {
-            case .Members:
-                let viewController = ProfilesViewController()
-                viewController.dataSource.setInitialData(
-                    content: card.allContent,
-                    ofType: nil,
-                    nextRequest: officeDetailDataSource.nextProfilesRequest
-                )
-                viewController.title = "People @ " + officeDetailDataSource.location.name
-                (viewController.dataSource as! ProfilesDataSource).configureForLocation(
-                    officeDetailDataSource.location.id,
-                    setupOnlySearch: true
-                )
-                trackCardHeaderTapped(card, overviewType: .Profiles)
-                navigationController?.pushViewController(viewController, animated: true)
+        do {
+            let officeDetailDataSource = dataSource as! LocationDetailDataSource
+            switch card.type {
+            case .Profiles:
+                switch card.subType {
+                case .Members:
+                    let viewController = ProfilesViewController()
+                    viewController.dataSource.setInitialData(
+                        content: card.allContent,
+                        ofType: nil,
+                        nextRequest: officeDetailDataSource.nextProfilesRequest
+                    )
+                    viewController.title = "People @ " + officeDetailDataSource.location.name
+                    try (viewController.dataSource as! ProfilesDataSource).configureForLocation(
+                        officeDetailDataSource.location.id,
+                        setupOnlySearch: true
+                    )
+                    trackCardHeaderTapped(card, overviewType: .Profiles)
+                    navigationController?.pushViewController(viewController, animated: true)
+                    
+                default:
+                    break
+                }
                 
             default:
                 break
             }
-            
-        default:
-            break
+        }
+        catch {
+            print("Error: \(error)")
         }
     }
 

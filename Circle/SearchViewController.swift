@@ -395,53 +395,58 @@ class SearchViewController: UIViewController,
             }
             
         case .SearchSuggestion:
-            if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
-                switch searchCategory.type {
-                case .People:
-                    let profilesDataSource = ProfilesSearchDataSource()
-                    profilesDataSource.delegate = self
-                    profilesDataSource.configureForOrganization()
-                    
-                    collectionView.dataSource = profilesDataSource
-                    collectionView.reloadData()
-                    
-                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
-                    profilesDataSource.loadData({ (error) -> Void in
-                    })
-                    
-                    dataSource = profilesDataSource
-                case .Locations:
-                    // TODO This should be coming from a paginated data source
-                    let locationsDataSource = LocationsSearchDataSource()
-                    
-                    collectionView.dataSource = locationsDataSource
-                    collectionView.reloadData()
-                    
-                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
-                    locationsDataSource.loadData({ (error) -> Void in
-                        self.collectionView.reloadData()
-                    })
-                    
-                    dataSource = locationsDataSource
-                case .Teams:
-                    let teamsDataSource = TeamsSearchDataSource()
-                    teamsDataSource.delegate = self
-                    teamsDataSource.configureForOrganization()
-                    
-                    collectionView.dataSource = teamsDataSource
-                    collectionView.reloadData()
-
-                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
-                    teamsDataSource.loadData({ (error) -> Void in
-                    })
-                    
-                    dataSource = teamsDataSource
+            do {
+                if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
+                    switch searchCategory.type {
+                    case .People:
+                        let profilesDataSource = ProfilesSearchDataSource()
+                        profilesDataSource.delegate = self
+                        try profilesDataSource.configureForOrganization()
+                        
+                        collectionView.dataSource = profilesDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        
+                        profilesDataSource.loadData({ (error) -> Void in
+                        })
+                        
+                        dataSource = profilesDataSource
+                    case .Locations:
+                        // TODO This should be coming from a paginated data source
+                        let locationsDataSource = LocationsSearchDataSource()
+                        
+                        collectionView.dataSource = locationsDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        
+                        locationsDataSource.loadData({ (error) -> Void in
+                            self.collectionView.reloadData()
+                        })
+                        
+                        dataSource = locationsDataSource
+                    case .Teams:
+                        let teamsDataSource = TeamsSearchDataSource()
+                        teamsDataSource.delegate = self
+                        try teamsDataSource.configureForOrganization()
+                        
+                        collectionView.dataSource = teamsDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        
+                        teamsDataSource.loadData({ (error) -> Void in
+                        })
+                        
+                        dataSource = teamsDataSource
+                    }
                 }
             }
-                
+            catch {
+                print("Error: \(error)")
+            }
+            
         case .SearchAction:
             if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
                 handleSearchAction(searchAction)
@@ -564,65 +569,69 @@ class SearchViewController: UIViewController,
     // MARK: - Search Actions
     
     private func handleSearchAction(searchAction: SearchAction) {
-        
-        switch searchAction.type {
-        case .EmailPerson:
-            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
-                performQuickAction(.Email, profile: profile)
+        do {
+            switch searchAction.type {
+            case .EmailPerson:
+                if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                    performQuickAction(.Email, profile: profile)
+                }
+                
+            case .MessagePerson:
+                if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                    performQuickAction(.Message, profile: profile)
+                }
+                
+                
+            case .CallPerson:
+                if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                    performQuickAction(.Phone, profile: profile)
+                }
+                
+            case .ReportsToPerson:
+                if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                    let viewController = ProfilesViewController()
+                    try (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
+                    viewController.title = profile.firstName + "'s Direct Reports"
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                
+            case .MembersOfTeam:
+                if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                    let viewController = ProfilesViewController()
+                    try (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                    viewController.title = searchAction.getTitle()
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                
+            case .SubTeamsOfTeam:
+                if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                    let viewController = TeamsOverviewViewController()
+                    try (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                    viewController.title = searchAction.getTitle()
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                
+            case .AddressOfLocation:
+                if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                    let viewController = MapViewController()
+                    viewController.location = location
+                    presentViewController(viewController, animated: true, completion: nil)
+                }
+                
+            case .PeopleInLocation:
+                if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                    let viewController = ProfilesViewController()
+                    try (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
+                    viewController.title = searchAction.getTitle()
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                
+            default:
+                break;
             }
-            
-        case .MessagePerson:
-            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
-                performQuickAction(.Message, profile: profile)
-            }
-
-        
-        case .CallPerson:
-            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
-                performQuickAction(.Phone, profile: profile)
-            }
-            
-        case .ReportsToPerson:
-            if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
-                let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
-                viewController.title = profile.firstName + "'s Direct Reports"
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-            
-        case .MembersOfTeam:
-            if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
-                let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
-                viewController.title = searchAction.getTitle()
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-            
-        case .SubTeamsOfTeam:
-            if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
-                let viewController = TeamsOverviewViewController()
-                (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
-                viewController.title = searchAction.getTitle()
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-            
-        case .AddressOfLocation:
-            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
-                let viewController = MapViewController()
-                viewController.location = location
-                presentViewController(viewController, animated: true, completion: nil)
-            }
-
-        case .PeopleInLocation:
-            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
-                let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
-                viewController.title = searchAction.getTitle()
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-        
-        default:
-            break;
+        }
+        catch {
+            print("Error: \(error)")
         }
     }
     

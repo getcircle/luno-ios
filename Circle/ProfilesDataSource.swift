@@ -20,42 +20,42 @@ class ProfilesDataSource: CardDataSource {
     
     // MARK: - Configuration
     
-    func configureForLocation(locationId: String, setupOnlySearch: Bool) {
+    func configureForLocation(locationId: String, setupOnlySearch: Bool) throws {
         if !setupOnlySearch {
             let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.locationId = locationId
-            configureForParameters(requestBuilder)
+            try configureForParameters(requestBuilder)
         }
 
         searchAttribute = .LocationId
         searchAttributeValue = locationId
     }
 
-    func configureForTeam(teamId: String, setupOnlySearch: Bool) {
+    func configureForTeam(teamId: String, setupOnlySearch: Bool) throws {
         if !setupOnlySearch {
             let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.teamId = teamId
-            configureForParameters(requestBuilder)
+            try configureForParameters(requestBuilder)
         }
         
         searchAttribute = .TeamId
         searchAttributeValue = teamId
     }
     
-    func configureForDirectReports(profile: Services.Profile.Containers.ProfileV1) {
+    func configureForDirectReports(profile: Services.Profile.Containers.ProfileV1) throws {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
         requestBuilder.managerId = profile.id
-        configureForParameters(requestBuilder)
+        try configureForParameters(requestBuilder)
     }
 
-    func configureForOrganization() {
+    func configureForOrganization() throws {
         let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
-        configureForParameters(requestBuilder)
+        try configureForParameters(requestBuilder)
     }
     
-    private func configureForParameters(requestBuilder: AbstractMessageBuilder) {
+    private func configureForParameters(requestBuilder: AbstractMessageBuilder) throws {
         let client = ServiceClient(serviceName: "profile")
-        let serviceRequest = client.buildRequest(
+        let serviceRequest = try client.buildRequest(
             "get_profiles",
             extensionField: Services.Registry.Requests.Profile.getProfiles(),
             requestBuilder: requestBuilder,

@@ -23,25 +23,25 @@ class TeamsOverviewDataSource: CardDataSource {
     
     // MARK: - Configuration
 
-    func configureForTeam(teamId: String, setupOnlySearch: Bool) {
+    func configureForTeam(teamId: String, setupOnlySearch: Bool) throws {
         if !setupOnlySearch {
             let requestBuilder = Services.Profile.Actions.GetProfiles.RequestV1.Builder()
             requestBuilder.teamId = teamId
-            configureForParameters(requestBuilder)
+            try configureForParameters(requestBuilder)
         }
         
         searchAttribute = .TeamId
         searchAttributeValue = teamId
     }
 
-    func configureForOrganization() {
+    func configureForOrganization() throws {
         let requestBuilder = Services.Organization.Actions.GetTeams.RequestV1.Builder()
-        configureForParameters(requestBuilder)
+        try configureForParameters(requestBuilder)
     }
     
-    private func configureForParameters(requestBuilder: AbstractMessageBuilder) {
+    private func configureForParameters(requestBuilder: AbstractMessageBuilder) throws {
         let client = ServiceClient(serviceName: "organization")
-        let serviceRequest = client.buildRequest(
+        let serviceRequest = try client.buildRequest(
             "get_teams",
             extensionField: Services.Registry.Requests.Organization.getTeams(),
             requestBuilder: requestBuilder,
