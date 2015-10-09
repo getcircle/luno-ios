@@ -189,18 +189,23 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         handleImageUpload { (imageUrl: String?) -> Void in
             self.imageToUpload = nil
             
-            self.updateProfile(newImageUrl: imageUrl, completion: { () -> Void in
-                if let delegate = self.editProfileDelegate {
-                    delegate.didFinishEditingProfile()
-                }
-                
-                if self.isBeingPresentedModally() {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-                else {
-                    self.navigationController?.popViewControllerAnimated(true)
-                }
-            })
+            do {
+                try self.updateProfile(newImageUrl: imageUrl, completion: { () -> Void in
+                    if let delegate = self.editProfileDelegate {
+                        delegate.didFinishEditingProfile()
+                    }
+                    
+                    if self.isBeingPresentedModally() {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    else {
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                })
+            }
+            catch {
+                print("Error: \(error)")
+            }
         }
     }
     
@@ -244,8 +249,8 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     // MARK: - Helpers
 
-    private func updateProfile(newImageUrl newImageUrl: String?, completion: () -> Void) {
-        let builder = try! profile.toBuilder()
+    private func updateProfile(newImageUrl newImageUrl: String?, completion: () -> Void) throws {
+        let builder = try profile.toBuilder()
         builder.verified = true
         
         formBuilder.updateValues()
@@ -257,7 +262,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                         if (contactItem.inputEnabled == nil || contactItem.inputEnabled == true) {
                             var contactMethod: Services.Profile.Containers.ContactMethodV1.Builder
                             if let existingContactMethod = existingContactMethodsByType[contactItem.contactMethodType] {
-                                contactMethod = try! existingContactMethod.toBuilder()
+                                contactMethod = try existingContactMethod.toBuilder()
                             }
                             else {
                                 contactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
@@ -268,7 +273,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                             }
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.contactMethodType = contactItem.contactMethodType
-                            contactMethods.append(try! contactMethod.build())
+                            contactMethods.append(try contactMethod.build())
                         }
                     }
                     else if let profileItem = item as? FormBuilder.ProfileSectionItem {
@@ -293,7 +298,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         if let uploadedImageUrl = newImageUrl {
             builder.imageUrl = uploadedImageUrl
         }
-        Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
+        Services.Profile.Actions.updateProfile(try builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthenticationViewController.updateUserProfile(profile)
             }
