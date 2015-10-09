@@ -180,9 +180,18 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
         if data.characters.count > characterLimit && addCharacterLimit {
             return
         }
-
+        
         hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        saveData(data)
+        do {
+            try saveData(data)
+        }
+        catch {
+            print("Error: \(error)")
+            
+            if let hud = self.hud {
+                hud.hide(true)
+            }
+        }
     }
 
     @IBAction func cancel(sender: AnyObject!) {
@@ -253,7 +262,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
         fatalError("Must be implemented by subclasses")
     }
 
-    internal func saveData(data: String) {
+    internal func saveData(data: String) throws {
         fatalError("Must be implemented by subclasses")
     }
     

@@ -39,19 +39,19 @@ class EditTeamStatusViewController: TextInputViewController {
         return "What is your team working on?"
     }
     
-    override func saveData(data: String) {
+    override func saveData(data: String) throws {
         let statusBuilder: Services.Organization.Containers.TeamStatusV1.Builder
         if let status = team.status {
-            statusBuilder = try! status.toBuilder()
+            statusBuilder = try status.toBuilder()
         }
         else {
             statusBuilder = Services.Organization.Containers.TeamStatusV1.Builder()
         }
         statusBuilder.value = data
         
-        let teamBuilder = try! team.toBuilder()
-        teamBuilder.status = try! statusBuilder.build()
-        Services.Organization.Actions.updateTeam(try! teamBuilder.build()) { (team, error) -> Void in
+        let teamBuilder = try team.toBuilder()
+        teamBuilder.status = try statusBuilder.build()
+        Services.Organization.Actions.updateTeam(try teamBuilder.build()) { (team, error) -> Void in
             self.onDataSaved(team)
         }
     }
