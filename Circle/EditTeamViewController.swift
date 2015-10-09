@@ -189,29 +189,34 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
             return
         }
         
-        let teamBuilder = try! team.toBuilder()
-        teamBuilder.name = teamName
-        
-        let teamDescription = teamDescriptionField.text.trimWhitespace()
-        if teamDescription.characters.count == 0 {
-            teamBuilder.clearDescription()
-        }
-        else {
-            let descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
-            descriptionBuilder.value = teamDescription
-            teamBuilder.description_ = try! descriptionBuilder.build()
-        }
-        
-        let updatedTeam = try! teamBuilder.build()
-        
-        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
-            if let team = team {
-                self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(team)
+        do {
+            let teamBuilder = try team.toBuilder()
+            teamBuilder.name = teamName
+            
+            let teamDescription = teamDescriptionField.text.trimWhitespace()
+            if teamDescription.characters.count == 0 {
+                teamBuilder.clearDescription()
             }
-            hud.hide(true)
-            self.close(sender)
-        })
+            else {
+                let descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
+                descriptionBuilder.value = teamDescription
+                teamBuilder.description_ = try descriptionBuilder.build()
+            }
+            
+            let updatedTeam = try teamBuilder.build()
+            
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
+                if let team = team {
+                    self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(team)
+                }
+                hud.hide(true)
+                self.close(sender)
+            })
+        }
+        catch {
+            print("Error: \(error)")
+        }
     }
 
     @IBAction func close(sender: AnyObject!) {
