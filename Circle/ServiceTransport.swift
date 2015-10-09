@@ -31,7 +31,12 @@ public struct WrappedResponse {
     func getNextRequest() -> Soa.ServiceRequestV1? {
         var nextRequest: Soa.ServiceRequestV1? = nil
         if let paginator = getPaginator() where paginator.hasNextPage {
-            nextRequest = serviceRequest.getNextRequest(paginator)
+            do {
+                nextRequest = try serviceRequest.getNextRequest(paginator)
+            }
+            catch {
+                print("Error: \(error)")
+            }
         }
         return nextRequest
     }
@@ -74,11 +79,16 @@ extension Request {
                 return .Failure(data, Error.errorWithCode(.StatusCodeValidationFailed, failureReason: failureReason))
             }
             
-            let serviceResponse = try! Soa.ServiceResponseV1.parseFromData(
-                data!,
-                extensionRegistry: Services.Registry.Responses.ResponsesRoot.sharedInstance.extensionRegistry
-            )
-            return .Success(serviceResponse)
+            do {
+                let serviceResponse = try Soa.ServiceResponseV1.parseFromData(
+                    data!,
+                    extensionRegistry: Services.Registry.Responses.ResponsesRoot.sharedInstance.extensionRegistry
+                )
+                return .Success(serviceResponse)
+            }
+            catch {
+                return .Failure(data, Error.errorWithCode(.DataSerializationFailed, failureReason: "\(error)"))
+            }
         }
     }
     
