@@ -142,30 +142,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         }
     }
     
-    internal override func handleImageUpload(completion: () -> Void) {
-        if let newImage = imageToUpload {
-            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            Services.Media.Actions.uploadImage(
-                newImage,
-                forMediaType: .Profile,
-                withKey: profile.id
-            ) { (mediaURL, error) -> Void in
-                if let mediaURL = mediaURL {
-                    let profileBuilder = try! self.profile.toBuilder()
-                    profileBuilder.imageUrl = mediaURL
-                    Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
-                        if let profile = profile {
-                            AuthenticationViewController.updateUserProfile(profile)
-                            self.profile = profile
-                            hud.hide(true)
-                            completion()
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
     // MARK: - EditProfileDelegate
     
     func didFinishEditingProfile() {
