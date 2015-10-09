@@ -81,18 +81,23 @@ class EditTitleViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        let profileBuilder = try! profile.toBuilder()
-        profileBuilder.title = title
-        let updatedProfile = try! profileBuilder.build()
-        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        Services.Profile.Actions.updateProfile(updatedProfile, completionHandler: { (profile, error) -> Void in
-            if let profile = profile {
-                AuthenticationViewController.updateUserProfile(profile)
-                self.editProfileDelegate?.didFinishEditingProfile()
-            }
-            hud.hide(true)
-            self.close(sender)
-        })
+        do {
+            let profileBuilder = try profile.toBuilder()
+            profileBuilder.title = title
+            let updatedProfile = try profileBuilder.build()
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            Services.Profile.Actions.updateProfile(updatedProfile, completionHandler: { (profile, error) -> Void in
+                if let profile = profile {
+                    AuthenticationViewController.updateUserProfile(profile)
+                    self.editProfileDelegate?.didFinishEditingProfile()
+                }
+                hud.hide(true)
+                self.close(sender)
+            })
+        }
+        catch {
+            print("Error: \(error)")
+        }
     }
     
     @IBAction func close(sender: AnyObject!) {
