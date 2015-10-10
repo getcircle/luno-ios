@@ -459,7 +459,7 @@ class SearchViewController: UIViewController,
                 
         case .SearchAction:
             if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
-                handleSearchAction(searchAction)
+                handleSearchAction(searchAction, index: indexPath.row + 1)
             }
             
         default:
@@ -553,27 +553,33 @@ class SearchViewController: UIViewController,
 
     // MARK: - Search Actions
     
-    private func handleSearchAction(searchAction: SearchAction) {
+    private func handleSearchAction(searchAction: SearchAction, index: Int) {
+
+        var trackerResultId: String?
         
         switch searchAction.type {
         case .EmailPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
                 performQuickAction(.Email, profile: profile)
             }
             
         case .MessagePerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
                 performQuickAction(.Message, profile: profile)
             }
 
         
         case .CallPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
                 performQuickAction(.Phone, profile: profile)
             }
             
         case .ReportsToPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
                 (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
@@ -584,6 +590,7 @@ class SearchViewController: UIViewController,
             
         case .MembersOfTeam:
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                trackerResultId = team.id
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
                 (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
@@ -594,6 +601,7 @@ class SearchViewController: UIViewController,
             
         case .SubTeamsOfTeam:
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                trackerResultId = team.id
                 let viewController = TeamsOverviewViewController()
                 (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
                 (viewController.dataSource as! TeamsOverviewDataSource).searchLocation = .Home
@@ -603,6 +611,7 @@ class SearchViewController: UIViewController,
             
         case .AddressOfLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                trackerResultId = location.id
                 let viewController = MapViewController()
                 viewController.location = location
                 presentViewController(viewController, animated: true, completion: nil)
@@ -610,6 +619,7 @@ class SearchViewController: UIViewController,
 
         case .PeopleInLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                trackerResultId = location.id
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
                 (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
@@ -618,9 +628,27 @@ class SearchViewController: UIViewController,
                 navigationController?.pushViewController(viewController, animated: true)
             }
         
+        case .LocalTimeAtLocation:
+            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                trackerResultId = location.id
+            }
+            break;
+            
         default:
             break;
         }
+        
+        Tracker.sharedInstance.trackSearchResultTap(
+            query: dataSource.searchTerm,
+            searchSource: .SmartAction,
+            searchLocation: .Home,
+            searchResultType: SearchActionType.trackerSearchResultType(searchAction.type),
+            searchResultIndex: index,
+            searchResultId: trackerResultId,
+            category: dataSource.getSearchTrackingCategory(),
+            attribute: nil,
+            value: nil
+        )
     }
     
     // MARK: - CardDataSourceDelegate

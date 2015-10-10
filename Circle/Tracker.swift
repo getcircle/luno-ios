@@ -59,10 +59,15 @@ struct TrackerProperty {
         case Location = "Location"
         
         // Smart Actions
-        case EmailProfile = "Email Profile"
-        case LocationAddress = "Location Address"
+        case EmailPerson = "Email Person"
+        case CallPerson = "Call Person"
+        case MessagePerson = "Message Person"
+
+        case AddressOfLocation = "Location Address"
+        case LocalTimeAtLocation = "Location Local Time"
         
         // Extended Results
+        case ContactsOfLocation = "Location Points of Contact"
         case ReportsTo = "Direct Reports"
         case TeamMembers = "Team Members"
         case LocationMembers = "Location Members"
