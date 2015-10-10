@@ -561,12 +561,22 @@ class SearchViewController: UIViewController,
         case .EmailPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
                 trackerResultId = profile.id
+                Tracker.sharedInstance.trackContactTap(
+                    .Email,
+                    contactId: profile.id,
+                    contactLocation: .SearchSmartAction
+                )
                 performQuickAction(.Email, profile: profile)
             }
             
         case .MessagePerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
                 trackerResultId = profile.id
+                Tracker.sharedInstance.trackContactTap(
+                    .Message,
+                    contactId: profile.id,
+                    contactLocation: .SearchSmartAction
+                )
                 performQuickAction(.Message, profile: profile)
             }
 
@@ -574,6 +584,11 @@ class SearchViewController: UIViewController,
         case .CallPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
                 trackerResultId = profile.id
+                Tracker.sharedInstance.trackContactTap(
+                    .Call,
+                    contactId: profile.id,
+                    contactLocation: .SearchSmartAction
+                )
                 performQuickAction(.Phone, profile: profile)
             }
             

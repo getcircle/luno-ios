@@ -121,32 +121,26 @@ class ProfileDetailViewController:
     private func performQuickAction(contactMethod: Services.Profile.Containers.ContactMethodV1) {
         switch contactMethod.contactMethodType {
         case .Email:
+            Tracker.sharedInstance.trackContactTap(
+                .Email,
+                contactId: profile.id,
+                contactLocation: .ProfileDetail
+            )
             presentMailViewController(
                 [contactMethod.value],
                 subject: "Hey",
                 messageBody: "",
                 completionHandler: nil
             )
-            
-//        case .Message:
-//            var recipient: String?
-//            if let phone = profile.getCellPhone() {
-//                recipient = phone
-//            } else if let email = profile.getEmail() {
-//                recipient = email
-//            }
-//            if recipient != nil {
-//                presentMessageViewController(
-//                    [recipient!],
-//                    subject: "Hey",
-//                    messageBody: "",
-//                    completionHandler: nil
-//                )
-//            }
-            
+
         case .CellPhone:
             if let number = profile.getCellPhone() as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
+                    Tracker.sharedInstance.trackContactTap(
+                        .Call,
+                        contactId: profile.id,
+                        contactLocation: .ProfileDetail
+                    )
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }

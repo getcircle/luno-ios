@@ -38,6 +38,24 @@ struct TrackerProperty {
         case EditTeam = "Edit Team"
     }
     
+    enum ContactLocation: String {
+        case ProfileDetail = "Profile Detail"
+        case ProfileDetailStatus = "Profile Detail Status"
+        case TeamDetailStatus = "Team Detail Status"
+        case TeamDetailDescription = "Team Detail Description"
+        case SearchSmartAction = "Search Smart Action"
+    }
+    
+    // This is repeated from Protobuf values
+    // Ideally we would use the backend values but we expect
+    // these to be strings and they are integers right now.
+    enum ContactMethod: String {
+        // All caps to keep it consistent with the web
+        case Email = "EMAIL"
+        case Message = "MESSAGE"
+        case Call = "CELLPHONE"
+    }
+    
     enum SearchLocation: String {
         case Home = "Home"
         // Modal should be used for search from list views. It is called "modal"
@@ -301,5 +319,17 @@ class Tracker {
         track(.SearchResultTap, properties: properties)
     }
     
-    
+    func trackContactTap(
+        contactMethod: TrackerProperty.ContactMethod,
+        contactId: String, 
+        contactLocation: TrackerProperty.ContactLocation
+    ) {
+        let properties = [
+            "Contact Method": contactMethod.rawValue,
+            "Contact ID": contactId,
+            "Contact Location": contactLocation.rawValue,
+        ]
+        
+        track(.ContactTap, properties: properties)
+    }
 }
