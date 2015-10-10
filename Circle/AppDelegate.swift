@@ -40,13 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        Tracker.sharedInstance.trackSessionStart()
+        Tracker.sharedInstance.initSession()
     }
     
-    func applicationDidEnterBackground(application: UIApplication) {
-        Tracker.sharedInstance.trackSessionEnd()
-    }
-
     // MARK: - Remote Notification Delegate
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

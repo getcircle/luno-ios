@@ -44,6 +44,7 @@ class SearchViewController: UIViewController,
         
         // Do any additional setup after loading the view.
         firstLoad = true
+        Tracker.sharedInstance.trackPageView(pageType: .Home)
         configureView()
         configureLaunchScreenView()
         configureSearchHeaderView()
@@ -175,6 +176,7 @@ class SearchViewController: UIViewController,
     private func useSearchQueryDataSource() {
         dataSource.delegate = nil
         dataSource = SearchQueryDataSource()
+        (dataSource as! SearchQueryDataSource).searchCategory = nil
         search()
         collectionView.dataSource = dataSource
         collectionView.reloadData()
@@ -333,7 +335,6 @@ class SearchViewController: UIViewController,
     func didSelectTag() {
         searchHeaderView.hideTag()
         resetSearchFieldPlaceholderText()
-        
         useSearchQueryDataSource()
     }
     
@@ -360,45 +361,52 @@ class SearchViewController: UIViewController,
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCard = dataSource.cardAtSection(indexPath.section)!
-        var properties = [
-            TrackerProperty.withKeyString("card_type").withString(selectedCard.type.rawValue),
-            TrackerProperty.withKeyString("card_title").withString(selectedCard.title),
-            TrackerProperty.withKey(.Source).withSource(.Search),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
         
         switch selectedCard.type {
         case .SearchResult:
+            var searchResultType: TrackerProperty.SearchResultType?
+            var searchResultId: String?
+
             if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile))
-                properties.append(TrackerProperty.withDestinationId("profileId").withString(profile.id))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showProfileDetail(profile)
+                searchResultId = profile.id
+                searchResultType = .Profile
                 CircleCache.recordProfileSearchResult(profile)
             }
             else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Team))
-                properties.append(TrackerProperty.withDestinationId("team_id").withString(team.id))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showTeamDetail(team)
+                searchResultId = team.id
+                searchResultType = .Team
                 CircleCache.recordTeamSearchResult(team)
             }
             else if let location = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.LocationV1 {
-                properties.append(TrackerProperty.withKey(.Destination).withSource(.Detail))
-                properties.append(TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Location))
-                properties.append(TrackerProperty.withDestinationId("office_id").withString(location.id))
-                Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
                 showLocationDetail(location)
+                searchResultId = location.id
+                searchResultType = .Location
                 CircleCache.recordLocationSearchResult(location)
             }
             
+            if let searchResultType = searchResultType {
+                Tracker.sharedInstance.trackSearchResultTap(
+                    query: dataSource.searchTerm,
+                    searchSource: dataSource.getSearchTrackingSource(),
+                    searchLocation: .Home,
+                    searchResultType: searchResultType,
+                    searchResultIndex: indexPath.row + 1,
+                    searchResultId: searchResultId,
+                    category: dataSource.getSearchTrackingCategory(),
+                    attribute: nil,
+                    value: nil
+                )
+            }
+            
         case .SearchSuggestion:
-            if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory {
+            if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory, searchDataSource = dataSource as? SearchQueryDataSource {
                 switch searchCategory.type {
                 case .People:
+                    searchDataSource.searchCategory = .Profiles
                     let profilesDataSource = ProfilesSearchDataSource()
+                    profilesDataSource.searchLocation = .Home
                     profilesDataSource.delegate = self
                     profilesDataSource.configureForOrganization()
                     
@@ -406,14 +414,17 @@ class SearchViewController: UIViewController,
                     collectionView.reloadData()
                     
                     searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
                     profilesDataSource.loadData({ (error) -> Void in
                     })
                     
                     dataSource = profilesDataSource
+
                 case .Locations:
+                    
+                    searchDataSource.searchCategory = .Locations
                     // TODO This should be coming from a paginated data source
                     let locationsDataSource = LocationsSearchDataSource()
+                    locationsDataSource.searchLocation = .Home
                     
                     collectionView.dataSource = locationsDataSource
                     collectionView.reloadData()
@@ -425,9 +436,13 @@ class SearchViewController: UIViewController,
                     })
                     
                     dataSource = locationsDataSource
+
                 case .Teams:
+                    
+                    searchDataSource.searchCategory = .Teams
                     let teamsDataSource = TeamsSearchDataSource()
                     teamsDataSource.delegate = self
+                    teamsDataSource.searchLocation = .Home
                     teamsDataSource.configureForOrganization()
                     
                     collectionView.dataSource = teamsDataSource
@@ -444,7 +459,7 @@ class SearchViewController: UIViewController,
                 
         case .SearchAction:
             if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
-                handleSearchAction(searchAction)
+                handleSearchAction(searchAction, index: indexPath.row + 1)
             }
             
         default:
@@ -452,20 +467,7 @@ class SearchViewController: UIViewController,
             
         }
     }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let properties = [
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.Source).withSource(.Search)
-        ]
-        Tracker.sharedInstance.trackMajorScrollEvents(
-            .ViewScrolled,
-            scrollView: scrollView,
-            direction: .Vertical,
-            properties: properties
-        )
-    }
-        
+
     // MARK: - Orientation change
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -491,6 +493,7 @@ class SearchViewController: UIViewController,
     // MARK: - Notification Handlers
     
     func userLoggedIn(notification: NSNotification!) {
+        Tracker.sharedInstance.trackPageView(pageType: .Home)
         hideAndRemoveLaunchView()
         dataSource.resetCards()
         collectionView.reloadData()
@@ -547,67 +550,83 @@ class SearchViewController: UIViewController,
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - Tracking
-    
-    private func trackTagSelected(interest: Services.Profile.Containers.TagV1) {
-        let properties = [
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description()),
-            TrackerProperty.withKey(.Source).withSource(.Search),
-            TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Tag),
-            TrackerProperty.withDestinationId("interest_id").withString(interest.id)
-        ]
-        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-    }
-    
+
     // MARK: - Search Actions
     
-    private func handleSearchAction(searchAction: SearchAction) {
+    private func handleSearchAction(searchAction: SearchAction, index: Int) {
+
+        var trackerResultId: String?
         
         switch searchAction.type {
         case .EmailPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
+                Tracker.sharedInstance.trackContactTap(
+                    .Email,
+                    contactId: profile.id,
+                    contactLocation: .SearchSmartAction
+                )
                 performQuickAction(.Email, profile: profile)
             }
             
         case .MessagePerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
+                Tracker.sharedInstance.trackContactTap(
+                    .Message,
+                    contactId: profile.id,
+                    contactLocation: .SearchSmartAction
+                )
                 performQuickAction(.Message, profile: profile)
             }
 
         
         case .CallPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
+                Tracker.sharedInstance.trackContactTap(
+                    .Call,
+                    contactId: profile.id,
+                    contactLocation: .SearchSmartAction
+                )
                 performQuickAction(.Phone, profile: profile)
             }
             
         case .ReportsToPerson:
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
+                trackerResultId = profile.id
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 viewController.title = profile.firstName + "'s Direct Reports"
+                viewController.pageType = .DirectReports
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
         case .MembersOfTeam:
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                trackerResultId = team.id
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 viewController.title = searchAction.getTitle()
+                viewController.pageType = .TeamMembers
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
         case .SubTeamsOfTeam:
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
+                trackerResultId = team.id
                 let viewController = TeamsOverviewViewController()
                 (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                (viewController.dataSource as! TeamsOverviewDataSource).searchLocation = .Home
                 viewController.title = searchAction.getTitle()
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
         case .AddressOfLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                trackerResultId = location.id
                 let viewController = MapViewController()
                 viewController.location = location
                 presentViewController(viewController, animated: true, completion: nil)
@@ -615,15 +634,36 @@ class SearchViewController: UIViewController,
 
         case .PeopleInLocation:
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                trackerResultId = location.id
                 let viewController = ProfilesViewController()
                 (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 viewController.title = searchAction.getTitle()
+                viewController.pageType = .LocationMembers
                 navigationController?.pushViewController(viewController, animated: true)
             }
         
+        case .LocalTimeAtLocation:
+            if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
+                trackerResultId = location.id
+            }
+            break;
+            
         default:
             break;
         }
+        
+        Tracker.sharedInstance.trackSearchResultTap(
+            query: dataSource.searchTerm,
+            searchSource: .SmartAction,
+            searchLocation: .Home,
+            searchResultType: SearchActionType.trackerSearchResultType(searchAction.type),
+            searchResultIndex: index,
+            searchResultId: trackerResultId,
+            category: dataSource.getSearchTrackingCategory(),
+            attribute: nil,
+            value: nil
+        )
     }
     
     // MARK: - CardDataSourceDelegate

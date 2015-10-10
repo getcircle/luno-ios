@@ -24,6 +24,7 @@ class PasscodeTouchIDViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Tracker.sharedInstance.trackPageView(pageType: .SettingsPasscodeTouchId)
         configureView()
     }
 

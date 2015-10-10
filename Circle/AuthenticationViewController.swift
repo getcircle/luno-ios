@@ -283,10 +283,6 @@ class AuthenticationViewController: UIViewController {
                 return
             }
 
-            Mixpanel.identifyUser(user!, newUser: newUser!)
-            Mixpanel.registerSuperPropertiesForUser(user!)
-            
-            self.trackSignupLogin(backend, newUser: newUser!)
             self.cacheLoginData(token!, user: user!)
             self.fetchAndCacheUserProfile(user!.id) { (error) in
                 // Record user's device
@@ -298,6 +294,11 @@ class AuthenticationViewController: UIViewController {
                     return
                 }
                 
+                // If we reach here, 
+                // - the user has correctly logged in and 
+                // - has a profile tied to her
+                // - has fetched all other related objects like organization
+                Tracker.sharedInstance.initSession()
                 NSNotificationCenter.defaultCenter().postNotificationName(
                     AuthenticationNotifications.onLoginNotification,
                     object: nil
@@ -360,6 +361,9 @@ class AuthenticationViewController: UIViewController {
             catch {
                 print("Error: \(error)")
             }
+            
+            // Clear locally stored tracker properties
+            Tracker.sharedInstance.clearSession()
             
             // Remove local cached date
             LoggedInUserHolder.profile = nil
@@ -519,18 +523,7 @@ class AuthenticationViewController: UIViewController {
 
         return true
     }
-    
-    // MARK: - Tracking
-    
-    private func trackSignupLogin(backend: Services.User.Actions.AuthenticateUser.RequestV1.AuthBackendV1, newUser: Bool) {
-        let properties = [TrackerProperty.withKeyString("auth_backend").withValue(Int(backend.rawValue))]
-        if newUser {
-            Tracker.sharedInstance.track(.UserSignup, properties: properties)
-        } else {
-            Tracker.sharedInstance.track(.UserLogin, properties: properties)
-        }
-    }
-    
+
     // MARK: - Passcode & Touch ID
     
     static func initializeSplashViewWithPasscodeAndTouchID() {

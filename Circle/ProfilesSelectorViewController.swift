@@ -31,6 +31,7 @@ class ProfilesSelectorViewController: ProfilesViewController,
     override func initializeDataSource() -> CardDataSource {
         let dataSource = super.initializeDataSource()
         (dataSource as! ProfilesDataSource).configureForOrganization()
+        (dataSource as! ProfilesDataSource).searchLocation = .Modal
         return dataSource
     }
     

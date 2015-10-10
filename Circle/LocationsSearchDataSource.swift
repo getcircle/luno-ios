@@ -11,9 +11,12 @@ import ProtobufRegistry
 
 class LocationsSearchDataSource: CardDataSource {
     
+    var searchLocation: TrackerProperty.SearchLocation!
+    
     private(set) var locations = Array<Services.Organization.Containers.LocationV1>()
     internal var cardType: Card.CardType = .SearchResult
     internal var card: Card!
+    private var searchStartTracked = false
     
     override class var cardSeparatorInset: UIEdgeInsets {
         return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
@@ -51,6 +54,21 @@ class LocationsSearchDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+        
+        if query.characters.count < 2 {
+            searchStartTracked = false
+        }
+        else if query.characters.count >= 2 && !searchStartTracked {
+            searchStartTracked = true
+            Tracker.sharedInstance.trackSearchStart(
+                query: query, 
+                searchLocation: searchLocation,
+                category: .Locations,
+                attribute: nil, 
+                value: nil
+            )
+        }
+        
         Services.Search.Actions.search(
             query,
             category: .Locations,

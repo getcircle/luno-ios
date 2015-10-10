@@ -21,6 +21,7 @@ class SettingsViewController: UIViewController, UICollectionViewDelegate, MFMail
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Tracker.sharedInstance.trackPageView(pageType: .Settings)
         configureView()
         configureCollectionView()
         configureNavigationBar()

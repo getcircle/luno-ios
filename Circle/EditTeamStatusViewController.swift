@@ -52,6 +52,9 @@ class EditTeamStatusViewController: TextInputViewController {
         let teamBuilder = try! team.toBuilder()
         teamBuilder.status = try! statusBuilder.build()
         Services.Organization.Actions.updateTeam(try! teamBuilder.build()) { (team, error) -> Void in
+            if let team = team {
+                Tracker.sharedInstance.trackTeamUpdate(team.id, fields: ["status"])
+            }
             self.onDataSaved(team)
         }
     }

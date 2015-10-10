@@ -22,6 +22,17 @@ class ProfilesViewController: OverviewViewController {
     
     // MARK: - Initialization
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        guard let pageType = pageType else {
+            print("Page Type needs to be set for ProfilesViewController")
+            return
+        }
+
+        Tracker.sharedInstance.trackPageView(pageType: pageType)
+    }
+    
     override func initializeDataSource() -> CardDataSource {
         return ProfilesDataSource()
     }
@@ -30,29 +41,32 @@ class ProfilesViewController: OverviewViewController {
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 {
-            trackViewProfile(profile)
+            Tracker.sharedInstance.trackSearchResultTap(
+                query: dataSource.searchTerm,
+                searchSource: dataSource.getSearchTrackingSource(),
+                searchLocation: .Modal,
+                searchResultType: .Profile,
+                searchResultIndex: indexPath.row + 1,
+                searchResultId: profile.id,
+                category: dataSource.getSearchTrackingCategory(),
+                attribute: (dataSource as! ProfilesDataSource).searchTrackerAttribute,
+                value: (dataSource as! ProfilesDataSource).searchAttributeValue
+            )
             showProfileDetail(profile)
         }
         else if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+            Tracker.sharedInstance.trackSearchResultTap(
+                query: dataSource.searchTerm,
+                searchSource: dataSource.getSearchTrackingSource(),
+                searchLocation: .Modal,
+                searchResultType: .Team,
+                searchResultIndex: indexPath.row + 1,
+                searchResultId: team.id,
+                category: dataSource.getSearchTrackingCategory(),
+                attribute: (dataSource as! ProfilesDataSource).searchTrackerAttribute,
+                value: (dataSource as! ProfilesDataSource).searchAttributeValue
+            )
             showTeamDetail(team)
         }
     }
-    
-    // MARK: - Tracking
-    
-    private func trackViewProfile(profile: Services.Profile.Containers.ProfileV1) {
-        var properties = [
-            TrackerProperty.withDestinationId("profileId").withString(profile.id),
-            TrackerProperty.withKey(.Source).withSource(.Overview),
-            TrackerProperty.withKey(.Destination).withSource(.Detail),
-            TrackerProperty.withKey(.DestinationDetailType).withDetailType(.Profile),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
-        
-        if let title = self.title {
-            properties.append(TrackerProperty.withKey(.SourceOverviewType).withString(title))
-        }
-        Tracker.sharedInstance.track(.DetailItemTapped, properties: properties)
-    }
-
 }

@@ -61,6 +61,7 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     internal(set) var state: CardDataSourceState = .Loaded
+    private(set) var searchTerm = ""
     private(set) var nextRequest: Soa.ServiceRequestV1?
     private(set) var nextRequestCompletionHandler: ServiceCompletionHandler?
     private var hasLoadedOnce = false
@@ -523,8 +524,9 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     
     // MARK: - Filtering
     
-    func filter(query: String, completionHandler: (error: NSError?) -> Void) {
+    final func filter(query: String, completionHandler: (error: NSError?) -> Void) {
         state = .Filtered
+        searchTerm = query.trimWhitespace()
         handleFiltering(query) { (error: NSError?) -> Void in
             completionHandler(error: error)
         }
@@ -535,7 +537,35 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func clearFilter(completionHandler: () -> Void) {
+        searchTerm = ""
         state = .Loaded
     }
 
+    // MARK: - Tracking
+    
+    func getSearchTrackingSource() -> TrackerProperty.SearchResultSource {
+        if searchTerm.trimWhitespace() != "" {
+            return .Suggestion
+        }
+        
+        return .Explore
+    }
+    
+    func getSearchTrackingCategory() -> TrackerProperty.SearchCategory? {
+        
+        if let _ = self as? ProfilesDataSource {
+            return .Profiles
+        }
+        else if let _ = self as? TeamsOverviewDataSource {
+            return .Teams
+        }
+        else if let _ = self as? LocationsSearchDataSource {
+            return .Locations
+        }
+        else if let searchDataSource = self as? SearchQueryDataSource {
+            return searchDataSource.searchCategory
+        }
+    
+        return nil
+    }
 }

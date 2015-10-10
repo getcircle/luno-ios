@@ -33,6 +33,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Tracker.sharedInstance.trackPageView(pageType: .EditProfile, pageId: profile.id)
         configureView()
         configureScrollView()
         configureContentView()
@@ -188,7 +189,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     @IBAction func saveButtonTapped(sender: AnyObject!) {
         handleImageUpload { (imageUrl: String?) -> Void in
             self.imageToUpload = nil
-            
             self.updateProfile(newImageUrl: imageUrl, completion: { () -> Void in
                 if let delegate = self.editProfileDelegate {
                     delegate.didFinishEditingProfile()
@@ -245,9 +245,10 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     // MARK: - Helpers
 
     private func updateProfile(newImageUrl newImageUrl: String?, completion: () -> Void) {
+        // NOTE: The field names are named to keep things consistent with the web.
+        var trackUpdatedFields = [String]()
         let builder = try! profile.toBuilder()
         builder.verified = true
-        
         formBuilder.updateValues()
         var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
         for section in formBuilder.sections {
@@ -269,6 +270,11 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                             contactMethod.value = value.trimWhitespace()
                             contactMethod.contactMethodType = contactItem.contactMethodType
                             contactMethods.append(try! contactMethod.build())
+                            
+                            // TODO: Think of some generic way to handle this
+                            if contactItem.contactMethodType == .CellPhone {
+                                trackUpdatedFields.append("cell_number")
+                            }
                         }
                     }
                     else if let profileItem = item as? FormBuilder.ProfileSectionItem {
@@ -279,6 +285,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                                 
                             case .Title:
                                 builder.title = value.trimWhitespace()
+                                trackUpdatedFields.append("title")
                                 
                             case .HireDate:
                                 builder.hireDate = value
@@ -292,10 +299,14 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         builder.contactMethods = contactMethods
         if let uploadedImageUrl = newImageUrl {
             builder.imageUrl = uploadedImageUrl
+            trackUpdatedFields.append("image_url")
         }
         Services.Profile.Actions.updateProfile(try! builder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthenticationViewController.updateUserProfile(profile)
+                if trackUpdatedFields.count > 0 {
+                    Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: trackUpdatedFields)
+                }
             }
             completion()
         }
@@ -431,7 +442,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
         
         formBuilder.updateValues()
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     

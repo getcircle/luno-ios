@@ -25,6 +25,15 @@ class TeamDetailViewController:
         delegate = CardCollectionViewDelegate()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Tracker.sharedInstance.trackPageView(
+            pageType: .TeamDetail, 
+            pageId: (dataSource as! TeamDetailDataSource).team.id
+        )
+    }
+    
     // MARK: - Configuration
     
     override func configureCollectionView() {
@@ -169,18 +178,22 @@ class TeamDetailViewController:
                     nextRequest: teamDetailDataSource.profilesNextRequest
                 )
                 viewController.title = "People in " + teamDetailDataSource.team.getName()
+                viewController.pageType = .TeamMembers
                 (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 navigationController?.pushViewController(viewController, animated: true)
             
             case .Teams:
-                let viewController = ProfilesViewController()
+                let viewController = TeamsOverviewViewController()
                 viewController.dataSource.setInitialData(
                     content: card.allContent,
                     ofType: nil,
                     nextRequest: nil
                 )
                 viewController.title = "Teams in " + teamDetailDataSource.team.getName()
-                (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                viewController.pageType = .TeamSubTeams
+                (viewController.dataSource as! TeamsOverviewDataSource).searchLocation = .Modal
+                (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
                 navigationController?.pushViewController(viewController, animated: true)
                 
             default:

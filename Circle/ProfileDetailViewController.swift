@@ -35,6 +35,8 @@ class ProfileDetailViewController:
                 CircleCache.recordProfileVisit(profile)
             }
         }
+        
+        Tracker.sharedInstance.trackPageView(pageType: .ProfileDetail, pageId: profile.id)
     }
         
     // MARK: - Configuration
@@ -119,32 +121,26 @@ class ProfileDetailViewController:
     private func performQuickAction(contactMethod: Services.Profile.Containers.ContactMethodV1) {
         switch contactMethod.contactMethodType {
         case .Email:
+            Tracker.sharedInstance.trackContactTap(
+                .Email,
+                contactId: profile.id,
+                contactLocation: .ProfileDetail
+            )
             presentMailViewController(
                 [contactMethod.value],
                 subject: "Hey",
                 messageBody: "",
                 completionHandler: nil
             )
-            
-//        case .Message:
-//            var recipient: String?
-//            if let phone = profile.getCellPhone() {
-//                recipient = phone
-//            } else if let email = profile.getEmail() {
-//                recipient = email
-//            }
-//            if recipient != nil {
-//                presentMessageViewController(
-//                    [recipient!],
-//                    subject: "Hey",
-//                    messageBody: "",
-//                    completionHandler: nil
-//                )
-//            }
-            
+
         case .CellPhone:
             if let number = profile.getCellPhone() as String? {
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
+                    Tracker.sharedInstance.trackContactTap(
+                        .Call,
+                        contactId: profile.id,
+                        contactLocation: .ProfileDetail
+                    )
                     UIApplication.sharedApplication().openURL(phoneURL)
                 }
             }
@@ -170,26 +166,30 @@ class ProfileDetailViewController:
         var content: Array<Services.Profile.Containers.ProfileV1>?
         var title: String?
         let profileDetailDataSource = dataSource as! ProfileDetailDataSource
+        var pageType: TrackerProperty.PageType?
         
         switch card.subType {
         case .Teams:
             if let peers = profileDetailDataSource.peers {
                 content = peers
                 title = profileDetailDataSource.profile.firstName + "'s Peers"
+                pageType = .Peers
             }
             
         case .ManagedTeams:
             if let directReports = profileDetailDataSource.directReports {
                 content = directReports
                 title = profileDetailDataSource.profile.firstName + "'s Direct Reports"
+                pageType = .DirectReports
             }
 
         default:
             break
         }
         
-        if let content = content, title = title {
+        if let content = content, title = title, pageType = pageType {
             let viewController = ProfilesViewController()
+            viewController.pageType = pageType
             viewController.dataSource.setInitialData(
                 content: content,
                 ofType: nil,

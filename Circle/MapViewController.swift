@@ -43,7 +43,9 @@ class MapViewController: UIViewController, UIViewControllerTransitioningDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configureAddressView()
+        Tracker.sharedInstance.trackPageView(pageType: .LocationAddressMap, pageId: location.id)
         let annotationTitle = NSString(
             format: NSLocalizedString("%@ Office",
                 comment: "Title of map annotation indicating the name of the office at a location. E.g., San Francisco Office"),

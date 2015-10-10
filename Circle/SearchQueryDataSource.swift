@@ -12,17 +12,18 @@ import ProtobufRegistry
 class SearchQueryDataSource: CardDataSource {
     
     var isQuickAction: Bool = false
+    var searchCategory: TrackerProperty.SearchCategory?
 
     let queryTriggerTimer = 0.2
 
     private let whitespaceCharacterSet = NSCharacterSet.whitespaceCharacterSet()
     
-    private var searchTerm = ""
     private var searchResults = [AnyObject]()
     private var searchSuggestions = [SearchSuggestion]()
     private var searchCache = Dictionary<String, Array<AnyObject>>()
     private var completionHandler: ((error: NSError?) -> Void)?
     private var searchTriggerTimer: NSTimer?
+    private var searchStartTracked = false
     
     override class var cardSeparatorColor: UIColor {
         return UIColor.appSearchCardSeparatorViewColor()
@@ -47,12 +48,22 @@ class SearchQueryDataSource: CardDataSource {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    override func filter(string: String, completionHandler: (error: NSError?) -> Void) {
-        if string == searchTerm && searchTerm.trimWhitespace() != "" {
-            return
+    override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+
+        if searchTerm.characters.count < 2 {
+            searchStartTracked = false
+        }
+
+        if !searchStartTracked && searchTerm.characters.count >= 2 {
+            searchStartTracked = true
+            Tracker.sharedInstance.trackSearchStart(
+                query: searchTerm,
+                searchLocation: .Home,
+                category: searchCategory,
+                attribute: nil, value: nil
+            )
         }
         
-        searchTerm = string.trimWhitespace()
         if let results = searchCache[searchTerm] {
             self.clearData()
             searchResults.appendContentsOf(results)
@@ -76,15 +87,26 @@ class SearchQueryDataSource: CardDataSource {
     }
     
     override func clearFilter(completionHandler: () -> Void) {
-        super.clearFilter(completionHandler)
-
-        searchTerm = ""
-        
+        super.clearFilter(completionHandler)        
         clearData()
         searchResults.appendContentsOf(CircleCache.getRecordedSearchResults(Card.MaxListEntries))
         populateDefaultSearchSuggestions()
         addCards()
         completionHandler()
+    }
+    
+    private func isRecentSearchResult() -> Bool {
+        // If category isn't set and no query exists, the only way to tap
+        // a result is by Recents
+        return searchTerm.trimWhitespace() == "" && searchCategory == nil
+    }
+    
+    override func getSearchTrackingSource() -> TrackerProperty.SearchResultSource {
+        if isRecentSearchResult() {
+            return .Recents
+        }
+        
+        return super.getSearchTrackingSource()
     }
     
     func search() {
