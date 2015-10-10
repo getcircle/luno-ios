@@ -54,6 +54,7 @@ class EditProfileStatusViewController: TextInputViewController {
         Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthenticationViewController.updateUserProfile(profile)
+                Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: ["status"])
             }
             
             self.onDataSaved(profile)

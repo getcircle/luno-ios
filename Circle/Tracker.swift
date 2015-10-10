@@ -332,4 +332,18 @@ class Tracker {
         
         track(.ContactTap, properties: properties)
     }
+    
+    func trackProfileUpdate(profileId: String, fields: [String]) {
+        track(.ProfileUpdate, properties: [
+            "Object ID": profileId,
+            "Fields": fields
+        ])
+    }
+
+    func trackTeamUpdate(teamId: String, fields: [String]) {
+        track(.TeamUpdate, properties: [
+            "Team ID": teamId,
+            "Fields": fields
+        ])
+    }
 }

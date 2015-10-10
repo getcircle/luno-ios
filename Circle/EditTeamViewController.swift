@@ -190,6 +190,11 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
             return
         }
         
+        var trackUpatedFields = [String]()
+        if teamName != team.name {
+            trackUpatedFields.append("name")
+        }
+
         let teamBuilder = try! team.toBuilder()
         teamBuilder.name = teamName
         
@@ -202,12 +207,22 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
             descriptionBuilder.value = teamDescription
             teamBuilder.description_ = try! descriptionBuilder.build()
         }
+
+        // Check if description really changed
+        if let description = team.description_ where description.value != teamDescription {
+            trackUpatedFields.append("description")
+        }
+        else if team.description_ == nil && teamDescription.characters.count > 0 {
+            trackUpatedFields.append("description")
+        }
         
         let updatedTeam = try! teamBuilder.build()
-        
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
             if let team = team {
+                if trackUpatedFields.count > 0 {
+                    Tracker.sharedInstance.trackTeamUpdate(team.id, fields: trackUpatedFields)
+                }
                 self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(team)
             }
             hud.hide(true)
