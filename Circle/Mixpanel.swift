@@ -12,6 +12,12 @@ import ProtobufRegistry
 
 extension Mixpanel {
     static func setup() {
-        Mixpanel.sharedInstanceWithToken("2a286f40fa17ba573affa384378817a5")
+#if DEBUG
+    let token = "2a286f40fa17ba573affa384378817a5"
+#else
+    let token = "62bae2b7a51edf77b99f470ec114324a"
+#endif
+    
+        Mixpanel.sharedInstanceWithToken(token)
     }
 }
