@@ -23,7 +23,7 @@ class TeamDetailDataSource: CardDataSource {
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
 
     override class var cardSeparatorInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+        return UIEdgeInsetsMake(0.0, 60.0, 0.0, 0.0)
     }
     
     override func getTitle() -> String {
@@ -296,7 +296,6 @@ class TeamDetailDataSource: CardDataSource {
         }
         else {
             let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
-            
             if cellIsBottomOfSection {
                 cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
             }
@@ -304,6 +303,9 @@ class TeamDetailDataSource: CardDataSource {
                 cell.removeRoundedCorners()
             }
             
+            if (isLastCellAtIndexPath(indexPath)) {
+                cell.separatorInset = UIEdgeInsetsZero
+            }
             cell.showSeparator = !cellIsBottomOfSection
         }
     }

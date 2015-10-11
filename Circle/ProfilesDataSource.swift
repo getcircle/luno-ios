@@ -22,6 +22,10 @@ class ProfilesDataSource: CardDataSource {
     private var data = [AnyObject]()
     private var searchStartTracked = false
     
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 60.0, 0.0, 20.0)
+    }    
+    
     // MARK: - Configuration
     
     func configureForLocation(locationId: String, setupOnlySearch: Bool) {

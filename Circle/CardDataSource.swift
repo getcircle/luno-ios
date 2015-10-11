@@ -162,11 +162,15 @@ class CardDataSource: NSObject, UICollectionViewDataSource {
         // Default Implementation
     }
     
-    func cellAtIndexPathIsBottomOfSection(indexPath: NSIndexPath) -> Bool {
+    func isLastCellAtIndexPath(indexPath: NSIndexPath) -> Bool {
         let card = cards[indexPath.section]
         let isLastCell = (indexPath.row == card.content.count - 1)
-        let isLastViewInSection = (isLastCell && !card.addFooter)
-        
+        return isLastCell
+    }
+    
+    func cellAtIndexPathIsBottomOfSection(indexPath: NSIndexPath) -> Bool {
+        let card = cards[indexPath.section]
+        let isLastViewInSection = (isLastCellAtIndexPath(indexPath) && !card.addFooter)
         return isLastViewInSection
     }
     

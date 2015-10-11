@@ -22,7 +22,7 @@ class TeamsOverviewDataSource: CardDataSource {
     private var teams = Array<Services.Organization.Containers.TeamV1>()
     
     override class var cardSeparatorInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 70.0, 0.0, 20.0)
+        return UIEdgeInsetsMake(0.0, 60.0, 0.0, 20.0)
     }
     
     // MARK: - Configuration

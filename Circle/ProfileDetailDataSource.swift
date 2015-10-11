@@ -326,8 +326,13 @@ class ProfileDetailDataSource: CardDataSource {
         
         cell.showSeparator = !cellIsBottomOfSection
         
+        if let profileCollectionViewCell = cell as? ProfileCollectionViewCell {
+            profileCollectionViewCell.separatorInset = UIEdgeInsetsZero
+        }
+        
         if let contactMethodCell = cell as? ContactCollectionViewCell {
             contactMethodCell.contactMethodValueLabel.textColor = UIColor.appPrimaryTextColor()
+            contactMethodCell.separatorInset = UIEdgeInsetsMake(0.0, 72.0, 0.0, 0.0)
             
             if let contactMethod = contentAtIndexPath(indexPath) as? Services.Profile.Containers.ContactMethodV1 where contactMethod.value.characters.count == 0 {
                 if isProfileLoggedInUserProfile() {
