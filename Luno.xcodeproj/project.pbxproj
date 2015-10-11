@@ -166,8 +166,6 @@
 		8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933CF1ACA331700905E14 /* UIDeviceExtension.swift */; };
 		8F5933E31ACBC12400905E14 /* ProfileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933E21ACBC12400905E14 /* ProfileExtension.swift */; };
 		8F5933E81ACCF91C00905E14 /* CircleErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5933E71ACCF91C00905E14 /* CircleErrorMessageView.swift */; };
-		8F60AEAC1B842D6800FF0062 /* EditTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60AEAA1B842D6800FF0062 /* EditTitleViewController.swift */; };
-		8F60AEAD1B842D6800FF0062 /* EditTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F60AEAB1B842D6800FF0062 /* EditTitleViewController.xib */; };
 		8F6501211B008C69006BB260 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6501201B008C69006BB260 /* AppTheme.swift */; };
 		8F6501271B009986006BB260 /* VENTouchLockPasscodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F6501261B009986006BB260 /* VENTouchLockPasscodeView.xib */; };
 		8F65C4F51A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */; };
@@ -489,8 +487,6 @@
 		8F5933CF1ACA331700905E14 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		8F5933E21ACBC12400905E14 /* ProfileExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileExtension.swift; sourceTree = "<group>"; };
 		8F5933E71ACCF91C00905E14 /* CircleErrorMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleErrorMessageView.swift; sourceTree = "<group>"; };
-		8F60AEAA1B842D6800FF0062 /* EditTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTitleViewController.swift; sourceTree = "<group>"; };
-		8F60AEAB1B842D6800FF0062 /* EditTitleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditTitleViewController.xib; sourceTree = "<group>"; };
 		8F6501201B008C69006BB260 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		8F6501261B009986006BB260 /* VENTouchLockPasscodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VENTouchLockPasscodeView.xib; sourceTree = "<group>"; };
 		8F65C4F31A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -731,7 +727,6 @@
 				8F15A3FF1B756AF700693E26 /* EditProfileStatusViewController.swift */,
 				8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */,
 				8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */,
-				8F60AEAA1B842D6800FF0062 /* EditTitleViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
 				8FD907F81A6070D70025A17B /* MapViewController.swift */,
@@ -859,7 +854,6 @@
 				8F15A4101B79B40700693E26 /* ContactCollectionViewCell.xib */,
 				8FEE3D9C1A85B97E00B17569 /* EditProfileViewController.xib */,
 				8F93E2BA1B26BBFD004671D7 /* EditTeamViewController.xib */,
-				8F60AEAB1B842D6800FF0062 /* EditTitleViewController.xib */,
 				BFCFDB031A915249009A5FD4 /* EducationCollectionViewCell.xib */,
 				BF6A2D0E1AAD08DA00692315 /* EmptyCollectionViewCell.xib */,
 				BFAE43541A8B05010085AB2B /* HomelessViewController.xib */,
@@ -1355,7 +1349,6 @@
 				BFCFDB1B1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.xib in Resources */,
 				8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */,
 				47CAC39C1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib in Resources */,
-				8F60AEAD1B842D6800FF0062 /* EditTitleViewController.xib in Resources */,
 				8F65C4F61A50F28E00C7F3E6 /* CardHeaderCollectionReusableView.xib in Resources */,
 				BFCFDB121A9165A9009A5FD4 /* PositionCollectionViewCell.xib in Resources */,
 				8F0ADD511AC5344E00A44B68 /* Loader_00053@2x.png in Resources */,
@@ -1565,7 +1558,6 @@
 				BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */,
 				47CAC39A1BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift in Sources */,
 				8FD907F91A6070D70025A17B /* MapViewController.swift in Sources */,
-				8F60AEAC1B842D6800FF0062 /* EditTitleViewController.swift in Sources */,
 				8F22CBF11A2844F50026376E /* UINavigationBarExtension.swift in Sources */,
 				8F74002A1A68878800D96B60 /* GradientView.swift in Sources */,
 				8F682F521A67AF360066BDEE /* CircleTextField.swift in Sources */,
