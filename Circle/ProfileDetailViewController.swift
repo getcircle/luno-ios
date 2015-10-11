@@ -190,6 +190,7 @@ class ProfileDetailViewController:
         if let content = content, title = title, pageType = pageType {
             let viewController = ProfilesViewController()
             viewController.pageType = pageType
+            (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
             viewController.dataSource.setInitialData(
                 content: content,
                 ofType: nil,
