@@ -155,7 +155,6 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     internal func addLocationCard() -> Card? {
-        //TODO: Add seating info and timezone
         if let location = location {
             let card = Card(cardType: .Profiles, title: "Works at")
             card.showContentCount = false
@@ -199,7 +198,9 @@ class ProfileDetailDataSource: CardDataSource {
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             card.addContent(content: content)
-            card.addDefaultFooter()
+            if self.peers?.count ?? 0 > 0 {
+                card.addDefaultFooter()
+            }
             appendCard(card)
             return card
         }
