@@ -94,6 +94,9 @@ class TeamDetailDataSource: CardDataSource {
             }
             
             dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+                self.profiles = self.profiles.filter({ (profile) -> Bool in
+                    return self.managerProfile.id != profile.id
+                })
                 self.populateData()
                 completionHandler(error: storedError)
             }
@@ -219,7 +222,7 @@ class TeamDetailDataSource: CardDataSource {
             let membersCard = Card(
                 cardType: .Profiles,
                 subType: .Members,
-                title: membersCardTitle + " (" + String(team.profileCount) + ")"
+                title: membersCardTitle + " (" + String(team.profileCount - 1) + ")"
             )
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
@@ -268,7 +271,7 @@ class TeamDetailDataSource: CardDataSource {
                             "View all %d People",
                             comment: "Title of the button to see all the people"
                         ),
-                        team.profileCount
+                        team.profileCount - 1
                     ) as String
                 )
 
