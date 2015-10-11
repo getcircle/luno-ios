@@ -137,14 +137,28 @@ class OverviewViewController:
     
     private func configureSearchHeaderView() {
         if searchHeaderView != nil && addSearchFilterView {
-            view.addSubview(searchHeaderView!)
-            searchHeaderView!.delegate = self
-            searchHeaderView!.searchTextField.placeholder = NSLocalizedString(filterPlaceHolderText(), comment: filterPlaceHolderComment())
-            searchHeaderView!.searchTextField.addTarget(self, action: "filterChanged:", forControlEvents: .EditingChanged)
-            searchHeaderView!.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
-            searchHeaderView!.autoSetDimension(.Height, toSize: 44.0)
-            searchHeaderView!.layer.cornerRadius = 10.0
-            searchHeaderView!.addBottomBorder()
+            if let searchHeaderView = searchHeaderView {
+                
+                let searchHeaderContainerView = UIView(forAutoLayout: ())
+                searchHeaderContainerView.backgroundColor = UIColor.whiteColor()
+                view.addSubview(searchHeaderContainerView)
+                searchHeaderContainerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+                searchHeaderContainerView.autoSetDimension(.Height, toSize: 44.0)
+                
+                searchHeaderContainerView.addSubview(searchHeaderView)
+                searchHeaderView.delegate = self
+                searchHeaderView.searchTextField.placeholder = NSLocalizedString(
+                    filterPlaceHolderText(),
+                    comment: filterPlaceHolderComment()
+                )
+                searchHeaderView.searchTextField.addTarget(
+                    self,
+                    action: "filterChanged:",
+                    forControlEvents: .EditingChanged
+                )
+                searchHeaderView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsMake(0.0, 15.0, 0.0, 15.0))
+                searchHeaderContainerView.addBottomBorder()
+            }
         }
     }
     
