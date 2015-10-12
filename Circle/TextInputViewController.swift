@@ -264,18 +264,6 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
         }
         
         delegate?.onTextInputValueUpdated(updatedObject)
-        if addPostButton {
-            goToNextVC()
-        }
-        else {
-            dismissView()
-        }
-    }
-    
-    // MARK: - IBActions
-    
-    private func goToNextVC() {
-        let notificationsVC = NotificationsViewController(nibName: "NotificationsViewController", bundle: nil)
-        navigationController?.pushViewController(notificationsVC, animated: true)
+        dismissView()
     }
 }
