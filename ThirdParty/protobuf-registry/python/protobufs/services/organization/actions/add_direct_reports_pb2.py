@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/actions/add_direct_reports.proto',
   package='services.organization.actions.add_direct_reports',
   syntax='proto2',
-  serialized_pb=_b('\n@protobufs/services/organization/actions/add_direct_reports.proto\x12\x30services.organization.actions.add_direct_reports\x1a\x30protobufs/services/organization/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\"\n\x1a\x64irect_reports_profile_ids\x18\x03 \x03(\t\"X\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x04team\x18\x02 \x01(\x0b\x32(.services.organization.containers.TeamV1BG\nEcom.rhlabs.protobufs.services.organization.actions.add_direct_reports')
+  serialized_pb=_b('\n@protobufs/services/organization/actions/add_direct_reports.proto\x12\x30services.organization.actions.add_direct_reports\x1a\x30protobufs/services/organization/containers.proto\"W\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x12\n\nprofile_id\x18\x02 \x01(\t\x12\"\n\x1a\x64irect_reports_profile_ids\x18\x03 \x03(\t\"i\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x36\n\x04team\x18\x02 \x01(\x0b\x32(.services.organization.containers.TeamV1\x12\x0f\n\x07\x63reated\x18\x03 \x01(\x08\x42G\nEcom.rhlabs.protobufs.services.organization.actions.add_direct_reports')
   ,
   dependencies=[protobufs_dot_services_dot_organization_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -94,6 +94,13 @@ _RESPONSEV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='created', full_name='services.organization.actions.add_direct_reports.ResponseV1.created', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -107,7 +114,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=257,
-  serialized_end=345,
+  serialized_end=362,
 )
 
 _RESPONSEV1.fields_by_name['team'].message_type = protobufs_dot_services_dot_organization_dot_containers__pb2._TEAMV1

@@ -12,6 +12,7 @@ public func == (lhs: Services.Profile.Actions.BulkCreateProfiles.RequestV1, rhs:
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.profiles == rhs.profiles)
+  fieldCheck = fieldCheck && (lhs.hasShouldUpdate == rhs.hasShouldUpdate) && (!lhs.hasShouldUpdate || lhs.shouldUpdate == rhs.shouldUpdate)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -51,6 +52,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
     public private(set) var version:UInt32 = UInt32(1)
 
     public private(set) var profiles:Array<Services.Profile.Containers.ProfileV1>  = Array<Services.Profile.Containers.ProfileV1>()
+    public private(set) var hasShouldUpdate:Bool = false
+    public private(set) var shouldUpdate:Bool = false
+
     required public init() {
          super.init()
     }
@@ -63,6 +67,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
       }
       for oneElementprofiles in profiles {
           try output.writeMessage(2, value:oneElementprofiles)
+      }
+      if hasShouldUpdate {
+        try output.writeBool(3, value:shouldUpdate)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -78,6 +85,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
       }
       for oneElementprofiles in profiles {
           serialize_size += oneElementprofiles.computeMessageSize(2)
+      }
+      if hasShouldUpdate {
+        serialize_size += shouldUpdate.computeBoolSize(3)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -140,6 +150,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
           output += "\(indent)}\n"
           profilesElementIndex++
       }
+      if hasShouldUpdate {
+        output += "\(indent) shouldUpdate: \(shouldUpdate) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -150,6 +163,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
             }
             for oneElementprofiles in profiles {
                 hashCode = (hashCode &* 31) &+ oneElementprofiles.hashValue
+            }
+            if hasShouldUpdate {
+               hashCode = (hashCode &* 31) &+ shouldUpdate.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -218,6 +234,29 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
         builderResult.profiles.removeAll(keepCapacity: false)
         return self
       }
+      public var hasShouldUpdate:Bool {
+           get {
+                return builderResult.hasShouldUpdate
+           }
+      }
+      public var shouldUpdate:Bool {
+           get {
+                return builderResult.shouldUpdate
+           }
+           set (value) {
+               builderResult.hasShouldUpdate = true
+               builderResult.shouldUpdate = value
+           }
+      }
+      public func setShouldUpdate(value:Bool) -> Services.Profile.Actions.BulkCreateProfiles.RequestV1.Builder {
+        self.shouldUpdate = value
+        return self
+      }
+      public func clearShouldUpdate() -> Services.Profile.Actions.BulkCreateProfiles.RequestV1.Builder{
+           builderResult.hasShouldUpdate = false
+           builderResult.shouldUpdate = false
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -248,6 +287,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
         if !other.profiles.isEmpty  {
            builderResult.profiles += other.profiles
         }
+        if other.hasShouldUpdate {
+             shouldUpdate = other.shouldUpdate
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -270,6 +312,9 @@ public extension Services.Profile.Actions.BulkCreateProfiles {
             let subBuilder = Services.Profile.Containers.ProfileV1.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             profiles += [subBuilder.buildPartial()]
+
+          case 24 :
+            shouldUpdate = try input.readBool()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

@@ -24,6 +24,7 @@ public func == (lhs: Services.Organization.Actions.AddDirectReports.ResponseV1, 
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasTeam == rhs.hasTeam) && (!lhs.hasTeam || lhs.team == rhs.team)
+  fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -335,6 +336,9 @@ public extension Services.Organization.Actions.AddDirectReports {
 
     public private(set) var hasTeam:Bool = false
     public private(set) var team:Services.Organization.Containers.TeamV1!
+    public private(set) var hasCreated:Bool = false
+    public private(set) var created:Bool = false
+
     required public init() {
          super.init()
     }
@@ -347,6 +351,9 @@ public extension Services.Organization.Actions.AddDirectReports {
       }
       if hasTeam {
         try output.writeMessage(2, value:team)
+      }
+      if hasCreated {
+        try output.writeBool(3, value:created)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -364,6 +371,9 @@ public extension Services.Organization.Actions.AddDirectReports {
           if let varSizeteam = team?.computeMessageSize(2) {
               serialize_size += varSizeteam
           }
+      }
+      if hasCreated {
+        serialize_size += created.computeBoolSize(3)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -424,6 +434,9 @@ public extension Services.Organization.Actions.AddDirectReports {
         try team?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasCreated {
+        output += "\(indent) created: \(created) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -436,6 +449,9 @@ public extension Services.Organization.Actions.AddDirectReports {
                 if let hashValueteam = team?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueteam
                 }
+            }
+            if hasCreated {
+               hashCode = (hashCode &* 31) &+ created.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -539,6 +555,29 @@ public extension Services.Organization.Actions.AddDirectReports {
         builderResult.team = nil
         return self
       }
+      public var hasCreated:Bool {
+           get {
+                return builderResult.hasCreated
+           }
+      }
+      public var created:Bool {
+           get {
+                return builderResult.created
+           }
+           set (value) {
+               builderResult.hasCreated = true
+               builderResult.created = value
+           }
+      }
+      public func setCreated(value:Bool) -> Services.Organization.Actions.AddDirectReports.ResponseV1.Builder {
+        self.created = value
+        return self
+      }
+      public func clearCreated() -> Services.Organization.Actions.AddDirectReports.ResponseV1.Builder{
+           builderResult.hasCreated = false
+           builderResult.created = false
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -569,6 +608,9 @@ public extension Services.Organization.Actions.AddDirectReports {
         if (other.hasTeam) {
             try mergeTeam(other.team)
         }
+        if other.hasCreated {
+             created = other.created
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -594,6 +636,9 @@ public extension Services.Organization.Actions.AddDirectReports {
             }
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             team = subBuilder.buildPartial()
+
+          case 24 :
+            created = try input.readBool()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
