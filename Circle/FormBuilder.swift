@@ -36,6 +36,9 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         var input: AnyObject?
         var inputEnabled: Bool?
         var keyboardType: UIKeyboardType
+        var autocapitalizationType: UITextAutocapitalizationType = .None
+        var autocorrectionType: UITextAutocorrectionType = .No
+        var spellCheckingType: UITextSpellCheckingType = .No
         var placeholder: String?
         var placeholderColor: UIColor?
         var type: FormFieldType
@@ -170,9 +173,9 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     // TODO: Make these configurable
                     // Not urgent since we are using the form builder for contact info
                     // only, to which the following settings are fine
-                    textField.autocapitalizationType = .None
-                    textField.autocorrectionType = .No
-                    textField.spellCheckingType = .No
+                    textField.autocapitalizationType = item.autocapitalizationType
+                    textField.autocorrectionType = item.autocorrectionType
+                    textField.spellCheckingType = item.spellCheckingType
                     textField.delegate = self
                     if let itemPlaceholder = item.placeholder {
                         let attributedPlaceholder = NSMutableAttributedString(string: itemPlaceholder)

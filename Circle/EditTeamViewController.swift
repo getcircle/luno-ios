@@ -39,6 +39,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
 
         // Do any additional setup after loading the view.
+        Tracker.sharedInstance.trackPageView(pageType: .EditTeam, pageId: team.id)
         configureView()
         configureTeamNameFieldLabel()
         configureTeamNameField()
@@ -189,34 +190,44 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
             return
         }
         
-        do {
-            let teamBuilder = try team.toBuilder()
-            teamBuilder.name = teamName
-            
-            let teamDescription = teamDescriptionField.text.trimWhitespace()
-            if teamDescription.characters.count == 0 {
-                teamBuilder.clearDescription()
-            }
-            else {
-                let descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
-                descriptionBuilder.value = teamDescription
-                teamBuilder.description_ = try descriptionBuilder.build()
-            }
-            
-            let updatedTeam = try teamBuilder.build()
-            
-            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
-            Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
-                if let team = team {
-                    self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(team)
+        var trackUpatedFields = [String]()
+        if teamName != team.name {
+            trackUpatedFields.append("name")
+        }
+
+        let teamBuilder = try! team.toBuilder()
+        teamBuilder.name = teamName
+        
+        let teamDescription = teamDescriptionField.text.trimWhitespace()
+        if teamDescription.characters.count == 0 {
+            teamBuilder.clearDescription()
+        }
+        else {
+            let descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
+            descriptionBuilder.value = teamDescription
+            teamBuilder.description_ = try! descriptionBuilder.build()
+        }
+
+        // Check if description really changed
+        if let description = team.description_ where description.value != teamDescription {
+            trackUpatedFields.append("description")
+        }
+        else if team.description_ == nil && teamDescription.characters.count > 0 {
+            trackUpatedFields.append("description")
+        }
+        
+        let updatedTeam = try! teamBuilder.build()
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        Services.Organization.Actions.updateTeam(updatedTeam, completionHandler: { (team, error) -> Void in
+            if let team = team {
+                if trackUpatedFields.count > 0 {
+                    Tracker.sharedInstance.trackTeamUpdate(team.id, fields: trackUpatedFields)
                 }
-                hud.hide(true)
-                self.close(sender)
-            })
-        }
-        catch {
-            print("Error: \(error)")
-        }
+                self.editTeamViewControllerDelegate?.onTeamDetailsUpdated(team)
+            }
+            hud.hide(true)
+            self.close(sender)
+        })
     }
 
     @IBAction func close(sender: AnyObject!) {

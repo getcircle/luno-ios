@@ -25,6 +25,15 @@ class TeamDetailViewController:
         delegate = CardCollectionViewDelegate()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        Tracker.sharedInstance.trackPageView(
+            pageType: .TeamDetail, 
+            pageId: (dataSource as! TeamDetailDataSource).team.id
+        )
+    }
+    
     // MARK: - Configuration
     
     override func configureCollectionView() {
@@ -99,21 +108,14 @@ class TeamDetailViewController:
                 withKey: dataSource.team.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    do {
-                        let teamBuilder = try dataSource.team.toBuilder()
-                        teamBuilder.imageUrl = mediaURL
-                        Services.Organization.Actions.updateTeam(try teamBuilder.build()) { (team, error) -> Void in
-                            if let team = team {
-                                dataSource.team = team
-                                hud.hide(true)
-                                completion()
-                            }
+                    let teamBuilder = try! dataSource.team.toBuilder()
+                    teamBuilder.imageUrl = mediaURL
+                    Services.Organization.Actions.updateTeam(try! teamBuilder.build()) { (team, error) -> Void in
+                        if let team = team {
+                            dataSource.team = team
+                            hud.hide(true)
+                            completion()
                         }
-                    }
-                    catch {
-                        print("Error: \(error)")
-                        
-                        hud.hide(true)
                     }
                 }
             }
@@ -164,44 +166,43 @@ class TeamDetailViewController:
     // MARK: - CardFooterDelegate 
     
     func cardFooterTapped(card: Card!) {
-        do {
-            let teamDetailDataSource = dataSource as! TeamDetailDataSource
-            switch card.type {
-            case .Profiles:
-                switch card.subType {
-                case .Members:
-                    let viewController = ProfilesViewController()
-                    viewController.dataSource.setInitialData(
-                        content: card.allContent,
-                        ofType: nil,
-                        nextRequest: teamDetailDataSource.profilesNextRequest
-                    )
-                    viewController.title = "People in " + teamDetailDataSource.team.getName()
-                    try (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
-                    navigationController?.pushViewController(viewController, animated: true)
-                    
-                case .Teams:
-                    let viewController = ProfilesViewController()
-                    viewController.dataSource.setInitialData(
-                        content: card.allContent,
-                        ofType: nil,
-                        nextRequest: nil
-                    )
-                    viewController.title = "Teams in " + teamDetailDataSource.team.getName()
-                    try (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
-                    navigationController?.pushViewController(viewController, animated: true)
-                    
-                default:
-                    break
-                }
+        let teamDetailDataSource = dataSource as! TeamDetailDataSource
+        switch card.type {
+        case .Profiles:
+            switch card.subType {
+            case .Members:
+                let viewController = ProfilesViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: teamDetailDataSource.profilesNextRequest
+                )
+                viewController.title = "People in " + teamDetailDataSource.team.getName()
+                viewController.pageType = .TeamMembers
+                (viewController.dataSource as! ProfilesDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
+                navigationController?.pushViewController(viewController, animated: true)
+            
+            case .Teams:
+                let viewController = TeamsOverviewViewController()
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: nil
+                )
+                viewController.title = "Teams in " + teamDetailDataSource.team.getName()
+                viewController.pageType = .TeamSubTeams
+                (viewController.dataSource as! TeamsOverviewDataSource).searchLocation = .Modal
+                (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(teamDetailDataSource.team.id, setupOnlySearch: true)
+                navigationController?.pushViewController(viewController, animated: true)
                 
             default:
                 break
-                
             }
-        }
-        catch {
-            print("Error: \(error)")
+            
+        default:
+            break
+        
         }
     }
     

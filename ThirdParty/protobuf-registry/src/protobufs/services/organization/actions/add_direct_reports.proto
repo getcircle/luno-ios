@@ -15,4 +15,5 @@ message RequestV1 {
 message ResponseV1 {
     optional uint32 version = 1 [default = 1];
     optional services.organization.containers.TeamV1 team = 2;
+    optional bool created = 3;
 }

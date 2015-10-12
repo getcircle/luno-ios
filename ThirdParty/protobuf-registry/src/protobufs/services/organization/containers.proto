@@ -62,6 +62,8 @@ message TeamStatusV1 {
     optional string created = 3;
     optional string by_profile_id = 4;
     optional services.profile.containers.ProfileV1 by_profile = 5;
+    optional string id = 6;
+    optional string changed = 7;
 }
 
 message TokenV1 {

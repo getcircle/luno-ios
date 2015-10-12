@@ -29,6 +29,17 @@ class TeamsOverviewViewController: OverviewViewController {
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let team = dataSource.contentAtIndexPath(indexPath) as? Services.Organization.Containers.TeamV1 {
+            Tracker.sharedInstance.trackSearchResultTap(
+                query: dataSource.searchTerm,
+                searchSource: dataSource.getSearchTrackingSource(),
+                searchLocation: .Modal,
+                searchResultType: .Team,
+                searchResultIndex: indexPath.row + 1,
+                searchResultId: team.id,
+                category: dataSource.getSearchTrackingCategory(),
+                attribute: (dataSource as! TeamsOverviewDataSource).searchTrackerAttribute,
+                value: (dataSource as! TeamsOverviewDataSource).searchAttributeValue
+            )
             showTeamDetail(team)
         }
     }    

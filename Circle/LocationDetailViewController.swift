@@ -25,6 +25,15 @@ class LocationDetailViewController:
         delegate = CardCollectionViewDelegate()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        Tracker.sharedInstance.trackPageView(
+            pageType: .LocationDetail,
+            pageId: (dataSource as! LocationDetailDataSource).location.id
+        )
+    }
+    
     // MARK: - Configuration
 
     override func configureCollectionView() {
@@ -91,52 +100,34 @@ class LocationDetailViewController:
     // MARK: - CardFooterDelegate
     
     func cardFooterTapped(card: Card!) {
-        do {
-            let officeDetailDataSource = dataSource as! LocationDetailDataSource
-            switch card.type {
-            case .Profiles:
-                switch card.subType {
-                case .Members:
-                    let viewController = ProfilesViewController()
-                    viewController.dataSource.setInitialData(
-                        content: card.allContent,
-                        ofType: nil,
-                        nextRequest: officeDetailDataSource.nextProfilesRequest
-                    )
-                    viewController.title = "People @ " + officeDetailDataSource.location.name
-                    try (viewController.dataSource as! ProfilesDataSource).configureForLocation(
-                        officeDetailDataSource.location.id,
-                        setupOnlySearch: true
-                    )
-                    trackCardHeaderTapped(card, overviewType: .Profiles)
-                    navigationController?.pushViewController(viewController, animated: true)
-                    
-                default:
-                    break
-                }
+        let officeDetailDataSource = dataSource as! LocationDetailDataSource
+        switch card.type {
+        case .Profiles:
+            switch card.subType {
+            case .Members:
+                let viewController = ProfilesViewController()
+                viewController.pageType = .LocationMembers
+                viewController.dataSource.setInitialData(
+                    content: card.allContent,
+                    ofType: nil,
+                    nextRequest: officeDetailDataSource.nextProfilesRequest
+                )
+                viewController.title = "People @ " + officeDetailDataSource.location.name
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
+                (viewController.dataSource as! ProfilesDataSource).configureForLocation(
+                    officeDetailDataSource.location.id,
+                    setupOnlySearch: true
+                )
+
+                navigationController?.pushViewController(viewController, animated: true)
                 
             default:
                 break
             }
+            
+        default:
+            break
         }
-        catch {
-            print("Error: \(error)")
-        }
-    }
-
-    // MARK: - Tracking
-    
-    func trackCardHeaderTapped(card: Card, overviewType: TrackerProperty.OverviewType) {
-        let properties = [
-            TrackerProperty.withKeyString("card_type").withString(card.type.rawValue),
-            TrackerProperty.withKey(.Source).withSource(.Detail),
-            TrackerProperty.withKey(.SourceDetailType).withDetailType(.Location),
-            TrackerProperty.withKey(.Destination).withSource(.Overview),
-            TrackerProperty.withKey(.DestinationOverviewType).withOverviewType(overviewType),
-            TrackerProperty.withKeyString("card_title").withString(card.title),
-            TrackerProperty.withKey(.ActiveViewController).withString(self.dynamicType.description())
-        ]
-        Tracker.sharedInstance.track(.CardHeaderTapped, properties: properties)
     }
     
     // Image Upload
@@ -151,21 +142,14 @@ class LocationDetailViewController:
                 withKey: dataSource.location.id
             ) { (mediaURL, error) -> Void in
                 if let mediaURL = mediaURL {
-                    do {
-                        let locationBuilder = try dataSource.location.toBuilder()
-                        locationBuilder.imageUrl = mediaURL
-                        Services.Organization.Actions.updateLocation(try locationBuilder.build()) { (location, error) -> Void in
-                            if let location = location {
-                                dataSource.location = location
-                                hud.hide(true)
-                                completion()
-                            }
+                    let locationBuilder = try! dataSource.location.toBuilder()
+                    locationBuilder.imageUrl = mediaURL
+                    Services.Organization.Actions.updateLocation(try! locationBuilder.build()) { (location, error) -> Void in
+                        if let location = location {
+                            dataSource.location = location
+                            hud.hide(true)
+                            completion()
                         }
-                    }
-                    catch {
-                        print("Error: \(error)")
-                        
-                        hud.hide(true)
                     }
                 }
             }
@@ -181,7 +165,7 @@ class LocationDetailViewController:
     // MARK - ProfileCollectionViewCellDelegate
     
     func onProfileAddButton(checked: Bool) {
-        if let officeDataSource = dataSource as? LocationDetailDataSource,
+        if let officeDataSource = dataSource as? LocationDetailDataSource, 
             loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
         {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
@@ -194,22 +178,15 @@ class LocationDetailViewController:
                 pointsOfContact.removeObject(loggedInUserProfile)
             }
             
-            do {
-                let locationBuilder = try (dataSource as! LocationDetailDataSource).location.toBuilder()
-                locationBuilder.pointsOfContact = pointsOfContact.array as! Array<Services.Profile.Containers.ProfileV1>
-                Services.Organization.Actions.updateLocation(try locationBuilder.build(), completionHandler: { (location, error) -> Void in
-                    hud.hide(true)
-                    if let location = location where error == nil {
-                        officeDataSource.location = location
-                        self.loadData()
-                    }
-                })
-            }
-            catch {
-                print("Error: \(error)")
-                
+            let locationBuilder = try! (dataSource as! LocationDetailDataSource).location.toBuilder()
+            locationBuilder.pointsOfContact = pointsOfContact.array as! Array<Services.Profile.Containers.ProfileV1>
+            Services.Organization.Actions.updateLocation(try! locationBuilder.build(), completionHandler: { (location, error) -> Void in
                 hud.hide(true)
-            }
+                if let location = location where error == nil {
+                    officeDataSource.location = location
+                    self.loadData()
+                }
+            })
         }
     }
     

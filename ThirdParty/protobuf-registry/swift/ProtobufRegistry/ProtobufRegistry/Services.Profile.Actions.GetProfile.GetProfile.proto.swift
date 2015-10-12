@@ -13,6 +13,7 @@ public func == (lhs: Services.Profile.Actions.GetProfile.RequestV1, rhs: Service
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
   fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
+  fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -57,6 +58,9 @@ public extension Services.Profile.Actions.GetProfile {
 
     public private(set) var hasInflations:Bool = false
     public private(set) var inflations:Services.Common.Containers.InflationsV1!
+    public private(set) var hasEmail:Bool = false
+    public private(set) var email:String = ""
+
     required public init() {
          super.init()
     }
@@ -72,6 +76,9 @@ public extension Services.Profile.Actions.GetProfile {
       }
       if hasInflations {
         try output.writeMessage(3, value:inflations)
+      }
+      if hasEmail {
+        try output.writeString(4, value:email)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -92,6 +99,9 @@ public extension Services.Profile.Actions.GetProfile {
           if let varSizeinflations = inflations?.computeMessageSize(3) {
               serialize_size += varSizeinflations
           }
+      }
+      if hasEmail {
+        serialize_size += email.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -155,6 +165,9 @@ public extension Services.Profile.Actions.GetProfile {
         try inflations?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasEmail {
+        output += "\(indent) email: \(email) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -170,6 +183,9 @@ public extension Services.Profile.Actions.GetProfile {
                 if let hashValueinflations = inflations?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueinflations
                 }
+            }
+            if hasEmail {
+               hashCode = (hashCode &* 31) &+ email.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -296,6 +312,29 @@ public extension Services.Profile.Actions.GetProfile {
         builderResult.inflations = nil
         return self
       }
+      public var hasEmail:Bool {
+           get {
+                return builderResult.hasEmail
+           }
+      }
+      public var email:String {
+           get {
+                return builderResult.email
+           }
+           set (value) {
+               builderResult.hasEmail = true
+               builderResult.email = value
+           }
+      }
+      public func setEmail(value:String) -> Services.Profile.Actions.GetProfile.RequestV1.Builder {
+        self.email = value
+        return self
+      }
+      public func clearEmail() -> Services.Profile.Actions.GetProfile.RequestV1.Builder{
+           builderResult.hasEmail = false
+           builderResult.email = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -329,6 +368,9 @@ public extension Services.Profile.Actions.GetProfile {
         if (other.hasInflations) {
             try mergeInflations(other.inflations)
         }
+        if other.hasEmail {
+             email = other.email
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -357,6 +399,9 @@ public extension Services.Profile.Actions.GetProfile {
             }
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             inflations = subBuilder.buildPartial()
+
+          case 34 :
+            email = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

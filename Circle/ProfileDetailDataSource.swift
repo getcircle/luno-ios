@@ -162,7 +162,6 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     internal func addLocationCard() -> Card? {
-        //TODO: Add seating info and timezone
         if let location = location {
             let card = Card(cardType: .Profiles, title: "Works at")
             card.showContentCount = false
@@ -206,7 +205,9 @@ class ProfileDetailDataSource: CardDataSource {
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             card.addContent(content: content)
-            card.addDefaultFooter()
+            if self.peers?.count ?? 0 > 0 {
+                card.addDefaultFooter()
+            }
             appendCard(card)
             return card
         }
@@ -333,8 +334,13 @@ class ProfileDetailDataSource: CardDataSource {
         
         cell.showSeparator = !cellIsBottomOfSection
         
+        if let profileCollectionViewCell = cell as? ProfileCollectionViewCell {
+            profileCollectionViewCell.separatorInset = UIEdgeInsetsZero
+        }
+        
         if let contactMethodCell = cell as? ContactCollectionViewCell {
             contactMethodCell.contactMethodValueLabel.textColor = UIColor.appPrimaryTextColor()
+            contactMethodCell.separatorInset = UIEdgeInsetsMake(0.0, 72.0, 0.0, 0.0)
             
             if let contactMethod = contentAtIndexPath(indexPath) as? Services.Profile.Containers.ContactMethodV1 where contactMethod.value.characters.count == 0 {
                 if isProfileLoggedInUserProfile() {

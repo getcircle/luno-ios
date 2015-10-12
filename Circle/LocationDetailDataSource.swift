@@ -23,7 +23,7 @@ class LocationDetailDataSource: CardDataSource {
     private var isLoggedInUserPOC = false
 
     override class var cardSeparatorInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+        return UIEdgeInsetsMake(0.0, 60.0, 0.0, 0.0)
     }
     
     override func getTitle() -> String {
@@ -83,6 +83,9 @@ class LocationDetailDataSource: CardDataSource {
             }
             
             cell.showSeparator = !cellIsBottomOfSection
+            if (isLastCellAtIndexPath(indexPath)) {
+                cell.separatorInset = UIEdgeInsetsZero
+            }
             
             if canEdit() {
                 if let

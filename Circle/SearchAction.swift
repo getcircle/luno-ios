@@ -9,27 +9,61 @@
 import Foundation
 import ProtobufRegistry
 
+enum SearchActionType: Int {
+    case EmailPerson = 1
+    case CallPerson
+    case MessagePerson
+    case ReportsToPerson
+    
+    case AddressOfLocation
+    case LocalTimeAtLocation
+    case ContactsOfLocation
+    case PeopleInLocation
+    
+    case MembersOfTeam
+    case SubTeamsOfTeam
+    
+    static func trackerSearchResultType(type: SearchActionType) -> TrackerProperty.SearchResultType {
+        switch type {
+        case .EmailPerson:
+            return .EmailPerson
+            
+        case .CallPerson:
+            return .CallPerson
+            
+        case .MessagePerson:
+            return .MessagePerson
+            
+        case .ReportsToPerson:
+            return .ReportsTo
+            
+        case .AddressOfLocation:
+            return .AddressOfLocation
+            
+        case .LocalTimeAtLocation:
+            return .LocalTimeAtLocation
+            
+        case .ContactsOfLocation:
+            return .ContactsOfLocation
+            
+        case .PeopleInLocation:
+            return .LocationMembers
+            
+        case .MembersOfTeam:
+            return .TeamMembers
+            
+        case .SubTeamsOfTeam:
+            return .TeamSubTeams
+        }
+    }
+}
+
 class SearchAction: SearchSuggestion {
     
-    enum Type: Int {
-        case EmailPerson = 1
-        case CallPerson
-        case MessagePerson
-        case ReportsToPerson
-        
-        case AddressOfLocation
-        case LocalTimeAtLocation
-        case ContactsOfLocation
-        case PeopleInLocation
-        
-        case MembersOfTeam
-        case SubTeamsOfTeam
-    }
-    
-    var type: Type
+    var type: SearchActionType
     var underlyingObject: AnyObject?
 
-    init(title: String, ofType: Type, withImageSource: String) {
+    init(title: String, ofType: SearchActionType, withImageSource: String) {
         type = ofType
         super.init(title: title, imageSource: withImageSource)
     }

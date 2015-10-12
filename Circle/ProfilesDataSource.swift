@@ -11,12 +11,20 @@ import ProtobufRegistry
 
 class ProfilesDataSource: CardDataSource {
 
+    var searchLocation: TrackerProperty.SearchLocation!
+    var searchTrackerAttribute: TrackerProperty.SearchAttribute?
+
     private(set) var searchAttribute: Services.Search.Containers.Search.AttributeV1?
     private(set) var searchAttributeValue: String?
     
     private var card: Card!
     internal var cardType: Card.CardType = UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .ProfilesGrid : .Profiles
     private var data = [AnyObject]()
+    private var searchStartTracked = false
+    
+    override class var cardSeparatorInset: UIEdgeInsets {
+        return UIEdgeInsetsMake(0.0, 60.0, 0.0, 20.0)
+    }    
     
     // MARK: - Configuration
     
@@ -28,6 +36,7 @@ class ProfilesDataSource: CardDataSource {
         }
 
         searchAttribute = .LocationId
+        searchTrackerAttribute = .LocationId
         searchAttributeValue = locationId
     }
 
@@ -39,6 +48,7 @@ class ProfilesDataSource: CardDataSource {
         }
         
         searchAttribute = .TeamId
+        searchTrackerAttribute = .TeamId
         searchAttributeValue = teamId
     }
     
@@ -117,7 +127,7 @@ class ProfilesDataSource: CardDataSource {
                 self.handleNewContentAddedToCard(self.card, newContent: profiles)
             }
         }
-        
+
         appendCard(card)
         card.addContent(content: data)
         if data.count > 0 {
@@ -134,6 +144,20 @@ class ProfilesDataSource: CardDataSource {
     // MARK: - Filtering
     
     override func handleFiltering(query: String, completionHandler: (error: NSError?) -> Void) {
+        if query.characters.count < 2 {
+            searchStartTracked = false
+        }
+        else if query.characters.count >= 2 && !searchStartTracked {
+            searchStartTracked = true
+            Tracker.sharedInstance.trackSearchStart(
+                query: query,
+                searchLocation: searchLocation,
+                category: .Profiles,
+                attribute: searchTrackerAttribute,
+                value: searchAttributeValue
+            )
+        }
+        
         Services.Search.Actions.search(
             query,
             category: .Profiles,

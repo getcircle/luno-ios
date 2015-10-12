@@ -23,7 +23,7 @@ class TeamDetailDataSource: CardDataSource {
     private let sectionHeaderClass = ProfileSectionHeaderCollectionReusableView.self
 
     override class var cardSeparatorInset: UIEdgeInsets {
-        return UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+        return UIEdgeInsetsMake(0.0, 60.0, 0.0, 0.0)
     }
     
     override func getTitle() -> String {
@@ -94,6 +94,9 @@ class TeamDetailDataSource: CardDataSource {
             }
             
             dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+                self.profiles = self.profiles.filter({ (profile) -> Bool in
+                    return self.managerProfile.id != profile.id
+                })
                 self.populateData()
                 completionHandler(error: storedError)
             }
@@ -219,7 +222,7 @@ class TeamDetailDataSource: CardDataSource {
             let membersCard = Card(
                 cardType: .Profiles,
                 subType: .Members,
-                title: membersCardTitle + " (" + String(team.profileCount) + ")"
+                title: membersCardTitle + " (" + String(team.profileCount - 1) + ")"
             )
             membersCard.showContentCount = false
             membersCard.addHeader(headerClass: sectionHeaderClass)
@@ -268,7 +271,7 @@ class TeamDetailDataSource: CardDataSource {
                             "View all %d People",
                             comment: "Title of the button to see all the people"
                         ),
-                        team.profileCount
+                        team.profileCount - 1
                     ) as String
                 )
 
@@ -296,7 +299,6 @@ class TeamDetailDataSource: CardDataSource {
         }
         else {
             let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
-            
             if cellIsBottomOfSection {
                 cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
             }
@@ -304,6 +306,9 @@ class TeamDetailDataSource: CardDataSource {
                 cell.removeRoundedCorners()
             }
             
+            if (isLastCellAtIndexPath(indexPath)) {
+                cell.separatorInset = UIEdgeInsetsZero
+            }
             cell.showSeparator = !cellIsBottomOfSection
         }
     }
