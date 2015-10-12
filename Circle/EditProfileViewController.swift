@@ -151,6 +151,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                         
                     case .Title:
                         item.value = profile.title
+                        item.autocapitalizationType = .Words
+                        item.autocorrectionType = .Yes
+                        item.spellCheckingType = .Yes
                         
                     case .HireDate:
                         item.value = profile.hireDate
