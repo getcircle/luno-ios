@@ -105,21 +105,26 @@ class LocationDetailViewController:
         case .Profiles:
             switch card.subType {
             case .Members:
-                let viewController = ProfilesViewController()
-                viewController.pageType = .LocationMembers
-                viewController.dataSource.setInitialData(
-                    content: card.allContent,
-                    ofType: nil,
-                    nextRequest: officeDetailDataSource.nextProfilesRequest
-                )
-                viewController.title = "People @ " + officeDetailDataSource.location.name
-                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
-                (viewController.dataSource as! ProfilesDataSource).configureForLocation(
-                    officeDetailDataSource.location.id,
-                    setupOnlySearch: true
-                )
-
-                navigationController?.pushViewController(viewController, animated: true)
+                do {
+                    let viewController = ProfilesViewController()
+                    viewController.pageType = .LocationMembers
+                    viewController.dataSource.setInitialData(
+                        content: card.allContent,
+                        ofType: nil,
+                        nextRequest: officeDetailDataSource.nextProfilesRequest
+                    )
+                    viewController.title = "People @ " + officeDetailDataSource.location.name
+                    (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
+                    try (viewController.dataSource as! ProfilesDataSource).configureForLocation(
+                        officeDetailDataSource.location.id,
+                        setupOnlySearch: true
+                    )
+                    
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                catch {
+                    print("Error: \(error)")
+                }
                 
             default:
                 break

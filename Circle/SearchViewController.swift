@@ -402,64 +402,74 @@ class SearchViewController: UIViewController,
             
         case .SearchSuggestion:
             if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory, searchDataSource = dataSource as? SearchQueryDataSource {
-                switch searchCategory.type {
-                case .People:
-                    searchDataSource.searchCategory = .Profiles
-                    let profilesDataSource = ProfilesSearchDataSource()
-                    profilesDataSource.searchLocation = .Home
-                    profilesDataSource.delegate = self
-                    profilesDataSource.configureForOrganization()
-                    
-                    collectionView.dataSource = profilesDataSource
-                    collectionView.reloadData()
-                    
-                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    profilesDataSource.loadData({ (error) -> Void in
-                    })
-                    
-                    dataSource = profilesDataSource
-
-                case .Locations:
-                    
-                    searchDataSource.searchCategory = .Locations
-                    // TODO This should be coming from a paginated data source
-                    let locationsDataSource = LocationsSearchDataSource()
-                    locationsDataSource.searchLocation = .Home
-                    
-                    collectionView.dataSource = locationsDataSource
-                    collectionView.reloadData()
-                    
-                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
-                    locationsDataSource.loadData({ (error) -> Void in
-                        self.collectionView.reloadData()
-                    })
-                    
-                    dataSource = locationsDataSource
-
-                case .Teams:
-                    
-                    searchDataSource.searchCategory = .Teams
-                    let teamsDataSource = TeamsSearchDataSource()
-                    teamsDataSource.delegate = self
-                    teamsDataSource.searchLocation = .Home
-                    teamsDataSource.configureForOrganization()
-                    
-                    collectionView.dataSource = teamsDataSource
-                    collectionView.reloadData()
-
-                    searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
-                    
-                    teamsDataSource.loadData({ (error) -> Void in
-                    })
-                    
-                    dataSource = teamsDataSource
+                do {
+                    switch searchCategory.type {
+                    case .People:
+                        searchDataSource.searchCategory = .Profiles
+                        let profilesDataSource = ProfilesSearchDataSource()
+                        profilesDataSource.searchLocation = .Home
+                        profilesDataSource.delegate = self
+                        try profilesDataSource.configureForOrganization()
+                        
+                        collectionView.dataSource = profilesDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        profilesDataSource.loadData({ (error) -> Void in
+                        })
+                        
+                        dataSource = profilesDataSource
+                        
+                    case .Locations:
+                        
+                        searchDataSource.searchCategory = .Locations
+                        // TODO This should be coming from a paginated data source
+                        let locationsDataSource = LocationsSearchDataSource()
+                        locationsDataSource.searchLocation = .Home
+                        
+                        collectionView.dataSource = locationsDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        
+                        locationsDataSource.loadData({ (error) -> Void in
+                            self.collectionView.reloadData()
+                        })
+                        
+                        dataSource = locationsDataSource
+                        
+                    case .Teams:
+                        
+                        searchDataSource.searchCategory = .Teams
+                        let teamsDataSource = TeamsSearchDataSource()
+                        teamsDataSource.delegate = self
+                        teamsDataSource.searchLocation = .Home
+                        try teamsDataSource.configureForOrganization()
+                        
+                        collectionView.dataSource = teamsDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        
+                        teamsDataSource.loadData({ (error) -> Void in
+                        })
+                        
+                        dataSource = teamsDataSource
+                    }
+                }
+                catch {
+                    print("Error: \(error)")
                 }
             }
-                
+            
         case .SearchAction:
             if let searchAction = dataSource.contentAtIndexPath(indexPath) as? SearchAction {
-                handleSearchAction(searchAction, index: indexPath.row + 1)
+                do {
+                    try handleSearchAction(searchAction, index: indexPath.row + 1)
+                }
+                catch {
+                    print("Error: \(error)")
+                }
             }
             
         default:
@@ -553,7 +563,7 @@ class SearchViewController: UIViewController,
 
     // MARK: - Search Actions
     
-    private func handleSearchAction(searchAction: SearchAction, index: Int) {
+    private func handleSearchAction(searchAction: SearchAction, index: Int) throws {
 
         var trackerResultId: String?
         
@@ -596,7 +606,7 @@ class SearchViewController: UIViewController,
             if let profile = searchAction.underlyingObject as? Services.Profile.Containers.ProfileV1 {
                 trackerResultId = profile.id
                 let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
+                try (viewController.dataSource as! ProfilesDataSource).configureForDirectReports(profile)
                 (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 viewController.title = profile.firstName + "'s Direct Reports"
                 viewController.pageType = .DirectReports
@@ -607,7 +617,7 @@ class SearchViewController: UIViewController,
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
                 trackerResultId = team.id
                 let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                try (viewController.dataSource as! ProfilesDataSource).configureForTeam(team.id, setupOnlySearch: false)
                 (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 viewController.title = searchAction.getTitle()
                 viewController.pageType = .TeamMembers
@@ -618,7 +628,7 @@ class SearchViewController: UIViewController,
             if let team = searchAction.underlyingObject as? Services.Organization.Containers.TeamV1 {
                 trackerResultId = team.id
                 let viewController = TeamsOverviewViewController()
-                (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
+                try (viewController.dataSource as! TeamsOverviewDataSource).configureForTeam(team.id, setupOnlySearch: false)
                 (viewController.dataSource as! TeamsOverviewDataSource).searchLocation = .Home
                 viewController.title = searchAction.getTitle()
                 navigationController?.pushViewController(viewController, animated: true)
@@ -636,7 +646,7 @@ class SearchViewController: UIViewController,
             if let location = searchAction.underlyingObject as? Services.Organization.Containers.LocationV1 {
                 trackerResultId = location.id
                 let viewController = ProfilesViewController()
-                (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
+                try (viewController.dataSource as! ProfilesDataSource).configureForLocation(location.id, setupOnlySearch: false)
                 (viewController.dataSource as! ProfilesDataSource).searchLocation = .Home
                 viewController.title = searchAction.getTitle()
                 viewController.pageType = .LocationMembers
