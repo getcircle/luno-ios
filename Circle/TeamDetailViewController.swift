@@ -106,18 +106,25 @@ class TeamDetailViewController:
                 newImage,
                 forMediaType: .Team,
                 withKey: dataSource.team.id
-            ) { (mediaURL, error) -> Void in
-                if let mediaURL = mediaURL {
-                    let teamBuilder = try! dataSource.team.toBuilder()
-                    teamBuilder.imageUrl = mediaURL
-                    Services.Organization.Actions.updateTeam(try! teamBuilder.build()) { (team, error) -> Void in
-                        if let team = team {
-                            dataSource.team = team
+                ) { (mediaURL, error) -> Void in
+                    if let mediaURL = mediaURL {
+                        do {
+                            let teamBuilder = try dataSource.team.toBuilder()
+                            teamBuilder.imageUrl = mediaURL
+                            Services.Organization.Actions.updateTeam(try teamBuilder.build()) { (team, error) -> Void in
+                                if let team = team {
+                                    dataSource.team = team
+                                    hud.hide(true)
+                                    completion()
+                                }
+                            }
+                        }
+                        catch {
+                            print("Error: \(error)")
+                            
                             hud.hide(true)
-                            completion()
                         }
                     }
-                }
             }
         }
     }
