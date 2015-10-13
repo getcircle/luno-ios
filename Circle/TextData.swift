@@ -18,25 +18,33 @@ class TextData {
         case TeamStatus
     }
     
-    private(set) var value: String
+    var placeholder: String?
+
+    private(set) var authorProfile: Services.Profile.Containers.ProfileV1?
+    private(set) var canEdit: Bool?
     private(set) var editProfileId: String?
     private(set) var editedTimestamp: String?
     private(set) var type: TextDataType
-    var placeholder: String?
+    private(set) var value: String
     private(set) var updatedTimestamp: String?
-    private(set) var authorProfile: Services.Profile.Containers.ProfileV1?
 
     init(type withType: TextDataType,
         andValue: String, 
         andPlaceholder: String? = nil, 
         andTimestamp: String? = nil,
-        andAuthor: Services.Profile.Containers.ProfileV1? = nil
+        andAuthor: Services.Profile.Containers.ProfileV1? = nil,
+        andCanEdit: Bool? = false
     ) {
+        authorProfile = andAuthor
+        canEdit = andCanEdit
         type = withType
         value = andValue
-        placeholder = andPlaceholder
         updatedTimestamp = andTimestamp
-        authorProfile = andAuthor
+        if let canEdit = canEdit where canEdit == true {
+            placeholder = getEditablePlaceholder(withType)
+        } else {
+            placeholder = andPlaceholder
+        }
     }
     
     func getFormattedTimestamp() -> String? {
@@ -77,5 +85,19 @@ class TextData {
         }
         
         return nil
+    }
+    
+    private func getEditablePlaceholder(type: TextDataType) -> String {
+        switch type {
+        case .TeamDescription:
+            return NSLocalizedString("Add a description for your team",
+                comment: "Add a description to the team"
+            )
+            
+        default:
+            return NSLocalizedString("Add details",
+                comment: "Generic text asking user to add details"
+            )
+        }
     }
 }

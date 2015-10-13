@@ -11,7 +11,8 @@ import ProtobufRegistry
 
 class ProfileDetailViewController:
     DetailViewController,
-    CardFooterViewDelegate
+    CardFooterViewDelegate,
+    TextValueCollectionViewDelegate
 {
 
     var profile: Services.Profile.Containers.ProfileV1!
@@ -45,6 +46,7 @@ class ProfileDetailViewController:
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
         dataSource.cardFooterDelegate = self
+        (dataSource as? ProfileDetailDataSource)?.textDataDelegate = self
         (layout as! StickyHeaderCollectionViewLayout).headerHeight = ProfileHeaderCollectionReusableView.height
         super.configureCollectionView()
     }
@@ -198,6 +200,32 @@ class ProfileDetailViewController:
             )
             viewController.title = title
             navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    // MARK: - TextValueCollectionViewDelegate
+    
+    func placeholderButtonTapped(type: TextData.TextDataType) {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile(),
+                loggedInUserOrg = AuthenticationViewController.getLoggedInUserOrganization()
+            where type == .ProfileStatus {
+            Tracker.sharedInstance.trackContactTap(
+                .Email,
+                contactId: profile.id,
+                contactLocation: .ProfileDetailStatus
+            )
+
+            presentMailViewController(
+                [profile.email],
+                subject: "Working on in Luno",
+                messageBody: NSString(
+                    format: "Hey %@,<br/><br/>Can you update what you're working on in Luno?<br/><br/>%@<br/><br/>Thanks!<br/>%@",
+                    profile.firstName,
+                    loggedInUserOrg.getURL("profile/" + profile.id + "?ls=profile_status_askme"),
+                    loggedInUserProfile.firstName
+                ) as String,
+                completionHandler: nil
+            )
         }
     }
 }

@@ -13,6 +13,7 @@ class ProfileDetailDataSource: CardDataSource {
 
     var profile: Services.Profile.Containers.ProfileV1!
     var profileHeaderView: ProfileHeaderCollectionReusableView?
+    var textDataDelegate: TextValueCollectionViewDelegate?
     
     private(set) var directReports: Array<Services.Profile.Containers.ProfileV1>?
     private(set) var location: Services.Organization.Containers.LocationV1?
@@ -145,9 +146,10 @@ class ProfileDetailDataSource: CardDataSource {
                 andValue: statusText,
                 andPlaceholder: NSLocalizedString(
                     "Ask me!",
-                    comment: "Text indicating a person should be asked directly for what they are working on."
+                    comment: "Generic text indicating a person should be asked about this info"
                 ),
-                andTimestamp: createdTimestamp
+                andTimestamp: createdTimestamp,
+                andCanEdit: canEdit()
             )
         ])
         appendCard(card)
@@ -330,8 +332,7 @@ class ProfileDetailDataSource: CardDataSource {
         if let profileCollectionViewCell = cell as? ProfileCollectionViewCell {
             profileCollectionViewCell.separatorInset = UIEdgeInsetsZero
         }
-        
-        if let contactMethodCell = cell as? ContactCollectionViewCell {
+        else if let contactMethodCell = cell as? ContactCollectionViewCell {
             contactMethodCell.contactMethodValueLabel.textColor = UIColor.appPrimaryTextColor()
             contactMethodCell.separatorInset = UIEdgeInsetsMake(0.0, 72.0, 0.0, 0.0)
             
@@ -344,6 +345,9 @@ class ProfileDetailDataSource: CardDataSource {
                     contactMethodCell.contactMethodValueLabel.text = AppStrings.ContactPlaceholderNumberNotAdded
                 }
             }
+        }
+        else if let textDataCell = cell as? TextValueCollectionViewCell {
+            textDataCell.delegate = textDataDelegate
         }
     }
 

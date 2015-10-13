@@ -14,7 +14,8 @@ class TeamDetailViewController:
     DetailViewController,
     EditTeamViewControllerDelegate,
     CardHeaderViewDelegate,
-    CardFooterViewDelegate {
+    CardFooterViewDelegate,
+    TextValueCollectionViewDelegate {
 
     // MARK: - Initialization
     
@@ -41,6 +42,7 @@ class TeamDetailViewController:
         collectionView.dataSource = dataSource
         dataSource.cardHeaderDelegate = self
         dataSource.cardFooterDelegate = self
+        (dataSource as? TeamDetailDataSource)?.textDataDelegate = self
         
         // Delegate
         collectionView.delegate = delegate
@@ -224,5 +226,59 @@ class TeamDetailViewController:
         editTeamViewController.team = (dataSource as! TeamDetailDataSource).team
         editTeamViewController.editTeamViewControllerDelegate = self
         navigationController?.presentViewController(editTeamNavController, animated: true, completion: nil)
+    }
+    
+    // MARK: - TextValueCollectionViewDelegate
+    
+    func placeholderButtonTapped(type: TextData.TextDataType) {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile(),
+            loggedInUserOrg = AuthenticationViewController.getLoggedInUserOrganization(),
+            dataSource = dataSource as? TeamDetailDataSource
+        {
+            let team = dataSource.team
+            var contactLocation: TrackerProperty.ContactLocation!
+            var source = ""
+            var fields = [String]()
+            let dataDictionary = ["name": team.name, "description": team.description_?.value ?? "", "status": team.status?.value ?? ""];
+            
+            for key in ["name", "description", "status"] {
+                if dataDictionary[key]?.trimWhitespace() == "" {
+                    fields.append(key)
+                }
+            }
+            
+            // if there are at least two elements add an `and`
+            if fields.count > 1 {
+                fields[fields.count - 1] = "and " + fields[fields.count - 1]
+            }
+            
+            if type == .TeamStatus {
+                contactLocation = .TeamDetailStatus
+                source = "team_status_askme"
+            }
+            else if type == .TeamDescription {
+                contactLocation = .TeamDetailDescription
+                source = "team_description_askme"
+            }
+            
+            Tracker.sharedInstance.trackContactTap(
+                .Email,
+                contactId: dataSource.managerProfile.id,
+                contactLocation: contactLocation
+            )
+            
+            presentMailViewController(
+                [dataSource.managerProfile.email],
+                subject: "Update your team's info in Luno",
+                messageBody: NSString(
+                    format: "Hey %@,<br/><br/>Can you update update your team's %@ in Luno?<br/><br/>%@<br/><br/>Thanks!<br/>%@",
+                    dataSource.managerProfile.firstName,
+                    fields.joinWithSeparator(", "),
+                    loggedInUserOrg.getURL("team/" + team.id + "?ls=" + source),
+                    loggedInUserProfile.firstName
+                ) as String,
+                completionHandler: nil
+            )
+        }
     }
 }

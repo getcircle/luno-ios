@@ -109,3 +109,12 @@ extension Services.Organization.Actions {
         }
     }
 }
+
+extension Services.Organization.Containers.OrganizationV1 {
+    
+    public func getURL(pathWithQueryParameters: String) -> String {
+        let url = "https://" + domain + ".lunohq.com/" + pathWithQueryParameters
+        return url
+    }
+}
+

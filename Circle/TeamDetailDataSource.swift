@@ -12,6 +12,7 @@ import ProtobufRegistry
 class TeamDetailDataSource: CardDataSource {
     
     var team: Services.Organization.Containers.TeamV1!
+    var textDataDelegate: TextValueCollectionViewDelegate?
     
     private(set) var profileHeaderView: ProfileHeaderCollectionReusableView?
 
@@ -126,39 +127,34 @@ class TeamDetailDataSource: CardDataSource {
     }
     
     private func addStatusCard() {
-        // hasStatus on the object is not returning correct value
-        var hasStatus = false
+        var statusText = ""
         var createdTimestamp = ""
         if let status = team.status {
-            hasStatus = true
+            statusText = status.value
             createdTimestamp = status.created
         }
         
-        if hasStatus || canEdit() {
-            
-            let statusCard = Card(cardType: .TextValue, title: AppStrings.ProfileSectionStatusTitle)
-            let textData = TextData(
-                type: .TeamStatus,
-                andValue: team.status?.value ?? "",
-                andPlaceholder: NSLocalizedString("Add details",
-                    comment: "Generic text asking user to add details"
-                ),
-                andTimestamp: createdTimestamp,
-                andAuthor: team.status?.byProfile
-            )
-            
-            if canEdit() {
-                statusCard.showContentCount = false
-                statusCard.addHeader(headerClass: sectionHeaderClass)
-                statusCard.allowEditingContent = true
-                statusCard.addContent(content: [textData])
-            }
-            else if let status = team.status where status.value.trimWhitespace() != "" {
-                statusCard.addContent(content: [textData])
-            }
-            
-            appendCard(statusCard)
+        let statusCard = Card(cardType: .TextValue, title: AppStrings.ProfileSectionStatusTitle)
+        let textData = TextData(
+            type: .TeamStatus,
+            andValue: statusText,
+            andPlaceholder: NSLocalizedString(
+                "Ask me!",
+                comment: "Generic text indicating a person should be asked about this info"
+            ),
+            andTimestamp: createdTimestamp,
+            andAuthor: team.status?.byProfile,
+            andCanEdit: canEdit()
+        )
+        
+        if canEdit() {
+            statusCard.showContentCount = false
+            statusCard.allowEditingContent = true
         }
+        
+        statusCard.addHeader(headerClass: sectionHeaderClass)
+        statusCard.addContent(content: [textData])
+        appendCard(statusCard)
     }
     
     private func addDescriptionCard() {
@@ -167,26 +163,24 @@ class TeamDetailDataSource: CardDataSource {
             description = value
         }
         
-        if description != "" || canEdit() {
-            
-            let descriptionCard = Card(cardType: .TextValue, title: "Description")
-            descriptionCard.addHeader(headerClass: sectionHeaderClass)
-            descriptionCard.showContentCount = false
-            descriptionCard.addContent(content: [
-                TextData(
-                    type: .TeamDescription, 
-                    andValue: description,
-                    andTimestamp: team.description_?.changed,
-                    andPlaceholder: NSLocalizedString(
-                        "Add a description for your team", 
-                        comment: "Add a description to the team"
-                    ),
-                    andAuthor: team.description_?.byProfile
-                )
-            ])
+        let descriptionCard = Card(cardType: .TextValue, title: "Description")
+        descriptionCard.addHeader(headerClass: sectionHeaderClass)
+        descriptionCard.showContentCount = false
+        descriptionCard.addContent(content: [
+            TextData(
+                type: .TeamDescription, 
+                andValue: description,
+                andTimestamp: team.description_?.changed,
+                andPlaceholder: NSLocalizedString(
+                    "Ask me!",
+                    comment: "Generic text indicating a person should be asked about this info"
+                ),
+                andAuthor: team.description_?.byProfile,
+                andCanEdit: canEdit()
+            )
+        ])
 
-            appendCard(descriptionCard)
-        }
+        appendCard(descriptionCard)
     }
     
     private func addManagerCard() {
@@ -293,23 +287,22 @@ class TeamDetailDataSource: CardDataSource {
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let settingsCell = cell as? SettingsCollectionViewCell where contentAtIndexPath(indexPath) != nil {
-            settingsCell.itemLabel.textAlignment = .Center
-            settingsCell.itemLabel.textColor = UIColor.appTintColor()
+        let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
+        if cellIsBottomOfSection {
+            cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
         }
         else {
-            let cellIsBottomOfSection = cellAtIndexPathIsBottomOfSection(indexPath)
-            if cellIsBottomOfSection {
-                cell.addRoundCorners([.BottomLeft, .BottomRight], radius: 4.0)
-            }
-            else {
-                cell.removeRoundedCorners()
-            }
-            
-            if (isLastCellAtIndexPath(indexPath)) {
-                cell.separatorInset = UIEdgeInsetsZero
-            }
-            cell.showSeparator = !cellIsBottomOfSection
+            cell.removeRoundedCorners()
+        }
+        
+        if (isLastCellAtIndexPath(indexPath)) {
+            cell.separatorInset = UIEdgeInsetsZero
+        }
+        
+        cell.showSeparator = !cellIsBottomOfSection
+        
+        if let textValueCell = cell as? TextValueCollectionViewCell {
+            textValueCell.delegate = textDataDelegate
         }
     }
 }

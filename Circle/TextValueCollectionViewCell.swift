@@ -8,12 +8,21 @@
 
 import UIKit
 
+protocol TextValueCollectionViewDelegate {
+    func placeholderButtonTapped(type: TextData.TextDataType)
+}
+
 class TextValueCollectionViewCell: CircleCollectionViewCell {
 
+    @IBOutlet weak private(set) var placeholderButton: UIButton!
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var textLabelBottomConstraint: NSLayoutConstraint!
 
+    var delegate: TextValueCollectionViewDelegate?
+    
+    private var currentTextDataType: TextData.TextDataType?
+    
     override class var classReuseIdentifier: String {
         return "TextValueCollectionViewCell"
     }
@@ -27,6 +36,13 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         
         selectedBackgroundView = nil
         textLabel.text = ""
+        configurePlaceholderButton()
+    }
+    
+    func configurePlaceholderButton() {
+        placeholderButton.setTitle("", forState: .Normal)
+        placeholderButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+        placeholderButton.hidden = true
     }
 
     override func intrinsicContentSize() -> CGSize {
@@ -41,7 +57,9 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         let italicFont = UIFont.italicFont(textLabel.font.pointSize)
 
         if let textData = data as? TextData {
+            currentTextDataType = textData.type
             if textData.value.trimWhitespace() != "" {
+                placeholderButton.hidden = true
                 let text: String
                 let font: UIFont
 
@@ -67,10 +85,24 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                 textLabel.textColor = UIColor.appSecondaryTextColor()
                 textLabel.text = placeholder
                 textLabel.font = normalFont
+                
+                if let canEdit = textData.canEdit where canEdit == false {
+                    placeholderButton.hidden = false
+                    placeholderButton.setTitle(placeholder, forState: .Normal)
+                }
             }
 
             textLabel.setNeedsUpdateConstraints()
             textLabel.layoutIfNeeded()
+            placeholderButton.layoutIfNeeded()
+        }
+    }
+    
+    // MARK - IBActions
+    
+    @IBAction func placeholderButtonTapped(sender: AnyObject) {
+        if let currentTextDataType = currentTextDataType {
+            delegate?.placeholderButtonTapped(currentTextDataType)
         }
     }
 }
