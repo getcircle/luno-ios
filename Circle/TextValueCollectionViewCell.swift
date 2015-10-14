@@ -14,7 +14,7 @@ protocol TextValueCollectionViewDelegate {
 
 class TextValueCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak private(set) var placeholderButton: UIButton!
+    @IBOutlet weak private(set) var placeholderButton: UIButton?
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var textLabelBottomConstraint: NSLayoutConstraint!
@@ -40,9 +40,9 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     }
     
     func configurePlaceholderButton() {
-        placeholderButton.setTitle("", forState: .Normal)
-        placeholderButton.setTitleColor(UIColor.appTintColor(), forState: .Normal)
-        placeholderButton.hidden = true
+        placeholderButton?.setTitle("", forState: .Normal)
+        placeholderButton?.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+        placeholderButton?.hidden = true
     }
 
     override func intrinsicContentSize() -> CGSize {
@@ -59,7 +59,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         if let textData = data as? TextData {
             currentTextDataType = textData.type
             if textData.value.trimWhitespace() != "" {
-                placeholderButton.hidden = true
+                placeholderButton?.hidden = true
                 let text: String
                 let font: UIFont
 
@@ -87,14 +87,14 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                 textLabel.font = normalFont
                 
                 if let canEdit = textData.canEdit where canEdit == false {
-                    placeholderButton.hidden = false
-                    placeholderButton.setTitle(placeholder, forState: .Normal)
+                    placeholderButton?.hidden = false
+                    placeholderButton?.setTitle(placeholder, forState: .Normal)
                 }
             }
 
             textLabel.setNeedsUpdateConstraints()
             textLabel.layoutIfNeeded()
-            placeholderButton.layoutIfNeeded()
+            placeholderButton?.layoutIfNeeded()
         }
     }
     
