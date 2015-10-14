@@ -95,34 +95,41 @@ class ProfileDetailDataSource: CardDataSource {
     }
     
     internal func addContactsCard() -> Card? {
-        let card = Card(cardType: .ContactMethods, title: "Contact")
-        card.showContentCount = false
-        card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-        var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
-        let emailContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
-        emailContactMethod.contactMethodType = .Email
-        emailContactMethod.value = profile.email
-        emailContactMethod.label = "Email"
-        contactMethods.append(try! emailContactMethod.build())
-        contactMethods.appendContentsOf(profile.contactMethods)
-        
-        var profileHasPhoneContactMethod = false
-        for contactMethod in contactMethods {
-            if contactMethod.contactMethodType == .Phone || contactMethod.contactMethodType == .CellPhone {
-                profileHasPhoneContactMethod = true
+        do {
+            let card = Card(cardType: .ContactMethods, title: "Contact")
+            card.showContentCount = false
+            card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
+            var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
+            let emailContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
+            emailContactMethod.contactMethodType = .Email
+            emailContactMethod.value = profile.email
+            emailContactMethod.label = "Email"
+            contactMethods.append(try emailContactMethod.build())
+            contactMethods.appendContentsOf(profile.contactMethods)
+            
+            var profileHasPhoneContactMethod = false
+            for contactMethod in contactMethods {
+                if contactMethod.contactMethodType == .Phone || contactMethod.contactMethodType == .CellPhone {
+                    profileHasPhoneContactMethod = true
+                }
             }
+            
+            if !profileHasPhoneContactMethod {
+                let phoneContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
+                phoneContactMethod.contactMethodType = .Phone
+                phoneContactMethod.label = "Phone"
+                contactMethods.append(try phoneContactMethod.build())
+            }
+            
+            card.addContent(content: contactMethods)
+            appendCard(card)
+            return card
         }
-        
-        if !profileHasPhoneContactMethod {
-            let phoneContactMethod = Services.Profile.Containers.ContactMethodV1.Builder()
-            phoneContactMethod.contactMethodType = .Phone
-            phoneContactMethod.label = "Phone"
-            contactMethods.append(try! phoneContactMethod.build())
+        catch {
+            print("Error: \(error)")
+            
+            return nil
         }
-        
-        card.addContent(content: contactMethods)
-        appendCard(card)
-        return card
     }
     
     internal func addStatusCard() -> Card? {

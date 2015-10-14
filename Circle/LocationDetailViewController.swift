@@ -105,21 +105,26 @@ class LocationDetailViewController:
         case .Profiles:
             switch card.subType {
             case .Members:
-                let viewController = ProfilesViewController()
-                viewController.pageType = .LocationMembers
-                viewController.dataSource.setInitialData(
-                    content: card.allContent,
-                    ofType: nil,
-                    nextRequest: officeDetailDataSource.nextProfilesRequest
-                )
-                viewController.title = "People @ " + officeDetailDataSource.location.name
-                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
-                (viewController.dataSource as! ProfilesDataSource).configureForLocation(
-                    officeDetailDataSource.location.id,
-                    setupOnlySearch: true
-                )
-
-                navigationController?.pushViewController(viewController, animated: true)
+                do {
+                    let viewController = ProfilesViewController()
+                    viewController.pageType = .LocationMembers
+                    viewController.dataSource.setInitialData(
+                        content: card.allContent,
+                        ofType: nil,
+                        nextRequest: officeDetailDataSource.nextProfilesRequest
+                    )
+                    viewController.title = "People @ " + officeDetailDataSource.location.name
+                    (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
+                    try (viewController.dataSource as! ProfilesDataSource).configureForLocation(
+                        officeDetailDataSource.location.id,
+                        setupOnlySearch: true
+                    )
+                    
+                    navigationController?.pushViewController(viewController, animated: true)
+                }
+                catch {
+                    print("Error: \(error)")
+                }
                 
             default:
                 break
@@ -140,18 +145,25 @@ class LocationDetailViewController:
                 newImage,
                 forMediaType: .Location,
                 withKey: dataSource.location.id
-            ) { (mediaURL, error) -> Void in
-                if let mediaURL = mediaURL {
-                    let locationBuilder = try! dataSource.location.toBuilder()
-                    locationBuilder.imageUrl = mediaURL
-                    Services.Organization.Actions.updateLocation(try! locationBuilder.build()) { (location, error) -> Void in
-                        if let location = location {
-                            dataSource.location = location
+                ) { (mediaURL, error) -> Void in
+                    if let mediaURL = mediaURL {
+                        do {
+                            let locationBuilder = try dataSource.location.toBuilder()
+                            locationBuilder.imageUrl = mediaURL
+                            Services.Organization.Actions.updateLocation(try locationBuilder.build()) { (location, error) -> Void in
+                                if let location = location {
+                                    dataSource.location = location
+                                    hud.hide(true)
+                                    completion()
+                                }
+                            }
+                        }
+                        catch {
+                            print("Error: \(error)")
+                            
                             hud.hide(true)
-                            completion()
                         }
                     }
-                }
             }
         }
     }
@@ -165,7 +177,7 @@ class LocationDetailViewController:
     // MARK - ProfileCollectionViewCellDelegate
     
     func onProfileAddButton(checked: Bool) {
-        if let officeDataSource = dataSource as? LocationDetailDataSource, 
+        if let officeDataSource = dataSource as? LocationDetailDataSource,
             loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
         {
             let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
@@ -178,15 +190,22 @@ class LocationDetailViewController:
                 pointsOfContact.removeObject(loggedInUserProfile)
             }
             
-            let locationBuilder = try! (dataSource as! LocationDetailDataSource).location.toBuilder()
-            locationBuilder.pointsOfContact = pointsOfContact.array as! Array<Services.Profile.Containers.ProfileV1>
-            Services.Organization.Actions.updateLocation(try! locationBuilder.build(), completionHandler: { (location, error) -> Void in
+            do {
+                let locationBuilder = try (dataSource as! LocationDetailDataSource).location.toBuilder()
+                locationBuilder.pointsOfContact = pointsOfContact.array as! Array<Services.Profile.Containers.ProfileV1>
+                Services.Organization.Actions.updateLocation(try locationBuilder.build(), completionHandler: { (location, error) -> Void in
+                    hud.hide(true)
+                    if let location = location where error == nil {
+                        officeDataSource.location = location
+                        self.loadData()
+                    }
+                })
+            }
+            catch {
+                print("Error: \(error)")
+                
                 hud.hide(true)
-                if let location = location where error == nil {
-                    officeDataSource.location = location
-                    self.loadData()
-                }
-            })
+            }
         }
     }
     

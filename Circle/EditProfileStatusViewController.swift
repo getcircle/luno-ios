@@ -39,19 +39,19 @@ class EditProfileStatusViewController: TextInputViewController {
         return "What are you working on?"
     }
     
-    override func saveData(data: String) {
+    override func saveData(data: String) throws {
         let statusBuilder: Services.Profile.Containers.ProfileStatusV1.Builder
         if let status = profile.status {
-            statusBuilder = try! status.toBuilder()
+            statusBuilder = try status.toBuilder()
         }
         else {
             statusBuilder = Services.Profile.Containers.ProfileStatusV1.Builder()
         }
         statusBuilder.value = data
         
-        let profileBuilder = try! profile.toBuilder()
-        profileBuilder.status = try! statusBuilder.build()
-        Services.Profile.Actions.updateProfile(try! profileBuilder.build()) { (profile, error) -> Void in
+        let profileBuilder = try profile.toBuilder()
+        profileBuilder.status = try statusBuilder.build()
+        Services.Profile.Actions.updateProfile(try profileBuilder.build()) { (profile, error) -> Void in
             if let profile = profile {
                 AuthenticationViewController.updateUserProfile(profile)
                 Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: ["status"])

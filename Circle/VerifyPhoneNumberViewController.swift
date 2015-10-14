@@ -203,15 +203,22 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         self.toggleLoadingState(actionButton)
         if bypassChecks {
             if let user = AuthenticationViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
-                let builder = try! user.toBuilder()
-                builder.phoneNumber = phoneNumber
-                builder.phoneNumberVerified = true
-                Services.User.Actions.updateUser(try! builder.build()) { (user, error) -> Void in
-                    if let user = user {
-                        AuthenticationViewController.updateUser(user)
+                do {
+                    let builder = try user.toBuilder()
+                    builder.phoneNumber = phoneNumber
+                    builder.phoneNumberVerified = true
+                    Services.User.Actions.updateUser(try builder.build()) { (user, error) -> Void in
+                        if let user = user {
+                            AuthenticationViewController.updateUser(user)
+                        }
+                        self.toggleLoadingState(self.actionButton)
+                        self.verificationComplete()
                     }
+                }
+                catch {
+                    print("Error: \(error)")
+                    
                     self.toggleLoadingState(self.actionButton)
-                    self.verificationComplete()
                 }
             }
             return
@@ -222,10 +229,17 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
                 self.toggleLoadingState(self.actionButton)
                 if error == nil {
                     if verified! {
-                        let userBuilder = try! user.toBuilder()
-                        userBuilder.phoneNumberVerified = true
-                        AuthenticationViewController.updateUser(try! userBuilder.build())
-                        self.verificationComplete()
+                        do {
+                            let userBuilder = try user.toBuilder()
+                            userBuilder.phoneNumberVerified = true
+                            AuthenticationViewController.updateUser(try userBuilder.build())
+                            self.verificationComplete()
+                        }
+                        catch {
+                            print("Error: \(error)")
+                            
+                            self.actionButton.addShakeAnimation()
+                        }
                     } else {
                         print("user verification failed")
                         self.actionButton.addShakeAnimation()
@@ -250,19 +264,26 @@ class VerifyPhoneNumberViewController: UIViewController, UITextFieldDelegate {
         }
         
         if let user = AuthenticationViewController.getLoggedInUser(), phoneNumber = phoneNumberField.text {
-            let userBuilder = try! user.toBuilder()
-            userBuilder.phoneNumber = phoneNumber
-            Services.User.Actions.updateUser(try! userBuilder.build()) { (user, error) -> Void in
-                if error == nil {
-                    Services.User.Actions.sendVerificationCode(user!) { (error) -> Void in
+            do {
+                let userBuilder = try user.toBuilder()
+                userBuilder.phoneNumber = phoneNumber
+                Services.User.Actions.updateUser(try userBuilder.build()) { (user, error) -> Void in
+                    if error == nil {
+                        Services.User.Actions.sendVerificationCode(user!) { (error) -> Void in
+                            self.toggleLoadingState(button)
+                            completionHandler(error)
+                        }
+                    } else {
                         self.toggleLoadingState(button)
+                        print("error updating user: \(error)")
                         completionHandler(error)
                     }
-                } else {
-                    self.toggleLoadingState(button)
-                    print("error updating user: \(error)")
-                    completionHandler(error)
                 }
+            }
+            catch {
+                print("Error: \(error)")
+                
+                toggleLoadingState(button)
             }
         }
         

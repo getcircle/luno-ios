@@ -132,56 +132,84 @@ class AuthenticationViewController: UIViewController {
 
     func onServiceAuthorized(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1 {
-                googleLogin(authDetails)
-
-            } else if let samlDetails = userInfo["saml_details"] as? Services.User.Containers.SAMLDetailsV1 {
-                oktaLogin(samlDetails)
+            do {
+                if let authDetails = userInfo["oauth_sdk_details"] as? Services.User.Containers.OAuthSDKDetailsV1 {
+                    try googleLogin(authDetails)
+                }
+                else if let samlDetails = userInfo["saml_details"] as? Services.User.Containers.SAMLDetailsV1 {
+                    try oktaLogin(samlDetails)
+                }
+            }
+            catch {
+                print("Error: \(error)")
             }
         }
     }
     
     // MARK: - Helpers
     
-    private func googleLogin(authDetails: Services.User.Containers.OAuthSDKDetailsV1) {
+    private func googleLogin(authDetails: Services.User.Containers.OAuthSDKDetailsV1) throws {
         let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
         credentials.key = authDetails.code
         credentials.secret = authDetails.idToken
-        login(.Google, credentials: try! credentials.build())
+        login(.Google, credentials: try credentials.build())
     }
     
-    private func oktaLogin(samlDetails: Services.User.Containers.SAMLDetailsV1) {
+    private func oktaLogin(samlDetails: Services.User.Containers.SAMLDetailsV1) throws {
         let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
         credentials.secret = samlDetails.authState
-        login(.Okta, credentials: try! credentials.build())
+        login(.Okta, credentials: try credentials.build())
     }
     
     private static func loadCachedUser() -> Services.User.Containers.UserV1? {
+        var cachedUser: Services.User.Containers.UserV1?
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsUserKey) as? NSData {
-            return try! Services.User.Containers.UserV1.parseFromData(data)
+            do {
+                cachedUser = try Services.User.Containers.UserV1.parseFromData(data)
+            }
+            catch {
+                print("Error: \(error)")
+            }
         }
-        return nil
+        return cachedUser
     }
     
     private static func loadCachedProfile() -> Services.Profile.Containers.ProfileV1? {
+        var cachedProfile: Services.Profile.Containers.ProfileV1?
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsProfileKey) as? NSData {
-            return try! Services.Profile.Containers.ProfileV1.parseFromData(data)
+            do {
+                cachedProfile = try Services.Profile.Containers.ProfileV1.parseFromData(data)
+            }
+            catch {
+                print("Error: \(error)")
+            }
         }
-        return nil
+        return cachedProfile
     }
     
     private static func loadCachedOrganization() -> Services.Organization.Containers.OrganizationV1? {
+        var cachedOrganization: Services.Organization.Containers.OrganizationV1?
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsOrganizationKey) as? NSData {
-            return try! Services.Organization.Containers.OrganizationV1.parseFromData(data)
+            do {
+                cachedOrganization = try Services.Organization.Containers.OrganizationV1.parseFromData(data)
+            }
+            catch {
+                print("Error: \(error)")
+            }
         }
-        return nil
+        return cachedOrganization
     }
     
     private static func loadCachedIdentities() -> Array<Services.User.Containers.IdentityV1>? {
         if let data = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsIdentitiesKey) as? [NSData] {
             var identities = Array<Services.User.Containers.IdentityV1>()
             for object in data {
-                identities.append(try! Services.User.Containers.IdentityV1.parseFromData(object))
+                do {
+                    identities.append(try Services.User.Containers.IdentityV1.parseFromData(object))
+                }
+                catch {
+                    print("Error: \(error)")
+                }
             }
             return identities
         }
@@ -204,10 +232,15 @@ class AuthenticationViewController: UIViewController {
     private static func cacheUserIdentities(identities: Array<Services.User.Containers.IdentityV1>) {
         var cleanIdentities = [NSData]()
         for identity in identities {
-            let builder = try! identity.toBuilder()
-            builder.clearAccessToken()
-            builder.clearRefreshToken()
-            cleanIdentities.append(try! builder.build().data())
+            do {
+                let builder = try identity.toBuilder()
+                builder.clearAccessToken()
+                builder.clearRefreshToken()
+                cleanIdentities.append(try builder.build().data())
+            }
+            catch {
+                print("Error: \(error)")
+            }
         }
         NSUserDefaults.standardUserDefaults().setObject(cleanIdentities, forKey: DefaultsIdentitiesKey)
     }
@@ -560,7 +593,14 @@ class AuthenticationViewController: UIViewController {
                 signUpUser()
             }
             else {
-                signInUser()
+                do {
+                    try signInUser()
+                }
+                catch {
+                    print("Error: \(error)")
+                    
+                    signInButton.addShakeAnimation()
+                }
             }
         }
         else {
@@ -605,16 +645,23 @@ class AuthenticationViewController: UIViewController {
                 self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
             }
             else {
-                self.signInUser()
+                do {
+                    try self.signInUser()
+                }
+                catch {
+                    print("Error \(error)")
+                    
+                    self.signInButton.addShakeAnimation()
+                }
             }
         }
     }
 
-    private func signInUser() {
+    private func signInUser() throws {
         let credentials = Services.User.Actions.AuthenticateUser.RequestV1.CredentialsV1.Builder()
         credentials.key = workEmailTextField.text?.trimWhitespace() ?? ""
         credentials.secret = passwordTextField.text?.trimWhitespace() ?? ""
-        login(.Internal, credentials: try! credentials.build())
+        login(.Internal, credentials: try credentials.build())
     }
     
     private func openExternalAuthentication(provider: Services.User.Containers.IdentityV1.ProviderV1, authorizationURL: String, providerName: String) {

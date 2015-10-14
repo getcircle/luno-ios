@@ -39,17 +39,22 @@ class RecentSearchResult: Object {
     }
     
     static func getObjectFromResult(result: RecentSearchResult) -> AnyObject? {
-        if let resultType = RecentSearchResult.ResultType(rawValue: result.type) {
-            switch resultType {
-            case .Profile:
-                return try! Services.Profile.Containers.ProfileV1.parseFromData(result.object)
-                
-            case .Team:
-                return try! Services.Organization.Containers.TeamV1.parseFromData(result.object)
-                
-            case .Location:
-                return try! Services.Organization.Containers.LocationV1.parseFromData(result.object)
+        do {
+            if let resultType = RecentSearchResult.ResultType(rawValue: result.type) {
+                switch resultType {
+                case .Profile:
+                    return try Services.Profile.Containers.ProfileV1.parseFromData(result.object)
+                    
+                case .Team:
+                    return try Services.Organization.Containers.TeamV1.parseFromData(result.object)
+                    
+                case .Location:
+                    return try Services.Organization.Containers.LocationV1.parseFromData(result.object)
+                }
             }
+        }
+        catch {
+            print("Error: \(error)")
         }
         
         return nil

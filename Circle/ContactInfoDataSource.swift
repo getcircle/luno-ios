@@ -62,7 +62,12 @@ class ContactInfoDataSource: CardDataSource {
             contactMethodBuilder.label = AppStrings.QuickActionEmailLabel
             contactMethodBuilder.value = profile.email
             contactMethodBuilder.contactMethodType = .Email
-            return try! contactMethodBuilder.build()
+            do {
+                return try contactMethodBuilder.build()
+            }
+            catch {
+                print("Error: \(error)");
+            }
         }
         else if (indexPath.row - 1) < profile.contactMethods.count {
             let contactMethod = profile.contactMethods[indexPath.row - 1]

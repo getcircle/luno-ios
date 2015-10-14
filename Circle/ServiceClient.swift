@@ -36,14 +36,14 @@ public class ServiceClient {
         extensionField: ConcreateExtensionField,
         requestBuilder: AbstractMessageBuilder,
         paginatorBuilder: Soa.PaginatorV1.Builder?
-    ) -> Soa.ServiceRequestV1 {
+    ) throws -> Soa.ServiceRequestV1? {
         let serviceRequest = Soa.ServiceRequestV1.Builder()
         let control = Soa.ControlV1.Builder()
         control.service = serviceName
         if let token = token {
             control.token = token
         }
-        serviceRequest.control = try! control.build()
+        serviceRequest.control = try control.build()
         
         let actionRequest = Soa.ActionRequestV1.Builder()
         let actionControl = Soa.ActionControlV1.Builder()
@@ -53,14 +53,14 @@ public class ServiceClient {
         }
         actionControl.service = serviceName
         actionControl.action = actionName
-        actionControl.paginator = try! paginatorBuilder!.build()
-        actionRequest.control = try! actionControl.build()
+        actionControl.paginator = try paginatorBuilder!.build()
+        actionRequest.control = try actionControl.build()
         
         let actionRequestParams = Soa.ActionRequestParamsV1.Builder()
-        try! actionRequestParams.setExtension(extensionField, value: try! requestBuilder.build())
-        actionRequest.params = try! actionRequestParams.build()
-        serviceRequest.actions += [try! actionRequest.build()]
-        return try! serviceRequest.build()
+        try actionRequestParams.setExtension(extensionField, value: try requestBuilder.build())
+        actionRequest.params = try actionRequestParams.build()
+        serviceRequest.actions += [try actionRequest.build()]
+        return try serviceRequest.build()
     }
     
     public func callAction(
@@ -85,13 +85,19 @@ public class ServiceClient {
         paginatorBuilder: Soa.PaginatorV1.Builder?,
         completionHandler: ServiceCompletionHandler
     ) {
-        let serviceRequest = buildRequest(
-            actionName,
-            extensionField: extensionField,
-            requestBuilder: requestBuilder,
-            paginatorBuilder: paginatorBuilder
-        )
-        transport.sendRequest(serviceRequest, completionHandler: completionHandler)
+        do {
+            if let serviceRequest = try buildRequest(
+                actionName,
+                extensionField: extensionField,
+                requestBuilder: requestBuilder,
+                paginatorBuilder: paginatorBuilder
+                ) {
+                    transport.sendRequest(serviceRequest, completionHandler: completionHandler)
+            }
+        }
+        catch {
+            print("Error: \(error)")
+        }
     }
     
     public static func sendRequest(serviceRequest: Soa.ServiceRequestV1, completionHandler: ServiceCompletionHandler) {
