@@ -12,6 +12,19 @@ public func == (lhs: Services.User.Actions.RequestAccess.RequestV1, rhs: Service
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasUserId == rhs.hasUserId) && (!lhs.hasUserId || lhs.userId == rhs.userId)
+  fieldCheck = fieldCheck && (lhs.hasAnonymousUser == rhs.hasAnonymousUser) && (!lhs.hasAnonymousUser || lhs.anonymousUser == rhs.anonymousUser)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1, rhs: Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasUserInfo == rhs.hasUserInfo) && (!lhs.hasUserInfo || lhs.userInfo == rhs.userInfo)
+  fieldCheck = fieldCheck && (lhs.hasDomain == rhs.hasDomain) && (!lhs.hasDomain || lhs.domain == rhs.domain)
+  fieldCheck = fieldCheck && (lhs.hasLocation == rhs.hasLocation) && (!lhs.hasLocation || lhs.location == rhs.location)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -47,12 +60,304 @@ public extension Services.User.Actions.RequestAccess {
   }
 
   final public class RequestV1 : GeneratedMessage, GeneratedMessageProtocol {
+
+
+    //Nested type declaration start
+
+      final public class AnonymousUserV1 : GeneratedMessage, GeneratedMessageProtocol {
+        public private(set) var hasUserInfo:Bool = false
+        public private(set) var userInfo:String = ""
+
+        public private(set) var hasDomain:Bool = false
+        public private(set) var domain:String = ""
+
+        public private(set) var hasLocation:Bool = false
+        public private(set) var location:String = ""
+
+        required public init() {
+             super.init()
+        }
+        override public func isInitialized() -> Bool {
+         return true
+        }
+        override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+          if hasUserInfo {
+            try output.writeString(3, value:userInfo)
+          }
+          if hasDomain {
+            try output.writeString(4, value:domain)
+          }
+          if hasLocation {
+            try output.writeString(5, value:location)
+          }
+          try unknownFields.writeToCodedOutputStream(output)
+        }
+        override public func serializedSize() -> Int32 {
+          var serialize_size:Int32 = memoizedSerializedSize
+          if serialize_size != -1 {
+           return serialize_size
+          }
+
+          serialize_size = 0
+          if hasUserInfo {
+            serialize_size += userInfo.computeStringSize(3)
+          }
+          if hasDomain {
+            serialize_size += domain.computeStringSize(4)
+          }
+          if hasLocation {
+            serialize_size += location.computeStringSize(5)
+          }
+          serialize_size += unknownFields.serializedSize()
+          memoizedSerializedSize = serialize_size
+          return serialize_size
+        }
+        public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1> {
+          var mergedArray = Array<Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1>()
+          while let value = try parseFromDelimitedFromInputStream(input) {
+            mergedArray += [value]
+          }
+          return mergedArray
+        }
+        public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1? {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeDelimitedFromInputStream(input)?.build()
+        }
+        public class func parseFromData(data:NSData) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFromData(data, extensionRegistry:Services.User.Actions.RequestAccess.RequestAccessRoot.sharedInstance.extensionRegistry).build()
+        }
+        public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+        }
+        public class func parseFromInputStream(input:NSInputStream) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFromInputStream(input).build()
+        }
+        public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+        }
+        public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFromCodedInputStream(input).build()
+        }
+        public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+        }
+        public class func getBuilder() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+          return Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.classBuilder() as! Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder
+        }
+        public func getBuilder() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+          return classBuilder() as! Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder
+        }
+        public override class func classBuilder() -> MessageBuilder {
+          return Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder()
+        }
+        public override func classBuilder() -> MessageBuilder {
+          return Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder()
+        }
+        public func toBuilder() throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.builderWithPrototype(self)
+        }
+        public class func builderWithPrototype(prototype:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+          return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder().mergeFrom(prototype)
+        }
+        override public func writeDescriptionTo(inout output:String, indent:String) throws {
+          if hasUserInfo {
+            output += "\(indent) userInfo: \(userInfo) \n"
+          }
+          if hasDomain {
+            output += "\(indent) domain: \(domain) \n"
+          }
+          if hasLocation {
+            output += "\(indent) location: \(location) \n"
+          }
+          unknownFields.writeDescriptionTo(&output, indent:indent)
+        }
+        override public var hashValue:Int {
+            get {
+                var hashCode:Int = 7
+                if hasUserInfo {
+                   hashCode = (hashCode &* 31) &+ userInfo.hashValue
+                }
+                if hasDomain {
+                   hashCode = (hashCode &* 31) &+ domain.hashValue
+                }
+                if hasLocation {
+                   hashCode = (hashCode &* 31) &+ location.hashValue
+                }
+                hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                return hashCode
+            }
+        }
+
+
+        //Meta information declaration start
+
+        override public class func className() -> String {
+            return "Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1"
+        }
+        override public func className() -> String {
+            return "Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1"
+        }
+        override public func classMetaType() -> GeneratedMessage.Type {
+            return Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.self
+        }
+        //Meta information declaration end
+
+        final public class Builder : GeneratedMessageBuilder {
+          private var builderResult:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 = Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1()
+          public func getMessage() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+              return builderResult
+          }
+
+          required override public init () {
+             super.init()
+          }
+          public var hasUserInfo:Bool {
+               get {
+                    return builderResult.hasUserInfo
+               }
+          }
+          public var userInfo:String {
+               get {
+                    return builderResult.userInfo
+               }
+               set (value) {
+                   builderResult.hasUserInfo = true
+                   builderResult.userInfo = value
+               }
+          }
+          public func setUserInfo(value:String) -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            self.userInfo = value
+            return self
+          }
+          public func clearUserInfo() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder{
+               builderResult.hasUserInfo = false
+               builderResult.userInfo = ""
+               return self
+          }
+          public var hasDomain:Bool {
+               get {
+                    return builderResult.hasDomain
+               }
+          }
+          public var domain:String {
+               get {
+                    return builderResult.domain
+               }
+               set (value) {
+                   builderResult.hasDomain = true
+                   builderResult.domain = value
+               }
+          }
+          public func setDomain(value:String) -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            self.domain = value
+            return self
+          }
+          public func clearDomain() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder{
+               builderResult.hasDomain = false
+               builderResult.domain = ""
+               return self
+          }
+          public var hasLocation:Bool {
+               get {
+                    return builderResult.hasLocation
+               }
+          }
+          public var location:String {
+               get {
+                    return builderResult.location
+               }
+               set (value) {
+                   builderResult.hasLocation = true
+                   builderResult.location = value
+               }
+          }
+          public func setLocation(value:String) -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            self.location = value
+            return self
+          }
+          public func clearLocation() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder{
+               builderResult.hasLocation = false
+               builderResult.location = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            builderResult = Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1()
+            return self
+          }
+          public override func clone() throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            return try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.builderWithPrototype(builderResult)
+          }
+          public override func build() throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+               try checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 {
+            let returnMe:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1 = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            if other == Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1() {
+             return self
+            }
+            if other.hasUserInfo {
+                 userInfo = other.userInfo
+            }
+            if other.hasDomain {
+                 domain = other.domain
+            }
+            if other.hasLocation {
+                 location = other.location
+            }
+            try mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+               return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+            let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              let tag = try input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = try unknownFieldsBuilder.build()
+                return self
+
+              case 26 :
+                userInfo = try input.readString()
+
+              case 34 :
+                domain = try input.readString()
+
+              case 42 :
+                location = try input.readString()
+
+              default:
+                if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
+                   unknownFields = try unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+    //Nested type declaration end
+
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
     public private(set) var hasUserId:Bool = false
     public private(set) var userId:String = ""
 
+    public private(set) var hasAnonymousUser:Bool = false
+    public private(set) var anonymousUser:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1!
     required public init() {
          super.init()
     }
@@ -65,6 +370,9 @@ public extension Services.User.Actions.RequestAccess {
       }
       if hasUserId {
         try output.writeString(2, value:userId)
+      }
+      if hasAnonymousUser {
+        try output.writeMessage(3, value:anonymousUser)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -80,6 +388,11 @@ public extension Services.User.Actions.RequestAccess {
       }
       if hasUserId {
         serialize_size += userId.computeStringSize(2)
+      }
+      if hasAnonymousUser {
+          if let varSizeanonymousUser = anonymousUser?.computeMessageSize(3) {
+              serialize_size += varSizeanonymousUser
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -138,6 +451,11 @@ public extension Services.User.Actions.RequestAccess {
       if hasUserId {
         output += "\(indent) userId: \(userId) \n"
       }
+      if hasAnonymousUser {
+        output += "\(indent) anonymousUser {\n"
+        try anonymousUser?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -148,6 +466,11 @@ public extension Services.User.Actions.RequestAccess {
             }
             if hasUserId {
                hashCode = (hashCode &* 31) &+ userId.hashValue
+            }
+            if hasAnonymousUser {
+                if let hashValueanonymousUser = anonymousUser?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueanonymousUser
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -223,6 +546,57 @@ public extension Services.User.Actions.RequestAccess {
            builderResult.userId = ""
            return self
       }
+      public var hasAnonymousUser:Bool {
+           get {
+               return builderResult.hasAnonymousUser
+           }
+      }
+      public var anonymousUser:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1! {
+           get {
+               if anonymousUserBuilder_ != nil {
+                  builderResult.anonymousUser = anonymousUserBuilder_.getMessage()
+               }
+               return builderResult.anonymousUser
+           }
+           set (value) {
+               builderResult.hasAnonymousUser = true
+               builderResult.anonymousUser = value
+           }
+      }
+      private var anonymousUserBuilder_:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder! {
+           didSet {
+              builderResult.hasAnonymousUser = true
+           }
+      }
+      public func getAnonymousUserBuilder() -> Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder {
+        if anonymousUserBuilder_ == nil {
+           anonymousUserBuilder_ = Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder()
+           builderResult.anonymousUser = anonymousUserBuilder_.getMessage()
+           if anonymousUser != nil {
+              try! anonymousUserBuilder_.mergeFrom(anonymousUser)
+           }
+        }
+        return anonymousUserBuilder_
+      }
+      public func setAnonymousUser(value:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1!) -> Services.User.Actions.RequestAccess.RequestV1.Builder {
+        self.anonymousUser = value
+        return self
+      }
+      public func mergeAnonymousUser(value:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1) throws -> Services.User.Actions.RequestAccess.RequestV1.Builder {
+        if builderResult.hasAnonymousUser {
+          builderResult.anonymousUser = try Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.builderWithPrototype(builderResult.anonymousUser).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.anonymousUser = value
+        }
+        builderResult.hasAnonymousUser = true
+        return self
+      }
+      public func clearAnonymousUser() -> Services.User.Actions.RequestAccess.RequestV1.Builder {
+        anonymousUserBuilder_ = nil
+        builderResult.hasAnonymousUser = false
+        builderResult.anonymousUser = nil
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -253,6 +627,9 @@ public extension Services.User.Actions.RequestAccess {
         if other.hasUserId {
              userId = other.userId
         }
+        if (other.hasAnonymousUser) {
+            try mergeAnonymousUser(other.anonymousUser)
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -273,6 +650,14 @@ public extension Services.User.Actions.RequestAccess {
 
           case 18 :
             userId = try input.readString()
+
+          case 26 :
+            let subBuilder:Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder = Services.User.Actions.RequestAccess.RequestV1.AnonymousUserV1.Builder()
+            if hasAnonymousUser {
+              try subBuilder.mergeFrom(anonymousUser)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            anonymousUser = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/actions/profile_exists.proto',
   package='services.profile.actions.profile_exists',
   syntax='proto2',
-  serialized_pb=_b('\n7protobufs/services/profile/actions/profile_exists.proto\x12\'services.profile.actions.profile_exists\">\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\"0\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06\x65xists\x18\x02 \x01(\x08\x42>\n<com.rhlabs.protobufs.services.profile.actions.profile_exists')
+  serialized_pb=_b('\n7protobufs/services/profile/actions/profile_exists.proto\x12\'services.profile.actions.profile_exists\"a\n\tRequestV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06\x64omain\x18\x02 \x01(\t\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12!\n\x19\x61uthentication_identifier\x18\x04 \x01(\t\"U\n\nResponseV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0e\n\x06\x65xists\x18\x02 \x01(\x08\x12\x0f\n\x07user_id\x18\x03 \x01(\t\x12\x12\n\nprofile_id\x18\x04 \x01(\tB>\n<com.rhlabs.protobufs.services.profile.actions.profile_exists')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -54,6 +54,13 @@ _REQUESTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='authentication_identifier', full_name='services.profile.actions.profile_exists.RequestV1.authentication_identifier', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -67,7 +74,7 @@ _REQUESTV1 = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=100,
-  serialized_end=162,
+  serialized_end=197,
 )
 
 
@@ -92,6 +99,20 @@ _RESPONSEV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='services.profile.actions.profile_exists.ResponseV1.user_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='profile_id', full_name='services.profile.actions.profile_exists.ResponseV1.profile_id', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -104,8 +125,8 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=164,
-  serialized_end=212,
+  serialized_start=199,
+  serialized_end=284,
 )
 
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1

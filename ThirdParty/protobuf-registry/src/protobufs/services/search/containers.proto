@@ -16,5 +16,7 @@ message SearchResultV1 {
         services.organization.containers.TeamV1 team = 3;
         services.organization.containers.LocationV1 location = 4;
         services.group.containers.GroupV1 group = 5;
+        services.profile.containers.ProfileStatusV1 profile_status = 6;
+        services.organization.containers.TeamStatusV1 team_status = 7;
     }
 }

@@ -7,8 +7,16 @@ option java_package = "com.rhlabs.protobufs.services.user.actions.request_access
 import "protobufs/services/user/containers.proto";
 
 message RequestV1 {
+
+    message AnonymousUserV1 {
+        optional string user_info = 3;
+        optional string domain = 4;
+        optional string location = 5;
+    }
+
     optional uint32 version = 1 [default = 1];
     optional string user_id = 2;
+    optional AnonymousUserV1 anonymous_user = 3;
 }
 
 message ResponseV1 {

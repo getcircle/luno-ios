@@ -18,6 +18,7 @@ public func == (lhs: Services.Profile.Actions.GetProfiles.RequestV1, rhs: Servic
   fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
   fieldCheck = fieldCheck && (lhs.hasManagerId == rhs.hasManagerId) && (!lhs.hasManagerId || lhs.managerId == rhs.managerId)
   fieldCheck = fieldCheck && (lhs.emails == rhs.emails)
+  fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -73,6 +74,9 @@ public extension Services.Profile.Actions.GetProfiles {
     public private(set) var managerId:String = ""
 
     public private(set) var emails:Array<String> = Array<String>()
+    public private(set) var hasIsAdmin:Bool = false
+    public private(set) var isAdmin:Bool = false
+
     required public init() {
          super.init()
     }
@@ -107,6 +111,9 @@ public extension Services.Profile.Actions.GetProfiles {
         for oneValueemails in emails {
           try output.writeString(8, value:oneValueemails)
         }
+      }
+      if hasIsAdmin {
+        try output.writeBool(9, value:isAdmin)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -149,6 +156,9 @@ public extension Services.Profile.Actions.GetProfiles {
       }
       serialize_size += dataSizeEmails
       serialize_size += 1 * Int32(emails.count)
+      if hasIsAdmin {
+        serialize_size += isAdmin.computeBoolSize(9)
+      }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -230,6 +240,9 @@ public extension Services.Profile.Actions.GetProfiles {
           output += "\(indent) emails[\(emailsElementIndex)]: \(oneValueemails)\n"
           emailsElementIndex++
       }
+      if hasIsAdmin {
+        output += "\(indent) isAdmin: \(isAdmin) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -260,6 +273,9 @@ public extension Services.Profile.Actions.GetProfiles {
             }
             for oneValueemails in emails {
                 hashCode = (hashCode &* 31) &+ oneValueemails.hashValue
+            }
+            if hasIsAdmin {
+               hashCode = (hashCode &* 31) &+ isAdmin.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -487,6 +503,29 @@ public extension Services.Profile.Actions.GetProfiles {
          builderResult.emails.removeAll(keepCapacity: false)
          return self
       }
+      public var hasIsAdmin:Bool {
+           get {
+                return builderResult.hasIsAdmin
+           }
+      }
+      public var isAdmin:Bool {
+           get {
+                return builderResult.isAdmin
+           }
+           set (value) {
+               builderResult.hasIsAdmin = true
+               builderResult.isAdmin = value
+           }
+      }
+      public func setIsAdmin(value:Bool) -> Services.Profile.Actions.GetProfiles.RequestV1.Builder {
+        self.isAdmin = value
+        return self
+      }
+      public func clearIsAdmin() -> Services.Profile.Actions.GetProfiles.RequestV1.Builder{
+           builderResult.hasIsAdmin = false
+           builderResult.isAdmin = false
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -535,6 +574,9 @@ public extension Services.Profile.Actions.GetProfiles {
         if !other.emails.isEmpty {
             builderResult.emails += other.emails
         }
+        if other.hasIsAdmin {
+             isAdmin = other.isAdmin
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -578,6 +620,9 @@ public extension Services.Profile.Actions.GetProfiles {
 
           case 66 :
             emails += [try input.readString()]
+
+          case 72 :
+            isAdmin = try input.readBool()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

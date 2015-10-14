@@ -13,6 +13,7 @@ public func == (lhs: Services.Profile.Actions.ProfileExists.RequestV1, rhs: Serv
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasDomain == rhs.hasDomain) && (!lhs.hasDomain || lhs.domain == rhs.domain)
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
+  fieldCheck = fieldCheck && (lhs.hasAuthenticationIdentifier == rhs.hasAuthenticationIdentifier) && (!lhs.hasAuthenticationIdentifier || lhs.authenticationIdentifier == rhs.authenticationIdentifier)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -24,6 +25,8 @@ public func == (lhs: Services.Profile.Actions.ProfileExists.ResponseV1, rhs: Ser
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasExists == rhs.hasExists) && (!lhs.hasExists || lhs.exists == rhs.exists)
+  fieldCheck = fieldCheck && (lhs.hasUserId == rhs.hasUserId) && (!lhs.hasUserId || lhs.userId == rhs.userId)
+  fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -56,6 +59,9 @@ public extension Services.Profile.Actions.ProfileExists {
     public private(set) var hasEmail:Bool = false
     public private(set) var email:String = ""
 
+    public private(set) var hasAuthenticationIdentifier:Bool = false
+    public private(set) var authenticationIdentifier:String = ""
+
     required public init() {
          super.init()
     }
@@ -71,6 +77,9 @@ public extension Services.Profile.Actions.ProfileExists {
       }
       if hasEmail {
         try output.writeString(3, value:email)
+      }
+      if hasAuthenticationIdentifier {
+        try output.writeString(4, value:authenticationIdentifier)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -89,6 +98,9 @@ public extension Services.Profile.Actions.ProfileExists {
       }
       if hasEmail {
         serialize_size += email.computeStringSize(3)
+      }
+      if hasAuthenticationIdentifier {
+        serialize_size += authenticationIdentifier.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -150,6 +162,9 @@ public extension Services.Profile.Actions.ProfileExists {
       if hasEmail {
         output += "\(indent) email: \(email) \n"
       }
+      if hasAuthenticationIdentifier {
+        output += "\(indent) authenticationIdentifier: \(authenticationIdentifier) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -163,6 +178,9 @@ public extension Services.Profile.Actions.ProfileExists {
             }
             if hasEmail {
                hashCode = (hashCode &* 31) &+ email.hashValue
+            }
+            if hasAuthenticationIdentifier {
+               hashCode = (hashCode &* 31) &+ authenticationIdentifier.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -261,6 +279,29 @@ public extension Services.Profile.Actions.ProfileExists {
            builderResult.email = ""
            return self
       }
+      public var hasAuthenticationIdentifier:Bool {
+           get {
+                return builderResult.hasAuthenticationIdentifier
+           }
+      }
+      public var authenticationIdentifier:String {
+           get {
+                return builderResult.authenticationIdentifier
+           }
+           set (value) {
+               builderResult.hasAuthenticationIdentifier = true
+               builderResult.authenticationIdentifier = value
+           }
+      }
+      public func setAuthenticationIdentifier(value:String) -> Services.Profile.Actions.ProfileExists.RequestV1.Builder {
+        self.authenticationIdentifier = value
+        return self
+      }
+      public func clearAuthenticationIdentifier() -> Services.Profile.Actions.ProfileExists.RequestV1.Builder{
+           builderResult.hasAuthenticationIdentifier = false
+           builderResult.authenticationIdentifier = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -294,6 +335,9 @@ public extension Services.Profile.Actions.ProfileExists {
         if other.hasEmail {
              email = other.email
         }
+        if other.hasAuthenticationIdentifier {
+             authenticationIdentifier = other.authenticationIdentifier
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -318,6 +362,9 @@ public extension Services.Profile.Actions.ProfileExists {
           case 26 :
             email = try input.readString()
 
+          case 34 :
+            authenticationIdentifier = try input.readString()
+
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
                unknownFields = try unknownFieldsBuilder.build()
@@ -337,6 +384,12 @@ public extension Services.Profile.Actions.ProfileExists {
     public private(set) var hasExists:Bool = false
     public private(set) var exists:Bool = false
 
+    public private(set) var hasUserId:Bool = false
+    public private(set) var userId:String = ""
+
+    public private(set) var hasProfileId:Bool = false
+    public private(set) var profileId:String = ""
+
     required public init() {
          super.init()
     }
@@ -349,6 +402,12 @@ public extension Services.Profile.Actions.ProfileExists {
       }
       if hasExists {
         try output.writeBool(2, value:exists)
+      }
+      if hasUserId {
+        try output.writeString(3, value:userId)
+      }
+      if hasProfileId {
+        try output.writeString(4, value:profileId)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -364,6 +423,12 @@ public extension Services.Profile.Actions.ProfileExists {
       }
       if hasExists {
         serialize_size += exists.computeBoolSize(2)
+      }
+      if hasUserId {
+        serialize_size += userId.computeStringSize(3)
+      }
+      if hasProfileId {
+        serialize_size += profileId.computeStringSize(4)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -422,6 +487,12 @@ public extension Services.Profile.Actions.ProfileExists {
       if hasExists {
         output += "\(indent) exists: \(exists) \n"
       }
+      if hasUserId {
+        output += "\(indent) userId: \(userId) \n"
+      }
+      if hasProfileId {
+        output += "\(indent) profileId: \(profileId) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -432,6 +503,12 @@ public extension Services.Profile.Actions.ProfileExists {
             }
             if hasExists {
                hashCode = (hashCode &* 31) &+ exists.hashValue
+            }
+            if hasUserId {
+               hashCode = (hashCode &* 31) &+ userId.hashValue
+            }
+            if hasProfileId {
+               hashCode = (hashCode &* 31) &+ profileId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -507,6 +584,52 @@ public extension Services.Profile.Actions.ProfileExists {
            builderResult.exists = false
            return self
       }
+      public var hasUserId:Bool {
+           get {
+                return builderResult.hasUserId
+           }
+      }
+      public var userId:String {
+           get {
+                return builderResult.userId
+           }
+           set (value) {
+               builderResult.hasUserId = true
+               builderResult.userId = value
+           }
+      }
+      public func setUserId(value:String) -> Services.Profile.Actions.ProfileExists.ResponseV1.Builder {
+        self.userId = value
+        return self
+      }
+      public func clearUserId() -> Services.Profile.Actions.ProfileExists.ResponseV1.Builder{
+           builderResult.hasUserId = false
+           builderResult.userId = ""
+           return self
+      }
+      public var hasProfileId:Bool {
+           get {
+                return builderResult.hasProfileId
+           }
+      }
+      public var profileId:String {
+           get {
+                return builderResult.profileId
+           }
+           set (value) {
+               builderResult.hasProfileId = true
+               builderResult.profileId = value
+           }
+      }
+      public func setProfileId(value:String) -> Services.Profile.Actions.ProfileExists.ResponseV1.Builder {
+        self.profileId = value
+        return self
+      }
+      public func clearProfileId() -> Services.Profile.Actions.ProfileExists.ResponseV1.Builder{
+           builderResult.hasProfileId = false
+           builderResult.profileId = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -537,6 +660,12 @@ public extension Services.Profile.Actions.ProfileExists {
         if other.hasExists {
              exists = other.exists
         }
+        if other.hasUserId {
+             userId = other.userId
+        }
+        if other.hasProfileId {
+             profileId = other.profileId
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -557,6 +686,12 @@ public extension Services.Profile.Actions.ProfileExists {
 
           case 16 :
             exists = try input.readBool()
+
+          case 26 :
+            userId = try input.readString()
+
+          case 34 :
+            profileId = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

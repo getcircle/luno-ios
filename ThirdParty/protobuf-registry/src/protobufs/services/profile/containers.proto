@@ -45,6 +45,7 @@ message ProfileV1 {
     optional string small_image_url = 18;
     optional ProfileStatusV1 status = 19;
     optional string display_title = 20;
+    optional string authentication_identifier = 21;
 }
 
 message ProfileStatusV1 {
@@ -53,6 +54,7 @@ message ProfileStatusV1 {
     optional string created = 3;
     optional string id = 4;
     optional string changed = 5;
+    optional ProfileV1 profile = 6;
 }
 
 message ProfileItemV1 {
