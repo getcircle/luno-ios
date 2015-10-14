@@ -123,6 +123,9 @@ class SearchQueryDataSource: CardDataSource {
                     else if let location = result.location {
                         self.searchResults.append(location)
                     }
+                    else if let profileStatus = result.profileStatus {
+                        self.searchResults.append(profileStatus)
+                    }
                 }
                 
                 self.searchCache[query] = self.searchResults
@@ -247,7 +250,7 @@ class SearchQueryDataSource: CardDataSource {
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
         
-        let isLoneProfileCell = (searchResults.count == 1 && cell is ProfileCollectionViewCell)
+        let isLoneProfileCell = (searchResults.count == 1 && cell is SearchResultCollectionViewCell)
         cell.showSeparator = !isLoneProfileCell
     }
     

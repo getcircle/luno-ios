@@ -74,7 +74,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                 
                 let attributedText = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(), NSFontAttributeName: font])
                 
-                if let timestamp = textData.getFormattedTimestamp() {
+                if let timestamp = TextData.getFormattedTimestamp(textData.updatedTimestamp, authorProfile: textData.authorProfile) {
                     let attributedTimestamp = NSAttributedString(string: "  \(timestamp)", attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor(), NSFontAttributeName: UIFont.regularFont(10.0)])
                     attributedText.appendAttributedString(attributedTimestamp)
                 }

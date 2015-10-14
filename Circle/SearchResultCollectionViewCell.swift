@@ -29,4 +29,24 @@ class SearchResultCollectionViewCell: ProfileCollectionViewCell {
         subTextLabel.textColor = UIColor.appSecondaryTextColor()
     }
     
+    override func setData(data: AnyObject) {
+        if let profileStatus = data as? Services.Profile.Containers.ProfileStatusV1 {
+            setProfileStatus(profileStatus)
+        }
+        
+        super.setData(data)
+    }
+    
+    private func setProfileStatus(status: Services.Profile.Containers.ProfileStatusV1) {
+        let statusText = status.value
+        nameLabel.text = statusText
+        subTextLabel.text = status.profile.fullName + ", " + TextData.getFormattedTimestamp(status.created)!
+        teamNameLetterLabel.hidden = true
+        
+        profileImageView.imageProfileIdentifier = status.id
+        profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
+        profileImageView.contentMode = .Center
+        profileImageView.image = UIImage(named: "detail_quote")?.imageWithRenderingMode(.AlwaysTemplate)
+        profileImageView.tintColor = UIColor(red: 66, green: 66, blue: 66)
+    }
 }
