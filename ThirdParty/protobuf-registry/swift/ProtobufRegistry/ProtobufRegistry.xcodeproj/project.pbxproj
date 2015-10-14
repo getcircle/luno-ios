@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F12AA191BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12AA181BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */; settings = {ASSET_TAGS = (); }; };
 		BF3D3CC91AE070EF00B5780B /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBA1AE070EF00B5780B /* AbstractMessage.swift */; };
 		BF3D3CCA1AE070EF00B5780B /* CodedInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBB1AE070EF00B5780B /* CodedInputStream.swift */; };
 		BF3D3CCB1AE070EF00B5780B /* CodedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBC1AE070EF00B5780B /* CodedOutputStream.swift */; };
@@ -143,6 +144,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F12AA181BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Profile.Actions.GetStatus.GetStatus.proto.swift; sourceTree = "<group>"; };
 		BF3D3CBA1AE070EF00B5780B /* AbstractMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMessage.swift; sourceTree = "<group>"; };
 		BF3D3CBB1AE070EF00B5780B /* CodedInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedInputStream.swift; sourceTree = "<group>"; };
 		BF3D3CBC1AE070EF00B5780B /* CodedOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedOutputStream.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				BF9BADD81BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift */,
 				BF9BADD91BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift */,
 				BF9BADDA1BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift */,
+				8F12AA181BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */,
 				BF9BADDB1BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift */,
 				BF9BADDC1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift */,
 				BF9BADDD1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift */,
@@ -660,6 +663,7 @@
 				BF9BAE421BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift in Sources */,
 				BF9BAE431BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift in Sources */,
 				BF9BAE441BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift in Sources */,
+				8F12AA191BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */,
 				BF9BAE451BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift in Sources */,
 				BF9BAE461BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift in Sources */,
 				BF9BAE471BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift in Sources */,
