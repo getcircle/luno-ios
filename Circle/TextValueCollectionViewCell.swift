@@ -46,7 +46,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     }
 
     override func intrinsicContentSize() -> CGSize {
-        var height = textLabel.intrinsicContentSize().height
+        var height = min(textLabel.intrinsicContentSize().height, 60.0)
         height += textLabelTopConstraint.constant
         height += textLabelBottomConstraint.constant
         return CGSizeMake(self.dynamicType.width, height)
