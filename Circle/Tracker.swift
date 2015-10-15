@@ -168,6 +168,10 @@ class Tracker {
                 "Title": profile.title,
                 "User ID": profile.userId,
             ])
+                    
+            mixpanel.people.setOnce([
+                "First Seen": NSDate()
+            ])
 
             // Register super properties
             mixpanel.registerSuperProperties([
