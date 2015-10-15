@@ -327,11 +327,11 @@ class Tracker {
     
     func trackContactTap(
         contactMethod: TrackerProperty.ContactMethod,
-        contactId: String, 
+        contactProfile: Services.Profile.Containers.ProfileV1,
         contactLocation: TrackerProperty.ContactLocation
     ) {
         if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
-            where loggedInUserProfile.id == contactId
+            where loggedInUserProfile.id == contactProfile.id
         {
             // do not track contact methods that user is tapping on his/her own profile
             return;
@@ -339,7 +339,9 @@ class Tracker {
         
         let properties = [
             "Contact Method": contactMethod.rawValue,
-            "Contact ID": contactId,
+            "Contact ID": contactProfile.id,
+            "Contact Name": contactProfile.firstName,
+            "Contact Title": contactProfile.hasDisplayTitle ? contactProfile.displayTitle : contactProfile.title,
             "Contact Location": contactLocation.rawValue,
         ]
         

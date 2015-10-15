@@ -125,7 +125,7 @@ class ProfileDetailViewController:
         case .Email:
             Tracker.sharedInstance.trackContactTap(
                 .Email,
-                contactId: profile.id,
+                contactProfile: profile,
                 contactLocation: .ProfileDetail
             )
             presentMailViewController(
@@ -140,7 +140,7 @@ class ProfileDetailViewController:
                 if let phoneURL = NSURL(string: NSString(format: "tel://%@", number.removePhoneNumberFormatting()) as String) {
                     Tracker.sharedInstance.trackContactTap(
                         .Call,
-                        contactId: profile.id,
+                        contactProfile: profile,
                         contactLocation: .ProfileDetail
                     )
                     UIApplication.sharedApplication().openURL(phoneURL)
@@ -223,7 +223,7 @@ class ProfileDetailViewController:
             where type == .ProfileStatus {
             Tracker.sharedInstance.trackContactTap(
                 .Email,
-                contactId: profile.id,
+                contactProfile: profile,
                 contactLocation: .ProfileDetailStatus
             )
 

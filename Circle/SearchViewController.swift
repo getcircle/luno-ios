@@ -579,7 +579,7 @@ class SearchViewController: UIViewController,
                 trackerResultId = profile.id
                 Tracker.sharedInstance.trackContactTap(
                     .Email,
-                    contactId: profile.id,
+                    contactProfile: profile,
                     contactLocation: .SearchSmartAction
                 )
                 performQuickAction(.Email, profile: profile)
@@ -590,7 +590,7 @@ class SearchViewController: UIViewController,
                 trackerResultId = profile.id
                 Tracker.sharedInstance.trackContactTap(
                     .Message,
-                    contactId: profile.id,
+                    contactProfile: profile,
                     contactLocation: .SearchSmartAction
                 )
                 performQuickAction(.Message, profile: profile)
@@ -602,7 +602,7 @@ class SearchViewController: UIViewController,
                 trackerResultId = profile.id
                 Tracker.sharedInstance.trackContactTap(
                     .Call,
-                    contactId: profile.id,
+                    contactProfile: profile,
                     contactLocation: .SearchSmartAction
                 )
                 performQuickAction(.Phone, profile: profile)

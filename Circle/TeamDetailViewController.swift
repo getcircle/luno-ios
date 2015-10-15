@@ -283,7 +283,7 @@ class TeamDetailViewController:
             
             Tracker.sharedInstance.trackContactTap(
                 .Email,
-                contactId: dataSource.managerProfile.id,
+                contactProfile: dataSource.managerProfile,
                 contactLocation: contactLocation
             )
             
