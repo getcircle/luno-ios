@@ -88,8 +88,9 @@ class ProfileHeaderCollectionReusableView: CircleCollectionReusableView {
 
         containerView.backgroundColor = UIColor.clearColor()
         nameLabel.text = userProfile.nameWithNickName()
+        let title = userProfile.hasDisplayTitle ? userProfile.displayTitle : userProfile.title
         titleLabel.attributedText = NSAttributedString(
-            string: userProfile.displayTitle.localizedUppercaseString(),
+            string: title.uppercaseString,
             attributes: [NSKernAttributeName: 2.0]
         )
         let hasProfileImageChanged = profile?.imageUrl != userProfile.imageUrl
