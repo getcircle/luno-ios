@@ -15,7 +15,6 @@ class EditProfileStatusViewController: TextInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         textView.keyboardType = .Twitter
     }
 
@@ -36,12 +35,12 @@ class EditProfileStatusViewController: TextInputViewController {
     }
     
     override func getTextPlaceholder() -> String {
-        return "What are you working on?"
+        return AppStrings.EditProfileStatusPlaceholder
     }
     
     override func saveData(data: String) throws {
         let statusBuilder: Services.Profile.Containers.ProfileStatusV1.Builder
-        if let status = profile.status {
+        if let status = profile.status where isNew == false {
             statusBuilder = try status.toBuilder()
         }
         else {

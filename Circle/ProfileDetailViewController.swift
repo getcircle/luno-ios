@@ -240,4 +240,20 @@ class ProfileDetailViewController:
             )
         }
     }
+    
+    func editTextButtonTapped(type: TextData.TextDataType) {
+        openEditProfileStatus(false)
+    }
+    
+    internal func openEditProfileStatus(isNew: Bool) {
+        let editStatusViewController = EditProfileStatusViewController(
+            addCharacterLimit: true,
+            isNew: isNew,
+            withDelegate: self
+        )
+        editStatusViewController.addPostButton = true
+        editStatusViewController.profile = profile
+        let editStatusViewNavController = UINavigationController(rootViewController: editStatusViewController)
+        navigationController?.presentViewController(editStatusViewNavController, animated: true, completion: nil)
+    }
 }

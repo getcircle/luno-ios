@@ -12,6 +12,9 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
         </mutableArray>
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -46,6 +49,18 @@
                             <action selector="placeholderButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="0XY-DI-oZZ"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wp-gc-VVk">
+                        <rect key="frame" x="46" y="94" width="60" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="0lQ-BK-MIO"/>
+                            <constraint firstAttribute="height" constant="40" id="sSg-bF-ecx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="12"/>
+                        <state key="normal" title="EDIT"/>
+                        <connections>
+                            <action selector="editButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="wsE-L9-ElO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -55,14 +70,19 @@
                 <constraint firstItem="Ojy-Hf-gKW" firstAttribute="leading" secondItem="hZc-gJ-L6C" secondAttribute="leading" id="42h-i3-5eA"/>
                 <constraint firstAttribute="trailing" secondItem="hZc-gJ-L6C" secondAttribute="trailing" constant="20" id="A1I-j7-eHi"/>
                 <constraint firstItem="N9B-Zy-spK" firstAttribute="trailing" secondItem="hZc-gJ-L6C" secondAttribute="trailing" id="LoQ-oI-0jV"/>
+                <constraint firstItem="2wp-gc-VVk" firstAttribute="centerY" secondItem="Ojy-Hf-gKW" secondAttribute="centerY" id="Mbq-6K-vcd"/>
                 <constraint firstItem="hZc-gJ-L6C" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="Mme-ta-p34"/>
                 <constraint firstItem="N9B-Zy-spK" firstAttribute="top" secondItem="hZc-gJ-L6C" secondAttribute="top" id="Rqr-hy-h7l"/>
                 <constraint firstItem="N9B-Zy-spK" firstAttribute="leading" secondItem="hZc-gJ-L6C" secondAttribute="leading" id="Z53-ZG-keY"/>
                 <constraint firstItem="Ojy-Hf-gKW" firstAttribute="top" secondItem="hZc-gJ-L6C" secondAttribute="bottom" id="cjN-5o-Uif"/>
+                <constraint firstItem="2wp-gc-VVk" firstAttribute="top" secondItem="Ojy-Hf-gKW" secondAttribute="top" id="cmo-Zb-W3z"/>
                 <constraint firstAttribute="bottom" secondItem="Ojy-Hf-gKW" secondAttribute="bottom" constant="10" id="d0u-yp-EAG"/>
                 <constraint firstItem="N9B-Zy-spK" firstAttribute="bottom" secondItem="hZc-gJ-L6C" secondAttribute="bottom" id="eDu-I9-1wA"/>
                 <constraint firstItem="Ojy-Hf-gKW" firstAttribute="bottom" secondItem="hZc-gJ-L6C" secondAttribute="bottom" id="otv-ZS-Khq"/>
                 <constraint firstItem="Ojy-Hf-gKW" firstAttribute="top" secondItem="hZc-gJ-L6C" secondAttribute="bottom" constant="10" id="pMi-0d-BDJ"/>
+                <constraint firstItem="2wp-gc-VVk" firstAttribute="leading" secondItem="Ojy-Hf-gKW" secondAttribute="trailing" id="r2I-4Y-ISP"/>
+                <constraint firstItem="2wp-gc-VVk" firstAttribute="bottom" secondItem="Ojy-Hf-gKW" secondAttribute="bottom" id="rLa-BP-43I"/>
+                <constraint firstItem="2wp-gc-VVk" firstAttribute="centerX" secondItem="Ojy-Hf-gKW" secondAttribute="centerX" id="wqj-P3-6cM"/>
                 <constraint firstItem="hZc-gJ-L6C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="xcW-dN-c9u"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hZc-gJ-L6C" secondAttribute="bottom" constant="20" id="zf4-Xs-XCb"/>
             </constraints>
@@ -70,12 +90,16 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="1xk-Sj-iSa"/>
+                    <exclude reference="cmo-Zb-W3z"/>
+                    <exclude reference="rLa-BP-43I"/>
+                    <exclude reference="wqj-P3-6cM"/>
                     <exclude reference="cjN-5o-Uif"/>
                     <exclude reference="d0u-yp-EAG"/>
                     <exclude reference="otv-ZS-Khq"/>
                 </mask>
             </variation>
             <connections>
+                <outlet property="editTextButton" destination="2wp-gc-VVk" id="TAL-Q2-JnG"/>
                 <outlet property="placeholderButton" destination="N9B-Zy-spK" id="xHi-V7-HHB"/>
                 <outlet property="textLabel" destination="hZc-gJ-L6C" id="fFX-dE-A5w"/>
                 <outlet property="textLabelTopConstraint" destination="Mme-ta-p34" id="izX-tI-6Zb"/>

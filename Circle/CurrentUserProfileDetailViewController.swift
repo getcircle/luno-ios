@@ -131,12 +131,8 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         switch card.type {
             
         case .TextValue:
-            let editStatusViewController = EditProfileStatusViewController(addCharacterLimit: true, withDelegate: self)
-            editStatusViewController.addPostButton = true
-            editStatusViewController.profile = profile
-            let editStatusViewNavController = UINavigationController(rootViewController: editStatusViewController)
-            navigationController?.presentViewController(editStatusViewNavController, animated: true, completion: nil)
-            
+            openEditProfileStatus(true)
+
         default:
             break
         }

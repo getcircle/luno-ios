@@ -148,17 +148,7 @@ class TeamDetailViewController:
                 if let data = card.content.first as? TextData {
                     switch data.type {
                     case .TeamStatus:
-                        let editStatusViewController = EditTeamStatusViewController(addCharacterLimit: true, withDelegate: self)
-                        editStatusViewController.addPostButton = true
-                        editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
-                        let editStatusViewNavController = UINavigationController(
-                            rootViewController: editStatusViewController
-                        )
-                        navigationController?.presentViewController(
-                            editStatusViewNavController, 
-                            animated: true, 
-                            completion: nil
-                        )
+                        openEditTeamStatus(true)
 
                     default:
                         break
@@ -172,7 +162,25 @@ class TeamDetailViewController:
         }
     }
     
-    // MARK: - CardFooterDelegate 
+    private func openEditTeamStatus(isNew: Bool) {
+        let editStatusViewController = EditTeamStatusViewController(
+            addCharacterLimit: true,
+            isNew: isNew,
+            withDelegate: self
+        )
+        editStatusViewController.addPostButton = true
+        editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
+        let editStatusViewNavController = UINavigationController(
+            rootViewController: editStatusViewController
+        )
+        navigationController?.presentViewController(
+            editStatusViewNavController,
+            animated: true,
+            completion: nil
+        )
+    }
+    
+    // MARK: - CardFooterDelegate
     
     func cardFooterTapped(card: Card!) {
         let teamDetailDataSource = dataSource as! TeamDetailDataSource
@@ -292,5 +300,9 @@ class TeamDetailViewController:
                 completionHandler: nil
             )
         }
+    }
+    
+    func editTextButtonTapped(type: TextData.TextDataType) {
+        openEditTeamStatus(false)
     }
 }

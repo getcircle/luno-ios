@@ -26,12 +26,15 @@ struct AppStrings {
     static let ContactPlaceholderAddNumber = NSLocalizedString("Add Number", comment: "Placeholder for phone field when current user does not have a number added")
     static let ContactPlaceholderNumberNotAdded = NSLocalizedString("Number not added", comment: "Placeholder for phone field when a user does not have a number added")
     
+    static let EditProfileStatusPlaceholder = NSLocalizedString("working on #project with @coworkers!", comment: "Placeholder for profile status text field")
+    static let EditTeamStatusPlaceholder = NSLocalizedString("What #project is your team working on?", comment: "Placeholder for team status text field")
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
     
     static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")
 
     static let GenericErrorMessage = NSLocalizedString("Oops! There was an error connecting to our server.", comment: "Generic error message shown when there is any error in fetching data")
     
+    static let GenericEditButtonTitle = NSLocalizedString("Edit", comment: "Generic button title for editing any content")
     static let GenericCancelButtonTitle = NSLocalizedString("Cancel", comment: "Generic button title for cancelling a user action")
     static let GenericDoneButtonTitle = NSLocalizedString("Done", comment: "Generic button title for indicating a user has completed an action")
     static let GenericErrorDialogTitle = NSLocalizedString("Error", comment: "Generic title for a dialog showing an error message")
@@ -59,7 +62,7 @@ struct AppStrings {
     static let PrivateBetaInfoText = NSLocalizedString("luno is currently available only to employees at participating companies! You can request access below or try logging into a different account.", comment: "Message indicating that the app is only available to employees of participating companies and the user can either request access or try a different account")
     
     static let ProfileInfoEditButtonTitle = NSLocalizedString("Edit", comment: "Title of the button to edit info")
-    static let ProfileInfoUpdateButtonTitle = NSLocalizedString("Update", comment: "Title of the button to update info")
+    static let ProfileInfoUpdateButtonTitle = NSLocalizedString("New Update", comment: "Title of the button to update info")
 
     static let ProfileEditTitle = NSLocalizedString("Edit Profile", comment: "Title of the view which allows the user to edit their profile")
     static let ProfileEditUpdatePhoto = NSLocalizedString("Update Photo", comment: "Button prompt to update user's profile photo")

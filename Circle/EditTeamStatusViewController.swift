@@ -15,7 +15,6 @@ class EditTeamStatusViewController: TextInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         textView.keyboardType = .Twitter
     }
 
@@ -36,12 +35,12 @@ class EditTeamStatusViewController: TextInputViewController {
     }
     
     override func getTextPlaceholder() -> String {
-        return "What is your team working on?"
+        return AppStrings.EditTeamStatusPlaceholder
     }
     
     override func saveData(data: String) throws {
         let statusBuilder: Services.Organization.Containers.TeamStatusV1.Builder
-        if let status = team.status {
+        if let status = team.status where isNew == false {
             statusBuilder = try status.toBuilder()
         }
         else {

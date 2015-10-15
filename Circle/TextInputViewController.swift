@@ -36,10 +36,12 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     private var addCharacterLimit: Bool
     private var hud: MBProgressHUD?
     private var delegate: TextInputViewControllerDelegate?
+    private(set) var isNew: Bool = true
 
-    init(addCharacterLimit: Bool, withDelegate: TextInputViewControllerDelegate? = nil) {
+    init(addCharacterLimit: Bool, isNew: Bool, withDelegate: TextInputViewControllerDelegate? = nil) {
         self.addCharacterLimit = addCharacterLimit
         self.delegate = withDelegate
+        self.isNew = isNew
         super.init(nibName: "TextInputViewController", bundle: nil)
     }
 
@@ -127,7 +129,7 @@ class TextInputViewController: UIViewController, UITextViewDelegate {
     }
     
     private func populateData() {
-        if let data = getData() where data.trimWhitespace() != "" {
+        if let data = getData() where data.trimWhitespace() != "" && isNew == false {
             textView.text = data
             placeholderLabel.hidden = true
         }

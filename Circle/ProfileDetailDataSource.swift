@@ -55,7 +55,6 @@ class ProfileDetailDataSource: CardDataSource {
             else {
                 self.profile = profile
                 self.directReports = directReports
-                // TODO support multiple locations
                 self.location = locations?.first
                 self.manager = manager
                 self.managesTeam = managesTeam

@@ -10,10 +10,12 @@ import UIKit
 
 protocol TextValueCollectionViewDelegate {
     func placeholderButtonTapped(type: TextData.TextDataType)
+    func editTextButtonTapped(type: TextData.TextDataType)
 }
 
 class TextValueCollectionViewCell: CircleCollectionViewCell {
 
+    @IBOutlet weak private(set) var editTextButton: UIButton?
     @IBOutlet weak private(set) var placeholderButton: UIButton?
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
@@ -40,8 +42,15 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         configurePlaceholderButton()
     }
 
+    func configureEditButton() {
+        editTextButton?.setTitleColor(UIColor.appTintColor(), forState: .Normal)
+        editTextButton?.setTitle(AppStrings.GenericCancelButtonTitle.localizedUppercaseString(), forState: .Normal)
+        editTextButton?.hidden = true
+    }
+    
     func configureTextLabel() {
         textLabel.textColor = UIColor.appPrimaryTextColor()
+        textLabel.font = UIFont.regularFont(textLabel.font.pointSize)
         textLabel.text = ""
         textLabel.numberOfLines = 0
         textLabel.lineBreakMode = .ByWordWrapping
@@ -66,49 +75,58 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         return CGSizeMake(self.dynamicType.width, height)
     }
     
+    private func resetViews() {
+        textLabel.font = UIFont.regularFont(textLabel.font.pointSize)
+        editTextButton?.hidden = true
+        placeholderButton?.hidden = true
+        timestampLabel?.hidden = true
+    }
+    
     override func setData(data: AnyObject) {
-        let normalFont = UIFont.regularFont(textLabel.font.pointSize)
+        resetViews()
+        
         let italicFont = UIFont.italicFont(textLabel.font.pointSize)
-
         if let textData = data as? TextData {
             currentTextDataType = textData.type
             
             if textData.value.trimWhitespace() != "" {
-                placeholderButton?.hidden = true
-                let text: String
-                let font: UIFont
 
+                // Add text and handle quoting
+                var text: String = textData.value
                 if textData.type == .TeamStatus || textData.type == .ProfileStatus {
                     text = "\"" + textData.value + "\""
-                    font = italicFont
-                }
-                else {
-                    text = textData.value
-                    font = normalFont
+                    textLabel.font = italicFont
                 }
                 
                 textLabel.text = text
-                textLabel.font = font
                 
-                if let timestamp = TextData.getFormattedTimestamp(textData.updatedTimestamp, authorProfile: textData.authorProfile) {
+                // Add timestamp if present
+                if let timestamp = TextData.getFormattedTimestamp(
+                    textData.updatedTimestamp,
+                    authorProfile: textData.authorProfile)
+                {
                     timestampLabel?.text = timestamp
                     timestampLabel?.hidden = false
-                }
-                else {
-                    timestampLabel?.hidden = true
+                    
+                    if let canEdit = textData.canEdit where canEdit == true {
+                        editTextButton?.hidden = false
+                    }
                 }
             }
             else if let placeholder = textData.placeholder {
+
+                // Show placeholder (read-only) if user can edit
                 textLabel.textColor = UIColor.appSecondaryTextColor()
                 textLabel.text = placeholder
-                textLabel.font = normalFont
                 
+                // Else show button to nudge user
                 if let canEdit = textData.canEdit where canEdit == false {
                     placeholderButton?.hidden = false
                     placeholderButton?.setTitle(placeholder, forState: .Normal)
                 }
             }
 
+            // Resize as per new content
             textLabel.setNeedsUpdateConstraints()
             textLabel.layoutIfNeeded()
             timestampLabel?.layoutIfNeeded()
@@ -121,6 +139,12 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     @IBAction func placeholderButtonTapped(sender: AnyObject) {
         if let currentTextDataType = currentTextDataType {
             delegate?.placeholderButtonTapped(currentTextDataType)
+        }
+    }
+    
+    @IBAction func editButtonTapped(sender: AnyObject) {
+        if let currentTextDataType = currentTextDataType {
+            delegate?.editTextButtonTapped(currentTextDataType)
         }
     }
 }
