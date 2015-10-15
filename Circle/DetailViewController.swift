@@ -110,7 +110,11 @@ class DetailViewController: BaseDetailViewController,
     }
     
     private func configureActivityIndicator() {
-        activityIndicatorView = view.addActivityIndicator(horizontalOffset: 0.15 * view.frameHeight)
+        activityIndicatorView = view.addActivityIndicator(horizontalOffset: offsetForActivityIndicator())
+    }
+    
+    internal func offsetForActivityIndicator() -> CGFloat {
+        return 0.15 * view.frameHeight
     }
     
     private func configureErrorMessageView() {
