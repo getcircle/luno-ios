@@ -19,8 +19,7 @@ class SearchTextValueCollectionViewCell: TextValueCollectionViewCell {
     override func intrinsicContentSize() -> CGSize {
         var height = titleLabel.intrinsicContentSize().height
         height += textLabel.intrinsicContentSize().height
-        height += textLabelTopConstraint.constant
-        height += textLabelBottomConstraint.constant
+        height += textLabelTopConstraint.constant * 2
         return CGSizeMake(self.dynamicType.width, height)
     }
     

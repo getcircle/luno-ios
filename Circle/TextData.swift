@@ -47,9 +47,9 @@ class TextData {
         }
     }
     
-    static func getFormattedTimestamp(timestamp: String?, authorProfile: Services.Profile.Containers.ProfileV1? = nil, addNewLine: Bool = true, addHyphen: Bool = true) -> String? {
+    static func getFormattedTimestamp(timestamp: String?, authorProfile: Services.Profile.Containers.ProfileV1? = nil, addHyphen: Bool = true) -> String? {
         if let statusTimestamp = timestamp where statusTimestamp.trimWhitespace() != "" {
-            var formattedTimestamp = (addNewLine ? "\u{000A}" : "") + (addHyphen ? " \u{2013} " : "")
+            var formattedTimestamp = (addHyphen ? " \u{2013} " : "")
 
             let today = NSDate()
             if let updatedDate = NSDateFormatter.dateFromTimestampString(statusTimestamp),

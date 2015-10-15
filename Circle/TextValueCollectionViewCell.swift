@@ -17,7 +17,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var placeholderButton: UIButton?
     @IBOutlet weak private(set) var textLabel: UILabel!
     @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var textLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var timestampLabel: UILabel?
 
     var delegate: TextValueCollectionViewDelegate?
     
@@ -35,20 +35,34 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         selectedBackgroundView = nil
-        textLabel.text = ""
+        configureTextLabel()
+        configureTimestampLabel()
         configurePlaceholderButton()
     }
+
+    func configureTextLabel() {
+        textLabel.textColor = UIColor.appPrimaryTextColor()
+        textLabel.text = ""
+        textLabel.numberOfLines = 0
+        textLabel.lineBreakMode = .ByWordWrapping
+    }
     
+    func configureTimestampLabel() {
+        timestampLabel?.text = ""
+        timestampLabel?.textColor = UIColor.appSecondaryTextColor()
+        timestampLabel?.hidden = true
+    }
+
     func configurePlaceholderButton() {
         placeholderButton?.setTitle("", forState: .Normal)
         placeholderButton?.setTitleColor(UIColor.appTintColor(), forState: .Normal)
         placeholderButton?.hidden = true
     }
-
+    
     override func intrinsicContentSize() -> CGSize {
-        var height = min(textLabel.intrinsicContentSize().height, 60.0)
-        height += textLabelTopConstraint.constant
-        height += textLabelBottomConstraint.constant
+        var height = textLabel.text == nil || textLabel.text?.trimWhitespace() ?? "" == "" ? 60.0 : textLabel.intrinsicContentSize().height
+        height += textLabelTopConstraint.constant * 2
+        height += timestampLabel?.hidden ?? true ? 0.0 : 30.0
         return CGSizeMake(self.dynamicType.width, height)
     }
     
@@ -58,6 +72,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
 
         if let textData = data as? TextData {
             currentTextDataType = textData.type
+            
             if textData.value.trimWhitespace() != "" {
                 placeholderButton?.hidden = true
                 let text: String
@@ -72,14 +87,16 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                     font = normalFont
                 }
                 
-                let attributedText = NSMutableAttributedString(string: text, attributes: [NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(), NSFontAttributeName: font])
+                textLabel.text = text
+                textLabel.font = font
                 
                 if let timestamp = TextData.getFormattedTimestamp(textData.updatedTimestamp, authorProfile: textData.authorProfile) {
-                    let attributedTimestamp = NSAttributedString(string: "  \(timestamp)", attributes: [NSForegroundColorAttributeName: UIColor.appSecondaryTextColor(), NSFontAttributeName: UIFont.regularFont(10.0)])
-                    attributedText.appendAttributedString(attributedTimestamp)
+                    timestampLabel?.text = timestamp
+                    timestampLabel?.hidden = false
                 }
-                
-                textLabel.attributedText = attributedText
+                else {
+                    timestampLabel?.hidden = true
+                }
             }
             else if let placeholder = textData.placeholder {
                 textLabel.textColor = UIColor.appSecondaryTextColor()
@@ -94,6 +111,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
 
             textLabel.setNeedsUpdateConstraints()
             textLabel.layoutIfNeeded()
+            timestampLabel?.layoutIfNeeded()
             placeholderButton?.layoutIfNeeded()
         }
     }

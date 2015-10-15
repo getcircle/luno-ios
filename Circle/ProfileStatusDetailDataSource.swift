@@ -35,7 +35,7 @@ class ProfileStatusDetailDataSource: CardDataSource {
         appendCard(placeholderCard)
 
         // Status Card
-        let cardTitle = profileStatus.profile.firstName + "'s Status " + TextData.getFormattedTimestamp(profileStatus.changed, authorProfile: nil, addNewLine: false)!
+        let cardTitle = profileStatus.profile.firstName + "'s Status " + TextData.getFormattedTimestamp(profileStatus.changed, authorProfile: nil)!
         let card = Card(
             cardType: .TextValue,
             title: cardTitle
