@@ -326,6 +326,13 @@ class Tracker {
         contactId: String, 
         contactLocation: TrackerProperty.ContactLocation
     ) {
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile()
+            where loggedInUserProfile.id == contactId
+        {
+            // do not track contact methods that user is tapping on his/her own profile
+            return;
+        }
+        
         let properties = [
             "Contact Method": contactMethod.rawValue,
             "Contact ID": contactId,
