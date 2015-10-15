@@ -169,6 +169,7 @@ class ProfileDetailViewController:
         var title: String?
         let profileDetailDataSource = dataSource as! ProfileDetailDataSource
         var pageType: TrackerProperty.PageType?
+        var attributeId: String?
         
         switch card.subType {
         case .Teams:
@@ -176,6 +177,7 @@ class ProfileDetailViewController:
                 content = peers
                 title = profileDetailDataSource.profile.firstName + "'s Peers"
                 pageType = .Peers
+                attributeId = profileDetailDataSource.team?.id
             }
             
         case .ManagedTeams:
@@ -183,23 +185,33 @@ class ProfileDetailViewController:
                 content = directReports
                 title = profileDetailDataSource.profile.firstName + "'s Direct Reports"
                 pageType = .DirectReports
+                attributeId = profileDetailDataSource.managesTeam?.id
             }
 
         default:
             break
         }
         
-        if let content = content, title = title, pageType = pageType {
-            let viewController = ProfilesViewController()
-            viewController.pageType = pageType
-            (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
-            viewController.dataSource.setInitialData(
-                content: content,
-                ofType: nil,
-                nextRequest: nil
-            )
-            viewController.title = title
-            navigationController?.pushViewController(viewController, animated: true)
+        do {
+            if let content = content, title = title, pageType = pageType, attributeId = attributeId {
+                let viewController = ProfilesViewController()
+                viewController.pageType = pageType
+                (viewController.dataSource as! ProfilesDataSource).searchLocation = .Modal
+                viewController.dataSource.setInitialData(
+                    content: content,
+                    ofType: nil,
+                    nextRequest: nil
+                )
+                try (viewController.dataSource as! ProfilesDataSource).configureForTeam(
+                    attributeId,
+                    setupOnlySearch: false
+                )
+                viewController.title = title
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+        }
+        catch {
+            print("Error: \(error)")
         }
     }
     
