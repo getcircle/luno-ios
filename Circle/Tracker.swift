@@ -22,6 +22,7 @@ struct TrackerProperty {
         // Detail
         case LocationDetail = "Location Detail"
         case ProfileDetail = "Profile Detail"
+        case ProfileStatusDetail = "Profile Status Detail"
         case TeamDetail = "Team Detail"
         case LocationAddressMap = "Location Address Map"
         
@@ -75,6 +76,7 @@ struct TrackerProperty {
         case Profile = "Profile"
         case Team = "Team"
         case Location = "Location"
+        case ProfileStatus = "Profile Status"
         
         // Smart Actions
         case EmailPerson = "Email Person"

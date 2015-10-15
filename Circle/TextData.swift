@@ -47,12 +47,12 @@ class TextData {
         }
     }
     
-    static func getFormattedTimestamp(timestamp: String?, authorProfile: Services.Profile.Containers.ProfileV1? = nil) -> String? {
-        if let timestamp = timestamp where timestamp.trimWhitespace() != "" {
-            var formattedTimestamp = "\u{000A} \u{2013} "
+    static func getFormattedTimestamp(timestamp: String?, authorProfile: Services.Profile.Containers.ProfileV1? = nil, addNewLine: Bool = true, addHyphen: Bool = true) -> String? {
+        if let statusTimestamp = timestamp where statusTimestamp.trimWhitespace() != "" {
+            var formattedTimestamp = (addNewLine ? "\u{000A}" : "") + (addHyphen ? " \u{2013} " : "")
 
             let today = NSDate()
-            if let updatedDate = NSDateFormatter.dateFromTimestampString(timestamp),
+            if let updatedDate = NSDateFormatter.dateFromTimestampString(statusTimestamp),
                 calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
             {
                 let unitFlags: NSCalendarUnit = [NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute]

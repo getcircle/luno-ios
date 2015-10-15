@@ -385,6 +385,12 @@ class SearchViewController: UIViewController,
                 searchResultType = .Location
                 CircleCache.recordLocationSearchResult(location)
             }
+            else if let profileStatus = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileStatusV1 {
+                showProfileStatusDetail(profileStatus)
+                searchResultId = profileStatus.id
+                searchResultType = .ProfileStatus
+                CircleCache.recordProfileStatusSearchResult(profileStatus)
+            }
             
             if let searchResultType = searchResultType {
                 Tracker.sharedInstance.trackSearchResultTap(

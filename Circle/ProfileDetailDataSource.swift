@@ -53,6 +53,7 @@ class ProfileDetailDataSource: CardDataSource {
                 storedError = error
             }
             else {
+                self.profile = profile
                 self.directReports = directReports
                 // TODO support multiple locations
                 self.location = locations?.first

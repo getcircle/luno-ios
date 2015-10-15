@@ -40,7 +40,7 @@ class SearchResultCollectionViewCell: ProfileCollectionViewCell {
     private func setProfileStatus(status: Services.Profile.Containers.ProfileStatusV1) {
         let statusText = status.value
         nameLabel.text = statusText
-        subTextLabel.text = status.profile.fullName + ", " + TextData.getFormattedTimestamp(status.created)!
+        subTextLabel.text = status.profile.fullName + ", " + TextData.getFormattedTimestamp(status.changed, authorProfile: nil, addNewLine: false, addHyphen: false)!
         teamNameLetterLabel.hidden = true
         
         profileImageView.imageProfileIdentifier = status.id
