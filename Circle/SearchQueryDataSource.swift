@@ -267,7 +267,7 @@ class SearchQueryDataSource: CardDataSource {
                 TextData(
                     type: .ProfileStatus,
                     andValue: status.value,
-                    andTimestamp: status.created
+                    andTimestamp: status.changed
                 )
                 ])
             statusCard.sectionInset = UIEdgeInsetsZero
@@ -282,7 +282,7 @@ class SearchQueryDataSource: CardDataSource {
                 TextData(
                     type: .TeamStatus,
                     andValue: status.value,
-                    andTimestamp: status.created,
+                    andTimestamp: status.changed,
                     andAuthor: status.byProfile
                 )
             ])

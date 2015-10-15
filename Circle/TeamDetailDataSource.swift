@@ -131,7 +131,7 @@ class TeamDetailDataSource: CardDataSource {
         var createdTimestamp = ""
         if let status = team.status {
             statusText = status.value
-            createdTimestamp = status.created
+            createdTimestamp = status.changed
         }
         
         let statusCard = Card(cardType: .TextValue, title: AppStrings.ProfileSectionStatusTitle)

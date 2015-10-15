@@ -138,7 +138,7 @@ class ProfileDetailDataSource: CardDataSource {
         var createdTimestamp = ""
         if let status = profile.status {
             statusText = status.value
-            createdTimestamp = status.created
+            createdTimestamp = status.changed
 
         }
         
