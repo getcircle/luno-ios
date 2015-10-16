@@ -167,6 +167,7 @@ class Tracker {
                 "Profile ID": profile.id,
                 "Title": profile.title,
                 "User ID": profile.userId,
+                "Hire Date": profile.hireDate,
             ])
                     
             mixpanel.people.setOnce([
@@ -191,6 +192,25 @@ class Tracker {
             Mixpanel.sharedInstance().clearSuperProperties()
             Mixpanel.sharedInstance().reset()
         }
+    }
+    
+    func trackAdditionalAttributesForUser(
+        team team: Services.Organization.Containers.TeamV1?, 
+        location: Services.Organization.Containers.LocationV1?) {
+            if sessionInitialized {
+                var additionalProperties = [String: String]()
+                if let team = team where team.name.trimWhitespace() != "" {
+                    additionalProperties["Team"] = team.name
+                }
+                
+                if let location = location where location.name.trimWhitespace() != "" {
+                    additionalProperties["Location"] = location.name
+                }
+                
+                if additionalProperties.count > 0 {
+                    Mixpanel.sharedInstance().people.set(additionalProperties)
+                }
+            }
     }
 
     private func track(event: Event, properties withProperties: [String: AnyObject]) {

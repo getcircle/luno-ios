@@ -23,4 +23,9 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         
         return nil
     }
+    
+    override func populateData() {
+        super.populateData()
+        Tracker.sharedInstance.trackAdditionalAttributesForUser(team: team, location: location)
+    }
 }
