@@ -110,7 +110,7 @@ extension UIViewController {
     func presentMailViewController(toRecipients: [AnyObject]?, subject: String?, messageBody: String?,
         completionHandler: (() -> Void)?) {
             
-            if MFMailComposeViewController.canSendMail() {
+            if let loggedInUserOrg = AuthenticationViewController.getLoggedInUserOrganization() where MFMailComposeViewController.canSendMail() {
                 
                 let mailVC = MFMailComposeViewController()
                 if let recipients = toRecipients as? [String] where recipients.count > 0 {
@@ -122,7 +122,10 @@ extension UIViewController {
                 }
                 
                 var message: String = messageBody ?? ""
-                message += "<br/><br/><br/>Sent from <a href=\"https://itunes.apple.com/us/app/id981648781?mt=8\">luno</a>"
+                let orgUrl = loggedInUserOrg.getURL("?ls=app_footer")
+                let orgUrlText = (loggedInUserOrg.hasDomain ? loggedInUserOrg.domain + "." : "") + "lunohq.com"
+                message += "<br/><br/><br/>Sent from <a href=\"" + orgUrl + "\">" + orgUrlText + "</a> "
+                message += "using the <a href=\"https://itunes.apple.com/us/app/id981648781?mt=8\">iOS app</a>"
                 mailVC.setMessageBody(message, isHTML: true)
                 
                 if let composeDelegate = self as? MFMailComposeViewControllerDelegate {

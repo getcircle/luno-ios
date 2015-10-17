@@ -524,7 +524,7 @@ class SearchViewController: UIViewController,
         switch selectedAction {
         case .Email:
             if let email = profile.getEmail() {
-                presentMailViewController([email], subject: "Hey", messageBody: "", completionHandler: nil)
+                presentMailViewController([email], subject: "", messageBody: "", completionHandler: nil)
                 return true
             }
             
@@ -536,7 +536,7 @@ class SearchViewController: UIViewController,
                 recipient = email
             }
             if recipient != nil {
-                presentMessageViewController([recipient!], subject: "Hey", messageBody: "", completionHandler: nil)
+                presentMessageViewController([recipient!], subject: "", messageBody: "", completionHandler: nil)
                 return true
             }
 

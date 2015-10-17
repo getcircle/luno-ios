@@ -130,7 +130,7 @@ class ProfileDetailViewController:
             )
             presentMailViewController(
                 [contactMethod.value],
-                subject: "Hey",
+                subject: "",
                 messageBody: "",
                 completionHandler: nil
             )

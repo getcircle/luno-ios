@@ -121,7 +121,7 @@ SKStoreProductViewControllerDelegate {
             case .Email:
                 presentMailViewController(
                     [contactMethod.value],
-                    subject: "Hey",
+                    subject: "",
                     messageBody: "",
                     completionHandler: nil
                 )
