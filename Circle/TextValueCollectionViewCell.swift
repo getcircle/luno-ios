@@ -76,6 +76,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     }
     
     private func resetViews() {
+        textLabel.textColor = UIColor.appPrimaryTextColor()        
         textLabel.font = UIFont.regularFont(textLabel.font.pointSize)
         editTextButton?.hidden = true
         placeholderButton?.hidden = true

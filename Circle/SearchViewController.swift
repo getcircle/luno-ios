@@ -154,7 +154,7 @@ class SearchViewController: UIViewController,
     
     private func configurePoweredByLabel() {
         poweredByLabel.attributedText = NSAttributedString(
-                string: "Powered by Luno".localizedUppercaseString(),
+                string: "Built by Luno. Powered by you".localizedUppercaseString(),
                 attributes: [
                     NSKernAttributeName: NSNumber(double: 2.0),
                     NSForegroundColorAttributeName: poweredByLabel.textColor,
