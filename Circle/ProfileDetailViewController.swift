@@ -204,7 +204,7 @@ class ProfileDetailViewController:
                 )
                 try (viewController.dataSource as! ProfilesDataSource).configureForTeam(
                     attributeId,
-                    setupOnlySearch: false
+                    setupOnlySearch: true
                 )
                 viewController.title = title
                 navigationController?.pushViewController(viewController, animated: true)
