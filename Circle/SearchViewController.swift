@@ -516,6 +516,10 @@ class SearchViewController: UIViewController,
         orgImageView.image = nil
         loadOrgImageView()
         loadData()
+        if let navController = navigationController where navController.viewControllers.count > 1 {
+            navController.popToRootViewControllerAnimated(false)
+            searchHeaderView.cancelButtonTapped(notification)
+        }
     }
     
     // MARK: - Quick Actions
