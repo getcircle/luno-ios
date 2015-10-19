@@ -9,26 +9,6 @@
 import Foundation
 
 extension String {
-    
-    public var camelcaseString: String {
-        var camelCase = ""
-        var needsUpperCase = false
-        for character in self.characters {
-            if character == "_" {
-                needsUpperCase = true
-                continue
-            }
-            
-            if needsUpperCase {
-                needsUpperCase = false
-                camelCase += String(character).uppercaseString
-                continue
-            }
-            
-            camelCase += String(character)
-        }
-        return camelCase
-    }
 
     subscript(integerIndex: Int) -> String {
         let index = startIndex.advancedBy(integerIndex)
@@ -53,7 +33,7 @@ extension String {
     }
     
     /**
-        Removes spaces, brances, hypens from a phone number string.
+        Removes spaces, braces, hypens from a phone number string.
         Although this function can be called for all strings, the recommended use case is to call
         it on a formatted phone number.
     

@@ -131,6 +131,7 @@
 		8F1D0B861AC8AB1200488BD7 /* Loader_00059@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */; };
 		8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */; };
 		8F1D0B901AC9101100488BD7 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */; };
+		8F1D95091BD5631600434EC4 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D95081BD5631600434EC4 /* StringExtensionTests.swift */; settings = {ASSET_TAGS = (); }; };
 		8F2068911B708DE200E498AC /* SearchSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2068901B708DE200E498AC /* SearchSuggestion.swift */; };
 		8F2068941B708F7400E498AC /* SearchAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2068931B708F7400E498AC /* SearchAction.swift */; };
 		8F2234B21A6F7A7500C39E39 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */; };
@@ -452,6 +453,7 @@
 		8F1D0B851AC8AB1200488BD7 /* Loader_00059@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loader_00059@2x.png"; sourceTree = "<group>"; };
 		8F1D0B8D1AC9101100488BD7 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8F1D0B8E1AC9101100488BD7 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		8F1D95081BD5631600434EC4 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		8F2068901B708DE200E498AC /* SearchSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestion.swift; sourceTree = "<group>"; };
 		8F2068931B708F7400E498AC /* SearchAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAction.swift; sourceTree = "<group>"; };
 		8F2234B11A6F7A7500C39E39 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
@@ -706,6 +708,7 @@
 		8F0004AD1A2419730096477A /* LunoTests */ = {
 			isa = PBXGroup;
 			children = (
+				8F1D950B1BD5661400434EC4 /* Extensions */,
 				8F0004B01A2419730096477A /* LunoTests.swift */,
 				8F0004AE1A2419730096477A /* Supporting Files */,
 			);
@@ -806,6 +809,7 @@
 				8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */,
 				8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
+				47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */,
 				BF768A611AB402D100D677B1 /* PaginatorExtension.swift */,
 				BF220F031AB0221D00C948D0 /* ServiceRequestExtension.swift */,
 				BF8FC3D81A44DA83007FD8BA /* StringExtension.swift */,
@@ -822,7 +826,6 @@
 				8FEE88461A411BA90011CE4A /* UIViewControllerExtension.swift */,
 				8F22CBFA1A29AF450026376E /* UIViewExtension.swift */,
 				4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */,
-				47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -994,6 +997,14 @@
 				8F0ADD1B1AC5344E00A44B68 /* Loader_00058@2x.png */,
 			);
 			path = Loader;
+			sourceTree = "<group>";
+		};
+		8F1D950B1BD5661400434EC4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8F1D95081BD5631600434EC4 /* StringExtensionTests.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		8F22CBF21A2864760026376E /* Layouts */ = {
@@ -1644,6 +1655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F1D95091BD5631600434EC4 /* StringExtensionTests.swift in Sources */,
 				8F0004B11A2419730096477A /* LunoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
