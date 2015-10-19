@@ -13,6 +13,8 @@ struct AppStrings {
     static let ActionSheetAddAPictureButtonTitle = NSLocalizedString("Add a picture", comment: "Title of window which asks user to add a picture")
     static let ActionSheetPickAPhotoButtonTitle = NSLocalizedString("Pick a photo", comment: "Button prompt to pick a photo from user's photos")
     static let ActionSheetTakeAPictureButtonTitle = NSLocalizedString("Take a picture", comment: "Button prompt to take a picture using the camera")
+    static let AddDetailsPlaceholder = NSLocalizedString("Add details", comment: "Generic text asking user to add details")
+    static let AddTeamDescriptionPlaceholder = NSLocalizedString("Add a description for your team", comment: "Add a description to the team")
     
     static let CardTitlePeople = NSLocalizedString("People", comment: "Title of the card showing people")
     static let CardTitleOfficeTeam = NSLocalizedString("Office Teams", comment: "Title of the card showing teams in a office")

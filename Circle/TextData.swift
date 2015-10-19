@@ -90,14 +90,10 @@ class TextData {
     private func getEditablePlaceholder(type: TextDataType) -> String {
         switch type {
         case .TeamDescription:
-            return NSLocalizedString("Add a description for your team",
-                comment: "Add a description to the team"
-            )
+            return AppStrings.AddTeamDescriptionPlaceholder
             
         default:
-            return NSLocalizedString("Add details",
-                comment: "Generic text asking user to add details"
-            )
+            return AppStrings.AddDetailsPlaceholder
         }
     }
 }
