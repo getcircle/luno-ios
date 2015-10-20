@@ -21,12 +21,14 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
     var editProfileDelegate: EditProfileDelegate?
+    var hasManager: Bool?
     var profile: Services.Profile.Containers.ProfileV1!
 
+    private var addImageActionSheet: UIAlertController?
     private var existingContactMethodsByType = Dictionary<Services.Profile.Containers.ContactMethodV1.ContactMethodTypeV1, Services.Profile.Containers.ContactMethodV1>()
     private var formBuilder = FormBuilder()
     private var imageToUpload: UIImage?
-    private var addImageActionSheet: UIAlertController?
+    private var messageView: MessageView?
     private var saveButton: UIBarButtonItem?
     
     override func viewDidLoad() {
@@ -34,6 +36,9 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
 
         // Do any additional setup after loading the view.
         Tracker.sharedInstance.trackPageView(pageType: .EditProfile, pageId: profile.id)
+        
+        initializeMessageView()
+        
         configureView()
         configureScrollView()
         configureContentView()
@@ -68,11 +73,20 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         formBuilder.activeField?.resignFirstResponder()
     }
 
-    // MARK - Configuration
+    // MARK: - Initialization
+    
+    func initializeMessageView() {
+        if let hasManager = hasManager where hasManager == true {
+            messageView = addMessageView(AppStrings.EditProfileFormWarning, messageType: .Warning)
+            messageView?.hide(animated: false)
+            view.bringSubviewToFront(messageView!)
+        }
+    }
+    
+    // MARK: - Configuration
     
     private func configureScrollView() {
         rootScrollView.backgroundColor = UIColor.appViewBackgroundColor()
@@ -336,6 +350,15 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     func formValuesDidChange(newValues: Bool) {
         saveButton?.enabled = newValues
+        
+        if let messageView = messageView, hasManager = hasManager where hasManager == true {
+            if newValues || imageToUpload != nil {
+                messageView.show(animated: true)
+            }
+            else {
+                messageView.hide(animated: true)
+            }
+        }
     }
     
     // MARK: - FormBuilderPhotoFieldHandler

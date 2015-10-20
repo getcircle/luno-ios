@@ -29,7 +29,9 @@ struct AppStrings {
     static let ContactPlaceholderNumberNotAdded = NSLocalizedString("Number not added", comment: "Placeholder for phone field when a user does not have a number added")
     
     static let EditProfileStatusPlaceholder = NSLocalizedString("working on #project with @coworkers!", comment: "Placeholder for profile status text field")
+    static let EditProfileFormWarning = NSLocalizedString("Your manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to their profile will be notified to manager as well")
     static let EditTeamStatusPlaceholder = NSLocalizedString("What #project is your team working on?", comment: "Placeholder for team status text field")
+    static let EditTeamFormWarning = NSLocalizedString("The team manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to the team will be notified to team's manager")
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
     
     static let FieldLabelNickname = NSLocalizedString("Nickname", comment: "A person's nickname")

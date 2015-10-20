@@ -10,7 +10,7 @@ import UIKit
 import ProtobufRegistry
 
 extension UIColor {
-    
+
     struct TeamColorsHolder {
         static var colors = [String: UIColor]()
     }

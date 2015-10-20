@@ -351,4 +351,13 @@ extension UIViewController {
         navigationController?.pushViewController(profileStatusDetailVC, animated: true)
     }
     
+    // MARK: - Message View
+    
+    func addMessageView(message: String, messageType: MessageView.MessageType) -> MessageView {
+        let messageView = MessageView(message: message, messageType: messageType)
+        messageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(messageView)
+        messageView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+        return messageView
+    }
 }

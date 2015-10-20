@@ -245,6 +245,10 @@ class TeamDetailViewController:
         let editTeamNavController = UINavigationController(rootViewController: editTeamViewController)
         editTeamViewController.team = (dataSource as! TeamDetailDataSource).team
         editTeamViewController.editTeamViewControllerDelegate = self
+        
+        if let loggedInUserProfile = AuthenticationViewController.getLoggedInUserProfile() {
+            editTeamViewController.isManager = (dataSource as! TeamDetailDataSource).managerProfile.id == loggedInUserProfile.id
+        }
         navigationController?.presentViewController(editTeamNavController, animated: true, completion: nil)
     }
     

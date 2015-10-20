@@ -27,10 +27,12 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet weak private(set) var scrollView: UIScrollView!
     @IBOutlet weak private(set) var contentViewHeightConstraint: NSLayoutConstraint!
 
-    private weak var saveButton: UIBarButtonItem?
-    
     var editTeamViewControllerDelegate: EditTeamViewControllerDelegate?
+    var isManager: Bool?
     var team: Services.Organization.Containers.TeamV1!
+
+    private var messageView: MessageView?
+    private weak var saveButton: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,9 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
 
         // Do any additional setup after loading the view.
         Tracker.sharedInstance.trackPageView(pageType: .EditTeam, pageId: team.id)
+
+        initializeMessageView()
+
         configureView()
         configureTeamNameFieldLabel()
         configureTeamNameField()
@@ -63,6 +68,16 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: - Initialization
+    
+    func initializeMessageView() {
+        if let isManager = isManager where isManager == false {
+            messageView = addMessageView(AppStrings.EditTeamFormWarning, messageType: .Warning)
+            messageView?.hide(animated: false)
+            view.bringSubviewToFront(messageView!)
+        }
     }
     
     // MARK: - Configuration
@@ -143,10 +158,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text {
             let finalString = (text as NSString).stringByReplacingCharactersInRange(range, withString: string)
-            
-            let nameMatches = (finalString == team.name)
-            let descriptionMatches = (team.hasDescription && teamDescriptionField.text == team.description_.value) || (!team.hasDescription && teamDescriptionField.text.trimWhitespace().characters.count == 0)
-            saveButton?.enabled = !(nameMatches && descriptionMatches)
+            checkDataAndEnableSave(name: finalString, description: teamDescriptionField.text)
         }
 
         return true
@@ -159,10 +171,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
     // MARK: - UITextViewDelegate
     
     func textViewDidChange(textView: UITextView) {
-        let nameMatches = (teamNameField.text == team.name)
-        let descriptionMatches = (team.hasDescription && teamDescriptionField.text == team.description_.value) || (!team.hasDescription && teamDescriptionField.text.trimWhitespace().characters.count == 0)
-        saveButton?.enabled = !(nameMatches && descriptionMatches)
-
+        checkDataAndEnableSave(name: teamNameField.text, description: teamDescriptionField.text)
         updateLayoutToFitDescription()
         view.layoutIfNeeded()
     }
@@ -239,5 +248,33 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
         teamNameField.resignFirstResponder()
         teamDescriptionField.resignFirstResponder()
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - Helpers
+    
+    func checkDataAndEnableSave(name currentName: String?, description currentDescription: String?) {
+        var nameMatches = false
+        var descriptionMatches = false
+        
+        if let name = currentName {
+            nameMatches = (name == team.name)
+        }
+        
+        if let description = currentDescription {
+            descriptionMatches = (team.hasDescription && description == team.description_.value) ||
+                (!team.hasDescription && teamDescriptionField.text.trimWhitespace().characters.count == 0)
+        }
+        
+        let hasDataChanged = !(nameMatches && descriptionMatches)
+        saveButton?.enabled = hasDataChanged
+        
+        if let messageView = messageView, isManager = isManager where isManager == false {
+            if hasDataChanged {
+                messageView.show(animated: true)
+            }
+            else {
+                messageView.hide(animated: true)
+            }
+        }
     }
 }
