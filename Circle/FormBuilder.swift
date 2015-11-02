@@ -18,6 +18,11 @@ protocol FormBuilderPhotoFieldHandler {
     func selectedImageForPhotoFieldItem(item: FormBuilder.ProfileSectionItem) -> UIImage?
 }
 
+protocol FormBuilderProfileFieldHandler {
+    func didTapOnProfileField(sender: UIView)
+    func selectedProfileForProfileFieldItem(item: FormBuilder.ProfileSectionItem) -> Services.Profile.Containers.ProfileV1?
+}
+
 class FormBuilder: NSObject, UITextFieldDelegate {
     
     enum FormFieldType {
@@ -28,6 +33,7 @@ class FormBuilder: NSObject, UITextFieldDelegate {
         case Select
         case DatePicker
         case Photo
+        case Profile
     }
 
     class SectionItem {
@@ -298,6 +304,57 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                     previousView = containerView
                     break
                     
+                case .Profile:
+                    let containerView = UIView(forAutoLayout: ())
+                    containerView.opaque = true
+                    containerView.backgroundColor = UIColor.whiteColor()
+                    parentView.addSubview(containerView)
+                    containerView.autoPinEdgeToSuperviewEdge(.Left)
+                    containerView.autoPinEdgeToSuperviewEdge(.Right)
+                    containerView.autoPinEdge(.Top, toEdge: .Bottom, ofView: previousView!, withOffset: (previousView == sectionTitleLabel ? 5.0 : 1.0))
+                    containerView.autoSetDimension(.Height, toSize: 60.0)
+                    
+                    let label = UILabel(forAutoLayout: ())
+                    label.textColor = UIColor.appAttributeValueLabelColor()
+                    label.font = UIFont.mainTextFont()
+                    label.textAlignment = .Left
+                    if let itemName = item.name {
+                        label.text = itemName
+                    }
+                    else if let itemPlaceholder = item.placeholder {
+                        let attributedPlaceholder = NSMutableAttributedString(string: itemPlaceholder)
+                        if let itemPlaceholderColor = item.placeholderColor {
+                            attributedPlaceholder.addAttribute(NSForegroundColorAttributeName, value: itemPlaceholderColor, range: NSMakeRange(0, itemPlaceholder.characters.count))
+                        }
+                        label.attributedText = attributedPlaceholder
+                    }
+
+                    containerView.addSubview(label)
+                    label.autoPinEdgeToSuperviewEdge(.Left, withInset: 20.0)
+                    label.autoPinEdgeToSuperviewEdge(.Right, withInset: formFieldEdgeInset.right)
+                    label.autoAlignAxisToSuperviewAxis(.Horizontal)
+                    label.autoSetDimension(.Height, toSize: 40.0)
+                    
+                    let arrowImageView = UIImageView(image: UIImage(named: "ArrowRight"))
+                    arrowImageView.tintColor = UIColor.appIconBorderColor()
+                    arrowImageView.contentMode = .ScaleAspectFit
+                    
+                    containerView.addSubview(arrowImageView)
+                    arrowImageView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsMake(0.0, 0.0, 0.0, 20.0), excludingEdge: .Left)
+                    arrowImageView.autoSetDimension(.Width, toSize: 8.0)
+                    
+                    let button = UIButton(forAutoLayout: ())
+                    if let profileSectionItem = item as? ProfileSectionItem, profileFieldHandler = profileSectionItem.profileFieldHandler as? AnyObject {
+                        button.addTarget(profileFieldHandler, action: "didTapOnProfileField:", forControlEvents: .TouchUpInside)
+                    }
+                    
+                    containerView.addSubview(button)
+                    button.autoPinEdgesToSuperviewEdges()
+                    
+                    item.input = label
+                    previousView = containerView
+                    break
+                    
                 default:
                     break
                 }
@@ -376,6 +433,22 @@ class FormBuilder: NSObject, UITextFieldDelegate {
                             }
                         }
                         
+                    case .Profile:
+                        if let profileSectionItem = item as? ProfileSectionItem {
+                            if let profile = profileSectionItem.profileFieldHandler?.selectedProfileForProfileFieldItem(profileSectionItem) {
+                                item.name = profile.fullName
+                                item.value = profile.id
+                            }
+                            else {
+                                item.name = nil
+                                item.value = nil
+                            }
+                            
+                            if let label = item.input as? UILabel {
+                                label.text = item.name
+                            }
+                        }
+
                     default:
                         break
                     }
@@ -441,23 +514,28 @@ extension FormBuilder {
             case Photo
             case Title
             case HireDate
+            case Profile
         }
         
         var fieldType: ProfileFieldType
         var photoFieldHandler: FormBuilderPhotoFieldHandler?
+        var profileFieldHandler: FormBuilderProfileFieldHandler?
         
         required init(
             placeholder withPlaceholder: String = "",
+            placeholderColor andPlaceholderColor: UIColor? = nil,
             type andType: FormFieldType,
             keyboardType andKeyboardType: UIKeyboardType = .Default,
             fieldType andFieldType: ProfileFieldType,
             photoFieldHandler andPhotoFieldHandler: FormBuilderPhotoFieldHandler? = nil,
+            profileFieldHandler andProfileFieldHandler: FormBuilderProfileFieldHandler? = nil,
             imageSource andImageSource: String? = nil,
             name andName: String? = nil)
         {
             fieldType = andFieldType
             photoFieldHandler = andPhotoFieldHandler
-            super.init(placeholder: withPlaceholder, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", imageSource: andImageSource, name: andName)
+            profileFieldHandler = andProfileFieldHandler
+            super.init(placeholder: withPlaceholder, placeholderColor: andPlaceholderColor, type: andType, keyboardType: andKeyboardType, container: "", containerKey: "", imageSource: andImageSource, name: andName)
         }
     }
 }

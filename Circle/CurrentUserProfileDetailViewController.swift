@@ -94,7 +94,7 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     override func editButtonTapped(sender: AnyObject) {
         let editProfileVC = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
         editProfileVC.profile = profile
-        editProfileVC.hasManager = (dataSource as! ProfileDetailDataSource).manager != nil
+        editProfileVC.manager = (dataSource as! ProfileDetailDataSource).manager
         editProfileVC.editProfileDelegate = self
         let editProfileNavVC = UINavigationController(rootViewController: editProfileVC)
         navigationController?.presentViewController(editProfileNavVC, animated: true, completion: nil)

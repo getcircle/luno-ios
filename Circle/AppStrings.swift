@@ -30,6 +30,7 @@ struct AppStrings {
     
     static let EditProfileStatusPlaceholder = NSLocalizedString("working on #project with @coworkers!", comment: "Placeholder for profile status text field")
     static let EditProfileFormWarning = NSLocalizedString("Your manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to their profile will be notified to manager as well")
+    static let EditProfileManagerPlaceholder = NSLocalizedString("Add Manager", comment: "Placeholder for manager field when current user does not have a manager")
     static let EditTeamStatusPlaceholder = NSLocalizedString("What #project is your team working on?", comment: "Placeholder for team status text field")
     static let EditTeamFormWarning = NSLocalizedString("The team manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to the team will be notified to team's manager")
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
@@ -120,4 +121,6 @@ struct AppStrings {
     static let SignInPlaceHolderText = NSLocalizedString("Work email address", comment: "Placeholder text indicating text field for entering work email address")
     static let SignOutButtonTitle = NSLocalizedString("Sign out", comment: "Title of sign out button")
     static let SignOutDisconnectButtonTitle = NSLocalizedString("Sign out & disconnect account", comment: "Title of sign out and disconnect button")
+    
+    static let ChangeManagerTitle = NSLocalizedString("Change Manager", comment: "Title of the view which allows a person to change their manager")
 }
