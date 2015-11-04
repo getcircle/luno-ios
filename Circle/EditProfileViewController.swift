@@ -527,9 +527,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
         manager = profiles.first
         formBuilder.updateValues()
-        
         navigationController?.popViewControllerAnimated(true)
-        
         return false
     }
     
