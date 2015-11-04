@@ -331,7 +331,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                                 
                             case .Profile:
                                 managerChanged = (item.value != item.originalValue)
-                                trackUpdatedFields.append("manager")
                             }
                         }
                     }
@@ -357,6 +356,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         }
         
         if let newManager = manager where managerChanged {
+            trackUpdatedFields.append("manager")
             Services.Organization.Actions.setManager(profile.id, managerProfileId: newManager.id, completionHandler: { (setManagerError) -> Void in
                 if setManagerError != nil {
                     print("Error: \(setManagerError)")
