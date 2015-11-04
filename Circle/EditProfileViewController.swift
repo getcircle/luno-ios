@@ -137,7 +137,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                     ),
                 ]),
             FormBuilder.Section(
-                title: "Reports to",
+                title: AppStrings.ProfileSectionManagerTitle,
                 items: [
                     FormBuilder.ProfileSectionItem(
                         placeholder: AppStrings.EditProfileManagerPlaceholder,

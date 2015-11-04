@@ -74,6 +74,7 @@ struct AppStrings {
     
     static let ProfileSectionStatusTitle = NSLocalizedString("Currently working on", comment: "Title of the section which shows user's status")
     static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
+    static let ProfileSectionManagerTitle = NSLocalizedString("Reports to", comment: "Title of the section which shows user's manager")
     
     static let QuickActionNoneLabel = ""
     static let QuickActionCallLabel = NSLocalizedString("Call", comment: "Title for button used to initiate a call")
