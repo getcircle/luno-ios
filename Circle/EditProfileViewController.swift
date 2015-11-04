@@ -332,6 +332,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                                 
                             case .Profile:
                                 managerChanged = (item.value != item.originalValue)
+                                trackUpdatedFields.append("manager")
                                 
                             }
                         }
