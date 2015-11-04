@@ -393,7 +393,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func formValuesDidChange(newValues: Bool) {
         saveButton?.enabled = newValues
         
-        if let messageView = messageView where manager != nil {
+        if let messageView = messageView, _ = manager {
             if newValues || imageToUpload != nil {
                 messageView.show(animated: true)
             }
