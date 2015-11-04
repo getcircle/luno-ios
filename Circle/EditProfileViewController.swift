@@ -188,7 +188,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                     case .Profile:
                         item.name = manager?.fullName
                         item.value = manager?.id
-                        
                     }
                 }
             }
@@ -333,7 +332,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                             case .Profile:
                                 managerChanged = (item.value != item.originalValue)
                                 trackUpdatedFields.append("manager")
-                                
                             }
                         }
                     }
