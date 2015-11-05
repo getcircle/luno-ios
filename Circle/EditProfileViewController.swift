@@ -187,7 +187,8 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                         
                     case .Profile:
                         item.name = manager?.fullName
-                        item.value = manager?.id
+                        // Set item value to be an empty string if manager is nil so that the form detects a change when a manager is selected.
+                        item.value = manager?.id ?? ""
                     }
                 }
             }
