@@ -39,8 +39,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         // Do any additional setup after loading the view.
         Tracker.sharedInstance.trackPageView(pageType: .EditProfile, pageId: profile.id)
         
-        initializeMessageView()
-        
         configureView()
         configureScrollView()
         configureContentView()
@@ -76,16 +74,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         formBuilder.activeField?.resignFirstResponder()
-    }
-
-    // MARK: - Initialization
-    
-    func initializeMessageView() {
-        if manager != nil {
-            messageView = addMessageView(AppStrings.EditProfileFormWarning, messageType: .Warning)
-            messageView?.hide(animated: false)
-            view.bringSubviewToFront(messageView!)
-        }
     }
     
     // MARK: - Configuration
@@ -346,29 +334,37 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         
         let updateProfile = {
             Services.Profile.Actions.updateProfile(try builder.build()) { (profile, error) -> Void in
-                if let profile = profile {
-                    AuthenticationViewController.updateUserProfile(profile)
-                    if trackUpdatedFields.count > 0 {
-                        Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: trackUpdatedFields)
-                    }
+                if let error = error {
+                    print("Error: \(error)")
+                    self.showMessageViewForSaveError()
                 }
-                completion()
+                else {
+                    if let profile = profile {
+                        AuthenticationViewController.updateUserProfile(profile)
+                        if trackUpdatedFields.count > 0 {
+                            Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: trackUpdatedFields)
+                        }
+                    }
+                    completion()
+                }
             }
         }
         
         if let newManager = manager where managerChanged {
             trackUpdatedFields.append("manager")
             Services.Organization.Actions.setManager(profile.id, managerProfileId: newManager.id, completionHandler: { (setManagerError) -> Void in
-                if setManagerError != nil {
+                if let setManagerError = setManagerError {
                     print("Error: \(setManagerError)")
+                    self.showMessageViewForSaveError()
                 }
-                
-                do {
-                    try updateProfile()
-                }
-                catch {
-                    print("Error: \(error)")
-                    completion()
+                else {
+                    do {
+                        try updateProfile()
+                    }
+                    catch {
+                        print("Error: \(error)")
+                        self.showMessageViewForSaveError()
+                    }
                 }
             })
         }
@@ -382,6 +378,29 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             activeField.resignFirstResponder()
         }
     }
+    
+    // MARK: - Message View
+    
+    private func showMessageViewWithMessage(message: String, type: MessageView.MessageType) {
+        // Replace existing message view if it's not what we want.
+        if messageView?.message != message || messageView?.messageType != type {
+            messageView?.removeFromSuperview()
+            messageView = addMessageView(message, messageType: type)
+            view.bringSubviewToFront(messageView!)
+        }
+        
+        messageView?.show(animated: true)
+    }
+    
+    private func showMessageViewForManagerNotification() {
+        if let _ = manager {
+            showMessageViewWithMessage(AppStrings.EditProfileFormWarning, type: .Warning)
+        }
+    }
+    
+    private func showMessageViewForSaveError() {
+        showMessageViewWithMessage(AppStrings.EditProfileSaveError, type: .Error)
+    }
 
     // MARK: - Gesture Recognizer
     
@@ -394,13 +413,11 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func formValuesDidChange(newValues: Bool) {
         saveButton?.enabled = newValues
         
-        if let messageView = messageView, _ = manager {
-            if newValues || imageToUpload != nil {
-                messageView.show(animated: true)
-            }
-            else {
-                messageView.hide(animated: true)
-            }
+        if newValues || imageToUpload != nil {
+            showMessageViewForManagerNotification()
+        }
+        else {
+            messageView?.hide(animated: true)
         }
     }
     
