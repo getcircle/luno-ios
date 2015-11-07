@@ -213,7 +213,7 @@ class EditTeamViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 teamBuilder.clearDescription()
             }
             else {
-                let descriptionBuilder = Services.Common.Containers.DescriptionV1.Builder()
+                let descriptionBuilder = Services.Common.Containers.Description.DescriptionV1.Builder()
                 descriptionBuilder.value = teamDescription
                 teamBuilder.description_ = try descriptionBuilder.build()
             }
