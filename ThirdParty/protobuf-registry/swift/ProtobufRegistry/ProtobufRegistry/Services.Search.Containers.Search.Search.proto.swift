@@ -3,7 +3,7 @@
 
 import Foundation
 
-public extension Services.Search{ public struct Containers { public struct Search { }}}
+public extension Services.Search.Containers{ public struct Search { }}
 
 public extension Services.Search.Containers.Search {
   public struct SearchRoot {
@@ -34,6 +34,7 @@ public extension Services.Search.Containers.Search {
     case Skills = 3
     case Interests = 4
     case Groups = 5
+    case Posts = 6
 
   }
 

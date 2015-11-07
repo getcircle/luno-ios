@@ -19,6 +19,8 @@ public func == (lhs: Services.Profile.Actions.GetProfiles.RequestV1, rhs: Servic
   fieldCheck = fieldCheck && (lhs.hasManagerId == rhs.hasManagerId) && (!lhs.hasManagerId || lhs.managerId == rhs.managerId)
   fieldCheck = fieldCheck && (lhs.emails == rhs.emails)
   fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
+  fieldCheck = fieldCheck && (lhs.authenticationIdentifiers == rhs.authenticationIdentifiers)
+  fieldCheck = fieldCheck && (lhs.hasFields == rhs.hasFields) && (!lhs.hasFields || lhs.fields == rhs.fields)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -77,6 +79,9 @@ public extension Services.Profile.Actions.GetProfiles {
     public private(set) var hasIsAdmin:Bool = false
     public private(set) var isAdmin:Bool = false
 
+    public private(set) var authenticationIdentifiers:Array<String> = Array<String>()
+    public private(set) var hasFields:Bool = false
+    public private(set) var fields:Services.Common.Containers.FieldsV1!
     required public init() {
          super.init()
     }
@@ -114,6 +119,14 @@ public extension Services.Profile.Actions.GetProfiles {
       }
       if hasIsAdmin {
         try output.writeBool(9, value:isAdmin)
+      }
+      if !authenticationIdentifiers.isEmpty {
+        for oneValueauthenticationIdentifiers in authenticationIdentifiers {
+          try output.writeString(10, value:oneValueauthenticationIdentifiers)
+        }
+      }
+      if hasFields {
+        try output.writeMessage(11, value:fields)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -158,6 +171,17 @@ public extension Services.Profile.Actions.GetProfiles {
       serialize_size += 1 * Int32(emails.count)
       if hasIsAdmin {
         serialize_size += isAdmin.computeBoolSize(9)
+      }
+      var dataSizeAuthenticationIdentifiers:Int32 = 0
+      for oneValueauthenticationIdentifiers in authenticationIdentifiers {
+          dataSizeAuthenticationIdentifiers += oneValueauthenticationIdentifiers.computeStringSizeNoTag()
+      }
+      serialize_size += dataSizeAuthenticationIdentifiers
+      serialize_size += 1 * Int32(authenticationIdentifiers.count)
+      if hasFields {
+          if let varSizefields = fields?.computeMessageSize(11) {
+              serialize_size += varSizefields
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -243,6 +267,16 @@ public extension Services.Profile.Actions.GetProfiles {
       if hasIsAdmin {
         output += "\(indent) isAdmin: \(isAdmin) \n"
       }
+      var authenticationIdentifiersElementIndex:Int = 0
+      for oneValueauthenticationIdentifiers in authenticationIdentifiers  {
+          output += "\(indent) authenticationIdentifiers[\(authenticationIdentifiersElementIndex)]: \(oneValueauthenticationIdentifiers)\n"
+          authenticationIdentifiersElementIndex++
+      }
+      if hasFields {
+        output += "\(indent) fields {\n"
+        try fields?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -276,6 +310,14 @@ public extension Services.Profile.Actions.GetProfiles {
             }
             if hasIsAdmin {
                hashCode = (hashCode &* 31) &+ isAdmin.hashValue
+            }
+            for oneValueauthenticationIdentifiers in authenticationIdentifiers {
+                hashCode = (hashCode &* 31) &+ oneValueauthenticationIdentifiers.hashValue
+            }
+            if hasFields {
+                if let hashValuefields = fields?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuefields
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -526,6 +568,73 @@ public extension Services.Profile.Actions.GetProfiles {
            builderResult.isAdmin = false
            return self
       }
+      public var authenticationIdentifiers:Array<String> {
+           get {
+               return builderResult.authenticationIdentifiers
+           }
+           set (array) {
+               builderResult.authenticationIdentifiers = array
+           }
+      }
+      public func setAuthenticationIdentifiers(value:Array<String>) -> Services.Profile.Actions.GetProfiles.RequestV1.Builder {
+        self.authenticationIdentifiers = value
+        return self
+      }
+      public func clearAuthenticationIdentifiers() -> Services.Profile.Actions.GetProfiles.RequestV1.Builder {
+         builderResult.authenticationIdentifiers.removeAll(keepCapacity: false)
+         return self
+      }
+      public var hasFields:Bool {
+           get {
+               return builderResult.hasFields
+           }
+      }
+      public var fields:Services.Common.Containers.FieldsV1! {
+           get {
+               if fieldsBuilder_ != nil {
+                  builderResult.fields = fieldsBuilder_.getMessage()
+               }
+               return builderResult.fields
+           }
+           set (value) {
+               builderResult.hasFields = true
+               builderResult.fields = value
+           }
+      }
+      private var fieldsBuilder_:Services.Common.Containers.FieldsV1.Builder! {
+           didSet {
+              builderResult.hasFields = true
+           }
+      }
+      public func getFieldsBuilder() -> Services.Common.Containers.FieldsV1.Builder {
+        if fieldsBuilder_ == nil {
+           fieldsBuilder_ = Services.Common.Containers.FieldsV1.Builder()
+           builderResult.fields = fieldsBuilder_.getMessage()
+           if fields != nil {
+              try! fieldsBuilder_.mergeFrom(fields)
+           }
+        }
+        return fieldsBuilder_
+      }
+      public func setFields(value:Services.Common.Containers.FieldsV1!) -> Services.Profile.Actions.GetProfiles.RequestV1.Builder {
+        self.fields = value
+        return self
+      }
+      public func mergeFields(value:Services.Common.Containers.FieldsV1) throws -> Services.Profile.Actions.GetProfiles.RequestV1.Builder {
+        if builderResult.hasFields {
+          builderResult.fields = try Services.Common.Containers.FieldsV1.builderWithPrototype(builderResult.fields).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.fields = value
+        }
+        builderResult.hasFields = true
+        return self
+      }
+      public func clearFields() -> Services.Profile.Actions.GetProfiles.RequestV1.Builder {
+        fieldsBuilder_ = nil
+        builderResult.hasFields = false
+        builderResult.fields = nil
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -577,6 +686,12 @@ public extension Services.Profile.Actions.GetProfiles {
         if other.hasIsAdmin {
              isAdmin = other.isAdmin
         }
+        if !other.authenticationIdentifiers.isEmpty {
+            builderResult.authenticationIdentifiers += other.authenticationIdentifiers
+        }
+        if (other.hasFields) {
+            try mergeFields(other.fields)
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -623,6 +738,17 @@ public extension Services.Profile.Actions.GetProfiles {
 
           case 72 :
             isAdmin = try input.readBool()
+
+          case 82 :
+            authenticationIdentifiers += [try input.readString()]
+
+          case 90 :
+            let subBuilder:Services.Common.Containers.FieldsV1.Builder = Services.Common.Containers.FieldsV1.Builder()
+            if hasFields {
+              try subBuilder.mergeFrom(fields)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            fields = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

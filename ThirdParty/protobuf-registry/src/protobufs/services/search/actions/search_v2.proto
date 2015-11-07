@@ -1,0 +1,15 @@
+syntax = "proto2";
+package services.search.actions.search_v2;
+
+import "protobufs/services/search/containers.proto";
+import "protobufs/services/search/containers/search.proto";
+
+
+message RequestV1 {
+    optional string query = 1;
+    optional services.search.containers.search.CategoryV1 category = 2;
+}
+
+message ResponseV1 {
+    repeated services.search.containers.SearchResultV1 results = 1;
+}

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F12AA191BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12AA181BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */; settings = {ASSET_TAGS = (); }; };
 		BF3D3CC91AE070EF00B5780B /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBA1AE070EF00B5780B /* AbstractMessage.swift */; };
 		BF3D3CCA1AE070EF00B5780B /* CodedInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBB1AE070EF00B5780B /* CodedInputStream.swift */; };
 		BF3D3CCB1AE070EF00B5780B /* CodedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBC1AE070EF00B5780B /* CodedOutputStream.swift */; };
@@ -20,114 +19,127 @@
 		BF3D3CD41AE070EF00B5780B /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CC51AE070EF00B5780B /* RingBuffer.swift */; };
 		BF3D3CD51AE070EF00B5780B /* UnknownFieldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CC61AE070EF00B5780B /* UnknownFieldSet.swift */; };
 		BF3D3CD71AE070EF00B5780B /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CC81AE070EF00B5780B /* WireFormat.swift */; };
-		BF6B170E1BBE6DC1008549D7 /* Services.Organization.Actions.GetTeamsForProfileIds.GetTeamsForProfileIds.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B170C1BBE6DC1008549D7 /* Services.Organization.Actions.GetTeamsForProfileIds.GetTeamsForProfileIds.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF6B170F1BBE6DC1008549D7 /* Services.Profile.Actions.ProfileExists.ProfileExists.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B170D1BBE6DC1008549D7 /* Services.Profile.Actions.ProfileExists.ProfileExists.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE001BB38F81008CCC7E /* Services.Common.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD961BB38F81008CCC7E /* Services.Common.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE011BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD971BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE021BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD981BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE031BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD991BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE041BB38F81008CCC7E /* Services.Glossary.Actions.GetTerms.GetTerms.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9A1BB38F81008CCC7E /* Services.Glossary.Actions.GetTerms.GetTerms.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE051BB38F81008CCC7E /* Services.Glossary.Actions.UpdateTerm.UpdateTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9B1BB38F81008CCC7E /* Services.Glossary.Actions.UpdateTerm.UpdateTerm.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE061BB38F81008CCC7E /* Services.Glossary.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9C1BB38F81008CCC7E /* Services.Glossary.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE071BB38F81008CCC7E /* Services.Group.Actions.AddToGroup.AddToGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9D1BB38F81008CCC7E /* Services.Group.Actions.AddToGroup.AddToGroup.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE081BB38F81008CCC7E /* Services.Group.Actions.GetGroup.GetGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9E1BB38F81008CCC7E /* Services.Group.Actions.GetGroup.GetGroup.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE091BB38F81008CCC7E /* Services.Group.Actions.GetGroups.GetGroups.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9F1BB38F81008CCC7E /* Services.Group.Actions.GetGroups.GetGroups.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE0A1BB38F81008CCC7E /* Services.Group.Actions.GetMembers.GetMembers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA01BB38F81008CCC7E /* Services.Group.Actions.GetMembers.GetMembers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE0B1BB38F81008CCC7E /* Services.Group.Actions.GetMembershipRequests.GetMembershipRequests.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA11BB38F81008CCC7E /* Services.Group.Actions.GetMembershipRequests.GetMembershipRequests.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE0C1BB38F81008CCC7E /* Services.Group.Actions.JoinGroup.JoinGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA21BB38F81008CCC7E /* Services.Group.Actions.JoinGroup.JoinGroup.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE0D1BB38F81008CCC7E /* Services.Group.Actions.LeaveGroup.LeaveGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA31BB38F81008CCC7E /* Services.Group.Actions.LeaveGroup.LeaveGroup.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE0E1BB38F81008CCC7E /* Services.Group.Actions.RespondToMembershipRequest.RespondToMembershipRequest.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA41BB38F81008CCC7E /* Services.Group.Actions.RespondToMembershipRequest.RespondToMembershipRequest.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE0F1BB38F81008CCC7E /* Services.Group.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA51BB38F81008CCC7E /* Services.Group.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE101BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanInvite.WhoCanInvite.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA61BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanInvite.WhoCanInvite.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE111BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoin.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA71BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoin.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE121BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA81BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroup.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE131BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembership.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA91BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembership.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE141BB38F81008CCC7E /* Services.History.Actions.RecordAction.RecordAction.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAA1BB38F81008CCC7E /* Services.History.Actions.RecordAction.RecordAction.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE151BB38F81008CCC7E /* Services.History.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAB1BB38F81008CCC7E /* Services.History.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE161BB38F81008CCC7E /* Services.Media.Actions.CompleteImageUpload.CompleteImageUpload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAC1BB38F81008CCC7E /* Services.Media.Actions.CompleteImageUpload.CompleteImageUpload.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE171BB38F81008CCC7E /* Services.Media.Actions.StartImageUpload.StartImageUpload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAD1BB38F81008CCC7E /* Services.Media.Actions.StartImageUpload.StartImageUpload.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE181BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAE1BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE191BB38F81008CCC7E /* Services.Media.Containers.Media.Media.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAF1BB38F81008CCC7E /* Services.Media.Containers.Media.Media.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE1A1BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB01BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE1B1BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB11BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE1C1BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB21BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE1D1BB38F81008CCC7E /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB31BB38F81008CCC7E /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE1E1BB38F81008CCC7E /* Services.Notification.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB41BB38F81008CCC7E /* Services.Notification.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE1F1BB38F81008CCC7E /* Services.Organization.Actions.AddDirectReports.AddDirectReports.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB51BB38F81008CCC7E /* Services.Organization.Actions.AddDirectReports.AddDirectReports.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE201BB38F81008CCC7E /* Services.Organization.Actions.AddLocationMembers.AddLocationMembers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB61BB38F81008CCC7E /* Services.Organization.Actions.AddLocationMembers.AddLocationMembers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE211BB38F81008CCC7E /* Services.Organization.Actions.CreateLocation.CreateLocation.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB71BB38F81008CCC7E /* Services.Organization.Actions.CreateLocation.CreateLocation.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE221BB38F81008CCC7E /* Services.Organization.Actions.CreateOrganization.CreateOrganization.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB81BB38F81008CCC7E /* Services.Organization.Actions.CreateOrganization.CreateOrganization.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE231BB38F81008CCC7E /* Services.Organization.Actions.CreateToken.CreateToken.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB91BB38F81008CCC7E /* Services.Organization.Actions.CreateToken.CreateToken.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE241BB38F81008CCC7E /* Services.Organization.Actions.DisableIntegration.DisableIntegration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBA1BB38F81008CCC7E /* Services.Organization.Actions.DisableIntegration.DisableIntegration.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE251BB38F81008CCC7E /* Services.Organization.Actions.EnableIntegration.EnableIntegration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBB1BB38F81008CCC7E /* Services.Organization.Actions.EnableIntegration.EnableIntegration.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE261BB38F81008CCC7E /* Services.Organization.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBC1BB38F81008CCC7E /* Services.Organization.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE271BB38F81008CCC7E /* Services.Organization.Actions.GetDescendants.GetDescendants.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBD1BB38F81008CCC7E /* Services.Organization.Actions.GetDescendants.GetDescendants.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE281BB38F81008CCC7E /* Services.Organization.Actions.GetIntegration.GetIntegration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBE1BB38F81008CCC7E /* Services.Organization.Actions.GetIntegration.GetIntegration.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE291BB38F81008CCC7E /* Services.Organization.Actions.GetLocation.GetLocation.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBF1BB38F81008CCC7E /* Services.Organization.Actions.GetLocation.GetLocation.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE2A1BB38F81008CCC7E /* Services.Organization.Actions.GetLocationMembers.GetLocationMembers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC01BB38F81008CCC7E /* Services.Organization.Actions.GetLocationMembers.GetLocationMembers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE2B1BB38F81008CCC7E /* Services.Organization.Actions.GetLocations.GetLocations.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC11BB38F81008CCC7E /* Services.Organization.Actions.GetLocations.GetLocations.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE2C1BB38F81008CCC7E /* Services.Organization.Actions.GetOrganization.GetOrganization.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC21BB38F81008CCC7E /* Services.Organization.Actions.GetOrganization.GetOrganization.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE2D1BB38F81008CCC7E /* Services.Organization.Actions.GetProfileReportingDetails.GetProfileReportingDetails.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC31BB38F81008CCC7E /* Services.Organization.Actions.GetProfileReportingDetails.GetProfileReportingDetails.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE2E1BB38F81008CCC7E /* Services.Organization.Actions.GetSsoMetadata.GetSsoMetadata.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC41BB38F81008CCC7E /* Services.Organization.Actions.GetSsoMetadata.GetSsoMetadata.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE2F1BB38F81008CCC7E /* Services.Organization.Actions.GetTeam.GetTeam.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC51BB38F81008CCC7E /* Services.Organization.Actions.GetTeam.GetTeam.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE301BB38F81008CCC7E /* Services.Organization.Actions.GetTeamReportingDetails.GetTeamReportingDetails.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC61BB38F81008CCC7E /* Services.Organization.Actions.GetTeamReportingDetails.GetTeamReportingDetails.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE311BB38F81008CCC7E /* Services.Organization.Actions.GetTeams.GetTeams.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC71BB38F81008CCC7E /* Services.Organization.Actions.GetTeams.GetTeams.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE321BB38F81008CCC7E /* Services.Organization.Actions.GetTokens.GetTokens.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC81BB38F81008CCC7E /* Services.Organization.Actions.GetTokens.GetTokens.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE331BB38F81008CCC7E /* Services.Organization.Actions.SetManager.SetManager.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC91BB38F81008CCC7E /* Services.Organization.Actions.SetManager.SetManager.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE341BB38F81008CCC7E /* Services.Organization.Actions.UpdateLocation.UpdateLocation.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCA1BB38F81008CCC7E /* Services.Organization.Actions.UpdateLocation.UpdateLocation.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE351BB38F81008CCC7E /* Services.Organization.Actions.UpdateTeam.UpdateTeam.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCB1BB38F81008CCC7E /* Services.Organization.Actions.UpdateTeam.UpdateTeam.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE361BB38F81008CCC7E /* Services.Organization.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCC1BB38F81008CCC7E /* Services.Organization.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE371BB38F81008CCC7E /* Services.Organization.Containers.Integration.Integration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCD1BB38F81008CCC7E /* Services.Organization.Containers.Integration.Integration.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE381BB38F81008CCC7E /* Services.Payment.Actions.StoreToken.StoreToken.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCE1BB38F81008CCC7E /* Services.Payment.Actions.StoreToken.StoreToken.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE391BB38F81008CCC7E /* Services.Payment.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCF1BB38F81008CCC7E /* Services.Payment.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE3A1BB38F81008CCC7E /* Services.Profile.Actions.AddTags.AddTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD01BB38F81008CCC7E /* Services.Profile.Actions.AddTags.AddTags.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE3B1BB38F81008CCC7E /* Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD11BB38F81008CCC7E /* Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfiles.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE3C1BB38F81008CCC7E /* Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD21BB38F81008CCC7E /* Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfiles.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE3D1BB38F81008CCC7E /* Services.Profile.Actions.CreateProfile.CreateProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD31BB38F81008CCC7E /* Services.Profile.Actions.CreateProfile.CreateProfile.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE3E1BB38F81008CCC7E /* Services.Profile.Actions.CreateTags.CreateTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD41BB38F81008CCC7E /* Services.Profile.Actions.CreateTags.CreateTags.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE3F1BB38F81008CCC7E /* Services.Profile.Actions.GetActiveTags.GetActiveTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD51BB38F81008CCC7E /* Services.Profile.Actions.GetActiveTags.GetActiveTags.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE401BB38F81008CCC7E /* Services.Profile.Actions.GetExtendedProfile.GetExtendedProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD61BB38F81008CCC7E /* Services.Profile.Actions.GetExtendedProfile.GetExtendedProfile.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE411BB38F81008CCC7E /* Services.Profile.Actions.GetProfile.GetProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD71BB38F81008CCC7E /* Services.Profile.Actions.GetProfile.GetProfile.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE421BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD81BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE431BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD91BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE441BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDA1BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE451BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDB1BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE461BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDC1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE471BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDD1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE481BB38F81008CCC7E /* Services.Profile.Actions.RemoveTags.RemoveTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDE1BB38F81008CCC7E /* Services.Profile.Actions.RemoveTags.RemoveTags.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE491BB38F81008CCC7E /* Services.Profile.Actions.UpdateProfile.UpdateProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDF1BB38F81008CCC7E /* Services.Profile.Actions.UpdateProfile.UpdateProfile.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE4A1BB38F81008CCC7E /* Services.Profile.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE01BB38F81008CCC7E /* Services.Profile.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE4B1BB38F81008CCC7E /* Services.Registry.All.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE11BB38F81008CCC7E /* Services.Registry.All.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE4C1BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE21BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE4D1BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE31BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE4E1BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE41BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE4F1BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE51BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE501BB38F81008CCC7E /* Services.Search.Containers.Search.Search.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE61BB38F81008CCC7E /* Services.Search.Containers.Search.Search.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE511BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE71BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE521BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE81BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE531BB38F81008CCC7E /* Services.Sync.Actions.Sync.Sync.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE91BB38F81008CCC7E /* Services.Sync.Actions.Sync.Sync.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE541BB38F81008CCC7E /* Services.Sync.Containers.Payload.Payload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEA1BB38F81008CCC7E /* Services.Sync.Containers.Payload.Payload.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE551BB38F81008CCC7E /* Services.Sync.Containers.Source.Source.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEB1BB38F81008CCC7E /* Services.Sync.Containers.Source.Source.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE561BB38F81008CCC7E /* Services.User.Actions.AuthenticateUser.AuthenticateUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEC1BB38F81008CCC7E /* Services.User.Actions.AuthenticateUser.AuthenticateUser.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE571BB38F81008CCC7E /* Services.User.Actions.BulkCreateUsers.BulkCreateUsers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADED1BB38F81008CCC7E /* Services.User.Actions.BulkCreateUsers.BulkCreateUsers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE581BB38F81008CCC7E /* Services.User.Actions.CompleteAuthorization.CompleteAuthorization.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEE1BB38F81008CCC7E /* Services.User.Actions.CompleteAuthorization.CompleteAuthorization.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE591BB38F81008CCC7E /* Services.User.Actions.CreateUser.CreateUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEF1BB38F81008CCC7E /* Services.User.Actions.CreateUser.CreateUser.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE5A1BB38F81008CCC7E /* Services.User.Actions.DeleteIdentity.DeleteIdentity.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF01BB38F81008CCC7E /* Services.User.Actions.DeleteIdentity.DeleteIdentity.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE5B1BB38F81008CCC7E /* Services.User.Actions.GetActiveDevices.GetActiveDevices.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF11BB38F81008CCC7E /* Services.User.Actions.GetActiveDevices.GetActiveDevices.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE5C1BB38F81008CCC7E /* Services.User.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF21BB38F81008CCC7E /* Services.User.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE5D1BB38F81008CCC7E /* Services.User.Actions.GetAuthorizationInstructions.GetAuthorizationInstructions.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF31BB38F81008CCC7E /* Services.User.Actions.GetAuthorizationInstructions.GetAuthorizationInstructions.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE5E1BB38F81008CCC7E /* Services.User.Actions.GetIdentities.GetIdentities.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF41BB38F81008CCC7E /* Services.User.Actions.GetIdentities.GetIdentities.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE5F1BB38F81008CCC7E /* Services.User.Actions.GetUser.GetUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF51BB38F81008CCC7E /* Services.User.Actions.GetUser.GetUser.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE601BB38F81008CCC7E /* Services.User.Actions.Logout.Logout.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF61BB38F81008CCC7E /* Services.User.Actions.Logout.Logout.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE611BB38F81008CCC7E /* Services.User.Actions.RecordDevice.RecordDevice.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF71BB38F81008CCC7E /* Services.User.Actions.RecordDevice.RecordDevice.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE621BB38F81008CCC7E /* Services.User.Actions.RequestAccess.RequestAccess.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF81BB38F81008CCC7E /* Services.User.Actions.RequestAccess.RequestAccess.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE631BB38F81008CCC7E /* Services.User.Actions.SendVerificationCode.SendVerificationCode.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF91BB38F81008CCC7E /* Services.User.Actions.SendVerificationCode.SendVerificationCode.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE641BB38F81008CCC7E /* Services.User.Actions.UpdateUser.UpdateUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFA1BB38F81008CCC7E /* Services.User.Actions.UpdateUser.UpdateUser.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE651BB38F81008CCC7E /* Services.User.Actions.ValidUser.ValidUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFB1BB38F81008CCC7E /* Services.User.Actions.ValidUser.ValidUser.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE661BB38F81008CCC7E /* Services.User.Actions.VerifyVerificationCode.VerifyVerificationCode.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFC1BB38F81008CCC7E /* Services.User.Actions.VerifyVerificationCode.VerifyVerificationCode.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE671BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFD1BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE681BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFE1BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift */; settings = {ASSET_TAGS = (); }; };
-		BF9BAE691BB38F81008CCC7E /* Soa.Soa.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFF1BB38F81008CCC7E /* Soa.Soa.proto.swift */; settings = {ASSET_TAGS = (); }; };
+		BF6B170E1BBE6DC1008549D7 /* Services.Organization.Actions.GetTeamsForProfileIds.GetTeamsForProfileIds.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B170C1BBE6DC1008549D7 /* Services.Organization.Actions.GetTeamsForProfileIds.GetTeamsForProfileIds.proto.swift */; };
+		BF6B170F1BBE6DC1008549D7 /* Services.Profile.Actions.ProfileExists.ProfileExists.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B170D1BBE6DC1008549D7 /* Services.Profile.Actions.ProfileExists.ProfileExists.proto.swift */; };
+		BF9BAE001BB38F81008CCC7E /* Services.Common.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD961BB38F81008CCC7E /* Services.Common.Containers.Containers.proto.swift */; };
+		BF9BAE011BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD971BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift */; };
+		BF9BAE021BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD981BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift */; };
+		BF9BAE031BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD991BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift */; };
+		BF9BAE041BB38F81008CCC7E /* Services.Glossary.Actions.GetTerms.GetTerms.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9A1BB38F81008CCC7E /* Services.Glossary.Actions.GetTerms.GetTerms.proto.swift */; };
+		BF9BAE051BB38F81008CCC7E /* Services.Glossary.Actions.UpdateTerm.UpdateTerm.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9B1BB38F81008CCC7E /* Services.Glossary.Actions.UpdateTerm.UpdateTerm.proto.swift */; };
+		BF9BAE061BB38F81008CCC7E /* Services.Glossary.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9C1BB38F81008CCC7E /* Services.Glossary.Containers.Containers.proto.swift */; };
+		BF9BAE071BB38F81008CCC7E /* Services.Group.Actions.AddToGroup.AddToGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9D1BB38F81008CCC7E /* Services.Group.Actions.AddToGroup.AddToGroup.proto.swift */; };
+		BF9BAE081BB38F81008CCC7E /* Services.Group.Actions.GetGroup.GetGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9E1BB38F81008CCC7E /* Services.Group.Actions.GetGroup.GetGroup.proto.swift */; };
+		BF9BAE091BB38F81008CCC7E /* Services.Group.Actions.GetGroups.GetGroups.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BAD9F1BB38F81008CCC7E /* Services.Group.Actions.GetGroups.GetGroups.proto.swift */; };
+		BF9BAE0A1BB38F81008CCC7E /* Services.Group.Actions.GetMembers.GetMembers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA01BB38F81008CCC7E /* Services.Group.Actions.GetMembers.GetMembers.proto.swift */; };
+		BF9BAE0B1BB38F81008CCC7E /* Services.Group.Actions.GetMembershipRequests.GetMembershipRequests.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA11BB38F81008CCC7E /* Services.Group.Actions.GetMembershipRequests.GetMembershipRequests.proto.swift */; };
+		BF9BAE0C1BB38F81008CCC7E /* Services.Group.Actions.JoinGroup.JoinGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA21BB38F81008CCC7E /* Services.Group.Actions.JoinGroup.JoinGroup.proto.swift */; };
+		BF9BAE0D1BB38F81008CCC7E /* Services.Group.Actions.LeaveGroup.LeaveGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA31BB38F81008CCC7E /* Services.Group.Actions.LeaveGroup.LeaveGroup.proto.swift */; };
+		BF9BAE0E1BB38F81008CCC7E /* Services.Group.Actions.RespondToMembershipRequest.RespondToMembershipRequest.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA41BB38F81008CCC7E /* Services.Group.Actions.RespondToMembershipRequest.RespondToMembershipRequest.proto.swift */; };
+		BF9BAE0F1BB38F81008CCC7E /* Services.Group.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA51BB38F81008CCC7E /* Services.Group.Containers.Containers.proto.swift */; };
+		BF9BAE101BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanInvite.WhoCanInvite.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA61BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanInvite.WhoCanInvite.proto.swift */; };
+		BF9BAE111BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoin.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA71BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoin.proto.swift */; };
+		BF9BAE121BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroup.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA81BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroup.proto.swift */; };
+		BF9BAE131BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembership.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADA91BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembership.proto.swift */; };
+		BF9BAE141BB38F81008CCC7E /* Services.History.Actions.RecordAction.RecordAction.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAA1BB38F81008CCC7E /* Services.History.Actions.RecordAction.RecordAction.proto.swift */; };
+		BF9BAE151BB38F81008CCC7E /* Services.History.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAB1BB38F81008CCC7E /* Services.History.Containers.Containers.proto.swift */; };
+		BF9BAE161BB38F81008CCC7E /* Services.Media.Actions.CompleteImageUpload.CompleteImageUpload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAC1BB38F81008CCC7E /* Services.Media.Actions.CompleteImageUpload.CompleteImageUpload.proto.swift */; };
+		BF9BAE171BB38F81008CCC7E /* Services.Media.Actions.StartImageUpload.StartImageUpload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAD1BB38F81008CCC7E /* Services.Media.Actions.StartImageUpload.StartImageUpload.proto.swift */; };
+		BF9BAE181BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAE1BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift */; };
+		BF9BAE191BB38F81008CCC7E /* Services.Media.Containers.Media.Media.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADAF1BB38F81008CCC7E /* Services.Media.Containers.Media.Media.proto.swift */; };
+		BF9BAE1A1BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB01BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift */; };
+		BF9BAE1B1BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB11BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift */; };
+		BF9BAE1C1BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB21BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift */; };
+		BF9BAE1D1BB38F81008CCC7E /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB31BB38F81008CCC7E /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift */; };
+		BF9BAE1E1BB38F81008CCC7E /* Services.Notification.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB41BB38F81008CCC7E /* Services.Notification.Containers.Containers.proto.swift */; };
+		BF9BAE1F1BB38F81008CCC7E /* Services.Organization.Actions.AddDirectReports.AddDirectReports.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB51BB38F81008CCC7E /* Services.Organization.Actions.AddDirectReports.AddDirectReports.proto.swift */; };
+		BF9BAE201BB38F81008CCC7E /* Services.Organization.Actions.AddLocationMembers.AddLocationMembers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB61BB38F81008CCC7E /* Services.Organization.Actions.AddLocationMembers.AddLocationMembers.proto.swift */; };
+		BF9BAE211BB38F81008CCC7E /* Services.Organization.Actions.CreateLocation.CreateLocation.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB71BB38F81008CCC7E /* Services.Organization.Actions.CreateLocation.CreateLocation.proto.swift */; };
+		BF9BAE221BB38F81008CCC7E /* Services.Organization.Actions.CreateOrganization.CreateOrganization.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB81BB38F81008CCC7E /* Services.Organization.Actions.CreateOrganization.CreateOrganization.proto.swift */; };
+		BF9BAE231BB38F81008CCC7E /* Services.Organization.Actions.CreateToken.CreateToken.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADB91BB38F81008CCC7E /* Services.Organization.Actions.CreateToken.CreateToken.proto.swift */; };
+		BF9BAE241BB38F81008CCC7E /* Services.Organization.Actions.DisableIntegration.DisableIntegration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBA1BB38F81008CCC7E /* Services.Organization.Actions.DisableIntegration.DisableIntegration.proto.swift */; };
+		BF9BAE251BB38F81008CCC7E /* Services.Organization.Actions.EnableIntegration.EnableIntegration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBB1BB38F81008CCC7E /* Services.Organization.Actions.EnableIntegration.EnableIntegration.proto.swift */; };
+		BF9BAE261BB38F81008CCC7E /* Services.Organization.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBC1BB38F81008CCC7E /* Services.Organization.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift */; };
+		BF9BAE271BB38F81008CCC7E /* Services.Organization.Actions.GetDescendants.GetDescendants.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBD1BB38F81008CCC7E /* Services.Organization.Actions.GetDescendants.GetDescendants.proto.swift */; };
+		BF9BAE281BB38F81008CCC7E /* Services.Organization.Actions.GetIntegration.GetIntegration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBE1BB38F81008CCC7E /* Services.Organization.Actions.GetIntegration.GetIntegration.proto.swift */; };
+		BF9BAE291BB38F81008CCC7E /* Services.Organization.Actions.GetLocation.GetLocation.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADBF1BB38F81008CCC7E /* Services.Organization.Actions.GetLocation.GetLocation.proto.swift */; };
+		BF9BAE2A1BB38F81008CCC7E /* Services.Organization.Actions.GetLocationMembers.GetLocationMembers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC01BB38F81008CCC7E /* Services.Organization.Actions.GetLocationMembers.GetLocationMembers.proto.swift */; };
+		BF9BAE2B1BB38F81008CCC7E /* Services.Organization.Actions.GetLocations.GetLocations.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC11BB38F81008CCC7E /* Services.Organization.Actions.GetLocations.GetLocations.proto.swift */; };
+		BF9BAE2C1BB38F81008CCC7E /* Services.Organization.Actions.GetOrganization.GetOrganization.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC21BB38F81008CCC7E /* Services.Organization.Actions.GetOrganization.GetOrganization.proto.swift */; };
+		BF9BAE2D1BB38F81008CCC7E /* Services.Organization.Actions.GetProfileReportingDetails.GetProfileReportingDetails.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC31BB38F81008CCC7E /* Services.Organization.Actions.GetProfileReportingDetails.GetProfileReportingDetails.proto.swift */; };
+		BF9BAE2E1BB38F81008CCC7E /* Services.Organization.Actions.GetSsoMetadata.GetSsoMetadata.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC41BB38F81008CCC7E /* Services.Organization.Actions.GetSsoMetadata.GetSsoMetadata.proto.swift */; };
+		BF9BAE2F1BB38F81008CCC7E /* Services.Organization.Actions.GetTeam.GetTeam.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC51BB38F81008CCC7E /* Services.Organization.Actions.GetTeam.GetTeam.proto.swift */; };
+		BF9BAE301BB38F81008CCC7E /* Services.Organization.Actions.GetTeamReportingDetails.GetTeamReportingDetails.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC61BB38F81008CCC7E /* Services.Organization.Actions.GetTeamReportingDetails.GetTeamReportingDetails.proto.swift */; };
+		BF9BAE311BB38F81008CCC7E /* Services.Organization.Actions.GetTeams.GetTeams.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC71BB38F81008CCC7E /* Services.Organization.Actions.GetTeams.GetTeams.proto.swift */; };
+		BF9BAE321BB38F81008CCC7E /* Services.Organization.Actions.GetTokens.GetTokens.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC81BB38F81008CCC7E /* Services.Organization.Actions.GetTokens.GetTokens.proto.swift */; };
+		BF9BAE331BB38F81008CCC7E /* Services.Organization.Actions.SetManager.SetManager.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADC91BB38F81008CCC7E /* Services.Organization.Actions.SetManager.SetManager.proto.swift */; };
+		BF9BAE341BB38F81008CCC7E /* Services.Organization.Actions.UpdateLocation.UpdateLocation.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCA1BB38F81008CCC7E /* Services.Organization.Actions.UpdateLocation.UpdateLocation.proto.swift */; };
+		BF9BAE351BB38F81008CCC7E /* Services.Organization.Actions.UpdateTeam.UpdateTeam.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCB1BB38F81008CCC7E /* Services.Organization.Actions.UpdateTeam.UpdateTeam.proto.swift */; };
+		BF9BAE361BB38F81008CCC7E /* Services.Organization.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCC1BB38F81008CCC7E /* Services.Organization.Containers.Containers.proto.swift */; };
+		BF9BAE371BB38F81008CCC7E /* Services.Organization.Containers.Integration.Integration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCD1BB38F81008CCC7E /* Services.Organization.Containers.Integration.Integration.proto.swift */; };
+		BF9BAE381BB38F81008CCC7E /* Services.Payment.Actions.StoreToken.StoreToken.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCE1BB38F81008CCC7E /* Services.Payment.Actions.StoreToken.StoreToken.proto.swift */; };
+		BF9BAE391BB38F81008CCC7E /* Services.Payment.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADCF1BB38F81008CCC7E /* Services.Payment.Containers.Containers.proto.swift */; };
+		BF9BAE3A1BB38F81008CCC7E /* Services.Profile.Actions.AddTags.AddTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD01BB38F81008CCC7E /* Services.Profile.Actions.AddTags.AddTags.proto.swift */; };
+		BF9BAE3B1BB38F81008CCC7E /* Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD11BB38F81008CCC7E /* Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfiles.proto.swift */; };
+		BF9BAE3C1BB38F81008CCC7E /* Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD21BB38F81008CCC7E /* Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfiles.proto.swift */; };
+		BF9BAE3D1BB38F81008CCC7E /* Services.Profile.Actions.CreateProfile.CreateProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD31BB38F81008CCC7E /* Services.Profile.Actions.CreateProfile.CreateProfile.proto.swift */; };
+		BF9BAE3E1BB38F81008CCC7E /* Services.Profile.Actions.CreateTags.CreateTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD41BB38F81008CCC7E /* Services.Profile.Actions.CreateTags.CreateTags.proto.swift */; };
+		BF9BAE3F1BB38F81008CCC7E /* Services.Profile.Actions.GetActiveTags.GetActiveTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD51BB38F81008CCC7E /* Services.Profile.Actions.GetActiveTags.GetActiveTags.proto.swift */; };
+		BF9BAE401BB38F81008CCC7E /* Services.Profile.Actions.GetExtendedProfile.GetExtendedProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD61BB38F81008CCC7E /* Services.Profile.Actions.GetExtendedProfile.GetExtendedProfile.proto.swift */; };
+		BF9BAE411BB38F81008CCC7E /* Services.Profile.Actions.GetProfile.GetProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD71BB38F81008CCC7E /* Services.Profile.Actions.GetProfile.GetProfile.proto.swift */; };
+		BF9BAE421BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD81BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift */; };
+		BF9BAE431BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADD91BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift */; };
+		BF9BAE441BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDA1BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift */; };
+		BF9BAE451BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDB1BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift */; };
+		BF9BAE461BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDC1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift */; };
+		BF9BAE471BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDD1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift */; };
+		BF9BAE481BB38F81008CCC7E /* Services.Profile.Actions.RemoveTags.RemoveTags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDE1BB38F81008CCC7E /* Services.Profile.Actions.RemoveTags.RemoveTags.proto.swift */; };
+		BF9BAE491BB38F81008CCC7E /* Services.Profile.Actions.UpdateProfile.UpdateProfile.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADDF1BB38F81008CCC7E /* Services.Profile.Actions.UpdateProfile.UpdateProfile.proto.swift */; };
+		BF9BAE4A1BB38F81008CCC7E /* Services.Profile.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE01BB38F81008CCC7E /* Services.Profile.Containers.Containers.proto.swift */; };
+		BF9BAE4B1BB38F81008CCC7E /* Services.Registry.All.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE11BB38F81008CCC7E /* Services.Registry.All.proto.swift */; };
+		BF9BAE4C1BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE21BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift */; };
+		BF9BAE4D1BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE31BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift */; };
+		BF9BAE4E1BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE41BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift */; };
+		BF9BAE4F1BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE51BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift */; };
+		BF9BAE501BB38F81008CCC7E /* Services.Search.Containers.Search.Search.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE61BB38F81008CCC7E /* Services.Search.Containers.Search.Search.proto.swift */; };
+		BF9BAE511BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE71BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift */; };
+		BF9BAE521BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE81BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift */; };
+		BF9BAE531BB38F81008CCC7E /* Services.Sync.Actions.Sync.Sync.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADE91BB38F81008CCC7E /* Services.Sync.Actions.Sync.Sync.proto.swift */; };
+		BF9BAE541BB38F81008CCC7E /* Services.Sync.Containers.Payload.Payload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEA1BB38F81008CCC7E /* Services.Sync.Containers.Payload.Payload.proto.swift */; };
+		BF9BAE551BB38F81008CCC7E /* Services.Sync.Containers.Source.Source.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEB1BB38F81008CCC7E /* Services.Sync.Containers.Source.Source.proto.swift */; };
+		BF9BAE561BB38F81008CCC7E /* Services.User.Actions.AuthenticateUser.AuthenticateUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEC1BB38F81008CCC7E /* Services.User.Actions.AuthenticateUser.AuthenticateUser.proto.swift */; };
+		BF9BAE571BB38F81008CCC7E /* Services.User.Actions.BulkCreateUsers.BulkCreateUsers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADED1BB38F81008CCC7E /* Services.User.Actions.BulkCreateUsers.BulkCreateUsers.proto.swift */; };
+		BF9BAE581BB38F81008CCC7E /* Services.User.Actions.CompleteAuthorization.CompleteAuthorization.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEE1BB38F81008CCC7E /* Services.User.Actions.CompleteAuthorization.CompleteAuthorization.proto.swift */; };
+		BF9BAE591BB38F81008CCC7E /* Services.User.Actions.CreateUser.CreateUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADEF1BB38F81008CCC7E /* Services.User.Actions.CreateUser.CreateUser.proto.swift */; };
+		BF9BAE5A1BB38F81008CCC7E /* Services.User.Actions.DeleteIdentity.DeleteIdentity.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF01BB38F81008CCC7E /* Services.User.Actions.DeleteIdentity.DeleteIdentity.proto.swift */; };
+		BF9BAE5B1BB38F81008CCC7E /* Services.User.Actions.GetActiveDevices.GetActiveDevices.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF11BB38F81008CCC7E /* Services.User.Actions.GetActiveDevices.GetActiveDevices.proto.swift */; };
+		BF9BAE5C1BB38F81008CCC7E /* Services.User.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF21BB38F81008CCC7E /* Services.User.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift */; };
+		BF9BAE5D1BB38F81008CCC7E /* Services.User.Actions.GetAuthorizationInstructions.GetAuthorizationInstructions.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF31BB38F81008CCC7E /* Services.User.Actions.GetAuthorizationInstructions.GetAuthorizationInstructions.proto.swift */; };
+		BF9BAE5E1BB38F81008CCC7E /* Services.User.Actions.GetIdentities.GetIdentities.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF41BB38F81008CCC7E /* Services.User.Actions.GetIdentities.GetIdentities.proto.swift */; };
+		BF9BAE5F1BB38F81008CCC7E /* Services.User.Actions.GetUser.GetUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF51BB38F81008CCC7E /* Services.User.Actions.GetUser.GetUser.proto.swift */; };
+		BF9BAE601BB38F81008CCC7E /* Services.User.Actions.Logout.Logout.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF61BB38F81008CCC7E /* Services.User.Actions.Logout.Logout.proto.swift */; };
+		BF9BAE611BB38F81008CCC7E /* Services.User.Actions.RecordDevice.RecordDevice.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF71BB38F81008CCC7E /* Services.User.Actions.RecordDevice.RecordDevice.proto.swift */; };
+		BF9BAE621BB38F81008CCC7E /* Services.User.Actions.RequestAccess.RequestAccess.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF81BB38F81008CCC7E /* Services.User.Actions.RequestAccess.RequestAccess.proto.swift */; };
+		BF9BAE631BB38F81008CCC7E /* Services.User.Actions.SendVerificationCode.SendVerificationCode.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADF91BB38F81008CCC7E /* Services.User.Actions.SendVerificationCode.SendVerificationCode.proto.swift */; };
+		BF9BAE641BB38F81008CCC7E /* Services.User.Actions.UpdateUser.UpdateUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFA1BB38F81008CCC7E /* Services.User.Actions.UpdateUser.UpdateUser.proto.swift */; };
+		BF9BAE651BB38F81008CCC7E /* Services.User.Actions.ValidUser.ValidUser.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFB1BB38F81008CCC7E /* Services.User.Actions.ValidUser.ValidUser.proto.swift */; };
+		BF9BAE661BB38F81008CCC7E /* Services.User.Actions.VerifyVerificationCode.VerifyVerificationCode.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFC1BB38F81008CCC7E /* Services.User.Actions.VerifyVerificationCode.VerifyVerificationCode.proto.swift */; };
+		BF9BAE671BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFD1BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift */; };
+		BF9BAE681BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFE1BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift */; };
+		BF9BAE691BB38F81008CCC7E /* Soa.Soa.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BADFF1BB38F81008CCC7E /* Soa.Soa.proto.swift */; };
+		BFA734B61BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734A91BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift */; };
+		BFA734B71BEDABAF0087951B /* Services.Feature.Actions.GetFlags.GetFlags.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734AA1BEDABAF0087951B /* Services.Feature.Actions.GetFlags.GetFlags.proto.swift */; };
+		BFA734B81BEDABAF0087951B /* Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734AB1BEDABAF0087951B /* Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift */; };
+		BFA734B91BEDABAF0087951B /* Services.Search.Containers.Entity.Entity.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734AC1BEDABAF0087951B /* Services.Search.Containers.Entity.Entity.proto.swift */; };
+		BFA734BA1BEDABAF0087951B /* Services.Common.Containers.Description.Description.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734AD1BEDABAF0087951B /* Services.Common.Containers.Description.Description.proto.swift */; };
+		BFA734BB1BEDABAF0087951B /* Services.Post.Actions.CreatePost.CreatePost.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734AE1BEDABAF0087951B /* Services.Post.Actions.CreatePost.CreatePost.proto.swift */; };
+		BFA734BC1BEDABAF0087951B /* Services.Post.Actions.DeletePost.DeletePost.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734AF1BEDABAF0087951B /* Services.Post.Actions.DeletePost.DeletePost.proto.swift */; };
+		BFA734BD1BEDABAF0087951B /* Services.Post.Actions.GetPost.GetPost.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B01BEDABAF0087951B /* Services.Post.Actions.GetPost.GetPost.proto.swift */; };
+		BFA734BE1BEDABAF0087951B /* Services.Post.Actions.GetPosts.GetPosts.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B11BEDABAF0087951B /* Services.Post.Actions.GetPosts.GetPosts.proto.swift */; };
+		BFA734BF1BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B21BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift */; };
+		BFA734C01BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B31BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift */; };
+		BFA734C11BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B41BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift */; };
+		BFA734C21BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B51BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
 		BFC6CF021A44B58B0081F45B /* ProtobufRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */; };
@@ -144,7 +156,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8F12AA181BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Profile.Actions.GetStatus.GetStatus.proto.swift; sourceTree = "<group>"; };
 		BF3D3CBA1AE070EF00B5780B /* AbstractMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMessage.swift; sourceTree = "<group>"; };
 		BF3D3CBB1AE070EF00B5780B /* CodedInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedInputStream.swift; sourceTree = "<group>"; };
 		BF3D3CBC1AE070EF00B5780B /* CodedOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedOutputStream.swift; sourceTree = "<group>"; };
@@ -265,6 +276,19 @@
 		BF9BADFD1BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.User.Containers.Containers.proto.swift; sourceTree = "<group>"; };
 		BF9BADFE1BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.User.Containers.Token.Token.proto.swift; sourceTree = "<group>"; };
 		BF9BADFF1BB38F81008CCC7E /* Soa.Soa.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Soa.Soa.proto.swift; sourceTree = "<group>"; };
+		BFA734A91BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.SearchV2.SearchV2.proto.swift; sourceTree = "<group>"; };
+		BFA734AA1BEDABAF0087951B /* Services.Feature.Actions.GetFlags.GetFlags.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Feature.Actions.GetFlags.GetFlags.proto.swift; sourceTree = "<group>"; };
+		BFA734AB1BEDABAF0087951B /* Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift; sourceTree = "<group>"; };
+		BFA734AC1BEDABAF0087951B /* Services.Search.Containers.Entity.Entity.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Containers.Entity.Entity.proto.swift; sourceTree = "<group>"; };
+		BFA734AD1BEDABAF0087951B /* Services.Common.Containers.Description.Description.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Common.Containers.Description.Description.proto.swift; sourceTree = "<group>"; };
+		BFA734AE1BEDABAF0087951B /* Services.Post.Actions.CreatePost.CreatePost.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Actions.CreatePost.CreatePost.proto.swift; sourceTree = "<group>"; };
+		BFA734AF1BEDABAF0087951B /* Services.Post.Actions.DeletePost.DeletePost.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Actions.DeletePost.DeletePost.proto.swift; sourceTree = "<group>"; };
+		BFA734B01BEDABAF0087951B /* Services.Post.Actions.GetPost.GetPost.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Actions.GetPost.GetPost.proto.swift; sourceTree = "<group>"; };
+		BFA734B11BEDABAF0087951B /* Services.Post.Actions.GetPosts.GetPosts.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Actions.GetPosts.GetPosts.proto.swift; sourceTree = "<group>"; };
+		BFA734B21BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Actions.UpdatePost.UpdatePost.proto.swift; sourceTree = "<group>"; };
+		BFA734B31BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Containers.Containers.proto.swift; sourceTree = "<group>"; };
+		BFA734B41BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift; sourceTree = "<group>"; };
+		BFA734B51BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Profile.Actions.GetStatus.GetStatus.proto.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CEF31A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtobufRegistry.h; sourceTree = "<group>"; };
@@ -316,6 +340,8 @@
 				BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */,
 				BFCE356F1A4A23AE00D56AE2 /* runtime-pb-swift */,
 				BF9BAD961BB38F81008CCC7E /* Services.Common.Containers.Containers.proto.swift */,
+				BFA734AD1BEDABAF0087951B /* Services.Common.Containers.Description.Description.proto.swift */,
+				BFA734AA1BEDABAF0087951B /* Services.Feature.Actions.GetFlags.GetFlags.proto.swift */,
 				BF9BAD971BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift */,
 				BF9BAD981BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift */,
 				BF9BAD991BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift */,
@@ -342,6 +368,7 @@
 				BF9BADAE1BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift */,
 				BF9BADAF1BB38F81008CCC7E /* Services.Media.Containers.Media.Media.proto.swift */,
 				BF9BADB01BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift */,
+				BFA734B41BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift */,
 				BF9BADB11BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift */,
 				BF9BADB21BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift */,
 				BF9BADB31BB38F81008CCC7E /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift */,
@@ -374,6 +401,12 @@
 				BF9BADCD1BB38F81008CCC7E /* Services.Organization.Containers.Integration.Integration.proto.swift */,
 				BF9BADCE1BB38F81008CCC7E /* Services.Payment.Actions.StoreToken.StoreToken.proto.swift */,
 				BF9BADCF1BB38F81008CCC7E /* Services.Payment.Containers.Containers.proto.swift */,
+				BFA734AE1BEDABAF0087951B /* Services.Post.Actions.CreatePost.CreatePost.proto.swift */,
+				BFA734AF1BEDABAF0087951B /* Services.Post.Actions.DeletePost.DeletePost.proto.swift */,
+				BFA734B01BEDABAF0087951B /* Services.Post.Actions.GetPost.GetPost.proto.swift */,
+				BFA734B11BEDABAF0087951B /* Services.Post.Actions.GetPosts.GetPosts.proto.swift */,
+				BFA734B21BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift */,
+				BFA734B31BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift */,
 				BF9BADD01BB38F81008CCC7E /* Services.Profile.Actions.AddTags.AddTags.proto.swift */,
 				BF9BADD11BB38F81008CCC7E /* Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfiles.proto.swift */,
 				BF9BADD21BB38F81008CCC7E /* Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfiles.proto.swift */,
@@ -385,7 +418,7 @@
 				BF9BADD81BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift */,
 				BF9BADD91BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift */,
 				BF9BADDA1BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift */,
-				8F12AA181BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */,
+				BFA734B51BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */,
 				BF9BADDB1BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift */,
 				BF9BADDC1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift */,
 				BF9BADDD1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift */,
@@ -397,7 +430,10 @@
 				BF9BADE21BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift */,
 				BF9BADE31BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift */,
 				BF9BADE41BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift */,
+				BFA734A91BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift */,
+				BFA734AB1BEDABAF0087951B /* Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift */,
 				BF9BADE51BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift */,
+				BFA734AC1BEDABAF0087951B /* Services.Search.Containers.Entity.Entity.proto.swift */,
 				BF9BADE61BB38F81008CCC7E /* Services.Search.Containers.Search.Search.proto.swift */,
 				BF9BADE71BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift */,
 				BF9BADE81BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift */,
@@ -531,7 +567,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Michael Hahn";
 				TargetAttributes = {
 					BFC6CEEE1A44B58B0081F45B = {
@@ -596,6 +632,7 @@
 				BF9BAE001BB38F81008CCC7E /* Services.Common.Containers.Containers.proto.swift in Sources */,
 				BF9BAE011BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift in Sources */,
 				BF9BAE021BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift in Sources */,
+				BFA734B71BEDABAF0087951B /* Services.Feature.Actions.GetFlags.GetFlags.proto.swift in Sources */,
 				BF9BAE031BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift in Sources */,
 				BF9BAE041BB38F81008CCC7E /* Services.Glossary.Actions.GetTerms.GetTerms.proto.swift in Sources */,
 				BF9BAE051BB38F81008CCC7E /* Services.Glossary.Actions.UpdateTerm.UpdateTerm.proto.swift in Sources */,
@@ -613,6 +650,7 @@
 				BF9BAE111BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanJoin.WhoCanJoin.proto.swift in Sources */,
 				BF9BAE121BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewGroup.WhoCanViewGroup.proto.swift in Sources */,
 				BF9BAE131BB38F81008CCC7E /* Services.Group.Containers.Permissions.WhoCanViewMembership.WhoCanViewMembership.proto.swift in Sources */,
+				BFA734BB1BEDABAF0087951B /* Services.Post.Actions.CreatePost.CreatePost.proto.swift in Sources */,
 				BF9BAE141BB38F81008CCC7E /* Services.History.Actions.RecordAction.RecordAction.proto.swift in Sources */,
 				BF9BAE151BB38F81008CCC7E /* Services.History.Containers.Containers.proto.swift in Sources */,
 				BF9BAE161BB38F81008CCC7E /* Services.Media.Actions.CompleteImageUpload.CompleteImageUpload.proto.swift in Sources */,
@@ -620,7 +658,11 @@
 				BF9BAE191BB38F81008CCC7E /* Services.Media.Containers.Media.Media.proto.swift in Sources */,
 				BF9BAE181BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift in Sources */,
 				BF9BAE1A1BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift in Sources */,
+				BFA734C11BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift in Sources */,
+				BF9BAE4E1BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift in Sources */,
 				BF9BAE1B1BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift in Sources */,
+				BFA734B61BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift in Sources */,
+				BFA734B91BEDABAF0087951B /* Services.Search.Containers.Entity.Entity.proto.swift in Sources */,
 				BF9BAE1C1BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift in Sources */,
 				BF9BAE1D1BB38F81008CCC7E /* Services.Notification.Actions.UpdatePreference.UpdatePreference.proto.swift in Sources */,
 				BF9BAE1E1BB38F81008CCC7E /* Services.Notification.Containers.Containers.proto.swift in Sources */,
@@ -628,10 +670,12 @@
 				BF9BAE201BB38F81008CCC7E /* Services.Organization.Actions.AddLocationMembers.AddLocationMembers.proto.swift in Sources */,
 				BF9BAE211BB38F81008CCC7E /* Services.Organization.Actions.CreateLocation.CreateLocation.proto.swift in Sources */,
 				BF9BAE221BB38F81008CCC7E /* Services.Organization.Actions.CreateOrganization.CreateOrganization.proto.swift in Sources */,
+				BFA734BF1BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift in Sources */,
 				BF9BAE231BB38F81008CCC7E /* Services.Organization.Actions.CreateToken.CreateToken.proto.swift in Sources */,
 				BF9BAE241BB38F81008CCC7E /* Services.Organization.Actions.DisableIntegration.DisableIntegration.proto.swift in Sources */,
 				BF9BAE251BB38F81008CCC7E /* Services.Organization.Actions.EnableIntegration.EnableIntegration.proto.swift in Sources */,
 				BF9BAE261BB38F81008CCC7E /* Services.Organization.Actions.GetAuthenticationInstructions.GetAuthenticationInstructions.proto.swift in Sources */,
+				BFA734B81BEDABAF0087951B /* Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift in Sources */,
 				BF9BAE271BB38F81008CCC7E /* Services.Organization.Actions.GetDescendants.GetDescendants.proto.swift in Sources */,
 				BF9BAE281BB38F81008CCC7E /* Services.Organization.Actions.GetIntegration.GetIntegration.proto.swift in Sources */,
 				BF9BAE291BB38F81008CCC7E /* Services.Organization.Actions.GetLocation.GetLocation.proto.swift in Sources */,
@@ -656,28 +700,32 @@
 				BF9BAE3B1BB38F81008CCC7E /* Services.Profile.Actions.BulkCreateProfiles.BulkCreateProfiles.proto.swift in Sources */,
 				BF9BAE3C1BB38F81008CCC7E /* Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfiles.proto.swift in Sources */,
 				BF9BAE3D1BB38F81008CCC7E /* Services.Profile.Actions.CreateProfile.CreateProfile.proto.swift in Sources */,
+				BFA734C01BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift in Sources */,
 				BF9BAE3E1BB38F81008CCC7E /* Services.Profile.Actions.CreateTags.CreateTags.proto.swift in Sources */,
 				BF9BAE3F1BB38F81008CCC7E /* Services.Profile.Actions.GetActiveTags.GetActiveTags.proto.swift in Sources */,
 				BF9BAE401BB38F81008CCC7E /* Services.Profile.Actions.GetExtendedProfile.GetExtendedProfile.proto.swift in Sources */,
 				BF9BAE411BB38F81008CCC7E /* Services.Profile.Actions.GetProfile.GetProfile.proto.swift in Sources */,
 				BF9BAE421BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift in Sources */,
 				BF9BAE431BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift in Sources */,
+				BFA734BE1BEDABAF0087951B /* Services.Post.Actions.GetPosts.GetPosts.proto.swift in Sources */,
 				BF9BAE441BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift in Sources */,
-				8F12AA191BCEDB7E0037A550 /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */,
 				BF9BAE451BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift in Sources */,
+				BFA734BA1BEDABAF0087951B /* Services.Common.Containers.Description.Description.proto.swift in Sources */,
 				BF9BAE461BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift in Sources */,
 				BF9BAE471BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift in Sources */,
 				BF6B170F1BBE6DC1008549D7 /* Services.Profile.Actions.ProfileExists.ProfileExists.proto.swift in Sources */,
+				BFA734BC1BEDABAF0087951B /* Services.Post.Actions.DeletePost.DeletePost.proto.swift in Sources */,
 				BF9BAE481BB38F81008CCC7E /* Services.Profile.Actions.RemoveTags.RemoveTags.proto.swift in Sources */,
 				BF9BAE491BB38F81008CCC7E /* Services.Profile.Actions.UpdateProfile.UpdateProfile.proto.swift in Sources */,
 				BF9BAE4A1BB38F81008CCC7E /* Services.Profile.Containers.Containers.proto.swift in Sources */,
 				BF9BAE4B1BB38F81008CCC7E /* Services.Registry.All.proto.swift in Sources */,
 				BF9BAE4C1BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift in Sources */,
 				BF9BAE4D1BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift in Sources */,
-				BF9BAE4E1BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift in Sources */,
 				BF9BAE501BB38F81008CCC7E /* Services.Search.Containers.Search.Search.proto.swift in Sources */,
+				BFA734BD1BEDABAF0087951B /* Services.Post.Actions.GetPost.GetPost.proto.swift in Sources */,
 				BF9BAE4F1BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift in Sources */,
 				BF9BAE511BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift in Sources */,
+				BFA734C21BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */,
 				BF9BAE521BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift in Sources */,
 				BF9BAE531BB38F81008CCC7E /* Services.Sync.Actions.Sync.Sync.proto.swift in Sources */,
 				BF9BAE541BB38F81008CCC7E /* Services.Sync.Containers.Payload.Payload.proto.swift in Sources */,
@@ -745,7 +793,6 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -822,7 +869,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -841,7 +887,6 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -860,7 +905,6 @@
 				);
 				INFOPLIST_FILE = ProtobufRegistryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -874,7 +918,6 @@
 				);
 				INFOPLIST_FILE = ProtobufRegistryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rhlabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -17,6 +17,8 @@ public func == (lhs: Services.Search.Containers.SearchResultV1, rhs: Services.Se
   fieldCheck = fieldCheck && (lhs.hasGroup == rhs.hasGroup) && (!lhs.hasGroup || lhs.group == rhs.group)
   fieldCheck = fieldCheck && (lhs.hasProfileStatus == rhs.hasProfileStatus) && (!lhs.hasProfileStatus || lhs.profileStatus == rhs.profileStatus)
   fieldCheck = fieldCheck && (lhs.hasTeamStatus == rhs.hasTeamStatus) && (!lhs.hasTeamStatus || lhs.teamStatus == rhs.teamStatus)
+  fieldCheck = fieldCheck && (lhs.hasScore == rhs.hasScore) && (!lhs.hasScore || lhs.score == rhs.score)
+  fieldCheck = fieldCheck && (lhs.hasPost == rhs.hasPost) && (!lhs.hasPost || lhs.post == rhs.post)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -36,6 +38,7 @@ public extension Services.Search.Containers {
       registerAllExtensions(extensionRegistry)
       Services.Group.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Post.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Containers.Search.SearchRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
@@ -114,6 +117,16 @@ public extension Services.Search.Containers {
       public static func getTeamStatus(value:ResultObject) -> Services.Organization.Containers.TeamStatusV1? {
            switch value {
            case .TeamStatus(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Post(Services.Post.Containers.PostV1)
+
+      public static func getPost(value:ResultObject) -> Services.Post.Containers.PostV1? {
+           switch value {
+           case .Post(let enumValue):
                 return enumValue
            default:
                 return nil
@@ -234,6 +247,27 @@ public extension Services.Search.Containers {
               storageResultObject = SearchResultV1.ResultObject.TeamStatus(newvalue)
          }
     }
+    public private(set) var hasPost:Bool {
+          get {
+               if SearchResultV1.ResultObject.getPost(storageResultObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var post:Services.Post.Containers.PostV1!{
+         get {
+              return SearchResultV1.ResultObject.getPost(storageResultObject)
+         }
+         set (newvalue) {
+              storageResultObject = SearchResultV1.ResultObject.Post(newvalue)
+         }
+    }
+    public private(set) var hasScore:Bool = false
+    public private(set) var score:Float = Float(0)
+
     required public init() {
          super.init()
     }
@@ -261,6 +295,12 @@ public extension Services.Search.Containers {
       }
       if hasTeamStatus {
         try output.writeMessage(7, value:teamStatus)
+      }
+      if hasScore {
+        try output.writeFloat(8, value:score)
+      }
+      if hasPost {
+        try output.writeMessage(9, value:post)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -302,6 +342,14 @@ public extension Services.Search.Containers {
       if hasTeamStatus {
           if let varSizeteamStatus = teamStatus?.computeMessageSize(7) {
               serialize_size += varSizeteamStatus
+          }
+      }
+      if hasScore {
+        serialize_size += score.computeFloatSize(8)
+      }
+      if hasPost {
+          if let varSizepost = post?.computeMessageSize(9) {
+              serialize_size += varSizepost
           }
       }
       serialize_size += unknownFields.serializedSize()
@@ -388,6 +436,14 @@ public extension Services.Search.Containers {
         try teamStatus?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      if hasScore {
+        output += "\(indent) score: \(score) \n"
+      }
+      if hasPost {
+        output += "\(indent) post {\n"
+        try post?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -424,6 +480,14 @@ public extension Services.Search.Containers {
             if hasTeamStatus {
                 if let hashValueteamStatus = teamStatus?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueteamStatus
+                }
+            }
+            if hasScore {
+               hashCode = (hashCode &* 31) &+ score.hashValue
+            }
+            if hasPost {
+                if let hashValuepost = post?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuepost
                 }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
@@ -783,6 +847,80 @@ public extension Services.Search.Containers {
         builderResult.teamStatus = nil
         return self
       }
+      public var hasPost:Bool {
+           get {
+               return builderResult.hasPost
+           }
+      }
+      public var post:Services.Post.Containers.PostV1! {
+           get {
+               if postBuilder_ != nil {
+                  builderResult.post = postBuilder_.getMessage()
+               }
+               return builderResult.post
+           }
+           set (value) {
+               builderResult.hasPost = true
+               builderResult.post = value
+           }
+      }
+      private var postBuilder_:Services.Post.Containers.PostV1.Builder! {
+           didSet {
+              builderResult.hasPost = true
+           }
+      }
+      public func getPostBuilder() -> Services.Post.Containers.PostV1.Builder {
+        if postBuilder_ == nil {
+           postBuilder_ = Services.Post.Containers.PostV1.Builder()
+           builderResult.post = postBuilder_.getMessage()
+           if post != nil {
+              try! postBuilder_.mergeFrom(post)
+           }
+        }
+        return postBuilder_
+      }
+      public func setPost(value:Services.Post.Containers.PostV1!) -> Services.Search.Containers.SearchResultV1.Builder {
+        self.post = value
+        return self
+      }
+      public func mergePost(value:Services.Post.Containers.PostV1) throws -> Services.Search.Containers.SearchResultV1.Builder {
+        if builderResult.hasPost {
+          builderResult.post = try Services.Post.Containers.PostV1.builderWithPrototype(builderResult.post).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.post = value
+        }
+        builderResult.hasPost = true
+        return self
+      }
+      public func clearPost() -> Services.Search.Containers.SearchResultV1.Builder {
+        postBuilder_ = nil
+        builderResult.hasPost = false
+        builderResult.post = nil
+        return self
+      }
+      public var hasScore:Bool {
+           get {
+                return builderResult.hasScore
+           }
+      }
+      public var score:Float {
+           get {
+                return builderResult.score
+           }
+           set (value) {
+               builderResult.hasScore = true
+               builderResult.score = value
+           }
+      }
+      public func setScore(value:Float) -> Services.Search.Containers.SearchResultV1.Builder {
+        self.score = value
+        return self
+      }
+      public func clearScore() -> Services.Search.Containers.SearchResultV1.Builder{
+           builderResult.hasScore = false
+           builderResult.score = Float(0)
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -827,6 +965,12 @@ public extension Services.Search.Containers {
         }
         if (other.hasTeamStatus) {
             try mergeTeamStatus(other.teamStatus)
+        }
+        if (other.hasPost) {
+            try mergePost(other.post)
+        }
+        if other.hasScore {
+             score = other.score
         }
         try mergeUnknownFields(other.unknownFields)
         return self
@@ -893,6 +1037,17 @@ public extension Services.Search.Containers {
             }
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             teamStatus = subBuilder.buildPartial()
+
+          case 69 :
+            score = try input.readFloat()
+
+          case 74 :
+            let subBuilder:Services.Post.Containers.PostV1.Builder = Services.Post.Containers.PostV1.Builder()
+            if hasPost {
+              try subBuilder.mergeFrom(post)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            post = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

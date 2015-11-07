@@ -7904,10 +7904,10 @@ public extension Google.Protobuf {
                 self.unknownFields = try unknownFieldsBuilder.build()
                 return self
 
-              case 8 :
+              case 10 :
                 path += [try input.readInt32()]
 
-              case 16 :
+              case 18 :
                 span += [try input.readInt32()]
 
               case 26 :

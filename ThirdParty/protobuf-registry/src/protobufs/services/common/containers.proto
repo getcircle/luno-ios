@@ -4,9 +4,6 @@ package services.common.containers;
 // GENERATED OPTIONS FOR: JAVA
 option java_package = "com.rhlabs.protobufs.services.common.containers";
 
-import "protobufs/services/profile/containers.proto";
-
-
 message KeyValueV1 {
     optional uint32 version = 1 [default = 1];
     optional string key = 2;
@@ -25,19 +22,12 @@ message PermissionsV1 {
     optional bool can_add = 4;
 }
 
-message DescriptionV1 {
-    optional uint32 version = 1 [default = 1];
-    optional string value = 2;
-    optional string by_profile_id = 3;
-    optional string changed = 4;
-    optional services.profile.containers.ProfileV1 by_profile = 5;
-}
-
 message InflationsV1 {
     optional uint32 version = 1 [default = 1];
     optional bool enabled = 2 [default = true];
     repeated string only = 3;
     repeated string exclude = 4;
+    optional bool disabled = 5;
 }
 
 message FieldsV1 {

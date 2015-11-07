@@ -128,6 +128,7 @@ public extension Services.Organization.Containers {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.Description.DescriptionRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -181,7 +182,7 @@ public extension Services.Organization.Containers {
     public private(set) var imageUrl:String = ""
 
     public private(set) var hasDescription:Bool = false
-    public private(set) var description_:Services.Common.Containers.DescriptionV1!
+    public private(set) var description_:Services.Common.Containers.Description.DescriptionV1!
     public private(set) var hasEstablishedDate:Bool = false
     public private(set) var establishedDate:String = ""
 
@@ -882,7 +883,7 @@ public extension Services.Organization.Containers {
                return builderResult.hasDescription
            }
       }
-      public var description_:Services.Common.Containers.DescriptionV1! {
+      public var description_:Services.Common.Containers.Description.DescriptionV1! {
            get {
                if description_Builder_ != nil {
                   builderResult.description_ = description_Builder_.getMessage()
@@ -894,14 +895,14 @@ public extension Services.Organization.Containers {
                builderResult.description_ = value
            }
       }
-      private var description_Builder_:Services.Common.Containers.DescriptionV1.Builder! {
+      private var description_Builder_:Services.Common.Containers.Description.DescriptionV1.Builder! {
            didSet {
               builderResult.hasDescription = true
            }
       }
-      public func getDescriptionBuilder() -> Services.Common.Containers.DescriptionV1.Builder {
+      public func getDescriptionBuilder() -> Services.Common.Containers.Description.DescriptionV1.Builder {
         if description_Builder_ == nil {
-           description_Builder_ = Services.Common.Containers.DescriptionV1.Builder()
+           description_Builder_ = Services.Common.Containers.Description.DescriptionV1.Builder()
            builderResult.description_ = description_Builder_.getMessage()
            if description_ != nil {
               try! description_Builder_.mergeFrom(description_)
@@ -909,13 +910,13 @@ public extension Services.Organization.Containers {
         }
         return description_Builder_
       }
-      public func setDescription(value:Services.Common.Containers.DescriptionV1!) -> Services.Organization.Containers.LocationV1.Builder {
+      public func setDescription(value:Services.Common.Containers.Description.DescriptionV1!) -> Services.Organization.Containers.LocationV1.Builder {
         self.description_ = value
         return self
       }
-      public func mergeDescription(value:Services.Common.Containers.DescriptionV1) throws -> Services.Organization.Containers.LocationV1.Builder {
+      public func mergeDescription(value:Services.Common.Containers.Description.DescriptionV1) throws -> Services.Organization.Containers.LocationV1.Builder {
         if builderResult.hasDescription {
-          builderResult.description_ = try Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.description_).mergeFrom(value).buildPartial()
+          builderResult.description_ = try Services.Common.Containers.Description.DescriptionV1.builderWithPrototype(builderResult.description_).mergeFrom(value).buildPartial()
         } else {
           builderResult.description_ = value
         }
@@ -1160,7 +1161,7 @@ public extension Services.Organization.Containers {
             imageUrl = try input.readString()
 
           case 130 :
-            let subBuilder:Services.Common.Containers.DescriptionV1.Builder = Services.Common.Containers.DescriptionV1.Builder()
+            let subBuilder:Services.Common.Containers.Description.DescriptionV1.Builder = Services.Common.Containers.Description.DescriptionV1.Builder()
             if hasDescription {
               try subBuilder.mergeFrom(description_)
             }
@@ -1720,7 +1721,7 @@ public extension Services.Organization.Containers {
     public private(set) var hasPermissions:Bool = false
     public private(set) var permissions:Services.Common.Containers.PermissionsV1!
     public private(set) var hasDescription:Bool = false
-    public private(set) var description_:Services.Common.Containers.DescriptionV1!
+    public private(set) var description_:Services.Common.Containers.Description.DescriptionV1!
     public private(set) var hasStatus:Bool = false
     public private(set) var status:Services.Organization.Containers.TeamStatusV1!
     public private(set) var hasImageUrl:Bool = false
@@ -2237,7 +2238,7 @@ public extension Services.Organization.Containers {
                return builderResult.hasDescription
            }
       }
-      public var description_:Services.Common.Containers.DescriptionV1! {
+      public var description_:Services.Common.Containers.Description.DescriptionV1! {
            get {
                if description_Builder_ != nil {
                   builderResult.description_ = description_Builder_.getMessage()
@@ -2249,14 +2250,14 @@ public extension Services.Organization.Containers {
                builderResult.description_ = value
            }
       }
-      private var description_Builder_:Services.Common.Containers.DescriptionV1.Builder! {
+      private var description_Builder_:Services.Common.Containers.Description.DescriptionV1.Builder! {
            didSet {
               builderResult.hasDescription = true
            }
       }
-      public func getDescriptionBuilder() -> Services.Common.Containers.DescriptionV1.Builder {
+      public func getDescriptionBuilder() -> Services.Common.Containers.Description.DescriptionV1.Builder {
         if description_Builder_ == nil {
-           description_Builder_ = Services.Common.Containers.DescriptionV1.Builder()
+           description_Builder_ = Services.Common.Containers.Description.DescriptionV1.Builder()
            builderResult.description_ = description_Builder_.getMessage()
            if description_ != nil {
               try! description_Builder_.mergeFrom(description_)
@@ -2264,13 +2265,13 @@ public extension Services.Organization.Containers {
         }
         return description_Builder_
       }
-      public func setDescription(value:Services.Common.Containers.DescriptionV1!) -> Services.Organization.Containers.TeamV1.Builder {
+      public func setDescription(value:Services.Common.Containers.Description.DescriptionV1!) -> Services.Organization.Containers.TeamV1.Builder {
         self.description_ = value
         return self
       }
-      public func mergeDescription(value:Services.Common.Containers.DescriptionV1) throws -> Services.Organization.Containers.TeamV1.Builder {
+      public func mergeDescription(value:Services.Common.Containers.Description.DescriptionV1) throws -> Services.Organization.Containers.TeamV1.Builder {
         if builderResult.hasDescription {
-          builderResult.description_ = try Services.Common.Containers.DescriptionV1.builderWithPrototype(builderResult.description_).mergeFrom(value).buildPartial()
+          builderResult.description_ = try Services.Common.Containers.Description.DescriptionV1.builderWithPrototype(builderResult.description_).mergeFrom(value).buildPartial()
         } else {
           builderResult.description_ = value
         }
@@ -2536,7 +2537,7 @@ public extension Services.Organization.Containers {
             permissions = subBuilder.buildPartial()
 
           case 66 :
-            let subBuilder:Services.Common.Containers.DescriptionV1.Builder = Services.Common.Containers.DescriptionV1.Builder()
+            let subBuilder:Services.Common.Containers.Description.DescriptionV1.Builder = Services.Common.Containers.Description.DescriptionV1.Builder()
             if hasDescription {
               try subBuilder.mergeFrom(description_)
             }

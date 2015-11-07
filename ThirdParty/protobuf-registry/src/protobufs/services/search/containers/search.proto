@@ -11,6 +11,7 @@ enum CategoryV1 {
     SKILLS = 3;
     INTERESTS = 4;
     GROUPS = 5;
+    POSTS = 6;
 }
 
 enum AttributeV1 {

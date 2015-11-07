@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/containers/search.proto',
   package='services.search.containers.search',
   syntax='proto2',
-  serialized_pb=_b('\n1protobufs/services/search/containers/search.proto\x12!services.search.containers.search*[\n\nCategoryV1\x12\x0c\n\x08PROFILES\x10\x00\x12\t\n\x05TEAMS\x10\x01\x12\r\n\tLOCATIONS\x10\x02\x12\n\n\x06SKILLS\x10\x03\x12\r\n\tINTERESTS\x10\x04\x12\n\n\x06GROUPS\x10\x05*+\n\x0b\x41ttributeV1\x12\x0f\n\x0bLOCATION_ID\x10\x00\x12\x0b\n\x07TEAM_ID\x10\x01\x42\x38\n6com.rhlabs.protobufs.services.search.containers.search')
+  serialized_pb=_b('\n1protobufs/services/search/containers/search.proto\x12!services.search.containers.search*f\n\nCategoryV1\x12\x0c\n\x08PROFILES\x10\x00\x12\t\n\x05TEAMS\x10\x01\x12\r\n\tLOCATIONS\x10\x02\x12\n\n\x06SKILLS\x10\x03\x12\r\n\tINTERESTS\x10\x04\x12\n\n\x06GROUPS\x10\x05\x12\t\n\x05POSTS\x10\x06*+\n\x0b\x41ttributeV1\x12\x0f\n\x0bLOCATION_ID\x10\x00\x12\x0b\n\x07TEAM_ID\x10\x01\x42\x38\n6com.rhlabs.protobufs.services.search.containers.search')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -54,11 +54,15 @@ _CATEGORYV1 = _descriptor.EnumDescriptor(
       name='GROUPS', index=5, number=5,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='POSTS', index=6, number=6,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=88,
-  serialized_end=179,
+  serialized_end=190,
 )
 _sym_db.RegisterEnumDescriptor(_CATEGORYV1)
 
@@ -80,8 +84,8 @@ _ATTRIBUTEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=181,
-  serialized_end=224,
+  serialized_start=192,
+  serialized_end=235,
 )
 _sym_db.RegisterEnumDescriptor(_ATTRIBUTEV1)
 
@@ -92,6 +96,7 @@ LOCATIONS = 2
 SKILLS = 3
 INTERESTS = 4
 GROUPS = 5
+POSTS = 6
 LOCATION_ID = 0
 TEAM_ID = 1
 

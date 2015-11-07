@@ -14,6 +14,8 @@ public func == (lhs: Services.Profile.Actions.GetProfile.RequestV1, rhs: Service
   fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
   fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
+  fieldCheck = fieldCheck && (lhs.hasAuthenticationIdentifier == rhs.hasAuthenticationIdentifier) && (!lhs.hasAuthenticationIdentifier || lhs.authenticationIdentifier == rhs.authenticationIdentifier)
+  fieldCheck = fieldCheck && (lhs.hasFields == rhs.hasFields) && (!lhs.hasFields || lhs.fields == rhs.fields)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -61,6 +63,11 @@ public extension Services.Profile.Actions.GetProfile {
     public private(set) var hasEmail:Bool = false
     public private(set) var email:String = ""
 
+    public private(set) var hasAuthenticationIdentifier:Bool = false
+    public private(set) var authenticationIdentifier:String = ""
+
+    public private(set) var hasFields:Bool = false
+    public private(set) var fields:Services.Common.Containers.FieldsV1!
     required public init() {
          super.init()
     }
@@ -79,6 +86,12 @@ public extension Services.Profile.Actions.GetProfile {
       }
       if hasEmail {
         try output.writeString(4, value:email)
+      }
+      if hasAuthenticationIdentifier {
+        try output.writeString(5, value:authenticationIdentifier)
+      }
+      if hasFields {
+        try output.writeMessage(6, value:fields)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -102,6 +115,14 @@ public extension Services.Profile.Actions.GetProfile {
       }
       if hasEmail {
         serialize_size += email.computeStringSize(4)
+      }
+      if hasAuthenticationIdentifier {
+        serialize_size += authenticationIdentifier.computeStringSize(5)
+      }
+      if hasFields {
+          if let varSizefields = fields?.computeMessageSize(6) {
+              serialize_size += varSizefields
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -168,6 +189,14 @@ public extension Services.Profile.Actions.GetProfile {
       if hasEmail {
         output += "\(indent) email: \(email) \n"
       }
+      if hasAuthenticationIdentifier {
+        output += "\(indent) authenticationIdentifier: \(authenticationIdentifier) \n"
+      }
+      if hasFields {
+        output += "\(indent) fields {\n"
+        try fields?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -186,6 +215,14 @@ public extension Services.Profile.Actions.GetProfile {
             }
             if hasEmail {
                hashCode = (hashCode &* 31) &+ email.hashValue
+            }
+            if hasAuthenticationIdentifier {
+               hashCode = (hashCode &* 31) &+ authenticationIdentifier.hashValue
+            }
+            if hasFields {
+                if let hashValuefields = fields?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuefields
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -335,6 +372,80 @@ public extension Services.Profile.Actions.GetProfile {
            builderResult.email = ""
            return self
       }
+      public var hasAuthenticationIdentifier:Bool {
+           get {
+                return builderResult.hasAuthenticationIdentifier
+           }
+      }
+      public var authenticationIdentifier:String {
+           get {
+                return builderResult.authenticationIdentifier
+           }
+           set (value) {
+               builderResult.hasAuthenticationIdentifier = true
+               builderResult.authenticationIdentifier = value
+           }
+      }
+      public func setAuthenticationIdentifier(value:String) -> Services.Profile.Actions.GetProfile.RequestV1.Builder {
+        self.authenticationIdentifier = value
+        return self
+      }
+      public func clearAuthenticationIdentifier() -> Services.Profile.Actions.GetProfile.RequestV1.Builder{
+           builderResult.hasAuthenticationIdentifier = false
+           builderResult.authenticationIdentifier = ""
+           return self
+      }
+      public var hasFields:Bool {
+           get {
+               return builderResult.hasFields
+           }
+      }
+      public var fields:Services.Common.Containers.FieldsV1! {
+           get {
+               if fieldsBuilder_ != nil {
+                  builderResult.fields = fieldsBuilder_.getMessage()
+               }
+               return builderResult.fields
+           }
+           set (value) {
+               builderResult.hasFields = true
+               builderResult.fields = value
+           }
+      }
+      private var fieldsBuilder_:Services.Common.Containers.FieldsV1.Builder! {
+           didSet {
+              builderResult.hasFields = true
+           }
+      }
+      public func getFieldsBuilder() -> Services.Common.Containers.FieldsV1.Builder {
+        if fieldsBuilder_ == nil {
+           fieldsBuilder_ = Services.Common.Containers.FieldsV1.Builder()
+           builderResult.fields = fieldsBuilder_.getMessage()
+           if fields != nil {
+              try! fieldsBuilder_.mergeFrom(fields)
+           }
+        }
+        return fieldsBuilder_
+      }
+      public func setFields(value:Services.Common.Containers.FieldsV1!) -> Services.Profile.Actions.GetProfile.RequestV1.Builder {
+        self.fields = value
+        return self
+      }
+      public func mergeFields(value:Services.Common.Containers.FieldsV1) throws -> Services.Profile.Actions.GetProfile.RequestV1.Builder {
+        if builderResult.hasFields {
+          builderResult.fields = try Services.Common.Containers.FieldsV1.builderWithPrototype(builderResult.fields).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.fields = value
+        }
+        builderResult.hasFields = true
+        return self
+      }
+      public func clearFields() -> Services.Profile.Actions.GetProfile.RequestV1.Builder {
+        fieldsBuilder_ = nil
+        builderResult.hasFields = false
+        builderResult.fields = nil
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -371,6 +482,12 @@ public extension Services.Profile.Actions.GetProfile {
         if other.hasEmail {
              email = other.email
         }
+        if other.hasAuthenticationIdentifier {
+             authenticationIdentifier = other.authenticationIdentifier
+        }
+        if (other.hasFields) {
+            try mergeFields(other.fields)
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -402,6 +519,17 @@ public extension Services.Profile.Actions.GetProfile {
 
           case 34 :
             email = try input.readString()
+
+          case 42 :
+            authenticationIdentifier = try input.readString()
+
+          case 50 :
+            let subBuilder:Services.Common.Containers.FieldsV1.Builder = Services.Common.Containers.FieldsV1.Builder()
+            if hasFields {
+              try subBuilder.mergeFrom(fields)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            fields = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

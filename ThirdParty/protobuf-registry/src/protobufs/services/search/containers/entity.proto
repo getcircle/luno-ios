@@ -1,0 +1,9 @@
+syntax = "proto3";
+package services.search.containers.entity;
+
+enum EntityTypeV1 {
+    PROFILE = 0;
+    TEAM = 1;
+    LOCATION = 2;
+    POST = 3;
+}

@@ -15,6 +15,7 @@ _sym_db = _symbol_database.Default()
 
 from protobufs.services.group import containers_pb2 as protobufs_dot_services_dot_group_dot_containers__pb2
 from protobufs.services.organization import containers_pb2 as protobufs_dot_services_dot_organization_dot_containers__pb2
+from protobufs.services.post import containers_pb2 as protobufs_dot_services_dot_post_dot_containers__pb2
 from protobufs.services.profile import containers_pb2 as protobufs_dot_services_dot_profile_dot_containers__pb2
 from protobufs.services.search.containers import search_pb2 as protobufs_dot_services_dot_search_dot_containers_dot_search__pb2
 
@@ -23,9 +24,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/containers.proto',
   package='services.search.containers',
   syntax='proto2',
-  serialized_pb=_b('\n*protobufs/services/search/containers.proto\x12\x1aservices.search.containers\x1a)protobufs/services/group/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a+protobufs/services/profile/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\xb0\x03\n\x0eSearchResultV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x39\n\x07profile\x18\x02 \x01(\x0b\x32&.services.profile.containers.ProfileV1H\x00\x12\x38\n\x04team\x18\x03 \x01(\x0b\x32(.services.organization.containers.TeamV1H\x00\x12@\n\x08location\x18\x04 \x01(\x0b\x32,.services.organization.containers.LocationV1H\x00\x12\x33\n\x05group\x18\x05 \x01(\x0b\x32\".services.group.containers.GroupV1H\x00\x12\x46\n\x0eprofile_status\x18\x06 \x01(\x0b\x32,.services.profile.containers.ProfileStatusV1H\x00\x12\x45\n\x0bteam_status\x18\x07 \x01(\x0b\x32..services.organization.containers.TeamStatusV1H\x00\x42\x0f\n\rresult_objectB1\n/com.rhlabs.protobufs.services.search.containers')
+  serialized_pb=_b('\n*protobufs/services/search/containers.proto\x12\x1aservices.search.containers\x1a)protobufs/services/group/containers.proto\x1a\x30protobufs/services/organization/containers.proto\x1a(protobufs/services/post/containers.proto\x1a+protobufs/services/profile/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\xf1\x03\n\x0eSearchResultV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x39\n\x07profile\x18\x02 \x01(\x0b\x32&.services.profile.containers.ProfileV1H\x00\x12\x38\n\x04team\x18\x03 \x01(\x0b\x32(.services.organization.containers.TeamV1H\x00\x12@\n\x08location\x18\x04 \x01(\x0b\x32,.services.organization.containers.LocationV1H\x00\x12\x33\n\x05group\x18\x05 \x01(\x0b\x32\".services.group.containers.GroupV1H\x00\x12\x46\n\x0eprofile_status\x18\x06 \x01(\x0b\x32,.services.profile.containers.ProfileStatusV1H\x00\x12\x45\n\x0bteam_status\x18\x07 \x01(\x0b\x32..services.organization.containers.TeamStatusV1H\x00\x12\x30\n\x04post\x18\t \x01(\x0b\x32 .services.post.containers.PostV1H\x00\x12\r\n\x05score\x18\x08 \x01(\x02\x42\x0f\n\rresult_objectB1\n/com.rhlabs.protobufs.services.search.containers')
   ,
-  dependencies=[protobufs_dot_services_dot_group_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_organization_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_search_dot_containers_dot_search__pb2.DESCRIPTOR,])
+  dependencies=[protobufs_dot_services_dot_group_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_organization_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_post_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_profile_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_search_dot_containers_dot_search__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -87,6 +88,20 @@ _SEARCHRESULTV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='post', full_name='services.search.containers.SearchResultV1.post', index=7,
+      number=9, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='score', full_name='services.search.containers.SearchResultV1.score', index=8,
+      number=8, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -102,8 +117,8 @@ _SEARCHRESULTV1 = _descriptor.Descriptor(
       name='result_object', full_name='services.search.containers.SearchResultV1.result_object',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=264,
-  serialized_end=696,
+  serialized_start=306,
+  serialized_end=803,
 )
 
 _SEARCHRESULTV1.fields_by_name['profile'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILEV1
@@ -112,6 +127,7 @@ _SEARCHRESULTV1.fields_by_name['location'].message_type = protobufs_dot_services
 _SEARCHRESULTV1.fields_by_name['group'].message_type = protobufs_dot_services_dot_group_dot_containers__pb2._GROUPV1
 _SEARCHRESULTV1.fields_by_name['profile_status'].message_type = protobufs_dot_services_dot_profile_dot_containers__pb2._PROFILESTATUSV1
 _SEARCHRESULTV1.fields_by_name['team_status'].message_type = protobufs_dot_services_dot_organization_dot_containers__pb2._TEAMSTATUSV1
+_SEARCHRESULTV1.fields_by_name['post'].message_type = protobufs_dot_services_dot_post_dot_containers__pb2._POSTV1
 _SEARCHRESULTV1.oneofs_by_name['result_object'].fields.append(
   _SEARCHRESULTV1.fields_by_name['profile'])
 _SEARCHRESULTV1.fields_by_name['profile'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['result_object']
@@ -130,6 +146,9 @@ _SEARCHRESULTV1.fields_by_name['profile_status'].containing_oneof = _SEARCHRESUL
 _SEARCHRESULTV1.oneofs_by_name['result_object'].fields.append(
   _SEARCHRESULTV1.fields_by_name['team_status'])
 _SEARCHRESULTV1.fields_by_name['team_status'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['result_object']
+_SEARCHRESULTV1.oneofs_by_name['result_object'].fields.append(
+  _SEARCHRESULTV1.fields_by_name['post'])
+_SEARCHRESULTV1.fields_by_name['post'].containing_oneof = _SEARCHRESULTV1.oneofs_by_name['result_object']
 DESCRIPTOR.message_types_by_name['SearchResultV1'] = _SEARCHRESULTV1
 
 SearchResultV1 = _reflection.GeneratedProtocolMessageType('SearchResultV1', (_message.Message,), dict(

@@ -10,7 +10,6 @@ public func == (lhs: Services.Profile.Containers.ContactMethodV1, rhs: Services.
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasLabel == rhs.hasLabel) && (!lhs.hasLabel || lhs.label == rhs.label)
   fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
@@ -24,7 +23,6 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = fieldCheck && (lhs.hasUserId == rhs.hasUserId) && (!lhs.hasUserId || lhs.userId == rhs.userId)
@@ -45,6 +43,8 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasDisplayTitle == rhs.hasDisplayTitle) && (!lhs.hasDisplayTitle || lhs.displayTitle == rhs.displayTitle)
   fieldCheck = fieldCheck && (lhs.hasAuthenticationIdentifier == rhs.hasAuthenticationIdentifier) && (!lhs.hasAuthenticationIdentifier || lhs.authenticationIdentifier == rhs.authenticationIdentifier)
+  fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
+  fieldCheck = fieldCheck && (lhs.hasFields == rhs.hasFields) && (!lhs.hasFields || lhs.fields == rhs.fields)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -54,7 +54,6 @@ public func == (lhs: Services.Profile.Containers.ProfileStatusV1, rhs: Services.
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
   fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
@@ -69,7 +68,6 @@ public func == (lhs: Services.Profile.Containers.ProfileItemV1, rhs: Services.Pr
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasKey == rhs.hasKey) && (!lhs.hasKey || lhs.key == rhs.key)
   fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
@@ -81,7 +79,6 @@ public func == (lhs: Services.Profile.Containers.AttributeV1, rhs: Services.Prof
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
   fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
@@ -93,7 +90,6 @@ public func == (lhs: Services.Profile.Containers.StatV1, rhs: Services.Profile.C
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasCount == rhs.hasCount) && (!lhs.hasCount || lhs.count == rhs.count)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
@@ -105,7 +101,6 @@ public func == (lhs: Services.Profile.Containers.TagV1, rhs: Services.Profile.Co
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
   fieldCheck = fieldCheck && (lhs.hasName == rhs.hasName) && (!lhs.hasName || lhs.name == rhs.name)
   fieldCheck = fieldCheck && (lhs.hasTagType == rhs.hasTagType) && (!lhs.hasTagType || lhs.tagType == rhs.tagType)
@@ -126,6 +121,7 @@ public extension Services.Profile.Containers {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
     }
@@ -150,9 +146,6 @@ public extension Services.Profile.Containers {
 
       //Enum type declaration end 
 
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
     public private(set) var hasId:Bool = false
     public private(set) var id:String = ""
 
@@ -171,9 +164,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasId {
         try output.writeString(2, value:id)
       }
@@ -195,9 +185,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasId {
         serialize_size += id.computeStringSize(2)
       }
@@ -261,9 +248,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.ContactMethodV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasId {
         output += "\(indent) id: \(id) \n"
       }
@@ -281,9 +265,6 @@ public extension Services.Profile.Containers {
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasId {
                hashCode = (hashCode &* 31) &+ id.hashValue
             }
@@ -323,29 +304,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.ContactMethodV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.ContactMethodV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
       }
       public var hasId:Bool {
            get {
@@ -463,9 +421,6 @@ public extension Services.Profile.Containers {
         if other == Services.Profile.Containers.ContactMethodV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if other.hasId {
              id = other.id
         }
@@ -492,9 +447,6 @@ public extension Services.Profile.Containers {
           case 0: 
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
-
-          case 8 :
-            version = try input.readUInt32()
 
           case 18 :
             id = try input.readString()
@@ -526,9 +478,6 @@ public extension Services.Profile.Containers {
   }
 
   final public class ProfileV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
     public private(set) var hasId:Bool = false
     public private(set) var id:String = ""
 
@@ -584,6 +533,10 @@ public extension Services.Profile.Containers {
     public private(set) var hasAuthenticationIdentifier:Bool = false
     public private(set) var authenticationIdentifier:String = ""
 
+    public private(set) var hasInflations:Bool = false
+    public private(set) var inflations:Services.Common.Containers.InflationsV1!
+    public private(set) var hasFields:Bool = false
+    public private(set) var fields:Services.Common.Containers.FieldsV1!
     required public init() {
          super.init()
     }
@@ -591,9 +544,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasId {
         try output.writeString(2, value:id)
       }
@@ -654,6 +604,12 @@ public extension Services.Profile.Containers {
       if hasAuthenticationIdentifier {
         try output.writeString(21, value:authenticationIdentifier)
       }
+      if hasInflations {
+        try output.writeMessage(22, value:inflations)
+      }
+      if hasFields {
+        try output.writeMessage(23, value:fields)
+      }
       try unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -663,9 +619,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasId {
         serialize_size += id.computeStringSize(2)
       }
@@ -728,6 +681,16 @@ public extension Services.Profile.Containers {
       if hasAuthenticationIdentifier {
         serialize_size += authenticationIdentifier.computeStringSize(21)
       }
+      if hasInflations {
+          if let varSizeinflations = inflations?.computeMessageSize(22) {
+              serialize_size += varSizeinflations
+          }
+      }
+      if hasFields {
+          if let varSizefields = fields?.computeMessageSize(23) {
+              serialize_size += varSizefields
+          }
+      }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -779,9 +742,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.ProfileV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasId {
         output += "\(indent) id: \(id) \n"
       }
@@ -852,14 +812,21 @@ public extension Services.Profile.Containers {
       if hasAuthenticationIdentifier {
         output += "\(indent) authenticationIdentifier: \(authenticationIdentifier) \n"
       }
+      if hasInflations {
+        output += "\(indent) inflations {\n"
+        try inflations?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if hasFields {
+        output += "\(indent) fields {\n"
+        try fields?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasId {
                hashCode = (hashCode &* 31) &+ id.hashValue
             }
@@ -922,6 +889,16 @@ public extension Services.Profile.Containers {
             if hasAuthenticationIdentifier {
                hashCode = (hashCode &* 31) &+ authenticationIdentifier.hashValue
             }
+            if hasInflations {
+                if let hashValueinflations = inflations?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueinflations
+                }
+            }
+            if hasFields {
+                if let hashValuefields = fields?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuefields
+                }
+            }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
         }
@@ -949,29 +926,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.ProfileV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.ProfileV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
       }
       public var hasId:Bool {
            get {
@@ -1447,6 +1401,108 @@ public extension Services.Profile.Containers {
            builderResult.authenticationIdentifier = ""
            return self
       }
+      public var hasInflations:Bool {
+           get {
+               return builderResult.hasInflations
+           }
+      }
+      public var inflations:Services.Common.Containers.InflationsV1! {
+           get {
+               if inflationsBuilder_ != nil {
+                  builderResult.inflations = inflationsBuilder_.getMessage()
+               }
+               return builderResult.inflations
+           }
+           set (value) {
+               builderResult.hasInflations = true
+               builderResult.inflations = value
+           }
+      }
+      private var inflationsBuilder_:Services.Common.Containers.InflationsV1.Builder! {
+           didSet {
+              builderResult.hasInflations = true
+           }
+      }
+      public func getInflationsBuilder() -> Services.Common.Containers.InflationsV1.Builder {
+        if inflationsBuilder_ == nil {
+           inflationsBuilder_ = Services.Common.Containers.InflationsV1.Builder()
+           builderResult.inflations = inflationsBuilder_.getMessage()
+           if inflations != nil {
+              try! inflationsBuilder_.mergeFrom(inflations)
+           }
+        }
+        return inflationsBuilder_
+      }
+      public func setInflations(value:Services.Common.Containers.InflationsV1!) -> Services.Profile.Containers.ProfileV1.Builder {
+        self.inflations = value
+        return self
+      }
+      public func mergeInflations(value:Services.Common.Containers.InflationsV1) throws -> Services.Profile.Containers.ProfileV1.Builder {
+        if builderResult.hasInflations {
+          builderResult.inflations = try Services.Common.Containers.InflationsV1.builderWithPrototype(builderResult.inflations).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.inflations = value
+        }
+        builderResult.hasInflations = true
+        return self
+      }
+      public func clearInflations() -> Services.Profile.Containers.ProfileV1.Builder {
+        inflationsBuilder_ = nil
+        builderResult.hasInflations = false
+        builderResult.inflations = nil
+        return self
+      }
+      public var hasFields:Bool {
+           get {
+               return builderResult.hasFields
+           }
+      }
+      public var fields:Services.Common.Containers.FieldsV1! {
+           get {
+               if fieldsBuilder_ != nil {
+                  builderResult.fields = fieldsBuilder_.getMessage()
+               }
+               return builderResult.fields
+           }
+           set (value) {
+               builderResult.hasFields = true
+               builderResult.fields = value
+           }
+      }
+      private var fieldsBuilder_:Services.Common.Containers.FieldsV1.Builder! {
+           didSet {
+              builderResult.hasFields = true
+           }
+      }
+      public func getFieldsBuilder() -> Services.Common.Containers.FieldsV1.Builder {
+        if fieldsBuilder_ == nil {
+           fieldsBuilder_ = Services.Common.Containers.FieldsV1.Builder()
+           builderResult.fields = fieldsBuilder_.getMessage()
+           if fields != nil {
+              try! fieldsBuilder_.mergeFrom(fields)
+           }
+        }
+        return fieldsBuilder_
+      }
+      public func setFields(value:Services.Common.Containers.FieldsV1!) -> Services.Profile.Containers.ProfileV1.Builder {
+        self.fields = value
+        return self
+      }
+      public func mergeFields(value:Services.Common.Containers.FieldsV1) throws -> Services.Profile.Containers.ProfileV1.Builder {
+        if builderResult.hasFields {
+          builderResult.fields = try Services.Common.Containers.FieldsV1.builderWithPrototype(builderResult.fields).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.fields = value
+        }
+        builderResult.hasFields = true
+        return self
+      }
+      public func clearFields() -> Services.Profile.Containers.ProfileV1.Builder {
+        fieldsBuilder_ = nil
+        builderResult.hasFields = false
+        builderResult.fields = nil
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -1470,9 +1526,6 @@ public extension Services.Profile.Containers {
       public func mergeFrom(other:Services.Profile.Containers.ProfileV1) throws -> Services.Profile.Containers.ProfileV1.Builder {
         if other == Services.Profile.Containers.ProfileV1() {
          return self
-        }
-        if other.hasVersion {
-             version = other.version
         }
         if other.hasId {
              id = other.id
@@ -1534,6 +1587,12 @@ public extension Services.Profile.Containers {
         if other.hasAuthenticationIdentifier {
              authenticationIdentifier = other.authenticationIdentifier
         }
+        if (other.hasInflations) {
+            try mergeInflations(other.inflations)
+        }
+        if (other.hasFields) {
+            try mergeFields(other.fields)
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1548,9 +1607,6 @@ public extension Services.Profile.Containers {
           case 0: 
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
-
-          case 8 :
-            version = try input.readUInt32()
 
           case 18 :
             id = try input.readString()
@@ -1621,6 +1677,22 @@ public extension Services.Profile.Containers {
           case 170 :
             authenticationIdentifier = try input.readString()
 
+          case 178 :
+            let subBuilder:Services.Common.Containers.InflationsV1.Builder = Services.Common.Containers.InflationsV1.Builder()
+            if hasInflations {
+              try subBuilder.mergeFrom(inflations)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            inflations = subBuilder.buildPartial()
+
+          case 186 :
+            let subBuilder:Services.Common.Containers.FieldsV1.Builder = Services.Common.Containers.FieldsV1.Builder()
+            if hasFields {
+              try subBuilder.mergeFrom(fields)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            fields = subBuilder.buildPartial()
+
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
                unknownFields = try unknownFieldsBuilder.build()
@@ -1634,9 +1706,6 @@ public extension Services.Profile.Containers {
   }
 
   final public class ProfileStatusV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(0)
-
     public private(set) var hasValue:Bool = false
     public private(set) var value:String = ""
 
@@ -1658,9 +1727,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasValue {
         try output.writeString(2, value:value)
       }
@@ -1685,9 +1751,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasValue {
         serialize_size += value.computeStringSize(2)
       }
@@ -1756,9 +1819,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasValue {
         output += "\(indent) value: \(value) \n"
       }
@@ -1781,9 +1841,6 @@ public extension Services.Profile.Containers {
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasValue {
                hashCode = (hashCode &* 31) &+ value.hashValue
             }
@@ -1828,29 +1885,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.ProfileStatusV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(0)
-           return self
       }
       public var hasValue:Bool {
            get {
@@ -2019,9 +2053,6 @@ public extension Services.Profile.Containers {
         if other == Services.Profile.Containers.ProfileStatusV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if other.hasValue {
              value = other.value
         }
@@ -2051,9 +2082,6 @@ public extension Services.Profile.Containers {
           case 0: 
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
-
-          case 8 :
-            version = try input.readUInt32()
 
           case 18 :
             value = try input.readString()
@@ -2088,9 +2116,6 @@ public extension Services.Profile.Containers {
   }
 
   final public class ProfileItemV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(0)
-
     public private(set) var hasKey:Bool = false
     public private(set) var key:String = ""
 
@@ -2104,9 +2129,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasKey {
         try output.writeString(2, value:key)
       }
@@ -2122,9 +2144,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasKey {
         serialize_size += key.computeStringSize(2)
       }
@@ -2182,9 +2201,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.ProfileItemV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasKey {
         output += "\(indent) key: \(key) \n"
       }
@@ -2196,9 +2212,6 @@ public extension Services.Profile.Containers {
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasKey {
                hashCode = (hashCode &* 31) &+ key.hashValue
             }
@@ -2232,29 +2245,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.ProfileItemV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.ProfileItemV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(0)
-           return self
       }
       public var hasKey:Bool {
            get {
@@ -2326,9 +2316,6 @@ public extension Services.Profile.Containers {
         if other == Services.Profile.Containers.ProfileItemV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if other.hasKey {
              key = other.key
         }
@@ -2350,9 +2337,6 @@ public extension Services.Profile.Containers {
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
 
-          case 8 :
-            version = try input.readUInt32()
-
           case 18 :
             key = try input.readString()
 
@@ -2372,9 +2356,6 @@ public extension Services.Profile.Containers {
   }
 
   final public class AttributeV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
     public private(set) var hasName:Bool = false
     public private(set) var name:String = ""
 
@@ -2388,9 +2369,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasName {
         try output.writeString(2, value:name)
       }
@@ -2406,9 +2384,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasName {
         serialize_size += name.computeStringSize(2)
       }
@@ -2466,9 +2441,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.AttributeV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasName {
         output += "\(indent) name: \(name) \n"
       }
@@ -2480,9 +2452,6 @@ public extension Services.Profile.Containers {
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasName {
                hashCode = (hashCode &* 31) &+ name.hashValue
             }
@@ -2516,29 +2485,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.AttributeV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.AttributeV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
       }
       public var hasName:Bool {
            get {
@@ -2610,9 +2556,6 @@ public extension Services.Profile.Containers {
         if other == Services.Profile.Containers.AttributeV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if other.hasName {
              name = other.name
         }
@@ -2634,9 +2577,6 @@ public extension Services.Profile.Containers {
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
 
-          case 8 :
-            version = try input.readUInt32()
-
           case 18 :
             name = try input.readString()
 
@@ -2656,9 +2596,6 @@ public extension Services.Profile.Containers {
   }
 
   final public class StatV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
     public private(set) var hasId:Bool = false
     public private(set) var id:String = ""
 
@@ -2672,9 +2609,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasId {
         try output.writeString(2, value:id)
       }
@@ -2690,9 +2624,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasId {
         serialize_size += id.computeStringSize(2)
       }
@@ -2750,9 +2681,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.StatV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasId {
         output += "\(indent) id: \(id) \n"
       }
@@ -2764,9 +2692,6 @@ public extension Services.Profile.Containers {
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasId {
                hashCode = (hashCode &* 31) &+ id.hashValue
             }
@@ -2800,29 +2725,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.StatV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.StatV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
       }
       public var hasId:Bool {
            get {
@@ -2894,9 +2796,6 @@ public extension Services.Profile.Containers {
         if other == Services.Profile.Containers.StatV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if other.hasId {
              id = other.id
         }
@@ -2917,9 +2816,6 @@ public extension Services.Profile.Containers {
           case 0: 
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
-
-          case 8 :
-            version = try input.readUInt32()
 
           case 18 :
             id = try input.readString()
@@ -2954,9 +2850,6 @@ public extension Services.Profile.Containers {
 
       //Enum type declaration end 
 
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
     public private(set) var hasId:Bool = false
     public private(set) var id:String = ""
 
@@ -2972,9 +2865,6 @@ public extension Services.Profile.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasId {
         try output.writeString(2, value:id)
       }
@@ -2993,9 +2883,6 @@ public extension Services.Profile.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasId {
         serialize_size += id.computeStringSize(2)
       }
@@ -3056,9 +2943,6 @@ public extension Services.Profile.Containers {
       return try Services.Profile.Containers.TagV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasId {
         output += "\(indent) id: \(id) \n"
       }
@@ -3073,9 +2957,6 @@ public extension Services.Profile.Containers {
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasId {
                hashCode = (hashCode &* 31) &+ id.hashValue
             }
@@ -3112,29 +2993,6 @@ public extension Services.Profile.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Profile.Containers.TagV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Profile.Containers.TagV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
       }
       public var hasId:Bool {
            get {
@@ -3229,9 +3087,6 @@ public extension Services.Profile.Containers {
         if other == Services.Profile.Containers.TagV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if other.hasId {
              id = other.id
         }
@@ -3255,9 +3110,6 @@ public extension Services.Profile.Containers {
           case 0: 
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
-
-          case 8 :
-            version = try input.readUInt32()
 
           case 18 :
             id = try input.readString()

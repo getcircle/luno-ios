@@ -13,14 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+from protobufs.services.common import containers_pb2 as protobufs_dot_services_dot_common_dot_containers__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/profile/containers.proto',
   package='services.profile.containers',
-  syntax='proto2',
-  serialized_pb=_b('\n+protobufs/services/profile/containers.proto\x12\x1bservices.profile.containers\"\xa9\x02\n\x0f\x43ontactMethodV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05label\x18\x03 \x01(\t\x12\r\n\x05value\x18\x04 \x01(\t\x12]\n\x13\x63ontact_method_type\x18\x05 \x01(\x0e\x32@.services.profile.containers.ContactMethodV1.ContactMethodTypeV1\"y\n\x13\x43ontactMethodTypeV1\x12\x0e\n\nCELL_PHONE\x10\x00\x12\t\n\x05PHONE\x10\x01\x12\t\n\x05\x45MAIL\x10\x02\x12\t\n\x05SLACK\x10\x03\x12\x0b\n\x07TWITTER\x10\x04\x12\x0b\n\x07HIPCHAT\x10\x05\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x06\x12\t\n\x05SKYPE\x10\x07\"\xb0\x04\n\tProfileV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12\x0f\n\x07user_id\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x11\n\timage_url\x18\x08 \x01(\t\x12\x11\n\tfull_name\x18\t \x01(\t\x12\x12\n\nbirth_date\x18\n \x01(\t\x12\x11\n\thire_date\x18\x0b \x01(\t\x12\x10\n\x08verified\x18\x0c \x01(\x08\x12\x39\n\x05items\x18\r \x03(\x0b\x32*.services.profile.containers.ProfileItemV1\x12\x10\n\x08nickname\x18\x0e \x01(\t\x12\x45\n\x0f\x63ontact_methods\x18\x0f \x03(\x0b\x32,.services.profile.containers.ContactMethodV1\x12\r\n\x05\x65mail\x18\x10 \x01(\t\x12\x10\n\x08is_admin\x18\x11 \x01(\x08\x12\x17\n\x0fsmall_image_url\x18\x12 \x01(\t\x12<\n\x06status\x18\x13 \x01(\x0b\x32,.services.profile.containers.ProfileStatusV1\x12\x15\n\rdisplay_title\x18\x14 \x01(\t\x12!\n\x19\x61uthentication_identifier\x18\x15 \x01(\t\"\x98\x01\n\x0fProfileStatusV1\x12\x0f\n\x07version\x18\x01 \x01(\r\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0f\n\x07\x63reated\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x05 \x01(\t\x12\x37\n\x07profile\x18\x06 \x01(\x0b\x32&.services.profile.containers.ProfileV1\"<\n\rProfileItemV1\x12\x0f\n\x07version\x18\x01 \x01(\r\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\">\n\x0b\x41ttributeV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"7\n\x06StatV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05\x63ount\x18\x03 \x01(\r\"\xb6\x01\n\x05TagV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12>\n\x08tag_type\x18\x04 \x01(\x0e\x32,.services.profile.containers.TagV1.TagTypeV1\"?\n\tTagTypeV1\x12\t\n\x05SKILL\x10\x00\x12\x0c\n\x08INTEREST\x10\x01\x12\x0c\n\x08LANGUAGE\x10\x02\x12\x0b\n\x07PROJECT\x10\x03\x42\x32\n0com.rhlabs.protobufs.services.profile.containers')
-)
+  syntax='proto3',
+  serialized_pb=_b('\n+protobufs/services/profile/containers.proto\x12\x1bservices.profile.containers\x1a*protobufs/services/common/containers.proto\"\x95\x02\n\x0f\x43ontactMethodV1\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05label\x18\x03 \x01(\t\x12\r\n\x05value\x18\x04 \x01(\t\x12]\n\x13\x63ontact_method_type\x18\x05 \x01(\x0e\x32@.services.profile.containers.ContactMethodV1.ContactMethodTypeV1\"y\n\x13\x43ontactMethodTypeV1\x12\x0e\n\nCELL_PHONE\x10\x00\x12\t\n\x05PHONE\x10\x01\x12\t\n\x05\x45MAIL\x10\x02\x12\t\n\x05SLACK\x10\x03\x12\x0b\n\x07TWITTER\x10\x04\x12\x0b\n\x07HIPCHAT\x10\x05\x12\x0c\n\x08\x46\x41\x43\x45\x42OOK\x10\x06\x12\t\n\x05SKYPE\x10\x07\"\x90\x05\n\tProfileV1\x12\n\n\x02id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12\x0f\n\x07user_id\x18\x04 \x01(\t\x12\r\n\x05title\x18\x05 \x01(\t\x12\x12\n\nfirst_name\x18\x06 \x01(\t\x12\x11\n\tlast_name\x18\x07 \x01(\t\x12\x11\n\timage_url\x18\x08 \x01(\t\x12\x11\n\tfull_name\x18\t \x01(\t\x12\x12\n\nbirth_date\x18\n \x01(\t\x12\x11\n\thire_date\x18\x0b \x01(\t\x12\x10\n\x08verified\x18\x0c \x01(\x08\x12\x39\n\x05items\x18\r \x03(\x0b\x32*.services.profile.containers.ProfileItemV1\x12\x10\n\x08nickname\x18\x0e \x01(\t\x12\x45\n\x0f\x63ontact_methods\x18\x0f \x03(\x0b\x32,.services.profile.containers.ContactMethodV1\x12\r\n\x05\x65mail\x18\x10 \x01(\t\x12\x10\n\x08is_admin\x18\x11 \x01(\x08\x12\x17\n\x0fsmall_image_url\x18\x12 \x01(\t\x12<\n\x06status\x18\x13 \x01(\x0b\x32,.services.profile.containers.ProfileStatusV1\x12\x15\n\rdisplay_title\x18\x14 \x01(\t\x12!\n\x19\x61uthentication_identifier\x18\x15 \x01(\t\x12<\n\ninflations\x18\x16 \x01(\x0b\x32(.services.common.containers.InflationsV1\x12\x34\n\x06\x66ields\x18\x17 \x01(\x0b\x32$.services.common.containers.FieldsV1\"\x87\x01\n\x0fProfileStatusV1\x12\r\n\x05value\x18\x02 \x01(\t\x12\x0f\n\x07\x63reated\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0f\n\x07\x63hanged\x18\x05 \x01(\t\x12\x37\n\x07profile\x18\x06 \x01(\x0b\x32&.services.profile.containers.ProfileV1\"+\n\rProfileItemV1\x12\x0b\n\x03key\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"*\n\x0b\x41ttributeV1\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\"#\n\x06StatV1\x12\n\n\x02id\x18\x02 \x01(\t\x12\r\n\x05\x63ount\x18\x03 \x01(\r\"\xa2\x01\n\x05TagV1\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04name\x18\x03 \x01(\t\x12>\n\x08tag_type\x18\x04 \x01(\x0e\x32,.services.profile.containers.TagV1.TagTypeV1\"?\n\tTagTypeV1\x12\t\n\x05SKILL\x10\x00\x12\x0c\n\x08INTEREST\x10\x01\x12\x0c\n\x08LANGUAGE\x10\x02\x12\x0b\n\x07PROJECT\x10\x03\x62\x06proto3')
+  ,
+  dependencies=[protobufs_dot_services_dot_common_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -66,8 +68,8 @@ _CONTACTMETHODV1_CONTACTMETHODTYPEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=253,
-  serialized_end=374,
+  serialized_start=277,
+  serialized_end=398,
 )
 _sym_db.RegisterEnumDescriptor(_CONTACTMETHODV1_CONTACTMETHODTYPEV1)
 
@@ -96,8 +98,8 @@ _TAGV1_TAGTYPEV1 = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1397,
-  serialized_end=1460,
+  serialized_start=1423,
+  serialized_end=1486,
 )
 _sym_db.RegisterEnumDescriptor(_TAGV1_TAGTYPEV1)
 
@@ -110,35 +112,28 @@ _CONTACTMETHODV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.ContactMethodV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='services.profile.containers.ContactMethodV1.id', index=1,
+      name='id', full_name='services.profile.containers.ContactMethodV1.id', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='label', full_name='services.profile.containers.ContactMethodV1.label', index=2,
+      name='label', full_name='services.profile.containers.ContactMethodV1.label', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='value', full_name='services.profile.containers.ContactMethodV1.value', index=3,
+      name='value', full_name='services.profile.containers.ContactMethodV1.value', index=2,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='contact_method_type', full_name='services.profile.containers.ContactMethodV1.contact_method_type', index=4,
+      name='contact_method_type', full_name='services.profile.containers.ContactMethodV1.contact_method_type', index=3,
       number=5, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -153,12 +148,12 @@ _CONTACTMETHODV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=77,
-  serialized_end=374,
+  serialized_start=121,
+  serialized_end=398,
 )
 
 
@@ -170,149 +165,156 @@ _PROFILEV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.ProfileV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='services.profile.containers.ProfileV1.id', index=1,
+      name='id', full_name='services.profile.containers.ProfileV1.id', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='organization_id', full_name='services.profile.containers.ProfileV1.organization_id', index=2,
+      name='organization_id', full_name='services.profile.containers.ProfileV1.organization_id', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='services.profile.containers.ProfileV1.user_id', index=3,
+      name='user_id', full_name='services.profile.containers.ProfileV1.user_id', index=2,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='title', full_name='services.profile.containers.ProfileV1.title', index=4,
+      name='title', full_name='services.profile.containers.ProfileV1.title', index=3,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='first_name', full_name='services.profile.containers.ProfileV1.first_name', index=5,
+      name='first_name', full_name='services.profile.containers.ProfileV1.first_name', index=4,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='last_name', full_name='services.profile.containers.ProfileV1.last_name', index=6,
+      name='last_name', full_name='services.profile.containers.ProfileV1.last_name', index=5,
       number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='image_url', full_name='services.profile.containers.ProfileV1.image_url', index=7,
+      name='image_url', full_name='services.profile.containers.ProfileV1.image_url', index=6,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='full_name', full_name='services.profile.containers.ProfileV1.full_name', index=8,
+      name='full_name', full_name='services.profile.containers.ProfileV1.full_name', index=7,
       number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='birth_date', full_name='services.profile.containers.ProfileV1.birth_date', index=9,
+      name='birth_date', full_name='services.profile.containers.ProfileV1.birth_date', index=8,
       number=10, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='hire_date', full_name='services.profile.containers.ProfileV1.hire_date', index=10,
+      name='hire_date', full_name='services.profile.containers.ProfileV1.hire_date', index=9,
       number=11, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='verified', full_name='services.profile.containers.ProfileV1.verified', index=11,
+      name='verified', full_name='services.profile.containers.ProfileV1.verified', index=10,
       number=12, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='items', full_name='services.profile.containers.ProfileV1.items', index=12,
+      name='items', full_name='services.profile.containers.ProfileV1.items', index=11,
       number=13, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='nickname', full_name='services.profile.containers.ProfileV1.nickname', index=13,
+      name='nickname', full_name='services.profile.containers.ProfileV1.nickname', index=12,
       number=14, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='contact_methods', full_name='services.profile.containers.ProfileV1.contact_methods', index=14,
+      name='contact_methods', full_name='services.profile.containers.ProfileV1.contact_methods', index=13,
       number=15, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='email', full_name='services.profile.containers.ProfileV1.email', index=15,
+      name='email', full_name='services.profile.containers.ProfileV1.email', index=14,
       number=16, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='is_admin', full_name='services.profile.containers.ProfileV1.is_admin', index=16,
+      name='is_admin', full_name='services.profile.containers.ProfileV1.is_admin', index=15,
       number=17, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='small_image_url', full_name='services.profile.containers.ProfileV1.small_image_url', index=17,
+      name='small_image_url', full_name='services.profile.containers.ProfileV1.small_image_url', index=16,
       number=18, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='status', full_name='services.profile.containers.ProfileV1.status', index=18,
+      name='status', full_name='services.profile.containers.ProfileV1.status', index=17,
       number=19, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='display_title', full_name='services.profile.containers.ProfileV1.display_title', index=19,
+      name='display_title', full_name='services.profile.containers.ProfileV1.display_title', index=18,
       number=20, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='authentication_identifier', full_name='services.profile.containers.ProfileV1.authentication_identifier', index=20,
+      name='authentication_identifier', full_name='services.profile.containers.ProfileV1.authentication_identifier', index=19,
       number=21, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='inflations', full_name='services.profile.containers.ProfileV1.inflations', index=20,
+      number=22, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='fields', full_name='services.profile.containers.ProfileV1.fields', index=21,
+      number=23, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -324,12 +326,12 @@ _PROFILEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=377,
-  serialized_end=937,
+  serialized_start=401,
+  serialized_end=1057,
 )
 
 
@@ -341,42 +343,35 @@ _PROFILESTATUSV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.ProfileStatusV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='value', full_name='services.profile.containers.ProfileStatusV1.value', index=1,
+      name='value', full_name='services.profile.containers.ProfileStatusV1.value', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='created', full_name='services.profile.containers.ProfileStatusV1.created', index=2,
+      name='created', full_name='services.profile.containers.ProfileStatusV1.created', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='id', full_name='services.profile.containers.ProfileStatusV1.id', index=3,
+      name='id', full_name='services.profile.containers.ProfileStatusV1.id', index=2,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='changed', full_name='services.profile.containers.ProfileStatusV1.changed', index=4,
+      name='changed', full_name='services.profile.containers.ProfileStatusV1.changed', index=3,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='profile', full_name='services.profile.containers.ProfileStatusV1.profile', index=5,
+      name='profile', full_name='services.profile.containers.ProfileStatusV1.profile', index=4,
       number=6, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -390,12 +385,12 @@ _PROFILESTATUSV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=940,
-  serialized_end=1092,
+  serialized_start=1060,
+  serialized_end=1195,
 )
 
 
@@ -407,21 +402,14 @@ _PROFILEITEMV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.ProfileItemV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='key', full_name='services.profile.containers.ProfileItemV1.key', index=1,
+      name='key', full_name='services.profile.containers.ProfileItemV1.key', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='value', full_name='services.profile.containers.ProfileItemV1.value', index=2,
+      name='value', full_name='services.profile.containers.ProfileItemV1.value', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -435,12 +423,12 @@ _PROFILEITEMV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1094,
-  serialized_end=1154,
+  serialized_start=1197,
+  serialized_end=1240,
 )
 
 
@@ -452,21 +440,14 @@ _ATTRIBUTEV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.AttributeV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='name', full_name='services.profile.containers.AttributeV1.name', index=1,
+      name='name', full_name='services.profile.containers.AttributeV1.name', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='value', full_name='services.profile.containers.AttributeV1.value', index=2,
+      name='value', full_name='services.profile.containers.AttributeV1.value', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -480,12 +461,12 @@ _ATTRIBUTEV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1156,
-  serialized_end=1218,
+  serialized_start=1242,
+  serialized_end=1284,
 )
 
 
@@ -497,21 +478,14 @@ _STATV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.StatV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='services.profile.containers.StatV1.id', index=1,
+      name='id', full_name='services.profile.containers.StatV1.id', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='count', full_name='services.profile.containers.StatV1.count', index=2,
+      name='count', full_name='services.profile.containers.StatV1.count', index=1,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -525,12 +499,12 @@ _STATV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1220,
-  serialized_end=1275,
+  serialized_start=1286,
+  serialized_end=1321,
 )
 
 
@@ -542,28 +516,21 @@ _TAGV1 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='version', full_name='services.profile.containers.TagV1.version', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='id', full_name='services.profile.containers.TagV1.id', index=1,
+      name='id', full_name='services.profile.containers.TagV1.id', index=0,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='name', full_name='services.profile.containers.TagV1.name', index=2,
+      name='name', full_name='services.profile.containers.TagV1.name', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='tag_type', full_name='services.profile.containers.TagV1.tag_type', index=3,
+      name='tag_type', full_name='services.profile.containers.TagV1.tag_type', index=2,
       number=4, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -578,12 +545,12 @@ _TAGV1 = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1278,
-  serialized_end=1460,
+  serialized_start=1324,
+  serialized_end=1486,
 )
 
 _CONTACTMETHODV1.fields_by_name['contact_method_type'].enum_type = _CONTACTMETHODV1_CONTACTMETHODTYPEV1
@@ -591,6 +558,8 @@ _CONTACTMETHODV1_CONTACTMETHODTYPEV1.containing_type = _CONTACTMETHODV1
 _PROFILEV1.fields_by_name['items'].message_type = _PROFILEITEMV1
 _PROFILEV1.fields_by_name['contact_methods'].message_type = _CONTACTMETHODV1
 _PROFILEV1.fields_by_name['status'].message_type = _PROFILESTATUSV1
+_PROFILEV1.fields_by_name['inflations'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._INFLATIONSV1
+_PROFILEV1.fields_by_name['fields'].message_type = protobufs_dot_services_dot_common_dot_containers__pb2._FIELDSV1
 _PROFILESTATUSV1.fields_by_name['profile'].message_type = _PROFILEV1
 _TAGV1.fields_by_name['tag_type'].enum_type = _TAGV1_TAGTYPEV1
 _TAGV1_TAGTYPEV1.containing_type = _TAGV1
@@ -652,6 +621,4 @@ TagV1 = _reflection.GeneratedProtocolMessageType('TagV1', (_message.Message,), d
 _sym_db.RegisterMessage(TagV1)
 
 
-DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n0com.rhlabs.protobufs.services.profile.containers'))
 # @@protoc_insertion_point(module_scope)

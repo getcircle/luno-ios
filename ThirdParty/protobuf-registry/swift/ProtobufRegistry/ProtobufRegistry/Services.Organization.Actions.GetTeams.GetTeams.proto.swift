@@ -11,6 +11,7 @@ public func == (lhs: Services.Organization.Actions.GetTeams.RequestV1, rhs: Serv
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
+  fieldCheck = fieldCheck && (lhs.ids == rhs.ids)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -49,6 +50,7 @@ public extension Services.Organization.Actions.GetTeams {
     public private(set) var hasVersion:Bool = false
     public private(set) var version:UInt32 = UInt32(1)
 
+    public private(set) var ids:Array<String> = Array<String>()
     required public init() {
          super.init()
     }
@@ -58,6 +60,11 @@ public extension Services.Organization.Actions.GetTeams {
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
       if hasVersion {
         try output.writeUInt32(1, value:version)
+      }
+      if !ids.isEmpty {
+        for oneValueids in ids {
+          try output.writeString(2, value:oneValueids)
+        }
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -71,6 +78,12 @@ public extension Services.Organization.Actions.GetTeams {
       if hasVersion {
         serialize_size += version.computeUInt32Size(1)
       }
+      var dataSizeIds:Int32 = 0
+      for oneValueids in ids {
+          dataSizeIds += oneValueids.computeStringSizeNoTag()
+      }
+      serialize_size += dataSizeIds
+      serialize_size += 1 * Int32(ids.count)
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
       return serialize_size
@@ -125,6 +138,11 @@ public extension Services.Organization.Actions.GetTeams {
       if hasVersion {
         output += "\(indent) version: \(version) \n"
       }
+      var idsElementIndex:Int = 0
+      for oneValueids in ids  {
+          output += "\(indent) ids[\(idsElementIndex)]: \(oneValueids)\n"
+          idsElementIndex++
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -132,6 +150,9 @@ public extension Services.Organization.Actions.GetTeams {
             var hashCode:Int = 7
             if hasVersion {
                hashCode = (hashCode &* 31) &+ version.hashValue
+            }
+            for oneValueids in ids {
+                hashCode = (hashCode &* 31) &+ oneValueids.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -184,6 +205,22 @@ public extension Services.Organization.Actions.GetTeams {
            builderResult.version = UInt32(1)
            return self
       }
+      public var ids:Array<String> {
+           get {
+               return builderResult.ids
+           }
+           set (array) {
+               builderResult.ids = array
+           }
+      }
+      public func setIds(value:Array<String>) -> Services.Organization.Actions.GetTeams.RequestV1.Builder {
+        self.ids = value
+        return self
+      }
+      public func clearIds() -> Services.Organization.Actions.GetTeams.RequestV1.Builder {
+         builderResult.ids.removeAll(keepCapacity: false)
+         return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -211,6 +248,9 @@ public extension Services.Organization.Actions.GetTeams {
         if other.hasVersion {
              version = other.version
         }
+        if !other.ids.isEmpty {
+            builderResult.ids += other.ids
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -228,6 +268,9 @@ public extension Services.Organization.Actions.GetTeams {
 
           case 8 :
             version = try input.readUInt32()
+
+          case 18 :
+            ids += [try input.readString()]
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

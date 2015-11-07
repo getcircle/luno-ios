@@ -1,0 +1,11 @@
+syntax = "proto3";
+package services.search.actions.update_entities;
+
+import "protobufs/services/search/containers/entity.proto";
+
+message RequestV1 {
+    services.search.containers.entity.EntityTypeV1 type = 1;
+    repeated string ids = 2;
+}
+
+message ResponseV1 {}

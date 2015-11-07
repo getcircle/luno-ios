@@ -67,6 +67,8 @@ import "protobufs/services/profile/actions/profile_exists.proto";
 import "protobufs/services/profile/actions/get_status.proto";
 
 import "protobufs/services/search/actions/search.proto";
+import "protobufs/services/search/actions/update_entities.proto";
+import "protobufs/services/search/actions/search_v2.proto";
 
 import "protobufs/services/media/actions/start_image_upload.proto";
 import "protobufs/services/media/actions/complete_image_upload.proto";
@@ -94,10 +96,19 @@ import "protobufs/services/notification/actions/register_device.proto";
 import "protobufs/services/notification/actions/get_preferences.proto";
 import "protobufs/services/notification/actions/update_preference.proto";
 import "protobufs/services/notification/actions/send_notification.proto";
+import "protobufs/services/notification/actions/no_search_results.proto";
 
 import "protobufs/services/history/actions/record_action.proto";
 
 import "protobufs/services/payment/actions/store_token.proto";
+
+import "protobufs/services/post/actions/create_post.proto";
+import "protobufs/services/post/actions/get_post.proto";
+import "protobufs/services/post/actions/get_posts.proto";
+import "protobufs/services/post/actions/update_post.proto";
+import "protobufs/services/post/actions/delete_post.proto";
+
+import "protobufs/services/feature/actions/get_flags.proto";
 
 message User {
     extend soa.ActionRequestParamsV1 {
@@ -174,6 +185,8 @@ message Profile {
 message Search {
     extend soa.ActionRequestParamsV1 {
         optional services.search.actions.search.RequestV1 search = 400;
+        optional services.search.actions.search_v2.RequestV1 search_v2 = 401;
+        optional services.search.actions.update_entities.RequestV1 update_entities = 402;
     }
 }
 
@@ -221,6 +234,7 @@ message Notification {
         optional services.notification.actions.get_preferences.RequestV1 get_preferences = 1301;
         optional services.notification.actions.update_preference.RequestV1 update_preference = 1302;
         optional services.notification.actions.send_notification.RequestV1 send_notification = 1303;
+        optional services.notification.actions.no_search_results.RequestV1 no_search_results = 1304;
     }
 }
 
@@ -233,5 +247,21 @@ message History {
 message Payment {
     extend soa.ActionRequestParamsV1 {
         optional services.payment.actions.store_token.RequestV1 store_token = 1500;
+    }
+}
+
+message Post {
+    extend soa.ActionRequestParamsV1 {
+        optional services.post.actions.create_post.RequestV1 create_post = 1600;
+        optional services.post.actions.update_post.RequestV1 update_post = 1601;
+        optional services.post.actions.get_post.RequestV1 get_post = 1602;
+        optional services.post.actions.get_posts.RequestV1 get_posts = 1603;
+        optional services.post.actions.delete_post.RequestV1 delete_post = 1604;
+    }
+}
+
+message Feature {
+    extend soa.ActionRequestParamsV1 {
+        optional services.feature.actions.get_flags.RequestV1 get_flags = 1700;
     }
 }

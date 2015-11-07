@@ -6,6 +6,7 @@ option java_package = "com.rhlabs.protobufs.services.search.containers";
 
 import "protobufs/services/group/containers.proto";
 import "protobufs/services/organization/containers.proto";
+import "protobufs/services/post/containers.proto";
 import "protobufs/services/profile/containers.proto";
 import "protobufs/services/search/containers/search.proto";
 
@@ -18,5 +19,7 @@ message SearchResultV1 {
         services.group.containers.GroupV1 group = 5;
         services.profile.containers.ProfileStatusV1 profile_status = 6;
         services.organization.containers.TeamStatusV1 team_status = 7;
+        services.post.containers.PostV1 post = 9;
     }
+    optional float score = 8;
 }

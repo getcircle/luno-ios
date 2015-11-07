@@ -1,10 +1,10 @@
-syntax = "proto2";
+syntax = "proto3";
 package services.profile.containers;
 
-// GENERATED OPTIONS FOR: JAVA
-option java_package = "com.rhlabs.protobufs.services.profile.containers";
+import "protobufs/services/common/containers.proto";
 
 message ContactMethodV1 {
+    // reserved 1;
 
     enum ContactMethodTypeV1 {
         CELL_PHONE = 0;
@@ -17,65 +17,72 @@ message ContactMethodV1 {
         SKYPE = 7;
     }
 
-    optional uint32 version = 1 [default = 1];
-    optional string id = 2;
-    optional string label = 3;
-    optional string value = 4;
-    optional ContactMethodTypeV1 contact_method_type = 5;
+    string id = 2;
+    string label = 3;
+    string value = 4;
+    ContactMethodTypeV1 contact_method_type = 5;
 }
 
 message ProfileV1 {
-    optional uint32 version = 1 [default = 1];
-    optional string id = 2;
-    optional string organization_id = 3;
-    optional string user_id = 4;
-    optional string title = 5;
-    optional string first_name = 6;
-    optional string last_name = 7;
-    optional string image_url = 8;
-    optional string full_name = 9;
-    optional string birth_date = 10;
-    optional string hire_date = 11;
-    optional bool verified = 12;
+    // reserved 1;
+
+    string id = 2;
+    string organization_id = 3;
+    string user_id = 4;
+    string title = 5;
+    string first_name = 6;
+    string last_name = 7;
+    string image_url = 8;
+    string full_name = 9;
+    string birth_date = 10;
+    string hire_date = 11;
+    bool verified = 12;
     repeated ProfileItemV1 items = 13;
-    optional string nickname = 14;
+    string nickname = 14;
     repeated ContactMethodV1 contact_methods = 15;
-    optional string email = 16;
-    optional bool is_admin = 17;
-    optional string small_image_url = 18;
-    optional ProfileStatusV1 status = 19;
-    optional string display_title = 20;
-    optional string authentication_identifier = 21;
+    string email = 16;
+    bool is_admin = 17;
+    string small_image_url = 18;
+    ProfileStatusV1 status = 19;
+    string display_title = 20;
+    string authentication_identifier = 21;
+    services.common.containers.InflationsV1 inflations = 22;
+    services.common.containers.FieldsV1 fields = 23;
 }
 
 message ProfileStatusV1 {
-    optional uint32 version = 1;
-    optional string value = 2;
-    optional string created = 3;
-    optional string id = 4;
-    optional string changed = 5;
-    optional ProfileV1 profile = 6;
+    // reserved 1;
+
+    string value = 2;
+    string created = 3;
+    string id = 4;
+    string changed = 5;
+    ProfileV1 profile = 6;
 }
 
 message ProfileItemV1 {
-    optional uint32 version = 1;
-    optional string key = 2;
-    optional string value = 3;
+    // reserved 1;
+
+    string key = 2;
+    string value = 3;
 }
 
 message AttributeV1 {
-    optional uint32 version = 1 [default = 1];
-    optional string name = 2;
-    optional string value = 3;
+    // reserved 1;
+
+    string name = 2;
+    string value = 3;
 }
 
 message StatV1 {
-    optional uint32 version = 1 [default = 1];
-    optional string id = 2;
-    optional uint32 count = 3;
+    // reserved 1;
+
+    string id = 2;
+    uint32 count = 3;
 }
 
 message TagV1 {
+    // reserved 1;
 
     enum TagTypeV1 {
         SKILL = 0;
@@ -84,8 +91,7 @@ message TagV1 {
         PROJECT = 3;
     }
 
-    optional uint32 version = 1 [default = 1];
-    optional string id = 2;
-    optional string name = 3;
-    optional TagTypeV1 tag_type = 4;
+    string id = 2;
+    string name = 3;
+    TagTypeV1 tag_type = 4;
 }
