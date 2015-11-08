@@ -186,6 +186,16 @@ extension CircleCache {
         })
     }
     
+    static func recordPostSearchResult(post: Services.Post.Containers.PostV1) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+            let recentSearchResult = RecentSearchResult()
+            recentSearchResult.id = post.id
+            recentSearchResult.object = post.data()
+            recentSearchResult.type = RecentSearchResult.ResultType.Post.rawValue
+            RecentSearchResult.createOrUpdate(recentSearchResult)
+        })
+    }
+    
     static func getRecordedSearchResults(limit: Int) -> [AnyObject] {
         var searchResults = [AnyObject]()
         
