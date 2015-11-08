@@ -126,6 +126,9 @@ class SearchQueryDataSource: CardDataSource {
                     else if let profileStatus = result.profileStatus {
                         self.searchResults.append(profileStatus)
                     }
+                    else if let post = result.post {
+                        self.searchResults.append(post)
+                    }
                 }
                 
                 self.searchCache[query] = self.searchResults

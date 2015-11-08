@@ -106,6 +106,9 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         else if let location = data as? Services.Organization.Containers.LocationV1 {
             setLocation(location)
         }
+        else if let post = data as? Services.Post.Containers.PostV1 {
+            setPost(post)
+        }
         
         addButton.hidden = true
         separatorView.hidden = true
@@ -141,6 +144,17 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
         profileImageView.image = UIImage(named: "detail_office")
+        teamNameLetterLabel.hidden = true
+    }
+    
+    private func setPost(post: Services.Post.Containers.PostV1) {
+        nameLabel.text = post.title
+        subTextLabel.text = ""
+        
+        profileImageView.imageProfileIdentifier = post.id
+        profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
+        profileImageView.contentMode = .Center
+        profileImageView.image = nil
         teamNameLetterLabel.hidden = true
     }
 
