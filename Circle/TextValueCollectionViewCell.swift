@@ -42,7 +42,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         selectedBackgroundView = nil
-        configureTextLabel()
+        configureTextView()
         configureTimestampLabel()
         configurePlaceholderButton()
     }
@@ -53,7 +53,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         editTextButton?.hidden = true
     }
     
-    func configureTextLabel() {
+    func configureTextView() {
         textView.textColor = UIColor.appPrimaryTextColor()
         textView.font = UIFont.mainTextFont()
         textView.text = ""
