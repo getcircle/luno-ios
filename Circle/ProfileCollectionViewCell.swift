@@ -37,6 +37,11 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var teamNameLetterLabel: UILabel!
     @IBOutlet weak private(set) var addButton: UIButton!
     @IBOutlet weak private(set) var separatorView: UIView!
+    @IBOutlet weak private(set) var disclosureIndicatorView: UIImageView! {
+        didSet {
+            disclosureIndicatorView.tintColor = UIColor.appIconColor()
+        }
+    }
 
     private var nameLabelRightConstraintInitialValue: CGFloat!
     

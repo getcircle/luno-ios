@@ -36,6 +36,12 @@ class PostDetailDataSource: CardDataSource {
         }
     }
     
+    override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let authorCell = cell as? ProfileCollectionViewCell {
+            authorCell.disclosureIndicatorView.hidden = false
+        }
+    }
+    
     // MARK: - Populate Data
     
     internal func populateData() {
