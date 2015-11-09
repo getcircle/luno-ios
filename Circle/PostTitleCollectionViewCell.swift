@@ -11,9 +11,9 @@ import ProtobufRegistry
 
 class PostTitleCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var titleLabelBottomSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak private(set) var timestampLabel: UILabel!
+    @IBOutlet weak private var timestampLabel: UILabel!
     
     override class var classReuseIdentifier: String {
         return "PostTitleCollectionViewCell"
