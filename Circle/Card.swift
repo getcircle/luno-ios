@@ -69,6 +69,7 @@ class Card: Equatable {
         case KeyValue = "KeyValue"
         case Locations = "Locations"
         case LocationsAddress = "Locations Address"
+        case PostTitle = "PostTitle"
         case Profiles = "Profiles"
         case ProfilesGrid = "ProfilesGrid"
         case Placeholder = "Placeholder"
@@ -110,6 +111,12 @@ class Card: Equatable {
                 return CardTypeInfo(
                     imageName: "detail_location",
                     classType: AddressCollectionViewCell.self
+                )
+                
+            case PostTitle:
+                return CardTypeInfo(
+                    imageName: String(),
+                    classType: PostTitleCollectionViewCell.self
                 )
 
             case Profiles:

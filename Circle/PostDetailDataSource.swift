@@ -46,19 +46,10 @@ class PostDetailDataSource: CardDataSource {
     }
     
     internal func addTitleCard() -> Card? {
-        let card = Card(cardType: .TextValue, title: "")
+        let card = Card(cardType: .PostTitle, title: "")
         card.showContentCount = false
-        card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, -10.0, 0.0)
-        card.addContent(content:
-            [
-                TextData(
-                    type: .PostContent,
-                    andValue: post.title,
-                    andTimestamp: post.changed,
-                    andCanEdit: canEdit()
-                )
-            ]
-        )
+        card.sectionInset = UIEdgeInsetsMake(15.0, 10.0, 10.0, 10.0)
+        card.addContent(content: [post])
         appendCard(card)
         return card
     }

@@ -15,6 +15,8 @@
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
 		47A1FDCA1BEF1EC700C1089A /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1FDC91BEF1EC700C1089A /* PostDetailViewController.swift */; };
 		47A1FDCD1BEF1FE800C1089A /* PostDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1FDCC1BEF1FE800C1089A /* PostDetailDataSource.swift */; };
+		47A1FDCF1BF1152D00C1089A /* PostTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */; };
+		47A1FDD11BF1168400C1089A /* PostTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A1FDD01BF1168400C1089A /* PostTitleCollectionViewCell.xib */; };
 		47CAC38F1BB9C13900A11652 /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */; };
 		47CAC3921BB9C24C00A11652 /* SearchResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */; };
 		47CAC3941BB9C87300A11652 /* ProfilesSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */; };
@@ -337,6 +339,8 @@
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		47A1FDC91BEF1EC700C1089A /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		47A1FDCC1BEF1FE800C1089A /* PostDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailDataSource.swift; sourceTree = "<group>"; };
+		47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		47A1FDD01BF1168400C1089A /* PostTitleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTitleCollectionViewCell.xib; sourceTree = "<group>"; };
 		47CAC38E1BB9C13900A11652 /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		47CAC3911BB9C24C00A11652 /* SearchResultCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesSearchDataSource.swift; sourceTree = "<group>"; };
@@ -791,6 +795,7 @@
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F1D950F1BD5A4B600434EC4 /* MessageView.swift */,
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
+				47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
 				8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */,
 				8F22CBDE1A27A8E60026376E /* ProfileHeaderCollectionReusableView.swift */,
@@ -889,6 +894,7 @@
 				8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */,
 				8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */,
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
+				47A1FDD01BF1168400C1089A /* PostTitleCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
 				8F22CBDF1A27A8E60026376E /* ProfileHeaderCollectionReusableView.xib */,
@@ -1305,6 +1311,7 @@
 				BFCFDB221A91951A009A5FD4 /* TextValueCollectionViewCell.xib in Resources */,
 				8FEE3D9D1A85B97E00B17569 /* EditProfileViewController.xib in Resources */,
 				8F22CBE91A27FDA70026376E /* KeyValueCollectionViewCell.xib in Resources */,
+				47A1FDD11BF1168400C1089A /* PostTitleCollectionViewCell.xib in Resources */,
 				4744B6FC1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib in Resources */,
 				8F0ADD451AC5344E00A44B68 /* Loader_00041@2x.png in Resources */,
 				8F0ADD2E1AC5344E00A44B68 /* Loader_00018@2x.png in Resources */,
@@ -1672,6 +1679,7 @@
 				BFC6CF9C1A44D2B90081F45B /* ServiceClient.swift in Sources */,
 				8F74003F1A6A442900D96B60 /* CircleAlertViewAnimator.swift in Sources */,
 				BFF5E6F51A814C2C00827757 /* AuthorizationViewController.swift in Sources */,
+				47A1FDCF1BF1152D00C1089A /* PostTitleCollectionViewCell.swift in Sources */,
 				BFEDF2EF1ABA251C00E6F3D5 /* OverviewViewController.swift in Sources */,
 				8F5933CC1AC9FD8B00905E14 /* NotificationsViewController.swift in Sources */,
 				BFE213CF1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift in Sources */,
