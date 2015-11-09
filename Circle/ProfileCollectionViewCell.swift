@@ -154,7 +154,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.imageProfileIdentifier = post.id
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
-        profileImageView.image = nil
+        profileImageView.image = UIImage(named: "detail_post")
         teamNameLetterLabel.hidden = true
     }
 
