@@ -21,12 +21,23 @@ class ProfilesSelectorViewController: ProfilesViewController,
 {
     var selectedProfiles = Array<Services.Profile.Containers.ProfileV1>()
     private var selectedProfileIDs = Set<String>()
-    private var tokenField: TokenField!
-    private var tokenFieldBottomBorder: UIView!
+    private var tokenField: TokenField?
+    private var tokenFieldBottomBorder: UIView?
+    private var allowsMultipleSelection = false
+    private var searchPlaceholderText: String?
+    private var searchPlaceholderComment: String?
     
     var profileSelectorDelegate: ProfileSelectorDelegate?
     
     // MARK: Initialization
+    
+    convenience init(allowsMultipleSelection multipleSelection: Bool, searchPlaceholderText text: String? = nil, searchPlaceholderComment comment: String? = nil) {
+        self.init(isFilterView: false)
+
+        allowsMultipleSelection = multipleSelection
+        searchPlaceholderText = text
+        searchPlaceholderComment = comment
+    }
     
     override func initializeDataSource() -> CardDataSource {
         let dataSource = super.initializeDataSource()
@@ -45,11 +56,21 @@ class ProfilesSelectorViewController: ProfilesViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLocalState()
-        configureNavigationBar()
-        configureTokenField()
+        if allowsMultipleSelection {
+            configureNavigationBar()
+            configureTokenField()
+        }
     }
 
     // MARK: Configuration
+    
+    override func filterPlaceHolderText() -> String {
+        return searchPlaceholderText ?? super.filterPlaceHolderText()
+    }
+    
+    override func filterPlaceHolderComment() -> String {
+        return searchPlaceholderComment ?? super.filterPlaceHolderComment()
+    }
     
     private func configureLocalState() {
         if selectedProfiles.count > 0 {
@@ -65,28 +86,30 @@ class ProfilesSelectorViewController: ProfilesViewController,
     }
 
     private func configureTokenField() {
-        tokenField = TokenField(forAutoLayout: ())
-        tokenField.tokenHeight = 34.0
-        tokenField.tokenTopPadding = 6.0
-        tokenField.tokenBottomPadding = 4.0
-        tokenField.tokenCornerRadius = 5.0
+        let aTokenField = TokenField(forAutoLayout: ())
+        aTokenField.tokenHeight = 34.0
+        aTokenField.tokenTopPadding = 6.0
+        aTokenField.tokenBottomPadding = 4.0
+        aTokenField.tokenCornerRadius = 5.0
         
-        view.addSubview(tokenField)
-        tokenField.backgroundColor = UIColor.whiteColor()
-        tokenField.tokenBackgroundViewBackgroundColor = tokenField.tokenHighlightedBackgroundViewBackgroundColor.colorWithAlphaComponent(0.1)
-        tokenField.tokenBorderColor = UIColor.whiteColor()
-        tokenField.tokenHighlightedBorderColor = UIColor.whiteColor()
+        view.addSubview(aTokenField)
+        aTokenField.backgroundColor = UIColor.whiteColor()
+        aTokenField.tokenBackgroundViewBackgroundColor = aTokenField.tokenHighlightedBackgroundViewBackgroundColor.colorWithAlphaComponent(0.1)
+        aTokenField.tokenBorderColor = UIColor.whiteColor()
+        aTokenField.tokenHighlightedBorderColor = UIColor.whiteColor()
         
-        tokenField.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
-        tokenField.autoSetDimension(.Height, toSize: 44.0)
-        tokenField.dataSource = self
-        tokenField.delegate = self
-        tokenFieldBottomBorder = tokenField.addBottomBorder()
-        tokenField.reloadData()
-        tokenField.becomeFirstResponder()
+        aTokenField.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsetsZero, excludingEdge: .Bottom)
+        aTokenField.autoSetDimension(.Height, toSize: 44.0)
+        aTokenField.dataSource = self
+        aTokenField.delegate = self
+        aTokenField.reloadData()
+        aTokenField.becomeFirstResponder()
         
         collectionViewVerticalSpaceConstraint!.constant = 44.0
         collectionView.setNeedsUpdateConstraints()
+
+        tokenFieldBottomBorder = aTokenField.addBottomBorder()
+        tokenField = aTokenField
     }
     
     // MARK: IBActions
@@ -110,9 +133,12 @@ class ProfilesSelectorViewController: ProfilesViewController,
         if let profile = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileV1 where !selectedProfileIDs.contains(profile.id) {
             selectedProfiles.append(profile)
             selectedProfileIDs.insert(profile.id)
-            tokenField.reloadData()
-            if !tokenField.isFirstResponder() {
-                tokenField.becomeFirstResponder()
+            tokenField?.reloadData()
+            if allowsMultipleSelection {
+                tokenField?.becomeFirstResponder()
+            }
+            else {
+                doneButtonTapped(nil)
             }
             
             // Update results

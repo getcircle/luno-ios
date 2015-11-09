@@ -20,6 +20,7 @@ typealias GetTeamReportingDetailsCompletionHandler = (
     manager: Services.Profile.Containers.ProfileV1?,
     error: NSError?
 ) -> Void
+typealias SetManagerCompletionHandler = (error: NSError?) -> Void
 
 extension Services.Organization.Actions {
     
@@ -108,6 +109,22 @@ extension Services.Organization.Actions {
             completionHandler?(members: response?.members, childTeams: response?.childTeams, manager: response?.manager, error: error)
         }
     }
+    
+    static func setManager(profileId: String, managerProfileId: String, completionHandler: SetManagerCompletionHandler?) {
+        let requestBuilder = Services.Organization.Actions.SetManager.RequestV1.Builder()
+        requestBuilder.profileId = profileId
+        requestBuilder.managerProfileId = managerProfileId
+        
+        let client = ServiceClient(serviceName: "organization")
+        client.callAction(
+            "set_manager",
+            extensionField: Services.Registry.Requests.Organization.setManager(),
+            requestBuilder: requestBuilder
+            ) { (_, _, wrapped, error) -> Void in
+                completionHandler?(error: error)
+        }
+    }
+    
 }
 
 extension Services.Organization.Containers.OrganizationV1 {

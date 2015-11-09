@@ -37,6 +37,9 @@ struct TrackerProperty {
         // Editable forms
         case EditProfile = "Edit Profile"
         case EditTeam = "Edit Team"
+        
+        // Selector pages
+        case ProfileSelector = "Profile Selector"
     }
     
     enum ContactLocation: String {
