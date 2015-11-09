@@ -62,7 +62,7 @@ class ProfileStatusDetailDataSource: CardDataSource {
         super.configureCell(cell, atIndexPath: indexPath)
         
         if let cell = cell as? TextValueCollectionViewCell {
-            cell.textLabel.font = UIFont.italicFont(20.0)
+            cell.textView.font = UIFont.italicFont(20.0)
         }
     }
     
