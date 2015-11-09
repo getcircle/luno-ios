@@ -14,14 +14,14 @@ protocol EditProfileDelegate {
     func didFinishEditingProfile()
 }
 
-class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, FormBuilderPhotoFieldHandler, FormBuilderDelegate {
+class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ProfileSelectorDelegate, FormBuilderPhotoFieldHandler, FormBuilderProfileFieldHandler, FormBuilderDelegate {
     
     @IBOutlet weak private(set) var rootContentView: UIView!
     @IBOutlet weak private(set) var rootContentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var rootScrollView: UIScrollView!
     
     var editProfileDelegate: EditProfileDelegate?
-    var hasManager: Bool?
+    var manager: Services.Profile.Containers.ProfileV1?
     var profile: Services.Profile.Containers.ProfileV1!
 
     private var addImageActionSheet: UIAlertController?
@@ -33,11 +33,11 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
 
         // Do any additional setup after loading the view.
         Tracker.sharedInstance.trackPageView(pageType: .EditProfile, pageId: profile.id)
-        
-        initializeMessageView()
         
         configureView()
         configureScrollView()
@@ -74,16 +74,6 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         formBuilder.activeField?.resignFirstResponder()
-    }
-
-    // MARK: - Initialization
-    
-    func initializeMessageView() {
-        if let hasManager = hasManager where hasManager == true {
-            messageView = addMessageView(AppStrings.EditProfileFormWarning, messageType: .Warning)
-            messageView?.hide(animated: false)
-            view.bringSubviewToFront(messageView!)
-        }
     }
     
     // MARK: - Configuration
@@ -134,6 +124,17 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                         name: "Phone"
                     ),
                 ]),
+            FormBuilder.Section(
+                title: AppStrings.ProfileSectionManagerTitle,
+                items: [
+                    FormBuilder.ProfileSectionItem(
+                        placeholder: AppStrings.EditProfileManagerPlaceholder,
+                        placeholderColor: UIColor.appMissingFieldValueColor(),
+                        type: .Profile,
+                        fieldType: .Profile,
+                        profileFieldHandler: self
+                    ),
+            ]),
         ]
         
         for contactMethod in profile.contactMethods {
@@ -172,6 +173,10 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                     case .HireDate:
                         item.value = profile.hireDate
                         
+                    case .Profile:
+                        item.name = manager?.fullName
+                        // Set item value to be an empty string if manager is nil so that the form detects a change when a manager is selected.
+                        item.value = manager?.id ?? ""
                     }
                 }
             }
@@ -273,6 +278,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         builder.verified = true
         formBuilder.updateValues()
         var contactMethods = Array<Services.Profile.Containers.ContactMethodV1>()
+        var managerChanged = false
         for section in formBuilder.sections {
             for item in section.items {
                 if let value = item.value {
@@ -312,6 +318,8 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                             case .HireDate:
                                 builder.hireDate = value
                                 
+                            case .Profile:
+                                managerChanged = (item.value != item.originalValue)
                             }
                         }
                     }
@@ -323,14 +331,45 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             builder.imageUrl = uploadedImageUrl
             trackUpdatedFields.append("image_url")
         }
-        Services.Profile.Actions.updateProfile(try builder.build()) { (profile, error) -> Void in
-            if let profile = profile {
-                AuthenticationViewController.updateUserProfile(profile)
-                if trackUpdatedFields.count > 0 {
-                    Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: trackUpdatedFields)
+        
+        let updateProfile = {
+            Services.Profile.Actions.updateProfile(try builder.build()) { (profile, error) -> Void in
+                if let error = error {
+                    print("Error: \(error)")
+                    self.showMessageViewForSaveError()
+                }
+                else {
+                    if let profile = profile {
+                        AuthenticationViewController.updateUserProfile(profile)
+                        if trackUpdatedFields.count > 0 {
+                            Tracker.sharedInstance.trackProfileUpdate(profile.id, fields: trackUpdatedFields)
+                        }
+                    }
+                    completion()
                 }
             }
-            completion()
+        }
+        
+        if let newManager = manager where managerChanged {
+            trackUpdatedFields.append("manager")
+            Services.Organization.Actions.setManager(profile.id, managerProfileId: newManager.id, completionHandler: { (setManagerError) -> Void in
+                if let setManagerError = setManagerError {
+                    print("Error: \(setManagerError)")
+                    self.showMessageViewForSaveError()
+                }
+                else {
+                    do {
+                        try updateProfile()
+                    }
+                    catch {
+                        print("Error: \(error)")
+                        self.showMessageViewForSaveError()
+                    }
+                }
+            })
+        }
+        else {
+            try updateProfile()
         }
     }
     
@@ -338,6 +377,29 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         if let activeField = formBuilder.activeField {
             activeField.resignFirstResponder()
         }
+    }
+    
+    // MARK: - Message View
+    
+    private func showMessageViewWithMessage(message: String, type: MessageView.MessageType) {
+        // Replace existing message view if it's not what we want.
+        if messageView?.message != message || messageView?.messageType != type {
+            messageView?.removeFromSuperview()
+            messageView = addMessageView(message, messageType: type)
+            view.bringSubviewToFront(messageView!)
+        }
+        
+        messageView?.show(animated: true)
+    }
+    
+    private func showMessageViewForManagerNotification() {
+        if let _ = manager {
+            showMessageViewWithMessage(AppStrings.EditProfileFormWarning, type: .Warning)
+        }
+    }
+    
+    private func showMessageViewForSaveError() {
+        showMessageViewWithMessage(AppStrings.EditProfileSaveError, type: .Error)
     }
 
     // MARK: - Gesture Recognizer
@@ -351,13 +413,11 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func formValuesDidChange(newValues: Bool) {
         saveButton?.enabled = newValues
         
-        if let messageView = messageView, hasManager = hasManager where hasManager == true {
-            if newValues || imageToUpload != nil {
-                messageView.show(animated: true)
-            }
-            else {
-                messageView.hide(animated: true)
-            }
+        if newValues || imageToUpload != nil {
+            showMessageViewForManagerNotification()
+        }
+        else {
+            messageView?.hide(animated: true)
         }
     }
     
@@ -478,5 +538,28 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - ProfileSelectorDelegate
+    
+    func onSelectedProfiles(profiles: Array<Services.Profile.Containers.ProfileV1>) -> Bool {
+        manager = profiles.first
+        formBuilder.updateValues()
+        navigationController?.popViewControllerAnimated(true)
+        return false
+    }
+    
+    // MARK: - FormBuilderProfileFieldHandler
+    
+    func didTapOnProfileField(sender: UIView) {
+        let profilesSelectorViewController = ProfilesSelectorViewController(allowsMultipleSelection: false, searchPlaceholderText: "Search Manager", searchPlaceholderComment: "Placeholder for text field used to search for manager")
+        profilesSelectorViewController.title = AppStrings.ChangeManagerTitle
+        profilesSelectorViewController.pageType = .ProfileSelector
+        profilesSelectorViewController.profileSelectorDelegate = self
+        navigationController?.pushViewController(profilesSelectorViewController, animated: true)
+    }
+    
+    func selectedProfileForProfileFieldItem(item: FormBuilder.ProfileSectionItem) -> Services.Profile.Containers.ProfileV1? {
+        return manager
     }
 }

@@ -184,7 +184,7 @@ class ProfileDetailDataSource: CardDataSource {
         }
         
         if content.count > 0 {
-            let card = Card(cardType: .Profiles, title: "Reports to")
+            let card = Card(cardType: .Profiles, title: AppStrings.ProfileSectionManagerTitle)
             card.showContentCount = false
             card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
             card.addContent(content: content)
