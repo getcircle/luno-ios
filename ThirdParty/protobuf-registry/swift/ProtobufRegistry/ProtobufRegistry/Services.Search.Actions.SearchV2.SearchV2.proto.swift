@@ -466,7 +466,7 @@ public extension Services.Search.Actions.SearchV2 {
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
 
-          case 18 :
+          case 10 :
             let subBuilder = Services.Search.Containers.SearchResultV1.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             results += [subBuilder.buildPartial()]

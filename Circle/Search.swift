@@ -44,9 +44,7 @@ extension Services.Search.Actions {
         }
         else {
             // Use search_v2 for non-attribute searches
-            
-            // Should probably use SearchV2.RequestV1, but doing so causes 'query' field not to be recognized by backend
-            let requestBuilder = Services.Search.Actions.Search.RequestV2.Builder()
+            let requestBuilder = Services.Search.Actions.SearchV2.RequestV1.Builder()
             requestBuilder.query = query
             
             if let category = category {
