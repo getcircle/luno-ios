@@ -18,12 +18,17 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var editTextButton: UIButton?
     @IBOutlet weak private(set) var placeholderButton: UIButton?
     @IBOutlet weak private(set) var textView: UITextView!
-    @IBOutlet weak private(set) var textViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var textViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            textViewTopMargin = textViewTopConstraint.constant
+        }
+    }
     @IBOutlet weak private(set) var timestampLabel: UILabel?
 
     var delegate: TextValueCollectionViewDelegate?
     
     private var currentTextDataType: TextData.TextDataType?
+    private var textViewTopMargin = CGFloat(0.0)
     
     override class var classReuseIdentifier: String {
         return "TextValueCollectionViewCell"
@@ -69,7 +74,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     
     override func intrinsicContentSize() -> CGSize {
         var height = textView.text == nil || textView.text?.trimWhitespace() ?? "" == "" ? 60.0 : textView.intrinsicContentSize().height
-        height += textViewTopConstraint.constant * 2
+        height += textViewTopMargin * 2
         height += timestampLabel?.hidden ?? true ? 0.0 : 30.0
         return CGSizeMake(self.dynamicType.width, height)
     }
@@ -101,6 +106,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                     }
                 }
                 else {
+                    textViewTopConstraint.constant = 0
                     textView.dataDetectorTypes = [.PhoneNumber, .Link]
                 }
                 
