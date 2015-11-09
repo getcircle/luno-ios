@@ -154,7 +154,14 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     private func setPost(post: Services.Post.Containers.PostV1) {
         nameLabel.text = post.title
-        subTextLabel.text = ""
+        if let formattedTimestamp = TextData.getFormattedTimestamp(post.changed, addHyphen: false) {
+            if let author = post.byProfile {
+                subTextLabel.text = "\(author.fullName) - \(formattedTimestamp)"
+            }
+            else {
+                subTextLabel.text = "Last edited \(formattedTimestamp)"
+            }
+        }
         
         profileImageView.imageProfileIdentifier = post.id
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
