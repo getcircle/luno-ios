@@ -16,6 +16,7 @@ class TextData {
         case ProfileStatus
         case TeamDescription
         case TeamStatus
+        case PostContent
     }
     
     var placeholder: String?

@@ -33,5 +33,27 @@ class PostDetailViewController: DetailViewController {
         collectionView.delegate = delegate
         
         super.configureCollectionView()
+        
+        collectionView.backgroundColor = UIColor.whiteColor()
     }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let dataSource = collectionView.dataSource as? PostDetailDataSource {
+            if let card = dataSource.cardAtSection(indexPath.section) {
+                switch card.type {
+                case .Profiles:
+                    let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
+                    if let profile = data as? Services.Profile.Containers.ProfileV1 {
+                        showProfileDetail(profile)
+                    }
+                    
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
 }
