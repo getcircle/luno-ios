@@ -12,6 +12,7 @@ import ProtobufRegistry
 class PostTitleCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private var titleLabelBottomSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var timestampLabel: UILabel!
     
     override class var classReuseIdentifier: String {
@@ -29,7 +30,7 @@ class PostTitleCollectionViewCell: CircleCollectionViewCell {
     }
 
     override func intrinsicContentSize() -> CGSize {
-        let height = titleLabel.intrinsicContentSize().height + timestampLabel.frameHeight
+        let height = titleLabel.intrinsicContentSize().height + titleLabelBottomSpaceConstraint.constant + timestampLabel.frameHeight
         return CGSizeMake(self.dynamicType.width, height)
     }
     

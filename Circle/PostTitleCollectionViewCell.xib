@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-9i-Ta0">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-9i-Ta0">
                     <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                     <animations/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
@@ -51,6 +51,7 @@
             <connections>
                 <outlet property="timestampLabel" destination="g94-jA-Vmg" id="dP2-HP-1cx"/>
                 <outlet property="titleLabel" destination="fgI-9i-Ta0" id="sYS-md-LHv"/>
+                <outlet property="titleLabelBottomSpaceConstraint" destination="IPJ-be-NIC" id="596-fC-ex3"/>
             </connections>
         </view>
     </objects>

@@ -99,18 +99,27 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
                 // Add text and handle quoting
                 var text: String = textData.value
                 if textData.type != .PostContent {
-                    textView.selectable = false
                     if textData.type == .TeamStatus || textData.type == .ProfileStatus {
                         text = "\"" + textData.value + "\""
                         textView.font = italicFont
                     }
+                    textView.text = text
+                    textView.selectable = false
                 }
                 else {
                     textViewTopConstraint.constant = 0
                     textView.dataDetectorTypes = [.PhoneNumber, .Link]
+                    if let font = textView.font, textColor = textView.textColor {
+                        let paragraphStyle = NSMutableParagraphStyle()
+                        paragraphStyle.lineSpacing = 1.0
+                        let attributes = [
+                            NSParagraphStyleAttributeName: paragraphStyle,
+                            NSFontAttributeName: font,
+                            NSForegroundColorAttributeName: textColor,
+                        ]
+                        textView.attributedText = NSAttributedString(string: text, attributes: attributes)
+                    }
                 }
-                
-                textView.text = text
                 
                 // Add timestamp if present
                 if let timestamp = TextData.getFormattedTimestamp(
