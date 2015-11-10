@@ -25,6 +25,7 @@
 		47CAC39A1BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */; };
 		47CAC39C1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */; };
 		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
+		47D30D271BF18B450082B995 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D30D261BF18B450082B995 /* File.swift */; };
 		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; };
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; };
 		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; };
@@ -349,6 +350,7 @@
 		47CAC3991BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
+		47D30D261BF18B450082B995 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1145,6 +1147,7 @@
 				BFE213C71A5EE63F0033E2F5 /* Search.swift */,
 				8F93E2BE1B26C08D004671D7 /* Team.swift */,
 				BF2CBFD51A473E9100BE589D /* User.swift */,
+				47D30D261BF18B450082B995 /* File.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1568,6 +1571,7 @@
 				8F823E4C1A729E1B0006264B /* TeamsOverviewViewController.swift in Sources */,
 				8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */,
 				BF97F2D71ACA0B4500F1BC2E /* TokenField.swift in Sources */,
+				47D30D271BF18B450082B995 /* File.swift in Sources */,
 				47CAC3981BB9CB9500A11652 /* LocationsSearchDataSource.swift in Sources */,
 				8FD7EC471AA530EF004A2CEA /* AddressCollectionViewCell.swift in Sources */,
 				BF6A2D0F1AAD08DA00692315 /* EmptyCollectionViewCell.swift in Sources */,

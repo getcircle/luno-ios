@@ -13,6 +13,7 @@ class PostDetailDataSource: CardDataSource {
     
     var post: Services.Post.Containers.PostV1!
     var author: Services.Profile.Containers.ProfileV1?
+    var files: [Services.File.Containers.FileV1]?
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         var storedError: NSError?
@@ -27,7 +28,17 @@ class PostDetailDataSource: CardDataSource {
                 self.author = profile
             }
             dispatch_group_leave(actionsGroup)
-            completionHandler(error: error)
+        }
+        
+        dispatch_group_enter(actionsGroup)
+        Services.File.Actions.getFiles(post.fileIds) { (files, error) -> Void in
+            if let error = error {
+                storedError = error
+            }
+            else {
+                self.files = files
+            }
+            dispatch_group_leave(actionsGroup)
         }
         
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
