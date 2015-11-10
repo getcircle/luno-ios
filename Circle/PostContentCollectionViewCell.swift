@@ -28,21 +28,19 @@ class PostContentCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func intrinsicContentSize() -> CGSize {
-        return CGSizeMake(self.dynamicType.width, textView.intrinsicContentSize().height)
+        let width = self.dynamicType.width
+        // Subtract 20px to accommodate for default section inset
+        let height = textView.sizeThatFits(CGSizeMake(width - 20, CGFloat.max)).height
+        return CGSizeMake(width, height)
     }
     
     override func setData(data: AnyObject) {
-        if let post = data as? Services.Post.Containers.PostV1 {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 1.0
-            let attributes = [
-                NSParagraphStyleAttributeName: paragraphStyle,
-                NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(),
-                NSFontAttributeName: UIFont.mainTextFont(),
-            ]
-            let attributedString = NSAttributedString(string: post.content, attributes: attributes)
-            textView.attributedText = attributedString
+        if let content = data as? NSAttributedString {
+            textView.attributedText = content
             textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.appHighlightColor()]
+            textView.layoutIfNeeded()
+            textView.setNeedsUpdateConstraints()
         }
     }
+    
 }
