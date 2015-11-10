@@ -122,6 +122,15 @@ public func == (lhs: Services.Registry.Requests.Feature, rhs: Services.Registry.
   return fieldCheck
 }
 
+public func == (lhs: Services.Registry.Requests.File, rhs: Services.Registry.Requests.File) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
 public var ServicesRegistryRequestsUsercreateUser:ConcreateExtensionField {
    get {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsUsercreateUserStatic
@@ -577,6 +586,26 @@ public var ServicesRegistryRequestsFeaturegetFlags:ConcreateExtensionField {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsFeaturegetFlagsStatic
    }
 }
+public var ServicesRegistryRequestsFilestartUpload:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsFilestartUploadStatic
+   }
+}
+public var ServicesRegistryRequestsFilecompleteUpload:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsFilecompleteUploadStatic
+   }
+}
+public var ServicesRegistryRequestsFiledelete:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsFiledeleteStatic
+   }
+}
+public var ServicesRegistryRequestsFilegetFiles:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsFilegetFilesStatic
+   }
+}
 public extension Services.Registry.Requests {
   public struct RequestsRoot {
     public static var sharedInstance : RequestsRoot {
@@ -676,6 +705,10 @@ public extension Services.Registry.Requests {
     var ServicesRegistryRequestsPostgetPostsStatic:ConcreateExtensionField
     var ServicesRegistryRequestsPostdeletePostStatic:ConcreateExtensionField
     var ServicesRegistryRequestsFeaturegetFlagsStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsFilestartUploadStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsFilecompleteUploadStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsFiledeleteStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsFilegetFilesStatic:ConcreateExtensionField
     public var extensionRegistry:ExtensionRegistry
 
     init() {
@@ -770,6 +803,10 @@ public extension Services.Registry.Requests {
       ServicesRegistryRequestsPostgetPostsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1603, defaultValue:Services.Post.Actions.GetPosts.RequestV1(), messageOrGroupClass:Services.Post.Actions.GetPosts.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsPostdeletePostStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1604, defaultValue:Services.Post.Actions.DeletePost.RequestV1(), messageOrGroupClass:Services.Post.Actions.DeletePost.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsFeaturegetFlagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1700, defaultValue:Services.Feature.Actions.GetFlags.RequestV1(), messageOrGroupClass:Services.Feature.Actions.GetFlags.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsFilestartUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1800, defaultValue:Services.File.Actions.StartUpload.RequestV1(), messageOrGroupClass:Services.File.Actions.StartUpload.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsFilecompleteUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1801, defaultValue:Services.File.Actions.CompleteUpload.RequestV1(), messageOrGroupClass:Services.File.Actions.CompleteUpload.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsFiledeleteStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1802, defaultValue:Services.File.Actions.Delete.RequestV1(), messageOrGroupClass:Services.File.Actions.Delete.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsFilegetFilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1803, defaultValue:Services.File.Actions.GetFiles.RequestV1(), messageOrGroupClass:Services.File.Actions.GetFiles.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
       Soa.SoaRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -864,6 +901,10 @@ public extension Services.Registry.Requests {
       Services.Post.Actions.UpdatePost.UpdatePostRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Post.Actions.DeletePost.DeletePostRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Feature.Actions.GetFlags.GetFlagsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.File.Actions.StartUpload.StartUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.File.Actions.CompleteUpload.CompleteUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.File.Actions.Delete.DeleteRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.File.Actions.GetFiles.GetFilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
       registry.addExtension(ServicesRegistryRequestsUsercreateUserStatic)
@@ -957,6 +998,10 @@ public extension Services.Registry.Requests {
       registry.addExtension(ServicesRegistryRequestsPostgetPostsStatic)
       registry.addExtension(ServicesRegistryRequestsPostdeletePostStatic)
       registry.addExtension(ServicesRegistryRequestsFeaturegetFlagsStatic)
+      registry.addExtension(ServicesRegistryRequestsFilestartUploadStatic)
+      registry.addExtension(ServicesRegistryRequestsFilecompleteUploadStatic)
+      registry.addExtension(ServicesRegistryRequestsFiledeleteStatic)
+      registry.addExtension(ServicesRegistryRequestsFilegetFilesStatic)
     }
   }
 
@@ -3189,6 +3234,170 @@ public extension Services.Registry.Requests {
            return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
       }
       public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Registry.Requests.Feature.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let tag = try input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  final public class File : GeneratedMessage, GeneratedMessageProtocol {
+    public class func startUpload() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsFilestartUpload
+    }
+    public class func completeUpload() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsFilecompleteUpload
+    }
+    public class func delete() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsFiledelete
+    }
+    public class func getFiles() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsFilegetFiles
+    }
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.Registry.Requests.File> {
+      var mergedArray = Array<Services.Registry.Requests.File>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.Registry.Requests.File? {
+      return try Services.Registry.Requests.File.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Services.Registry.Requests.File {
+      return try Services.Registry.Requests.File.Builder().mergeFromData(data, extensionRegistry:Services.Registry.Requests.RequestsRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.Registry.Requests.File {
+      return try Services.Registry.Requests.File.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Services.Registry.Requests.File {
+      return try Services.Registry.Requests.File.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Registry.Requests.File {
+      return try Services.Registry.Requests.File.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.Registry.Requests.File {
+      return try Services.Registry.Requests.File.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Registry.Requests.File {
+      return try Services.Registry.Requests.File.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Services.Registry.Requests.File.Builder {
+      return Services.Registry.Requests.File.classBuilder() as! Services.Registry.Requests.File.Builder
+    }
+    public func getBuilder() -> Services.Registry.Requests.File.Builder {
+      return classBuilder() as! Services.Registry.Requests.File.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Registry.Requests.File.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Registry.Requests.File.Builder()
+    }
+    public func toBuilder() throws -> Services.Registry.Requests.File.Builder {
+      return try Services.Registry.Requests.File.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Registry.Requests.File) throws -> Services.Registry.Requests.File.Builder {
+      return try Services.Registry.Requests.File.Builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) throws {
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Registry.Requests.File"
+    }
+    override public func className() -> String {
+        return "Services.Registry.Requests.File"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Registry.Requests.File.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Services.Registry.Requests.File = Services.Registry.Requests.File()
+      public func getMessage() -> Services.Registry.Requests.File {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Services.Registry.Requests.File.Builder {
+        builderResult = Services.Registry.Requests.File()
+        return self
+      }
+      public override func clone() throws -> Services.Registry.Requests.File.Builder {
+        return try Services.Registry.Requests.File.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Services.Registry.Requests.File {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Services.Registry.Requests.File {
+        let returnMe:Services.Registry.Requests.File = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Services.Registry.Requests.File) throws -> Services.Registry.Requests.File.Builder {
+        if other == Services.Registry.Requests.File() {
+         return self
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.Registry.Requests.File.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Registry.Requests.File.Builder {
         let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
         while (true) {
           let tag = try input.readTag()
