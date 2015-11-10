@@ -2,6 +2,7 @@ syntax = "proto3";
 package services.post.containers;
 
 import "protobufs/services/common/containers.proto";
+import "protobufs/services/file/containers.proto";
 import "protobufs/services/profile/containers.proto";
 
 enum PostStateV1 {
@@ -23,4 +24,6 @@ message PostV1 {
     services.common.containers.InflationsV1 inflations = 10;
     services.common.containers.FieldsV1 fields = 11;
     services.common.containers.PermissionsV1 permissions = 12;
+    repeated string file_ids = 13;
+    repeated services.file.containers.FileV1 files = 14;
 }

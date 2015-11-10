@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/organization/containers/integration.proto',
   package='services.organization.containers.integration',
   syntax='proto2',
-  serialized_pb=_b('\n<protobufs/services/organization/containers/integration.proto\x12,services.organization.containers.integration\x1a*protobufs/services/common/containers.proto\"\x8b\x02\n\rIntegrationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12Y\n\x10integration_type\x18\x04 \x01(\x0e\x32?.services.organization.containers.integration.IntegrationTypeV1\x12[\n\rgoogle_groups\x18\x05 \x01(\x0b\x32\x42.services.organization.containers.integration.GoogleGroupDetailsV1H\x00\x42\t\n\x07\x64\x65tails\"b\n\x14GoogleGroupDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0b\x61\x64min_email\x18\x02 \x01(\t\x12\x0e\n\x06scopes\x18\x03 \x03(\t\x12\x11\n\tread_only\x18\x04 \x01(\x08*&\n\x11IntegrationTypeV1\x12\x11\n\rGOOGLE_GROUPS\x10\x00\x42\x43\nAcom.rhlabs.protobufs.services.organization.containers.integration')
+  serialized_pb=_b('\n<protobufs/services/organization/containers/integration.proto\x12,services.organization.containers.integration\x1a*protobufs/services/common/containers.proto\"\xe7\x03\n\rIntegrationV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\n\n\x02id\x18\x02 \x01(\t\x12\x17\n\x0forganization_id\x18\x03 \x01(\t\x12Y\n\x10integration_type\x18\x04 \x01(\x0e\x32?.services.organization.containers.integration.IntegrationTypeV1\x12[\n\rgoogle_groups\x18\x05 \x01(\x0b\x32\x42.services.organization.containers.integration.GoogleGroupDetailsV1H\x00\x12g\n\x13slack_slash_command\x18\x06 \x01(\x0b\x32H.services.organization.containers.integration.SlackSlashCommandDetailsV1H\x00\x12[\n\rslack_web_api\x18\x08 \x01(\x0b\x32\x42.services.organization.containers.integration.SlackWebApiDetailsV1H\x00\x12\x14\n\x0cprovider_uid\x18\x07 \x01(\tB\t\n\x07\x64\x65tails\"b\n\x14GoogleGroupDetailsV1\x12\x12\n\x07version\x18\x01 \x01(\r:\x01\x31\x12\x13\n\x0b\x61\x64min_email\x18\x02 \x01(\t\x12\x0e\n\x06scopes\x18\x03 \x03(\t\x12\x11\n\tread_only\x18\x04 \x01(\x08\"+\n\x1aSlackSlashCommandDetailsV1\x12\r\n\x05token\x18\x01 \x01(\t\"]\n\x14SlackWebApiDetailsV1\x12\r\n\x05token\x18\x01 \x01(\t\x12\x15\n\rby_profile_id\x18\x02 \x01(\t\x12\x0e\n\x06scopes\x18\x03 \x03(\t\x12\x0f\n\x07team_id\x18\x04 \x01(\t*R\n\x11IntegrationTypeV1\x12\x11\n\rGOOGLE_GROUPS\x10\x00\x12\x17\n\x13SLACK_SLASH_COMMAND\x10\x01\x12\x11\n\rSLACK_WEB_API\x10\x02\x42\x43\nAcom.rhlabs.protobufs.services.organization.containers.integration')
   ,
   dependencies=[protobufs_dot_services_dot_common_dot_containers__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -36,16 +36,26 @@ _INTEGRATIONTYPEV1 = _descriptor.EnumDescriptor(
       name='GOOGLE_GROUPS', index=0, number=0,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SLACK_SLASH_COMMAND', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='SLACK_WEB_API', index=2, number=2,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=524,
-  serialized_end=562,
+  serialized_start=884,
+  serialized_end=966,
 )
 _sym_db.RegisterEnumDescriptor(_INTEGRATIONTYPEV1)
 
 IntegrationTypeV1 = enum_type_wrapper.EnumTypeWrapper(_INTEGRATIONTYPEV1)
 GOOGLE_GROUPS = 0
+SLACK_SLASH_COMMAND = 1
+SLACK_WEB_API = 2
 
 
 
@@ -91,6 +101,27 @@ _INTEGRATIONV1 = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='slack_slash_command', full_name='services.organization.containers.integration.IntegrationV1.slack_slash_command', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='slack_web_api', full_name='services.organization.containers.integration.IntegrationV1.slack_web_api', index=6,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='provider_uid', full_name='services.organization.containers.integration.IntegrationV1.provider_uid', index=7,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -107,7 +138,7 @@ _INTEGRATIONV1 = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=155,
-  serialized_end=422,
+  serialized_end=642,
 )
 
 
@@ -158,17 +189,110 @@ _GOOGLEGROUPDETAILSV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=424,
-  serialized_end=522,
+  serialized_start=644,
+  serialized_end=742,
+)
+
+
+_SLACKSLASHCOMMANDDETAILSV1 = _descriptor.Descriptor(
+  name='SlackSlashCommandDetailsV1',
+  full_name='services.organization.containers.integration.SlackSlashCommandDetailsV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='token', full_name='services.organization.containers.integration.SlackSlashCommandDetailsV1.token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=744,
+  serialized_end=787,
+)
+
+
+_SLACKWEBAPIDETAILSV1 = _descriptor.Descriptor(
+  name='SlackWebApiDetailsV1',
+  full_name='services.organization.containers.integration.SlackWebApiDetailsV1',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='token', full_name='services.organization.containers.integration.SlackWebApiDetailsV1.token', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='by_profile_id', full_name='services.organization.containers.integration.SlackWebApiDetailsV1.by_profile_id', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='scopes', full_name='services.organization.containers.integration.SlackWebApiDetailsV1.scopes', index=2,
+      number=3, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='team_id', full_name='services.organization.containers.integration.SlackWebApiDetailsV1.team_id', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=789,
+  serialized_end=882,
 )
 
 _INTEGRATIONV1.fields_by_name['integration_type'].enum_type = _INTEGRATIONTYPEV1
 _INTEGRATIONV1.fields_by_name['google_groups'].message_type = _GOOGLEGROUPDETAILSV1
+_INTEGRATIONV1.fields_by_name['slack_slash_command'].message_type = _SLACKSLASHCOMMANDDETAILSV1
+_INTEGRATIONV1.fields_by_name['slack_web_api'].message_type = _SLACKWEBAPIDETAILSV1
 _INTEGRATIONV1.oneofs_by_name['details'].fields.append(
   _INTEGRATIONV1.fields_by_name['google_groups'])
 _INTEGRATIONV1.fields_by_name['google_groups'].containing_oneof = _INTEGRATIONV1.oneofs_by_name['details']
+_INTEGRATIONV1.oneofs_by_name['details'].fields.append(
+  _INTEGRATIONV1.fields_by_name['slack_slash_command'])
+_INTEGRATIONV1.fields_by_name['slack_slash_command'].containing_oneof = _INTEGRATIONV1.oneofs_by_name['details']
+_INTEGRATIONV1.oneofs_by_name['details'].fields.append(
+  _INTEGRATIONV1.fields_by_name['slack_web_api'])
+_INTEGRATIONV1.fields_by_name['slack_web_api'].containing_oneof = _INTEGRATIONV1.oneofs_by_name['details']
 DESCRIPTOR.message_types_by_name['IntegrationV1'] = _INTEGRATIONV1
 DESCRIPTOR.message_types_by_name['GoogleGroupDetailsV1'] = _GOOGLEGROUPDETAILSV1
+DESCRIPTOR.message_types_by_name['SlackSlashCommandDetailsV1'] = _SLACKSLASHCOMMANDDETAILSV1
+DESCRIPTOR.message_types_by_name['SlackWebApiDetailsV1'] = _SLACKWEBAPIDETAILSV1
 DESCRIPTOR.enum_types_by_name['IntegrationTypeV1'] = _INTEGRATIONTYPEV1
 
 IntegrationV1 = _reflection.GeneratedProtocolMessageType('IntegrationV1', (_message.Message,), dict(
@@ -184,6 +308,20 @@ GoogleGroupDetailsV1 = _reflection.GeneratedProtocolMessageType('GoogleGroupDeta
   # @@protoc_insertion_point(class_scope:services.organization.containers.integration.GoogleGroupDetailsV1)
   ))
 _sym_db.RegisterMessage(GoogleGroupDetailsV1)
+
+SlackSlashCommandDetailsV1 = _reflection.GeneratedProtocolMessageType('SlackSlashCommandDetailsV1', (_message.Message,), dict(
+  DESCRIPTOR = _SLACKSLASHCOMMANDDETAILSV1,
+  __module__ = 'protobufs.services.organization.containers.integration_pb2'
+  # @@protoc_insertion_point(class_scope:services.organization.containers.integration.SlackSlashCommandDetailsV1)
+  ))
+_sym_db.RegisterMessage(SlackSlashCommandDetailsV1)
+
+SlackWebApiDetailsV1 = _reflection.GeneratedProtocolMessageType('SlackWebApiDetailsV1', (_message.Message,), dict(
+  DESCRIPTOR = _SLACKWEBAPIDETAILSV1,
+  __module__ = 'protobufs.services.organization.containers.integration_pb2'
+  # @@protoc_insertion_point(class_scope:services.organization.containers.integration.SlackWebApiDetailsV1)
+  ))
+_sym_db.RegisterMessage(SlackWebApiDetailsV1)
 
 
 DESCRIPTOR.has_options = True

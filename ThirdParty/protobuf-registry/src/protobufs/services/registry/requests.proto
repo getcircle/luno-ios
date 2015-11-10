@@ -110,6 +110,11 @@ import "protobufs/services/post/actions/delete_post.proto";
 
 import "protobufs/services/feature/actions/get_flags.proto";
 
+import "protobufs/services/file/actions/start_upload.proto";
+import "protobufs/services/file/actions/complete_upload.proto";
+import "protobufs/services/file/actions/delete.proto";
+import "protobufs/services/file/actions/get_files.proto";
+
 message User {
     extend soa.ActionRequestParamsV1 {
         optional services.user.actions.create_user.RequestV1 create_user = 100;
@@ -263,5 +268,14 @@ message Post {
 message Feature {
     extend soa.ActionRequestParamsV1 {
         optional services.feature.actions.get_flags.RequestV1 get_flags = 1700;
+    }
+}
+
+message File {
+    extend soa.ActionRequestParamsV1 {
+        optional services.file.actions.start_upload.RequestV1 start_upload = 1800;
+        optional services.file.actions.complete_upload.RequestV1 complete_upload = 1801;
+        optional services.file.actions.delete.RequestV1 delete = 1802;
+        optional services.file.actions.get_files.RequestV1 get_files = 1803;
     }
 }
