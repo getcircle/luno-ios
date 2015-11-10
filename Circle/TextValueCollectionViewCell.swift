@@ -17,18 +17,13 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
 
     @IBOutlet weak private(set) var editTextButton: UIButton?
     @IBOutlet weak private(set) var placeholderButton: UIButton?
-    @IBOutlet weak private(set) var textView: UITextView!
-    @IBOutlet weak private(set) var textViewTopConstraint: NSLayoutConstraint! {
-        didSet {
-            textViewTopMargin = textViewTopConstraint.constant
-        }
-    }
+    @IBOutlet weak private(set) var textLabel: UILabel!
+    @IBOutlet weak private(set) var textLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var timestampLabel: UILabel?
 
     var delegate: TextValueCollectionViewDelegate?
     
     private var currentTextDataType: TextData.TextDataType?
-    private var textViewTopMargin = CGFloat(0.0)
     
     override class var classReuseIdentifier: String {
         return "TextValueCollectionViewCell"
@@ -42,7 +37,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         super.awakeFromNib()
         
         selectedBackgroundView = nil
-        configureTextView()
+        configureTextLabel()
         configureTimestampLabel()
         configurePlaceholderButton()
     }
@@ -53,11 +48,12 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
         editTextButton?.hidden = true
     }
     
-    func configureTextView() {
-        textView.textColor = UIColor.appPrimaryTextColor()
-        textView.font = UIFont.mainTextFont()
-        textView.text = ""
-        textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.appHighlightColor()]
+    func configureTextLabel() {
+        textLabel.textColor = UIColor.appPrimaryTextColor()
+        textLabel.font = UIFont.regularFont(textLabel.font.pointSize)
+        textLabel.text = ""
+        textLabel.numberOfLines = 0
+        textLabel.lineBreakMode = .ByWordWrapping
     }
     
     func configureTimestampLabel() {
@@ -73,15 +69,15 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     }
     
     override func intrinsicContentSize() -> CGSize {
-        var height = textView.text == nil || textView.text?.trimWhitespace() ?? "" == "" ? 60.0 : textView.intrinsicContentSize().height
-        height += textViewTopMargin * 2
+        var height = textLabel.text == nil || textLabel.text?.trimWhitespace() ?? "" == "" ? 60.0 : textLabel.intrinsicContentSize().height
+        height += textLabelTopConstraint.constant * 2
         height += timestampLabel?.hidden ?? true ? 0.0 : 30.0
         return CGSizeMake(self.dynamicType.width, height)
     }
     
     private func resetViews() {
-        textView.textColor = UIColor.appPrimaryTextColor()        
-        textView.font = UIFont.mainTextFont()
+        textLabel.textColor = UIColor.appPrimaryTextColor()        
+        textLabel.font = UIFont.regularFont(textLabel.font.pointSize)
         editTextButton?.hidden = true
         placeholderButton?.hidden = true
         timestampLabel?.hidden = true
@@ -90,7 +86,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         resetViews()
         
-        let italicFont = UIFont.italicFont(textView.font?.pointSize ?? 14.0)
+        let italicFont = UIFont.italicFont(textLabel.font.pointSize)
         if let textData = data as? TextData {
             currentTextDataType = textData.type
             
@@ -98,28 +94,12 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
 
                 // Add text and handle quoting
                 var text: String = textData.value
-                if textData.type != .PostContent {
-                    if textData.type == .TeamStatus || textData.type == .ProfileStatus {
-                        text = "\"" + textData.value + "\""
-                        textView.font = italicFont
-                    }
-                    textView.text = text
-                    textView.selectable = false
+                if textData.type == .TeamStatus || textData.type == .ProfileStatus {
+                    text = "\"" + textData.value + "\""
+                    textLabel.font = italicFont
                 }
-                else {
-                    textViewTopConstraint.constant = 0
-                    textView.dataDetectorTypes = [.PhoneNumber, .Link]
-                    if let font = textView.font, textColor = textView.textColor {
-                        let paragraphStyle = NSMutableParagraphStyle()
-                        paragraphStyle.lineSpacing = 1.0
-                        let attributes = [
-                            NSParagraphStyleAttributeName: paragraphStyle,
-                            NSFontAttributeName: font,
-                            NSForegroundColorAttributeName: textColor,
-                        ]
-                        textView.attributedText = NSAttributedString(string: text, attributes: attributes)
-                    }
-                }
+                
+                textLabel.text = text
                 
                 // Add timestamp if present
                 if let timestamp = TextData.getFormattedTimestamp(
@@ -137,8 +117,8 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
             else if let placeholder = textData.placeholder {
 
                 // Show placeholder (read-only) if user can edit
-                textView.textColor = UIColor.appSecondaryTextColor()
-                textView.text = placeholder
+                textLabel.textColor = UIColor.appSecondaryTextColor()
+                textLabel.text = placeholder
                 
                 // Else show button to nudge user
                 if let canEdit = textData.canEdit where canEdit == false {
@@ -148,8 +128,8 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
             }
 
             // Resize as per new content
-            textView.setNeedsUpdateConstraints()
-            textView.layoutIfNeeded()
+            textLabel.setNeedsUpdateConstraints()
+            textLabel.layoutIfNeeded()
             timestampLabel?.layoutIfNeeded()
             placeholderButton?.layoutIfNeeded()
         }

@@ -30,15 +30,17 @@ class PostDetailDataSource: CardDataSource {
             dispatch_group_leave(actionsGroup)
         }
         
-        dispatch_group_enter(actionsGroup)
-        Services.File.Actions.getFiles(post.fileIds) { (files, error) -> Void in
-            if let error = error {
-                storedError = error
+        if post.fileIds.count > 0 {
+            dispatch_group_enter(actionsGroup)
+            Services.File.Actions.getFiles(post.fileIds) { (files, error) -> Void in
+                if let error = error {
+                    storedError = error
+                }
+                else {
+                    self.files = files
+                }
+                dispatch_group_leave(actionsGroup)
             }
-            else {
-                self.files = files
-            }
-            dispatch_group_leave(actionsGroup)
         }
         
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
@@ -83,18 +85,9 @@ class PostDetailDataSource: CardDataSource {
     }
     
     internal func addContentCard() -> Card? {
-        let card = Card(cardType: .TextValue, title: "")
+        let card = Card(cardType: .PostContent, title: "")
         card.showContentCount = false
-        card.sectionInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-        card.addContent(content:
-            [
-                TextData(
-                    type: .PostContent,
-                    andValue: post.content,
-                    andCanEdit: canEdit()
-                )
-            ]
-        )
+        card.addContent(content: [post])
         appendCard(card)
         return card
     }

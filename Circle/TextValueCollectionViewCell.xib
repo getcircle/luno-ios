@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="OpenSans-Italic.ttf">
@@ -25,24 +25,22 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                 <subviews>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WSG-ae-JlK">
-                        <rect key="frame" x="15" y="15" width="345" height="170"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZc-gJ-L6C">
+                        <rect key="frame" x="20" y="20" width="335" height="77"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                        <string key="text">I'm a designer living in San Francisco, food lover, photographer and traveler. Designing products is my biggest passion, products that make people's lives more enjoyable.</string>
                         <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
+                        <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojy-Hf-gKW" userLabel="TimestampLabel">
-                        <rect key="frame" x="20" y="190" width="26" height="14"/>
-                        <animations/>
+                        <rect key="frame" x="20" y="107" width="26" height="14"/>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9B-Zy-spK" userLabel="PlaceholderButton">
-                        <rect key="frame" x="15" y="15" width="345" height="170"/>
-                        <animations/>
+                        <rect key="frame" x="20" y="20" width="335" height="77"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -52,8 +50,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wp-gc-VVk">
-                        <rect key="frame" x="46" y="177" width="60" height="40"/>
-                        <animations/>
+                        <rect key="frame" x="46" y="94" width="60" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="0lQ-BK-MIO"/>
                             <constraint firstAttribute="height" constant="40" id="sSg-bF-ecx"/>
@@ -65,43 +62,47 @@
                         </connections>
                     </button>
                 </subviews>
-                <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WSG-ae-JlK" secondAttribute="bottom" constant="15" id="2TX-Jd-kKO"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="leading" secondItem="Ojy-Hf-gKW" secondAttribute="leading" constant="-5" id="8He-Oj-foQ"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="9yk-x5-Jxp"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="trailing" secondItem="N9B-Zy-spK" secondAttribute="trailing" id="A1c-JB-Ujw"/>
-                <constraint firstItem="Ojy-Hf-gKW" firstAttribute="top" secondItem="WSG-ae-JlK" secondAttribute="bottom" constant="5" id="Ijh-Pl-M1U"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="bottom" secondItem="N9B-Zy-spK" secondAttribute="bottom" id="J6Z-9A-4hh"/>
-                <constraint firstAttribute="trailing" secondItem="WSG-ae-JlK" secondAttribute="trailing" constant="15" id="KgL-m2-MWV"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hZc-gJ-L6C" secondAttribute="bottom" constant="20" id="1xk-Sj-iSa"/>
+                <constraint firstItem="Ojy-Hf-gKW" firstAttribute="leading" secondItem="hZc-gJ-L6C" secondAttribute="leading" id="42h-i3-5eA"/>
+                <constraint firstAttribute="trailing" secondItem="hZc-gJ-L6C" secondAttribute="trailing" constant="20" id="A1I-j7-eHi"/>
+                <constraint firstItem="N9B-Zy-spK" firstAttribute="trailing" secondItem="hZc-gJ-L6C" secondAttribute="trailing" id="LoQ-oI-0jV"/>
                 <constraint firstItem="2wp-gc-VVk" firstAttribute="centerY" secondItem="Ojy-Hf-gKW" secondAttribute="centerY" id="Mbq-6K-vcd"/>
+                <constraint firstItem="hZc-gJ-L6C" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="Mme-ta-p34"/>
+                <constraint firstItem="N9B-Zy-spK" firstAttribute="top" secondItem="hZc-gJ-L6C" secondAttribute="top" id="Rqr-hy-h7l"/>
+                <constraint firstItem="N9B-Zy-spK" firstAttribute="leading" secondItem="hZc-gJ-L6C" secondAttribute="leading" id="Z53-ZG-keY"/>
+                <constraint firstItem="Ojy-Hf-gKW" firstAttribute="top" secondItem="hZc-gJ-L6C" secondAttribute="bottom" id="cjN-5o-Uif"/>
                 <constraint firstItem="2wp-gc-VVk" firstAttribute="top" secondItem="Ojy-Hf-gKW" secondAttribute="top" id="cmo-Zb-W3z"/>
                 <constraint firstAttribute="bottom" secondItem="Ojy-Hf-gKW" secondAttribute="bottom" constant="10" id="d0u-yp-EAG"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="leading" secondItem="N9B-Zy-spK" secondAttribute="leading" id="pS1-ZF-jF4"/>
+                <constraint firstItem="N9B-Zy-spK" firstAttribute="bottom" secondItem="hZc-gJ-L6C" secondAttribute="bottom" id="eDu-I9-1wA"/>
+                <constraint firstItem="Ojy-Hf-gKW" firstAttribute="bottom" secondItem="hZc-gJ-L6C" secondAttribute="bottom" id="otv-ZS-Khq"/>
+                <constraint firstItem="Ojy-Hf-gKW" firstAttribute="top" secondItem="hZc-gJ-L6C" secondAttribute="bottom" constant="10" id="pMi-0d-BDJ"/>
                 <constraint firstItem="2wp-gc-VVk" firstAttribute="leading" secondItem="Ojy-Hf-gKW" secondAttribute="trailing" id="r2I-4Y-ISP"/>
                 <constraint firstItem="2wp-gc-VVk" firstAttribute="bottom" secondItem="Ojy-Hf-gKW" secondAttribute="bottom" id="rLa-BP-43I"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="top" secondItem="N9B-Zy-spK" secondAttribute="top" id="vf8-QX-LmG"/>
-                <constraint firstItem="WSG-ae-JlK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="wQH-eq-EGB"/>
                 <constraint firstItem="2wp-gc-VVk" firstAttribute="centerX" secondItem="Ojy-Hf-gKW" secondAttribute="centerX" id="wqj-P3-6cM"/>
+                <constraint firstItem="hZc-gJ-L6C" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="xcW-dN-c9u"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hZc-gJ-L6C" secondAttribute="bottom" constant="20" id="zf4-Xs-XCb"/>
             </constraints>
             <size key="customSize" width="375" height="132"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="1xk-Sj-iSa"/>
                     <exclude reference="cmo-Zb-W3z"/>
                     <exclude reference="rLa-BP-43I"/>
                     <exclude reference="wqj-P3-6cM"/>
+                    <exclude reference="cjN-5o-Uif"/>
                     <exclude reference="d0u-yp-EAG"/>
+                    <exclude reference="otv-ZS-Khq"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="editTextButton" destination="2wp-gc-VVk" id="TAL-Q2-JnG"/>
                 <outlet property="placeholderButton" destination="N9B-Zy-spK" id="xHi-V7-HHB"/>
-                <outlet property="textView" destination="WSG-ae-JlK" id="wHU-MR-bZg"/>
-                <outlet property="textViewTopConstraint" destination="wQH-eq-EGB" id="yW9-B4-9o2"/>
+                <outlet property="textLabel" destination="hZc-gJ-L6C" id="fFX-dE-A5w"/>
+                <outlet property="textLabelTopConstraint" destination="Mme-ta-p34" id="izX-tI-6Zb"/>
                 <outlet property="timestampLabel" destination="Ojy-Hf-gKW" id="I4x-GJ-JUD"/>
             </connections>
             <point key="canvasLocation" x="356.5" y="137"/>

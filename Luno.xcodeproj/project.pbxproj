@@ -26,6 +26,8 @@
 		47CAC39C1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */; };
 		47D1BF731BA08DF000BFF46B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */; };
 		47D30D271BF18B450082B995 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D30D261BF18B450082B995 /* File.swift */; };
+		47D30D2A1BF18E620082B995 /* PostContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D30D291BF18E620082B995 /* PostContentCollectionViewCell.swift */; };
+		47D30D2C1BF18E7A0082B995 /* PostContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */; };
 		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; };
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; };
 		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; };
@@ -351,6 +353,8 @@
 		47CAC39B1BB9E57500A11652 /* SearchSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		47D30D261BF18B450082B995 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		47D30D291BF18E620082B995 /* PostContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -797,6 +801,7 @@
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F1D950F1BD5A4B600434EC4 /* MessageView.swift */,
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
+				47D30D291BF18E620082B995 /* PostContentCollectionViewCell.swift */,
 				47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
 				8F57AD331B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.swift */,
@@ -896,6 +901,7 @@
 				8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */,
 				8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */,
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
+				47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */,
 				47A1FDD01BF1168400C1089A /* PostTitleCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
@@ -1344,6 +1350,7 @@
 				8F0ADD321AC5344E00A44B68 /* Loader_00022@2x.png in Resources */,
 				8F0ADD2D1AC5344E00A44B68 /* Loader_00017@2x.png in Resources */,
 				8F0ADD3C1AC5344E00A44B68 /* Loader_00032@2x.png in Resources */,
+				47D30D2C1BF18E7A0082B995 /* PostContentCollectionViewCell.xib in Resources */,
 				8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */,
 				8F0ADD461AC5344E00A44B68 /* Loader_00042@2x.png in Resources */,
 				8F0ADD1F1AC5344E00A44B68 /* Loader_00003@2x.png in Resources */,
@@ -1551,6 +1558,7 @@
 			files = (
 				8FD041A21A2C03AA00FE28EF /* UIFontExtention.swift in Sources */,
 				8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */,
+				47D30D2A1BF18E620082B995 /* PostContentCollectionViewCell.swift in Sources */,
 				BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				BFCFDB1A1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift in Sources */,
