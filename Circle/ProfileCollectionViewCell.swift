@@ -159,7 +159,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 subTextLabel.text = "\(author.fullName) - \(formattedTimestamp)"
             }
             else {
-                subTextLabel.text = "Last edited \(formattedTimestamp)"
+                subTextLabel.text = "Last updated \(formattedTimestamp)"
             }
         }
         
