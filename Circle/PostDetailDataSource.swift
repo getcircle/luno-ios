@@ -25,6 +25,14 @@ class PostDetailDataSource: CardDataSource {
             NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(),
             NSFontAttributeName: UIFont.mainTextFont(),
         ]
+        let imageCaptionParagraphStyle = NSMutableParagraphStyle()
+        imageCaptionParagraphStyle.paragraphSpacingBefore = 5.0
+        imageCaptionParagraphStyle.alignment = .Center
+        let imageCaptionAttributes = [
+            NSForegroundColorAttributeName: UIColor.appSecondaryTextColor(),
+            NSFontAttributeName: UIFont.secondaryTextFont(),
+            NSParagraphStyleAttributeName: imageCaptionParagraphStyle,
+        ]
         
         var storedError: NSError?
         var attachmentStrings = [NSAttributedString]()
@@ -67,8 +75,16 @@ class PostDetailDataSource: CardDataSource {
                                     let attachment = NSTextAttachment()
                                     let imageWidth = image.size.width
                                     let screenWidth = UIScreen.mainScreen().bounds.size.width - 20.0
-                                    attachment.image = UIImage(CGImage: image.CGImage!, scale: (imageWidth / screenWidth), orientation: .Up)
-                                    let attachmentString = NSAttributedString(attachment: attachment)
+                                    var scale = CGFloat(1.0)
+                                    if imageWidth > screenWidth {
+                                        scale = imageWidth / screenWidth
+                                    }
+                                    attachment.image = UIImage(CGImage: image.CGImage!, scale: scale, orientation: .Up)
+                                    let attachmentString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
+                                    
+                                    let captionString = NSAttributedString(string: "\n\(file.name)", attributes: imageCaptionAttributes)
+                                    attachmentString.appendAttributedString(captionString)
+                                    
                                     attachmentStrings.insert(attachmentString, atIndex: sortedFiles.indexOf(file)!)
                                     dispatch_group_leave(actionsGroup)
                                 }
