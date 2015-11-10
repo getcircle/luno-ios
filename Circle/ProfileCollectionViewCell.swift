@@ -154,7 +154,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     
     private func setPost(post: Services.Post.Containers.PostV1) {
         nameLabel.text = post.title
-        if let formattedTimestamp = TextData.getFormattedTimestamp(post.changed, addHyphen: false) {
+        if let formattedTimestamp = post.getFormattedChangedDate() {
             if let author = post.byProfile {
                 subTextLabel.text = "\(author.fullName) - \(formattedTimestamp)"
             }

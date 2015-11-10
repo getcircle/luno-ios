@@ -38,8 +38,8 @@ class PostTitleCollectionViewCell: CircleCollectionViewCell {
         if let post = data as? Services.Post.Containers.PostV1 {
             titleLabel.text = post.title
             
-            if let timestamp = TextData.getFormattedTimestamp(post.changed, addHyphen: false) {
-                timestampLabel?.text = " \u{2013} Updated \(timestamp)"
+            if let timestamp = post.getFormattedChangedDate() {
+                timestampLabel?.text = " \u{2013} Last updated \(timestamp)"
             }
             
             titleLabel.setNeedsUpdateConstraints()

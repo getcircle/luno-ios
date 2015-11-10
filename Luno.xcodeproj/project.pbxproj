@@ -13,6 +13,7 @@
 		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
+		479E6E461BF1C90300814DCD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479E6E451BF1C90300814DCD /* Post.swift */; };
 		47A1FDCA1BEF1EC700C1089A /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1FDC91BEF1EC700C1089A /* PostDetailViewController.swift */; };
 		47A1FDCD1BEF1FE800C1089A /* PostDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1FDCC1BEF1FE800C1089A /* PostDetailDataSource.swift */; };
 		47A1FDCF1BF1152D00C1089A /* PostTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */; };
@@ -340,6 +341,7 @@
 		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		479E6E451BF1C90300814DCD /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		47A1FDC91BEF1EC700C1089A /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		47A1FDCC1BEF1FE800C1089A /* PostDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailDataSource.swift; sourceTree = "<group>"; };
 		47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTitleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1154,6 +1156,7 @@
 				8F93E2BE1B26C08D004671D7 /* Team.swift */,
 				BF2CBFD51A473E9100BE589D /* User.swift */,
 				47D30D261BF18B450082B995 /* File.swift */,
+				479E6E451BF1C90300814DCD /* Post.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1612,6 +1615,7 @@
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,
 				8F15A4111B79B40700693E26 /* ContactCollectionViewCell.swift in Sources */,
 				8FF2980A1A4B490E00306CFC /* SearchHeaderView.swift in Sources */,
+				479E6E461BF1C90300814DCD /* Post.swift in Sources */,
 				BF093F0F1A672F8900BA60BD /* Media.swift in Sources */,
 				8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */,
 				8F93E2BF1B26C08D004671D7 /* Team.swift in Sources */,
