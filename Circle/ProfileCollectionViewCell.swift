@@ -37,11 +37,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var teamNameLetterLabel: UILabel!
     @IBOutlet weak private(set) var addButton: UIButton!
     @IBOutlet weak private(set) var separatorView: UIView!
-    @IBOutlet weak private(set) var disclosureIndicatorView: UIImageView! {
-        didSet {
-            disclosureIndicatorView.tintColor = UIColor.appIconColor()
-        }
-    }
+    @IBOutlet weak private(set) var disclosureIndicatorView: UIImageView!
 
     private var nameLabelRightConstraintInitialValue: CGFloat!
     
@@ -57,6 +53,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         nameLabel.textColor = UIColor.appPrimaryTextColor()
         subTextLabel.textColor = UIColor.appSecondaryTextColor()
         nameLabelRightConstraintInitialValue = nameLabelRightConstraint.constant
+        disclosureIndicatorView.tintColor = UIColor.appIconColor()
     }
 
     // MARK: - Configuration
