@@ -30,6 +30,7 @@
 		47D30D2A1BF18E620082B995 /* PostContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D30D291BF18E620082B995 /* PostContentCollectionViewCell.swift */; };
 		47D30D2C1BF18E7A0082B995 /* PostContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */; };
 		47D85C941BB49C7A0093222F /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */; };
+		47DD71951BF3D12900AB40FA /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD71941BF3D12900AB40FA /* NSDateExtension.swift */; };
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; };
 		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; };
 		47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */; };
@@ -358,6 +359,7 @@
 		47D30D291BF18E620082B995 /* PostContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		47D85C921BB49BA30093222F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		47DD71941BF3D12900AB40FA /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchActionCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				8F3569131A560B2D003D42F9 /* CGRectExtension.swift */,
 				8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */,
 				8F3F7AF81A799806002CD365 /* NSBundleExtension.swift */,
+				47DD71941BF3D12900AB40FA /* NSDateExtension.swift */,
 				BF041BB91A2C119B0043EC72 /* NSDateFormatterExtension.swift */,
 				47D1BF721BA08DF000BFF46B /* NSAttributedStringExtension.swift */,
 				BF768A611AB402D100D677B1 /* PaginatorExtension.swift */,
@@ -1619,6 +1622,7 @@
 				BF093F0F1A672F8900BA60BD /* Media.swift in Sources */,
 				8F4A98B31A6350B9005AD63C /* CircleCollectionReusableView.swift in Sources */,
 				8F93E2BF1B26C08D004671D7 /* Team.swift in Sources */,
+				47DD71951BF3D12900AB40FA /* NSDateExtension.swift in Sources */,
 				8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */,
 				8F51A8021B73ECFE00323DD1 /* KeyValueData.swift in Sources */,
 				8F0ADCDC1AC527F900A44B68 /* CircleActivityIndicatorView.swift in Sources */,
