@@ -14,7 +14,7 @@ extension NSDate {
         var timeAgoString = [String]()
         
         let today = NSDate()
-        if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {
+        if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) where self.earlierDate(today) == self {
             let unitFlags = [.Day, .Year, .Month, .Hour, .Minute] as NSCalendarUnit
             let diffComponents = calendar.components(
                 unitFlags,
