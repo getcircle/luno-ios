@@ -23,7 +23,6 @@ class PostContentCollectionViewCell: CircleCollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         selectedBackgroundView = nil
     }
     

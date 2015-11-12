@@ -31,9 +31,7 @@ class PostDetailViewController: DetailViewController {
     override func configureCollectionView() {
         collectionView.dataSource = dataSource
         collectionView.delegate = delegate
-        
         super.configureCollectionView()
-        
         collectionView.backgroundColor = UIColor.whiteColor()
     }
     
