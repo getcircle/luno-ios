@@ -12,6 +12,8 @@ public func == (lhs: Services.Search.Actions.SearchV2.RequestV1, rhs: Services.S
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasQuery == rhs.hasQuery) && (!lhs.hasQuery || lhs.query == rhs.query)
   fieldCheck = fieldCheck && (lhs.hasCategory == rhs.hasCategory) && (!lhs.hasCategory || lhs.category == rhs.category)
+  fieldCheck = fieldCheck && (lhs.hasAttribute == rhs.hasAttribute) && (!lhs.hasAttribute || lhs.attribute == rhs.attribute)
+  fieldCheck = fieldCheck && (lhs.hasAttributeValue == rhs.hasAttributeValue) && (!lhs.hasAttributeValue || lhs.attributeValue == rhs.attributeValue)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -52,6 +54,11 @@ public extension Services.Search.Actions.SearchV2 {
 
     public private(set) var category:Services.Search.Containers.Search.CategoryV1 = Services.Search.Containers.Search.CategoryV1.Profiles
     public private(set) var hasCategory:Bool = false
+    public private(set) var attribute:Services.Search.Containers.Search.AttributeV1 = Services.Search.Containers.Search.AttributeV1.LocationId
+    public private(set) var hasAttribute:Bool = false
+    public private(set) var hasAttributeValue:Bool = false
+    public private(set) var attributeValue:String = ""
+
     required public init() {
          super.init()
     }
@@ -60,10 +67,16 @@ public extension Services.Search.Actions.SearchV2 {
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
       if hasQuery {
-        try output.writeString(1, value:query)
+        try output.writeString(2, value:query)
       }
       if hasCategory {
-        try output.writeEnum(2, value:category.rawValue)
+        try output.writeEnum(3, value:category.rawValue)
+      }
+      if hasAttribute {
+        try output.writeEnum(4, value:attribute.rawValue)
+      }
+      if hasAttributeValue {
+        try output.writeString(5, value:attributeValue)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -75,10 +88,16 @@ public extension Services.Search.Actions.SearchV2 {
 
       serialize_size = 0
       if hasQuery {
-        serialize_size += query.computeStringSize(1)
+        serialize_size += query.computeStringSize(2)
       }
       if (hasCategory) {
-        serialize_size += category.rawValue.computeEnumSize(2)
+        serialize_size += category.rawValue.computeEnumSize(3)
+      }
+      if (hasAttribute) {
+        serialize_size += attribute.rawValue.computeEnumSize(4)
+      }
+      if hasAttributeValue {
+        serialize_size += attributeValue.computeStringSize(5)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -137,6 +156,12 @@ public extension Services.Search.Actions.SearchV2 {
       if (hasCategory) {
         output += "\(indent) category: \(category.rawValue)\n"
       }
+      if (hasAttribute) {
+        output += "\(indent) attribute: \(attribute.rawValue)\n"
+      }
+      if hasAttributeValue {
+        output += "\(indent) attributeValue: \(attributeValue) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -147,6 +172,12 @@ public extension Services.Search.Actions.SearchV2 {
             }
             if hasCategory {
                hashCode = (hashCode &* 31) &+ Int(category.rawValue)
+            }
+            if hasAttribute {
+               hashCode = (hashCode &* 31) &+ Int(attribute.rawValue)
+            }
+            if hasAttributeValue {
+               hashCode = (hashCode &* 31) &+ attributeValue.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -222,6 +253,52 @@ public extension Services.Search.Actions.SearchV2 {
            builderResult.category = .Profiles
            return self
         }
+        public var hasAttribute:Bool{
+            get {
+                return builderResult.hasAttribute
+            }
+        }
+        public var attribute:Services.Search.Containers.Search.AttributeV1 {
+            get {
+                return builderResult.attribute
+            }
+            set (value) {
+                builderResult.hasAttribute = true
+                builderResult.attribute = value
+            }
+        }
+        public func setAttribute(value:Services.Search.Containers.Search.AttributeV1) -> Services.Search.Actions.SearchV2.RequestV1.Builder {
+          self.attribute = value
+          return self
+        }
+        public func clearAttribute() -> Services.Search.Actions.SearchV2.RequestV1.Builder {
+           builderResult.hasAttribute = false
+           builderResult.attribute = .LocationId
+           return self
+        }
+      public var hasAttributeValue:Bool {
+           get {
+                return builderResult.hasAttributeValue
+           }
+      }
+      public var attributeValue:String {
+           get {
+                return builderResult.attributeValue
+           }
+           set (value) {
+               builderResult.hasAttributeValue = true
+               builderResult.attributeValue = value
+           }
+      }
+      public func setAttributeValue(value:String) -> Services.Search.Actions.SearchV2.RequestV1.Builder {
+        self.attributeValue = value
+        return self
+      }
+      public func clearAttributeValue() -> Services.Search.Actions.SearchV2.RequestV1.Builder{
+           builderResult.hasAttributeValue = false
+           builderResult.attributeValue = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -252,6 +329,12 @@ public extension Services.Search.Actions.SearchV2 {
         if other.hasCategory {
              category = other.category
         }
+        if other.hasAttribute {
+             attribute = other.attribute
+        }
+        if other.hasAttributeValue {
+             attributeValue = other.attributeValue
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -267,16 +350,27 @@ public extension Services.Search.Actions.SearchV2 {
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
 
-          case 10 :
+          case 18 :
             query = try input.readString()
 
-          case 16 :
+          case 24 :
             let valueIntcategory = try input.readEnum()
             if let enumscategory = Services.Search.Containers.Search.CategoryV1(rawValue:valueIntcategory){
                  category = enumscategory
             } else {
-                 try unknownFieldsBuilder.mergeVarintField(2, value:Int64(valueIntcategory))
+                 try unknownFieldsBuilder.mergeVarintField(3, value:Int64(valueIntcategory))
             }
+
+          case 32 :
+            let valueIntattribute = try input.readEnum()
+            if let enumsattribute = Services.Search.Containers.Search.AttributeV1(rawValue:valueIntattribute){
+                 attribute = enumsattribute
+            } else {
+                 try unknownFieldsBuilder.mergeVarintField(4, value:Int64(valueIntattribute))
+            }
+
+          case 42 :
+            attributeValue = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
@@ -300,7 +394,7 @@ public extension Services.Search.Actions.SearchV2 {
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
       for oneElementresults in results {
-          try output.writeMessage(1, value:oneElementresults)
+          try output.writeMessage(2, value:oneElementresults)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -312,7 +406,7 @@ public extension Services.Search.Actions.SearchV2 {
 
       serialize_size = 0
       for oneElementresults in results {
-          serialize_size += oneElementresults.computeMessageSize(1)
+          serialize_size += oneElementresults.computeMessageSize(2)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -466,7 +560,7 @@ public extension Services.Search.Actions.SearchV2 {
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
 
-          case 10 :
+          case 18 :
             let subBuilder = Services.Search.Containers.SearchResultV1.Builder()
             try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
             results += [subBuilder.buildPartial()]
