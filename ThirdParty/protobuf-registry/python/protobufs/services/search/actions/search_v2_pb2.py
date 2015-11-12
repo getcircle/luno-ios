@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobufs/services/search/actions/search_v2.proto',
   package='services.search.actions.search_v2',
   syntax='proto2',
-  serialized_pb=_b('\n1protobufs/services/search/actions/search_v2.proto\x12!services.search.actions.search_v2\x1a*protobufs/services/search/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"[\n\tRequestV1\x12\r\n\x05query\x18\x01 \x01(\t\x12?\n\x08\x63\x61tegory\x18\x02 \x01(\x0e\x32-.services.search.containers.search.CategoryV1\"I\n\nResponseV1\x12;\n\x07results\x18\x01 \x03(\x0b\x32*.services.search.containers.SearchResultV1')
+  serialized_pb=_b('\n1protobufs/services/search/actions/search_v2.proto\x12!services.search.actions.search_v2\x1a*protobufs/services/search/containers.proto\x1a\x31protobufs/services/search/containers/search.proto\"\xb7\x01\n\tRequestV1\x12\r\n\x05query\x18\x02 \x01(\t\x12?\n\x08\x63\x61tegory\x18\x03 \x01(\x0e\x32-.services.search.containers.search.CategoryV1\x12\x41\n\tattribute\x18\x04 \x01(\x0e\x32..services.search.containers.search.AttributeV1\x12\x17\n\x0f\x61ttribute_value\x18\x05 \x01(\t\"I\n\nResponseV1\x12;\n\x07results\x18\x02 \x03(\x0b\x32*.services.search.containers.SearchResultV1')
   ,
   dependencies=[protobufs_dot_services_dot_search_dot_containers__pb2.DESCRIPTOR,protobufs_dot_services_dot_search_dot_containers_dot_search__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -38,15 +38,29 @@ _REQUESTV1 = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='query', full_name='services.search.actions.search_v2.RequestV1.query', index=0,
-      number=1, type=9, cpp_type=9, label=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='category', full_name='services.search.actions.search_v2.RequestV1.category', index=1,
-      number=2, type=14, cpp_type=8, label=1,
+      number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='attribute', full_name='services.search.actions.search_v2.RequestV1.attribute', index=2,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='attribute_value', full_name='services.search.actions.search_v2.RequestV1.attribute_value', index=3,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -62,8 +76,8 @@ _REQUESTV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=183,
-  serialized_end=274,
+  serialized_start=184,
+  serialized_end=367,
 )
 
 
@@ -76,7 +90,7 @@ _RESPONSEV1 = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='results', full_name='services.search.actions.search_v2.ResponseV1.results', index=0,
-      number=1, type=11, cpp_type=10, label=3,
+      number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -93,11 +107,12 @@ _RESPONSEV1 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=276,
-  serialized_end=349,
+  serialized_start=369,
+  serialized_end=442,
 )
 
 _REQUESTV1.fields_by_name['category'].enum_type = protobufs_dot_services_dot_search_dot_containers_dot_search__pb2._CATEGORYV1
+_REQUESTV1.fields_by_name['attribute'].enum_type = protobufs_dot_services_dot_search_dot_containers_dot_search__pb2._ATTRIBUTEV1
 _RESPONSEV1.fields_by_name['results'].message_type = protobufs_dot_services_dot_search_dot_containers__pb2._SEARCHRESULTV1
 DESCRIPTOR.message_types_by_name['RequestV1'] = _REQUESTV1
 DESCRIPTOR.message_types_by_name['ResponseV1'] = _RESPONSEV1

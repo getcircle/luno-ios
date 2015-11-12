@@ -6,10 +6,14 @@ import "protobufs/services/search/containers/search.proto";
 
 
 message RequestV1 {
-    optional string query = 1;
-    optional services.search.containers.search.CategoryV1 category = 2;
+    // reserved 1;
+    optional string query = 2;
+    optional services.search.containers.search.CategoryV1 category = 3;
+    optional services.search.containers.search.AttributeV1 attribute = 4;
+    optional string attribute_value = 5;
 }
 
 message ResponseV1 {
-    repeated services.search.containers.SearchResultV1 results = 1;
+    // reserved 1;
+    repeated services.search.containers.SearchResultV1 results = 2;
 }
