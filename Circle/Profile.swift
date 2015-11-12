@@ -287,10 +287,10 @@ extension Services.Profile.Containers.ProfileV1 {
                     
                     if diffComponents.month == 0 && diffComponents.year == 0 && diffComponents.day < 7 {
                         // Show "New at company. Say hi!" for seven days
-                        return "\u{2B50} New at \(organization.name). Say hi!"
+                        return NSLocalizedString("\u{2B50} New at \(organization.name). Say hi!", comment: "Subtitle showing that an employee is new at the company")
                     }
                     else {
-                        return "\u{2013} at \(organization.name) for \(hireDate.timeAgo(addAgo: false))"
+                        return NSLocalizedString("\u{2013} at \(organization.name) for \(hireDate.timeAgo(addAgo: false))", comment: "Subtitle showing how long an employee has been at the company")
                     }
                 }
             }
