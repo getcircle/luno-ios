@@ -37,7 +37,7 @@ extension NSDate {
             }
             
             // Show months between 1 to 3 years
-            if (diffComponents.year == 0 || diffComponents.year < 3) && diffComponents.month > 0 {
+            if diffComponents.year < 3 && diffComponents.month > 0 {
                 if diffComponents.month == 1 {
                     timeAgoString.append(
                         NSLocalizedString("1 month", comment: "String indicating duration of 1 month")
