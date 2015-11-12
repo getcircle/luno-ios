@@ -18,29 +18,10 @@ class PostDetailDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         let actionsGroup = dispatch_group_create()
-        let availableWidth = UIScreen.mainScreen().bounds.size.width - 20.0
-
-        // Post content style
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 1.0
-        let contentAttributes = [
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(),
-            NSFontAttributeName: UIFont.mainTextFont(),
-        ]
-        
-        // Image caption style
-        let imageCaptionParagraphStyle = NSMutableParagraphStyle()
-        imageCaptionParagraphStyle.paragraphSpacingBefore = 5.0
-        imageCaptionParagraphStyle.alignment = .Center
-        let imageCaptionAttributes = [
-            NSForegroundColorAttributeName: UIColor.appSecondaryTextColor(),
-            NSFontAttributeName: UIFont.secondaryTextFont(),
-            NSParagraphStyleAttributeName: imageCaptionParagraphStyle,
-        ]
         
         var storedError: NSError?
-        var attachmentStrings = [NSAttributedString]()
+        var files: [Services.File.Containers.FileV1]?
+        var images = [String: UIImage]()
         
         // Get author profile
         dispatch_group_enter(actionsGroup)
@@ -57,13 +38,13 @@ class PostDetailDataSource: CardDataSource {
         // Get attached files
         if post.fileIds.count > 0 {
             dispatch_group_enter(actionsGroup)
-            Services.File.Actions.getFiles(post.fileIds) { (files, error) -> Void in
+            Services.File.Actions.getFiles(post.fileIds) { (postFiles, error) -> Void in
                 if let error = error {
                     storedError = error
                 }
-                else if let files = files {
+                else if let postFiles = postFiles {
                     // Sort the attached files in the order they were uploaded
-                    let sortedFiles = files.sort({ (firstFile, secondFile) -> Bool in
+                    let sortedFiles = postFiles.sort({ (firstFile, secondFile) -> Bool in
                         if let firstFileDate = NSDateFormatter.dateFromTimestampString(firstFile.created), secondFileDate = NSDateFormatter.dateFromTimestampString(secondFile.created) {
                             return firstFileDate.earlierDate(secondFileDate) == firstFileDate
                         }
@@ -72,40 +53,22 @@ class PostDetailDataSource: CardDataSource {
                         }
                     })
                     
-                    for (index, file) in sortedFiles.enumerate() {
+                    for file in sortedFiles {
                         if file.isImage() {
-                            // Download the image
                             dispatch_group_enter(actionsGroup)
                             Alamofire.request(.GET, file.sourceUrl).response(completionHandler: { (request, response, data, error) -> Void in
                                 if let error = error {
                                     print("Error: \(error)")
-                                    dispatch_group_leave(actionsGroup)
                                 }
-                                else if let data = data, image = UIImage(data: data), cgImage = image.CGImage {
-                                    let attachment = NSTextAttachment()
-                                    let imageWidth = image.size.width
-                                    let scale = (imageWidth > availableWidth) ? (imageWidth / availableWidth) : 1.0
-
-                                    attachment.image = UIImage(CGImage: cgImage, scale: scale, orientation: .Up)
-                                    
-                                    let attachmentString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
-                                    let captionString = NSAttributedString(string: "\n\(file.name)", attributes: imageCaptionAttributes)
-                                    attachmentString.appendAttributedString(captionString)
-                                    
-                                    attachmentStrings.insert(attachmentString, atIndex: index)
-                                    dispatch_group_leave(actionsGroup)
+                                else if let data = data, image = UIImage(data: data) {
+                                    images[file.sourceUrl] = image
                                 }
+                                dispatch_group_leave(actionsGroup)
                             })
                         }
-                        else {
-                            // Make a link to the file
-                            if let url = NSURL(string: file.sourceUrl) {
-                                let attachmentString = NSMutableAttributedString(string: file.name, attributes: contentAttributes)
-                                attachmentString.addAttribute(NSLinkAttributeName, value: url, range: NSMakeRange(0, attachmentString.length))
-                                attachmentStrings.insert(attachmentString, atIndex: index)
-                            }
-                        }
                     }
+                    
+                    files = sortedFiles
                 }
                 
                 dispatch_group_leave(actionsGroup)
@@ -113,15 +76,7 @@ class PostDetailDataSource: CardDataSource {
         }
         
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
-            let contentString = NSMutableAttributedString(string: self.post.content, attributes: contentAttributes)
-
-            for attachmentString in attachmentStrings {
-                contentString.appendAttributedString(NSAttributedString(string: "\n\n"))
-                contentString.appendAttributedString(attachmentString)
-            }
-            
-            self.content = contentString
-            
+            self.renderContentWithFiles(files, images: images)
             self.populateData()
             completionHandler(error: storedError)
         }
@@ -170,6 +125,65 @@ class PostDetailDataSource: CardDataSource {
         }
         appendCard(card)
         return card
+    }
+    
+    private func renderContentWithFiles(files: [Services.File.Containers.FileV1]?, images: [String: UIImage]?) {
+        let availableWidth = UIScreen.mainScreen().bounds.size.width - 20.0
+        
+        // Post content style
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 1.0
+        let contentAttributes = [
+            NSParagraphStyleAttributeName: paragraphStyle,
+            NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(),
+            NSFontAttributeName: UIFont.mainTextFont(),
+        ]
+        
+        // Image caption style
+        let imageCaptionParagraphStyle = NSMutableParagraphStyle()
+        imageCaptionParagraphStyle.paragraphSpacingBefore = 5.0
+        imageCaptionParagraphStyle.alignment = .Center
+        let imageCaptionAttributes = [
+            NSForegroundColorAttributeName: UIColor.appSecondaryTextColor(),
+            NSFontAttributeName: UIFont.secondaryTextFont(),
+            NSParagraphStyleAttributeName: imageCaptionParagraphStyle,
+        ]
+        
+        var attachmentStrings = [NSAttributedString]()
+        if let files = files {
+            for (index, file) in files.enumerate() {
+                if let image = images?[file.sourceUrl], cgImage = image.CGImage {
+                    let attachment = NSTextAttachment()
+                    let imageWidth = image.size.width
+                    let scale = (imageWidth > availableWidth) ? (imageWidth / availableWidth) : 1.0
+                    
+                    attachment.image = UIImage(CGImage: cgImage, scale: scale, orientation: .Up)
+                    
+                    let attachmentString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
+                    let captionString = NSAttributedString(string: "\n\(file.name)", attributes: imageCaptionAttributes)
+                    attachmentString.appendAttributedString(captionString)
+                    
+                    attachmentStrings.insert(attachmentString, atIndex: index)
+                }
+                else {
+                    // Make a link to the file
+                    if let url = NSURL(string: file.sourceUrl) {
+                        let attachmentString = NSMutableAttributedString(string: file.name, attributes: contentAttributes)
+                        attachmentString.addAttribute(NSLinkAttributeName, value: url, range: NSMakeRange(0, attachmentString.length))
+                        attachmentStrings.insert(attachmentString, atIndex: index)
+                    }
+                }
+            }
+        }
+        
+        let contentString = NSMutableAttributedString(string: self.post.content, attributes: contentAttributes)
+        
+        for attachmentString in attachmentStrings {
+            contentString.appendAttributedString(NSAttributedString(string: "\n\n"))
+            contentString.appendAttributedString(attachmentString)
+        }
+        
+        self.content = contentString
     }
     
 }
