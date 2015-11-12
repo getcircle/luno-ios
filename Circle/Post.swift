@@ -12,13 +12,7 @@ import ProtobufRegistry
 extension Services.Post.Containers.PostV1 {
 
     func getFormattedChangedDate() -> String? {
-        if changed.trimWhitespace() != "" {
-            if let changedDate = NSDateFormatter.dateFromTimestampString(changed) {
-                return changedDate.timeAgo()
-            }
-        }
-        
-        return nil
+        return NSDateFormatter.dateFromTimestampString(changed)?.timeAgo()
     }
 
 }
