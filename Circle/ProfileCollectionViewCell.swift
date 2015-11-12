@@ -159,6 +159,9 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
                 subTextLabel.text = "Last updated \(formattedTimestamp)"
             }
         }
+        else {
+            subTextLabel.text = nil
+        }
         
         profileImageView.imageProfileIdentifier = post.id
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())

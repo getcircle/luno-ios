@@ -39,7 +39,10 @@ class PostTitleCollectionViewCell: CircleCollectionViewCell {
             titleLabel.text = post.title
             
             if let timestamp = post.getFormattedChangedDate() {
-                timestampLabel?.text = " \u{2013} Last updated \(timestamp)"
+                timestampLabel.text = " \u{2013} Last updated \(timestamp)"
+            }
+            else {
+                timestampLabel.text = nil
             }
             
             titleLabel.setNeedsUpdateConstraints()
