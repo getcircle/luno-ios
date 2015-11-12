@@ -18,6 +18,9 @@ class PostDetailDataSource: CardDataSource {
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         let actionsGroup = dispatch_group_create()
+        let availableWidth = UIScreen.mainScreen().bounds.size.width - 20.0
+
+        // Post content style
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 1.0
         let contentAttributes = [
@@ -25,6 +28,8 @@ class PostDetailDataSource: CardDataSource {
             NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(),
             NSFontAttributeName: UIFont.mainTextFont(),
         ]
+        
+        // Image caption style
         let imageCaptionParagraphStyle = NSMutableParagraphStyle()
         imageCaptionParagraphStyle.paragraphSpacingBefore = 5.0
         imageCaptionParagraphStyle.alignment = .Center
@@ -37,6 +42,7 @@ class PostDetailDataSource: CardDataSource {
         var storedError: NSError?
         var attachmentStrings = [NSAttributedString]()
         
+        // Get author profile
         dispatch_group_enter(actionsGroup)
         Services.Profile.Actions.getProfile(post.byProfileId) { (profile, error) -> Void in
             if let error = error {
@@ -48,6 +54,7 @@ class PostDetailDataSource: CardDataSource {
             dispatch_group_leave(actionsGroup)
         }
         
+        // Get attached files
         if post.fileIds.count > 0 {
             dispatch_group_enter(actionsGroup)
             Services.File.Actions.getFiles(post.fileIds) { (files, error) -> Void in
@@ -55,6 +62,7 @@ class PostDetailDataSource: CardDataSource {
                     storedError = error
                 }
                 else if let files = files {
+                    // Sort the attached files in the order they were uploaded
                     let sortedFiles = files.sort({ (firstFile, secondFile) -> Bool in
                         if let firstFileDate = NSDateFormatter.dateFromTimestampString(firstFile.created), secondFileDate = NSDateFormatter.dateFromTimestampString(secondFile.created) {
                             return firstFileDate.earlierDate(secondFileDate) == firstFileDate
@@ -63,40 +71,43 @@ class PostDetailDataSource: CardDataSource {
                             return false
                         }
                     })
-                    for file in sortedFiles {
-                        if file.contentType.containsString("image/") {
+                    
+                    for (index, file) in sortedFiles.enumerate() {
+                        if file.isImage() {
+                            // Download the image
                             dispatch_group_enter(actionsGroup)
                             Alamofire.request(.GET, file.sourceUrl).response(completionHandler: { (request, response, data, error) -> Void in
                                 if let error = error {
                                     print("Error: \(error)")
                                     dispatch_group_leave(actionsGroup)
                                 }
-                                else if let data = data, image = UIImage(data: data) {
+                                else if let data = data, image = UIImage(data: data), cgImage = image.CGImage {
                                     let attachment = NSTextAttachment()
                                     let imageWidth = image.size.width
-                                    let screenWidth = UIScreen.mainScreen().bounds.size.width - 20.0
-                                    var scale = CGFloat(1.0)
-                                    if imageWidth > screenWidth {
-                                        scale = imageWidth / screenWidth
-                                    }
-                                    attachment.image = UIImage(CGImage: image.CGImage!, scale: scale, orientation: .Up)
-                                    let attachmentString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
+                                    let scale = (imageWidth > availableWidth) ? (imageWidth / availableWidth) : 1.0
+
+                                    attachment.image = UIImage(CGImage: cgImage, scale: scale, orientation: .Up)
                                     
+                                    let attachmentString = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
                                     let captionString = NSAttributedString(string: "\n\(file.name)", attributes: imageCaptionAttributes)
                                     attachmentString.appendAttributedString(captionString)
                                     
-                                    attachmentStrings.insert(attachmentString, atIndex: sortedFiles.indexOf(file)!)
+                                    attachmentStrings.insert(attachmentString, atIndex: index)
                                     dispatch_group_leave(actionsGroup)
                                 }
                             })
                         }
                         else {
-                            let attachmentString = NSMutableAttributedString(string: file.name, attributes: contentAttributes)
-                            attachmentString.addAttribute(NSLinkAttributeName, value: NSURL(string: file.sourceUrl)!, range: NSMakeRange(0, attachmentString.length))
-                            attachmentStrings.insert(attachmentString, atIndex: sortedFiles.indexOf(file)!)
+                            // Make a link to the file
+                            if let url = NSURL(string: file.sourceUrl) {
+                                let attachmentString = NSMutableAttributedString(string: file.name, attributes: contentAttributes)
+                                attachmentString.addAttribute(NSLinkAttributeName, value: url, range: NSMakeRange(0, attachmentString.length))
+                                attachmentStrings.insert(attachmentString, atIndex: index)
+                            }
                         }
                     }
                 }
+                
                 dispatch_group_leave(actionsGroup)
             }
         }

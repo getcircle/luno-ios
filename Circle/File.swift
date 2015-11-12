@@ -31,3 +31,11 @@ extension Services.File.Actions {
     }
     
 }
+
+extension Services.File.Containers.FileV1 {
+    
+    func isImage() -> Bool {
+        return (contentType.componentsSeparatedByString("/").first == "image")
+    }
+    
+}
