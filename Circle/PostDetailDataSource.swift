@@ -13,70 +13,43 @@ import Alamofire
 class PostDetailDataSource: CardDataSource {
     
     var post: Services.Post.Containers.PostV1!
-    var author: Services.Profile.Containers.ProfileV1?
     var content: NSAttributedString?
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         let actionsGroup = dispatch_group_create()
         
         var storedError: NSError?
-        var files: [Services.File.Containers.FileV1]?
         var images = [String: UIImage]()
         
-        // Get author profile
         dispatch_group_enter(actionsGroup)
-        Services.Profile.Actions.getProfile(post.byProfileId) { (profile, error) -> Void in
+        Services.Post.Actions.getPost(post.id) { (post, error) -> Void in
             if let error = error {
                 storedError = error
             }
-            else {
-                self.author = profile
+            else if let post = post {
+                // Download all attached images
+                for file in post.files {
+                    if file.isImage() {
+                        dispatch_group_enter(actionsGroup)
+                        Alamofire.request(.GET, file.sourceUrl).response(completionHandler: { (request, response, data, error) -> Void in
+                            if let error = error {
+                                print("Error: \(error)")
+                            }
+                            else if let data = data, image = UIImage(data: data) {
+                                images[file.sourceUrl] = image
+                            }
+                            dispatch_group_leave(actionsGroup)
+                        })
+                    }
+                }
+                
+                self.post = post
             }
             dispatch_group_leave(actionsGroup)
         }
         
-        // Get attached files
-        if post.fileIds.count > 0 {
-            dispatch_group_enter(actionsGroup)
-            Services.File.Actions.getFiles(post.fileIds) { (postFiles, error) -> Void in
-                if let error = error {
-                    storedError = error
-                }
-                else if let postFiles = postFiles {
-                    // Sort the attached files in the order they were uploaded
-                    let sortedFiles = postFiles.sort({ (firstFile, secondFile) -> Bool in
-                        if let firstFileDate = NSDateFormatter.dateFromTimestampString(firstFile.created), secondFileDate = NSDateFormatter.dateFromTimestampString(secondFile.created) {
-                            return firstFileDate.earlierDate(secondFileDate) == firstFileDate
-                        }
-                        else {
-                            return false
-                        }
-                    })
-                    
-                    for file in sortedFiles {
-                        if file.isImage() {
-                            dispatch_group_enter(actionsGroup)
-                            Alamofire.request(.GET, file.sourceUrl).response(completionHandler: { (request, response, data, error) -> Void in
-                                if let error = error {
-                                    print("Error: \(error)")
-                                }
-                                else if let data = data, image = UIImage(data: data) {
-                                    images[file.sourceUrl] = image
-                                }
-                                dispatch_group_leave(actionsGroup)
-                            })
-                        }
-                    }
-                    
-                    files = sortedFiles
-                }
-                
-                dispatch_group_leave(actionsGroup)
-            }
-        }
-        
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
-            self.renderContentWithFiles(files, images: images)
+            self.renderContentWithFiles(self.post.files, images: images)
             self.populateData()
             completionHandler(error: storedError)
         }
@@ -110,9 +83,7 @@ class PostDetailDataSource: CardDataSource {
         let card = Card(cardType: .Profiles, title: "")
         card.showContentCount = false
         card.sectionInset = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
-        if let author = author {
-            card.addContent(content: [author])
-        }
+        card.addContent(content: [post.byProfile])
         appendCard(card)
         return card
     }
