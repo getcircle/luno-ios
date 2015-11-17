@@ -37,6 +37,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
     @IBOutlet weak private(set) var teamNameLetterLabel: UILabel!
     @IBOutlet weak private(set) var addButton: UIButton!
     @IBOutlet weak private(set) var separatorView: UIView!
+    @IBOutlet weak private(set) var disclosureIndicatorView: UIImageView!
 
     private var nameLabelRightConstraintInitialValue: CGFloat!
     
@@ -52,6 +53,7 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         nameLabel.textColor = UIColor.appPrimaryTextColor()
         subTextLabel.textColor = UIColor.appSecondaryTextColor()
         nameLabelRightConstraintInitialValue = nameLabelRightConstraint.constant
+        disclosureIndicatorView.tintColor = UIColor.appIconColor()
     }
 
     // MARK: - Configuration
@@ -106,6 +108,9 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         else if let location = data as? Services.Organization.Containers.LocationV1 {
             setLocation(location)
         }
+        else if let post = data as? Services.Post.Containers.PostV1 {
+            setPost(post)
+        }
         
         addButton.hidden = true
         separatorView.hidden = true
@@ -141,6 +146,27 @@ class ProfileCollectionViewCell: CircleCollectionViewCell {
         profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
         profileImageView.contentMode = .Center
         profileImageView.image = UIImage(named: "detail_office")
+        teamNameLetterLabel.hidden = true
+    }
+    
+    private func setPost(post: Services.Post.Containers.PostV1) {
+        nameLabel.text = post.title
+        if let formattedTimestamp = post.getFormattedChangedDate() {
+            if let author = post.byProfile {
+                subTextLabel.text = "\(author.fullName) - \(formattedTimestamp)"
+            }
+            else {
+                subTextLabel.text = "Last updated \(formattedTimestamp)"
+            }
+        }
+        else {
+            subTextLabel.text = nil
+        }
+        
+        profileImageView.imageProfileIdentifier = post.id
+        profileImageView.makeItCircular(true, borderColor: UIColor.appIconBorderColor())
+        profileImageView.contentMode = .Center
+        profileImageView.image = UIImage(named: "detail_post")
         teamNameLetterLabel.hidden = true
     }
 

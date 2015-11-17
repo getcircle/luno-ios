@@ -216,6 +216,11 @@ public var ServicesRegistryResponsesUsergetActiveDevices:ConcreateExtensionField
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesUsergetActiveDevicesStatic
    }
 }
+public var ServicesRegistryResponsesUserxauth:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesUserxauthStatic
+   }
+}
 public var ServicesRegistryResponsesOrganizationcreateOrganization:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesOrganizationcreateOrganizationStatic
@@ -631,6 +636,7 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesUserlogoutStatic:ConcreateExtensionField
     var ServicesRegistryResponsesUsergetAuthenticationInstructionsStatic:ConcreateExtensionField
     var ServicesRegistryResponsesUsergetActiveDevicesStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesUserxauthStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationcreateOrganizationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetOrganizationStatic:ConcreateExtensionField
     var ServicesRegistryResponsesOrganizationgetTeamStatic:ConcreateExtensionField
@@ -729,6 +735,7 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesUserlogoutStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 114, defaultValue:Services.User.Actions.Logout.ResponseV1(), messageOrGroupClass:Services.User.Actions.Logout.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesUsergetAuthenticationInstructionsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 115, defaultValue:Services.User.Actions.GetAuthenticationInstructions.ResponseV1(), messageOrGroupClass:Services.User.Actions.GetAuthenticationInstructions.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesUsergetActiveDevicesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 116, defaultValue:Services.User.Actions.GetActiveDevices.ResponseV1(), messageOrGroupClass:Services.User.Actions.GetActiveDevices.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesUserxauthStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 117, defaultValue:Services.User.Actions.Xauth.ResponseV1(), messageOrGroupClass:Services.User.Actions.Xauth.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationcreateOrganizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 200, defaultValue:Services.Organization.Actions.CreateOrganization.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.CreateOrganization.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationgetOrganizationStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 201, defaultValue:Services.Organization.Actions.GetOrganization.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetOrganization.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesOrganizationgetTeamStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 202, defaultValue:Services.Organization.Actions.GetTeam.ResponseV1(), messageOrGroupClass:Services.Organization.Actions.GetTeam.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -827,6 +834,7 @@ public extension Services.Registry.Responses {
       Services.User.Actions.Logout.LogoutRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.User.Actions.GetAuthenticationInstructions.GetAuthenticationInstructionsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.User.Actions.GetActiveDevices.GetActiveDevicesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.User.Actions.Xauth.XauthRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.CreateOrganization.CreateOrganizationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetTeam.GetTeamRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Actions.GetOrganization.GetOrganizationRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -924,6 +932,7 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesUserlogoutStatic)
       registry.addExtension(ServicesRegistryResponsesUsergetAuthenticationInstructionsStatic)
       registry.addExtension(ServicesRegistryResponsesUsergetActiveDevicesStatic)
+      registry.addExtension(ServicesRegistryResponsesUserxauthStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationcreateOrganizationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetOrganizationStatic)
       registry.addExtension(ServicesRegistryResponsesOrganizationgetTeamStatic)
@@ -1056,6 +1065,9 @@ public extension Services.Registry.Responses {
     }
     public class func getActiveDevices() -> ConcreateExtensionField {
          return ServicesRegistryResponsesUsergetActiveDevices
+    }
+    public class func xauth() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesUserxauth
     }
     required public init() {
          super.init()

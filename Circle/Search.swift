@@ -20,27 +20,47 @@ extension Services.Search.Actions {
         attributeValue: String? = nil,
         completionHandler: SearchCompletionHandler?
     ) {
-        let requestBuilder = Services.Search.Actions.Search.RequestV1.Builder()
-        requestBuilder.query = query
-        
-        if let category = category {
-            requestBuilder.category = category
-        }
-        
         if let attribute = attribute, attributeValue = attributeValue {
+            let requestBuilder = Services.Search.Actions.Search.RequestV1.Builder()
+            requestBuilder.query = query
+            
+            if let category = category {
+                requestBuilder.category = category
+            }
+            
             requestBuilder.attribute = attribute
             requestBuilder.attributeValue = attributeValue
+            
+            let client = ServiceClient(serviceName: "search")
+            client.callAction(
+                "search",
+                extensionField: Services.Registry.Requests.Search.search(),
+                requestBuilder: requestBuilder) { (_, _, wrappedResponse, error) -> Void in
+                    let response = wrappedResponse?.response?.result.getExtension(
+                        Services.Registry.Responses.Search.search()
+                        ) as? Services.Search.Actions.Search.ResponseV1
+                    completionHandler?(query: query, results: response?.results, error: error)
+            }
         }
-        
-        let client = ServiceClient(serviceName: "search")
-        client.callAction(
-            "search",
-            extensionField: Services.Registry.Requests.Search.search(),
-            requestBuilder: requestBuilder) { (_, _, wrappedResponse, error) -> Void in
-                let response = wrappedResponse?.response?.result.getExtension(
-                    Services.Registry.Responses.Search.search()
-                ) as? Services.Search.Actions.Search.ResponseV1
-                completionHandler?(query: query, results: response?.results, error: error)
+        else {
+            // Use search_v2 for non-attribute searches
+            let requestBuilder = Services.Search.Actions.SearchV2.RequestV1.Builder()
+            requestBuilder.query = query
+            
+            if let category = category {
+                requestBuilder.category = category
+            }
+            
+            let client = ServiceClient(serviceName: "search")
+            client.callAction(
+                "search_v2",
+                extensionField: Services.Registry.Requests.Search.searchV2(),
+                requestBuilder: requestBuilder) { (_, _, wrappedResponse, error) -> Void in
+                    let response = wrappedResponse?.response?.result.getExtension(
+                        Services.Registry.Responses.Search.searchV2()
+                        ) as? Services.Search.Actions.SearchV2.ResponseV1
+                    completionHandler?(query: query, results: response?.results, error: error)
+            }
         }
     }
 }

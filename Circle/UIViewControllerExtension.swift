@@ -351,6 +351,12 @@ extension UIViewController {
         navigationController?.pushViewController(profileStatusDetailVC, animated: true)
     }
     
+    func showPostDetail(post: Services.Post.Containers.PostV1) {
+        let postDetailVC = PostDetailViewController()
+        (postDetailVC.dataSource as! PostDetailDataSource).post = post
+        navigationController?.pushViewController(postDetailVC, animated: true)
+    }
+    
     // MARK: - Message View
     
     func addMessageView(message: String, messageType: MessageView.MessageType) -> MessageView {

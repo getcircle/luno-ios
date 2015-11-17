@@ -274,9 +274,6 @@ extension Services.Profile.Containers.ProfileV1 {
     func getFormattedHireDate() -> String? {
         if hasHireDate && hireDate.trimWhitespace() != "" {
             if let hireDate = hireDate.toDate(), organization = AuthenticationViewController.getLoggedInUserOrganization() {
-
-                // Hyphen
-                var formattedHireDate = ["\u{2013} at " + organization.name + " for"]
                 
                 let today = NSDate()
                 if let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) {
@@ -288,57 +285,13 @@ extension Services.Profile.Containers.ProfileV1 {
                         options: []
                     )
                     
-                    // Only show year if its greater than a month
-                    if diffComponents.year == 1 {
-                        formattedHireDate.append(
-                            NSLocalizedString("1 year", comment: "String indicating duration of 1 year")
-                        )
+                    if diffComponents.month == 0 && diffComponents.year == 0 && diffComponents.day < 7 {
+                        // Show "New at company. Say hi!" for seven days
+                        return NSLocalizedString("\u{2B50} New at \(organization.name). Say hi!", comment: "Subtitle showing that an employee is new at the company")
                     }
-                    else if diffComponents.year > 1 {
-                        formattedHireDate.append(NSString(
-                                format: NSLocalizedString("%d years", comment: "String indicating duration of %d years"),
-                                diffComponents.year
-                            ) as String
-                        )
+                    else {
+                        return NSLocalizedString("\u{2013} at \(organization.name) for \(hireDate.timeAgo(addAgo: false))", comment: "Subtitle showing how long an employee has been at the company")
                     }
-                    
-                    // Show months between 1 to 3 years
-                    if (diffComponents.year == 0 || diffComponents.year < 3) && diffComponents.month > 0 {
-                        if diffComponents.month == 1 {
-                            formattedHireDate.append(
-                                NSLocalizedString("1 month", comment: "String indicating duration of 1 month")
-                            )
-                        }
-                        else if diffComponents.month < 12 {
-                            formattedHireDate.append(NSString(
-                                    format: NSLocalizedString("%d months", comment: "String indicating duration of %d months"),
-                                    diffComponents.month
-                                ) as String
-                            )
-                        }
-                    }
-                    
-                    // Show "New at company. Say hi!" for seven days 
-                    // and then duration in weeks
-                    if diffComponents.month == 0 && diffComponents.year == 0 {
-                        if diffComponents.day < 7 {
-                            formattedHireDate = ["\u{2B50} New at " + organization.name + ". Say hi!"]
-                        }
-                        else if diffComponents.day / 7 == 1 {
-                            formattedHireDate.append(
-                                NSLocalizedString("1 week", comment: "String indicating duration of 1 week")
-                            )
-                        }
-                        else {
-                            formattedHireDate.append(NSString(
-                                    format: NSLocalizedString("%d weeks", comment: "String indicating duration of %d weeks"),
-                                    diffComponents.day / 7
-                                ) as String
-                            )
-                        }
-                    }
-                    
-                    return formattedHireDate.joinWithSeparator(" ")
                 }
             }
         }

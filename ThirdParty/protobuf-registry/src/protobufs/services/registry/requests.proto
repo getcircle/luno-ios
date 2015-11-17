@@ -23,6 +23,7 @@ import "protobufs/services/user/actions/delete_identity.proto";
 import "protobufs/services/user/actions/logout.proto";
 import "protobufs/services/user/actions/get_authentication_instructions.proto";
 import "protobufs/services/user/actions/get_active_devices.proto";
+import "protobufs/services/user/actions/xauth.proto";
 
 import "protobufs/services/organization/actions/create_organization.proto";
 import "protobufs/services/organization/actions/get_team.proto";
@@ -134,6 +135,7 @@ message User {
         optional services.user.actions.logout.RequestV1 logout = 114;
         optional services.user.actions.get_authentication_instructions.RequestV1 get_authentication_instructions = 115;
         optional services.user.actions.get_active_devices.RequestV1 get_active_devices = 116;
+        optional services.user.actions.xauth.RequestV1 xauth = 117;
     }
 }
 

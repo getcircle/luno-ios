@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470CFC641BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470CFC631BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift */; };
 		47BA36C11BF185CF00A26736 /* Services.File.Actions.CompleteUpload.CompleteUpload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA36C01BF185CF00A26736 /* Services.File.Actions.CompleteUpload.CompleteUpload.proto.swift */; };
 		47BA36C31BF185F500A26736 /* Services.File.Actions.Delete.Delete.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA36C21BF185F500A26736 /* Services.File.Actions.Delete.Delete.proto.swift */; };
 		47BA36C51BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA36C41BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift */; };
@@ -161,6 +162,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		470CFC631BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.User.Actions.Xauth.Xauth.proto.swift; sourceTree = "<group>"; };
 		47BA36C01BF185CF00A26736 /* Services.File.Actions.CompleteUpload.CompleteUpload.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Actions.CompleteUpload.CompleteUpload.proto.swift; sourceTree = "<group>"; };
 		47BA36C21BF185F500A26736 /* Services.File.Actions.Delete.Delete.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Actions.Delete.Delete.proto.swift; sourceTree = "<group>"; };
 		47BA36C41BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Actions.GetFiles.GetFiles.proto.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				BF9BADFA1BB38F81008CCC7E /* Services.User.Actions.UpdateUser.UpdateUser.proto.swift */,
 				BF9BADFB1BB38F81008CCC7E /* Services.User.Actions.ValidUser.ValidUser.proto.swift */,
 				BF9BADFC1BB38F81008CCC7E /* Services.User.Actions.VerifyVerificationCode.VerifyVerificationCode.proto.swift */,
+				470CFC631BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift */,
 				BF9BADFD1BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift */,
 				BF9BADFE1BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift */,
 				BF9BADFF1BB38F81008CCC7E /* Soa.Soa.proto.swift */,
@@ -767,6 +770,7 @@
 				BF9BAE641BB38F81008CCC7E /* Services.User.Actions.UpdateUser.UpdateUser.proto.swift in Sources */,
 				BF9BAE651BB38F81008CCC7E /* Services.User.Actions.ValidUser.ValidUser.proto.swift in Sources */,
 				BF9BAE661BB38F81008CCC7E /* Services.User.Actions.VerifyVerificationCode.VerifyVerificationCode.proto.swift in Sources */,
+				470CFC641BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift in Sources */,
 				BF9BAE681BB38F81008CCC7E /* Services.User.Containers.Token.Token.proto.swift in Sources */,
 				BF9BAE671BB38F81008CCC7E /* Services.User.Containers.Containers.proto.swift in Sources */,
 				BF9BAE691BB38F81008CCC7E /* Soa.Soa.proto.swift in Sources */,

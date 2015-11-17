@@ -80,6 +80,7 @@ struct TrackerProperty {
         case Team = "Team"
         case Location = "Location"
         case ProfileStatus = "Profile Status"
+        case Post = "Post"
         
         // Smart Actions
         case EmailPerson = "Email Person"
