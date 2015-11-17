@@ -9,14 +9,16 @@
 import UIKit
 import ProtobufRegistry
 
-class PostDetailViewController: DetailViewController {
+class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocumentInteractionControllerDelegate {
 
     // MARK: - Initialization
     
     override func customInit() {
         super.customInit()
         
-        dataSource = PostDetailDataSource()
+        let postDetailDataSource = PostDetailDataSource()
+        postDetailDataSource.textViewDelegate = self
+        dataSource = postDetailDataSource
         delegate = CardCollectionViewDelegate()
     }
     
@@ -50,6 +52,43 @@ class PostDetailViewController: DetailViewController {
                 default:
                     break
                 }
+            }
+        }
+    }
+    
+    // MARK: - UITextViewDelegate
+    
+    func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
+        if let postDetailDataSource = dataSource as? PostDetailDataSource, attachment = postDetailDataSource.attachmentForTextAttachment(textAttachment) {
+            // Write attachment data to a temp file so we can preview it
+            let tempFileUrl = NSURL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).URLByAppendingPathComponent(attachment.name)
+            do {
+                try attachment.data.writeToURL(tempFileUrl, options: [])
+                let documentInteractionController = UIDocumentInteractionController(URL: tempFileUrl)
+                documentInteractionController.delegate = self
+                documentInteractionController.presentPreviewAnimated(true)
+            }
+            catch {
+                print("Error: \(error)")
+            }
+        }
+        
+        return true
+    }
+    
+    // MARK: - UIDocumentInteractionControllerDelegate
+    
+    func documentInteractionControllerViewControllerForPreview(controller: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
+    
+    func documentInteractionControllerDidEndPreview(controller: UIDocumentInteractionController) {
+        if let tempFileUrl = controller.URL {
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(tempFileUrl)
+            }
+            catch {
+                print("Error: \(error)")
             }
         }
     }
