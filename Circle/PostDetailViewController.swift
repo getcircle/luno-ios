@@ -23,7 +23,10 @@ class PostDetailViewController: DetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: track page view
+        Tracker.sharedInstance.trackPageView(
+            pageType: .PostDetail,
+            pageId: (dataSource as! PostDetailDataSource).post.id
+        )
     }
     
     // MARK: - Configuration
