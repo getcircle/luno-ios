@@ -129,7 +129,6 @@
 		8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */; };
 		8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */; };
 		8F12AA201BCF713D0037A550 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12AA1F1BCF713D0037A550 /* UILabelExtension.swift */; };
-		8F15A4021B7573F300693E26 /* EditTeamStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */; };
 		8F15A4081B75889900693E26 /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4071B75889900693E26 /* TextData.swift */; };
 		8F15A40C1B75C57300693E26 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A40B1B75C57300693E26 /* Location.swift */; };
 		8F15A4111B79B40700693E26 /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A40F1B79B40700693E26 /* ContactCollectionViewCell.swift */; };
@@ -460,7 +459,6 @@
 		8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		8F12AA1F1BCF713D0037A550 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
-		8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamStatusViewController.swift; sourceTree = "<group>"; };
 		8F15A4071B75889900693E26 /* TextData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
 		8F15A40B1B75C57300693E26 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8F15A40F1B79B40700693E26 /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -753,7 +751,6 @@
 				8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */,
-				8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */,
 				8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
@@ -1605,7 +1602,6 @@
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
 				8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
-				8F15A4021B7573F300693E26 /* EditTeamStatusViewController.swift in Sources */,
 				8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */,
 				8F085A8A1A6B0CB300F8139B /* TeamDetailDataSource.swift in Sources */,
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,

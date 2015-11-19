@@ -31,7 +31,6 @@ struct AppStrings {
     static let EditProfileFormWarning = NSLocalizedString("Your manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to their profile will be notified to manager as well")
     static let EditProfileManagerPlaceholder = NSLocalizedString("Add Manager", comment: "Placeholder for manager field when current user does not have a manager")
     static let EditProfileSaveError = NSLocalizedString("Error updating profile", comment: "Message indicating that an error was encountered trying to save changes to the profile")
-    static let EditTeamStatusPlaceholder = NSLocalizedString("What #project is your team working on?", comment: "Placeholder for team status text field")
     static let EditTeamFormWarning = NSLocalizedString("The team manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to the team will be notified to team's manager")
     static let EmailFeedbackSubject = NSLocalizedString("Feedback on luno", comment: "Subject of the feedback email")
     
@@ -72,7 +71,6 @@ struct AppStrings {
     static let ProfileEditTitle = NSLocalizedString("Edit Profile", comment: "Title of the view which allows the user to edit their profile")
     static let ProfileEditUpdatePhoto = NSLocalizedString("Update Photo", comment: "Button prompt to update user's profile photo")
     
-    static let ProfileSectionStatusTitle = NSLocalizedString("Currently working on", comment: "Title of the section which shows user's status")
     static let ProfileSectionContactPreferencesTitle = NSLocalizedString("Contact Preferences", comment: "Title of the section which takes user to preferences on contact info")
     static let ProfileSectionManagerTitle = NSLocalizedString("Reports to", comment: "Title of the section which shows user's manager")
     

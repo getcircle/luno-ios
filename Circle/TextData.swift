@@ -14,7 +14,6 @@ class TextData {
     enum TextDataType {
         case LocationDescription
         case TeamDescription
-        case TeamStatus
     }
     
     var placeholder: String?

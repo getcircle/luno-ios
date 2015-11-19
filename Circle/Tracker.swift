@@ -44,7 +44,6 @@ struct TrackerProperty {
     
     enum ContactLocation: String {
         case ProfileDetail = "Profile Detail"
-        case TeamDetailStatus = "Team Detail Status"
         case TeamDetailDescription = "Team Detail Description"
         case SearchSmartAction = "Search Smart Action"
     }
