@@ -11,7 +11,7 @@ import ProtobufRegistry
 
 class PostContentCollectionViewCell: CircleCollectionViewCell {
 
-    @IBOutlet private(set) var textView: UITextView!
+    @IBOutlet private(set) var textView: TapTextView!
     
     override class var classReuseIdentifier: String {
         return "PostContentCollectionViewCell"
