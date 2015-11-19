@@ -15,7 +15,6 @@ class RecentSearchResult: Object {
         case Profile = 1
         case Team
         case Location
-        case ProfileStatus
         case Post
     }
     
@@ -52,9 +51,6 @@ class RecentSearchResult: Object {
                     
                 case .Location:
                     return try Services.Organization.Containers.LocationV1.parseFromData(result.object)
-                    
-                case .ProfileStatus:
-                    return try Services.Profile.Containers.ProfileStatusV1.parseFromData(result.object)
                     
                 case .Post:
                     return try Services.Post.Containers.PostV1.parseFromData(result.object)

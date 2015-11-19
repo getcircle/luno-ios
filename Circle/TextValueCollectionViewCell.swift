@@ -94,7 +94,7 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
 
                 // Add text and handle quoting
                 var text: String = textData.value
-                if textData.type == .TeamStatus || textData.type == .ProfileStatus {
+                if textData.type == .TeamStatus {
                     text = "\"" + textData.value + "\""
                     textLabel.font = italicFont
                 }

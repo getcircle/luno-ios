@@ -28,7 +28,6 @@ struct AppStrings {
     static let ContactPlaceholderAddNumber = NSLocalizedString("Add Number", comment: "Placeholder for phone field when current user does not have a number added")
     static let ContactPlaceholderNumberNotAdded = NSLocalizedString("Number not added", comment: "Placeholder for phone field when a user does not have a number added")
     
-    static let EditProfileStatusPlaceholder = NSLocalizedString("working on #project with @coworkers!", comment: "Placeholder for profile status text field")
     static let EditProfileFormWarning = NSLocalizedString("Your manager will be notified of changes when you hit Save.", comment: "Message indicating the user any changes to their profile will be notified to manager as well")
     static let EditProfileManagerPlaceholder = NSLocalizedString("Add Manager", comment: "Placeholder for manager field when current user does not have a manager")
     static let EditProfileSaveError = NSLocalizedString("Error updating profile", comment: "Message indicating that an error was encountered trying to save changes to the profile")
@@ -87,7 +86,6 @@ struct AppStrings {
     
     static let SearchPlaceholder = NSLocalizedString("Search people, #projects, & teams", comment: "Placeholder text for search field used to search people, projects, and teams.")
     
-    static let ProfileStatusDetailNavTitle = NSLocalizedString("Status", comment: "Title of the view showing a person's status")
     static let QuickActionEmailPlaceholder = NSLocalizedString("Who do you want to email?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionInfoPlaceholder = NSLocalizedString("Who do you want contact info on?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionMessagePlaceholder = NSLocalizedString("Who do you want to message?", comment: "Placeholder for search field used to search for the person user intends to send a message")
