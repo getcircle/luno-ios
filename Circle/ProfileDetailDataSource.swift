@@ -76,7 +76,6 @@ class ProfileDetailDataSource: CardDataSource {
     internal func populateData() {
         resetCards()
         addPlaceholderCard()
-        addStatusCard()
         addContactsCard()
         addLocationCard()
         addManagerCard()
@@ -130,37 +129,6 @@ class ProfileDetailDataSource: CardDataSource {
             
             return nil
         }
-    }
-    
-    internal func addStatusCard() -> Card? {
-        var statusText = ""
-        var createdTimestamp = ""
-        if let status = profile.status {
-            statusText = status.value
-            createdTimestamp = status.changed
-
-        }
-        
-        let card = Card(
-            cardType: .TextValue, 
-            title: AppStrings.ProfileSectionStatusTitle
-        )
-        card.addHeader(headerClass: ProfileSectionHeaderCollectionReusableView.self)
-        card.showContentCount = false
-        card.addContent(content: [
-            TextData(
-                type: .ProfileStatus, 
-                andValue: statusText,
-                andPlaceholder: NSLocalizedString(
-                    "Ask me!",
-                    comment: "Generic text indicating a person should be asked about this info"
-                ),
-                andTimestamp: createdTimestamp,
-                andCanEdit: canEdit()
-            )
-        ])
-        appendCard(card)
-        return card
     }
     
     internal func addLocationCard() -> Card? {

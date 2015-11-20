@@ -86,20 +86,11 @@ class TextValueCollectionViewCell: CircleCollectionViewCell {
     override func setData(data: AnyObject) {
         resetViews()
         
-        let italicFont = UIFont.italicFont(textLabel.font.pointSize)
         if let textData = data as? TextData {
             currentTextDataType = textData.type
             
             if textData.value.trimWhitespace() != "" {
-
-                // Add text and handle quoting
-                var text: String = textData.value
-                if textData.type == .TeamStatus || textData.type == .ProfileStatus {
-                    text = "\"" + textData.value + "\""
-                    textLabel.font = italicFont
-                }
-                
-                textLabel.text = text
+                textLabel.text = textData.value
                 
                 // Add timestamp if present
                 if let timestamp = TextData.getFormattedTimestamp(

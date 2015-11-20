@@ -87,27 +87,5 @@ class TextDataTests: XCTestCase {
             textDataEditableTeamDescription.placeholder,
             AppStrings.AddTeamDescriptionPlaceholder
         )
-        
-        let textDataEditableTeamStatus = TextData(
-            type: .TeamStatus,
-            andValue: "",
-            andPlaceholder: placeholder,
-            andCanEdit: true
-        )
-        XCTAssertEqual(
-            textDataEditableTeamStatus.placeholder,
-            AppStrings.AddDetailsPlaceholder
-        )
-
-        let textDataProfileStatus = TextData(
-            type: .ProfileStatus,
-            andValue: "",
-            andPlaceholder: placeholder,
-            andCanEdit: false
-        )
-        XCTAssertEqual(
-            textDataProfileStatus.placeholder,
-            placeholder
-        )
     }
 }

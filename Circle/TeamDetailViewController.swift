@@ -13,7 +13,6 @@ import ProtobufRegistry
 class TeamDetailViewController:
     DetailViewController,
     EditTeamViewControllerDelegate,
-    CardHeaderViewDelegate,
     CardFooterViewDelegate,
     TextValueCollectionViewDelegate {
 
@@ -40,7 +39,6 @@ class TeamDetailViewController:
     override func configureCollectionView() {
         // Data Source
         collectionView.dataSource = dataSource
-        dataSource.cardHeaderDelegate = self
         dataSource.cardFooterDelegate = self
         (dataSource as? TeamDetailDataSource)?.textDataDelegate = self
         
@@ -139,47 +137,6 @@ class TeamDetailViewController:
         }
     }
     
-    // MARK: - CardHeaderViewDelegate
-    
-    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        switch card.type {
-        case .TextValue:
-            if card.content.count > 0 {
-                if let data = card.content.first as? TextData {
-                    switch data.type {
-                    case .TeamStatus:
-                        openEditTeamStatus(true)
-
-                    default:
-                        break
-                    }
-                }
-            }
-            break
-            
-        default:
-            break
-        }
-    }
-    
-    private func openEditTeamStatus(isNew: Bool) {
-        let editStatusViewController = EditTeamStatusViewController(
-            addCharacterLimit: true,
-            isNew: isNew,
-            withDelegate: self
-        )
-        editStatusViewController.addPostButton = true
-        editStatusViewController.team = (dataSource as! TeamDetailDataSource).team
-        let editStatusViewNavController = UINavigationController(
-            rootViewController: editStatusViewController
-        )
-        navigationController?.presentViewController(
-            editStatusViewNavController,
-            animated: true,
-            completion: nil
-        )
-    }
-    
     // MARK: - CardFooterDelegate
     
     func cardFooterTapped(card: Card!) {
@@ -263,9 +220,9 @@ class TeamDetailViewController:
             var contactLocation: TrackerProperty.ContactLocation!
             var source = ""
             var fields = [String]()
-            let dataDictionary = ["name": team.name, "description": team.description_?.value ?? "", "status": team.status?.value ?? ""];
+            let dataDictionary = ["name": team.name, "description": team.description_?.value ?? ""];
             
-            for key in ["name", "description", "status"] {
+            for key in ["name", "description"] {
                 if dataDictionary[key]?.trimWhitespace() == "" {
                     fields.append(key)
                 }
@@ -276,11 +233,7 @@ class TeamDetailViewController:
                 fields[fields.count - 1] = "and " + fields[fields.count - 1]
             }
             
-            if type == .TeamStatus {
-                contactLocation = .TeamDetailStatus
-                source = "team_status_askme"
-            }
-            else if type == .TeamDescription {
+            if type == .TeamDescription {
                 contactLocation = .TeamDetailDescription
                 source = "team_description_askme"
             }
@@ -307,6 +260,6 @@ class TeamDetailViewController:
     }
     
     func editTextButtonTapped(type: TextData.TextDataType) {
-        openEditTeamStatus(false)
+        // Do nothing.
     }
 }

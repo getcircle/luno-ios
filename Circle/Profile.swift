@@ -15,7 +15,6 @@ struct ProfileServiceNotifications {
 
 typealias GetProfileCompletionHandler = (profile: Services.Profile.Containers.ProfileV1?, error: NSError?) -> Void
 typealias GetProfilesCompletionHandler = (profiles: Array<Services.Profile.Containers.ProfileV1>?, nextRequest: Soa.ServiceRequestV1?, error: NSError?) -> Void
-typealias GetStatusCompletionHandler = (status: Services.Profile.Containers.ProfileStatusV1?, error: NSError?) -> Void
 typealias GetExtendedProfileCompletionHandler = (
     profile: Services.Profile.Containers.ProfileV1?,
     manager: Services.Profile.Containers.ProfileV1?,
@@ -239,20 +238,6 @@ extension Services.Profile.Actions {
                 })
                 wrapped?.response?.result.getExtension(Services.Registry.Responses.Profile.removeTags())
                 completionHandler?(error: error)
-        }
-    }
-    
-    static func getStatus(statusId: String, completionHandler: GetStatusCompletionHandler?) {
-        let requestBuilder = Services.Profile.Actions.GetStatus.RequestV1.Builder()
-        requestBuilder.id = statusId
-        
-        let client = ServiceClient(serviceName: "profile")
-        client.callAction("get_status", extensionField: Services.Registry.Requests.Profile.getStatus(), requestBuilder: requestBuilder) {
-            (_, _, wrapped, error) -> Void in
-            let response = wrapped?.response?.result.getExtension(
-                Services.Registry.Responses.Profile.getStatus()
-                ) as? Services.Profile.Actions.GetStatus.ResponseV1
-            completionHandler?(status: response?.status, error: error)
         }
     }
 }

@@ -15,15 +15,6 @@ class CurrentUserProfileDetailDataSource: ProfileDetailDataSource {
         return true
     }
     
-    override internal func addStatusCard() -> Card? {
-        if let card = super.addStatusCard() {
-            card.allowEditingContent = true
-            return card
-        }
-        
-        return nil
-    }
-    
     override func populateData() {
         super.populateData()
         Tracker.sharedInstance.trackAdditionalAttributesForUser(team: team, location: location)

@@ -11,7 +11,6 @@ import MBProgressHUD
 import ProtobufRegistry
 
 class CurrentUserProfileDetailViewController: ProfileDetailViewController,
-    CardHeaderViewDelegate,
     EditProfileDelegate
 {
     
@@ -22,7 +21,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
         self.init()
         profile = withProfile
         dataSource = CurrentUserProfileDetailDataSource(profile: profile)
-        dataSource.cardHeaderDelegate = self
         delegate = CardCollectionViewDelegate()
         
         if showSettingsButton {
@@ -124,19 +122,6 @@ class CurrentUserProfileDetailViewController: ProfileDetailViewController,
     func onProfileUpdated(notification: NSNotification) {
         profile = AuthenticationViewController.getLoggedInUserProfile()!
         reloadData()
-    }
-    
-    // MARK: - CardHeaderViewDelegate
-    
-    func cardHeaderTapped(sender: AnyObject!, card: Card!) {
-        switch card.type {
-            
-        case .TextValue:
-            openEditProfileStatus(true)
-
-        default:
-            break
-        }
     }
     
     // MARK: - EditProfileDelegate
