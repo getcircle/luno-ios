@@ -40,25 +40,10 @@ public func == (lhs: Services.Profile.Containers.ProfileV1, rhs: Services.Profil
   fieldCheck = fieldCheck && (lhs.hasEmail == rhs.hasEmail) && (!lhs.hasEmail || lhs.email == rhs.email)
   fieldCheck = fieldCheck && (lhs.hasIsAdmin == rhs.hasIsAdmin) && (!lhs.hasIsAdmin || lhs.isAdmin == rhs.isAdmin)
   fieldCheck = fieldCheck && (lhs.hasSmallImageUrl == rhs.hasSmallImageUrl) && (!lhs.hasSmallImageUrl || lhs.smallImageUrl == rhs.smallImageUrl)
-  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasDisplayTitle == rhs.hasDisplayTitle) && (!lhs.hasDisplayTitle || lhs.displayTitle == rhs.displayTitle)
   fieldCheck = fieldCheck && (lhs.hasAuthenticationIdentifier == rhs.hasAuthenticationIdentifier) && (!lhs.hasAuthenticationIdentifier || lhs.authenticationIdentifier == rhs.authenticationIdentifier)
   fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
   fieldCheck = fieldCheck && (lhs.hasFields == rhs.hasFields) && (!lhs.hasFields || lhs.fields == rhs.fields)
-  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-  return fieldCheck
-}
-
-public func == (lhs: Services.Profile.Containers.ProfileStatusV1, rhs: Services.Profile.Containers.ProfileStatusV1) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
-  fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
-  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
-  fieldCheck = fieldCheck && (lhs.hasChanged == rhs.hasChanged) && (!lhs.hasChanged || lhs.changed == rhs.changed)
-  fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -525,8 +510,6 @@ public extension Services.Profile.Containers {
     public private(set) var hasSmallImageUrl:Bool = false
     public private(set) var smallImageUrl:String = ""
 
-    public private(set) var hasStatus:Bool = false
-    public private(set) var status:Services.Profile.Containers.ProfileStatusV1!
     public private(set) var hasDisplayTitle:Bool = false
     public private(set) var displayTitle:String = ""
 
@@ -594,9 +577,6 @@ public extension Services.Profile.Containers {
       }
       if hasSmallImageUrl {
         try output.writeString(18, value:smallImageUrl)
-      }
-      if hasStatus {
-        try output.writeMessage(19, value:status)
       }
       if hasDisplayTitle {
         try output.writeString(20, value:displayTitle)
@@ -669,11 +649,6 @@ public extension Services.Profile.Containers {
       }
       if hasSmallImageUrl {
         serialize_size += smallImageUrl.computeStringSize(18)
-      }
-      if hasStatus {
-          if let varSizestatus = status?.computeMessageSize(19) {
-              serialize_size += varSizestatus
-          }
       }
       if hasDisplayTitle {
         serialize_size += displayTitle.computeStringSize(20)
@@ -801,11 +776,6 @@ public extension Services.Profile.Containers {
       if hasSmallImageUrl {
         output += "\(indent) smallImageUrl: \(smallImageUrl) \n"
       }
-      if hasStatus {
-        output += "\(indent) status {\n"
-        try status?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
       if hasDisplayTitle {
         output += "\(indent) displayTitle: \(displayTitle) \n"
       }
@@ -877,11 +847,6 @@ public extension Services.Profile.Containers {
             }
             if hasSmallImageUrl {
                hashCode = (hashCode &* 31) &+ smallImageUrl.hashValue
-            }
-            if hasStatus {
-                if let hashValuestatus = status?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuestatus
-                }
             }
             if hasDisplayTitle {
                hashCode = (hashCode &* 31) &+ displayTitle.hashValue
@@ -1304,57 +1269,6 @@ public extension Services.Profile.Containers {
            builderResult.smallImageUrl = ""
            return self
       }
-      public var hasStatus:Bool {
-           get {
-               return builderResult.hasStatus
-           }
-      }
-      public var status:Services.Profile.Containers.ProfileStatusV1! {
-           get {
-               if statusBuilder_ != nil {
-                  builderResult.status = statusBuilder_.getMessage()
-               }
-               return builderResult.status
-           }
-           set (value) {
-               builderResult.hasStatus = true
-               builderResult.status = value
-           }
-      }
-      private var statusBuilder_:Services.Profile.Containers.ProfileStatusV1.Builder! {
-           didSet {
-              builderResult.hasStatus = true
-           }
-      }
-      public func getStatusBuilder() -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        if statusBuilder_ == nil {
-           statusBuilder_ = Services.Profile.Containers.ProfileStatusV1.Builder()
-           builderResult.status = statusBuilder_.getMessage()
-           if status != nil {
-              try! statusBuilder_.mergeFrom(status)
-           }
-        }
-        return statusBuilder_
-      }
-      public func setStatus(value:Services.Profile.Containers.ProfileStatusV1!) -> Services.Profile.Containers.ProfileV1.Builder {
-        self.status = value
-        return self
-      }
-      public func mergeStatus(value:Services.Profile.Containers.ProfileStatusV1) throws -> Services.Profile.Containers.ProfileV1.Builder {
-        if builderResult.hasStatus {
-          builderResult.status = try Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(builderResult.status).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.status = value
-        }
-        builderResult.hasStatus = true
-        return self
-      }
-      public func clearStatus() -> Services.Profile.Containers.ProfileV1.Builder {
-        statusBuilder_ = nil
-        builderResult.hasStatus = false
-        builderResult.status = nil
-        return self
-      }
       public var hasDisplayTitle:Bool {
            get {
                 return builderResult.hasDisplayTitle
@@ -1578,9 +1492,6 @@ public extension Services.Profile.Containers {
         if other.hasSmallImageUrl {
              smallImageUrl = other.smallImageUrl
         }
-        if (other.hasStatus) {
-            try mergeStatus(other.status)
-        }
         if other.hasDisplayTitle {
              displayTitle = other.displayTitle
         }
@@ -1663,14 +1574,6 @@ public extension Services.Profile.Containers {
           case 146 :
             smallImageUrl = try input.readString()
 
-          case 154 :
-            let subBuilder:Services.Profile.Containers.ProfileStatusV1.Builder = Services.Profile.Containers.ProfileStatusV1.Builder()
-            if hasStatus {
-              try subBuilder.mergeFrom(status)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            status = subBuilder.buildPartial()
-
           case 162 :
             displayTitle = try input.readString()
 
@@ -1692,416 +1595,6 @@ public extension Services.Profile.Containers {
             }
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             fields = subBuilder.buildPartial()
-
-          default:
-            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
-               unknownFields = try unknownFieldsBuilder.build()
-               return self
-            }
-          }
-        }
-      }
-    }
-
-  }
-
-  final public class ProfileStatusV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasValue:Bool = false
-    public private(set) var value:String = ""
-
-    public private(set) var hasCreated:Bool = false
-    public private(set) var created:String = ""
-
-    public private(set) var hasId:Bool = false
-    public private(set) var id:String = ""
-
-    public private(set) var hasChanged:Bool = false
-    public private(set) var changed:String = ""
-
-    public private(set) var hasProfile:Bool = false
-    public private(set) var profile:Services.Profile.Containers.ProfileV1!
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasValue {
-        try output.writeString(2, value:value)
-      }
-      if hasCreated {
-        try output.writeString(3, value:created)
-      }
-      if hasId {
-        try output.writeString(4, value:id)
-      }
-      if hasChanged {
-        try output.writeString(5, value:changed)
-      }
-      if hasProfile {
-        try output.writeMessage(6, value:profile)
-      }
-      try unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasValue {
-        serialize_size += value.computeStringSize(2)
-      }
-      if hasCreated {
-        serialize_size += created.computeStringSize(3)
-      }
-      if hasId {
-        serialize_size += id.computeStringSize(4)
-      }
-      if hasChanged {
-        serialize_size += changed.computeStringSize(5)
-      }
-      if hasProfile {
-          if let varSizeprofile = profile?.computeMessageSize(6) {
-              serialize_size += varSizeprofile
-          }
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.Profile.Containers.ProfileStatusV1> {
-      var mergedArray = Array<Services.Profile.Containers.ProfileStatusV1>()
-      while let value = try parseFromDelimitedFromInputStream(input) {
-        mergedArray += [value]
-      }
-      return mergedArray
-    }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.Profile.Containers.ProfileStatusV1? {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeDelimitedFromInputStream(input)?.build()
-    }
-    public class func parseFromData(data:NSData) throws -> Services.Profile.Containers.ProfileStatusV1 {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFromData(data, extensionRegistry:Services.Profile.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.Profile.Containers.ProfileStatusV1 {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Services.Profile.Containers.ProfileStatusV1 {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Profile.Containers.ProfileStatusV1 {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.Profile.Containers.ProfileStatusV1 {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Profile.Containers.ProfileStatusV1 {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func getBuilder() -> Services.Profile.Containers.ProfileStatusV1.Builder {
-      return Services.Profile.Containers.ProfileStatusV1.classBuilder() as! Services.Profile.Containers.ProfileStatusV1.Builder
-    }
-    public func getBuilder() -> Services.Profile.Containers.ProfileStatusV1.Builder {
-      return classBuilder() as! Services.Profile.Containers.ProfileStatusV1.Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Services.Profile.Containers.ProfileStatusV1.Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Services.Profile.Containers.ProfileStatusV1.Builder()
-    }
-    public func toBuilder() throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-      return try Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Services.Profile.Containers.ProfileStatusV1) throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-      return try Services.Profile.Containers.ProfileStatusV1.Builder().mergeFrom(prototype)
-    }
-    override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasValue {
-        output += "\(indent) value: \(value) \n"
-      }
-      if hasCreated {
-        output += "\(indent) created: \(created) \n"
-      }
-      if hasId {
-        output += "\(indent) id: \(id) \n"
-      }
-      if hasChanged {
-        output += "\(indent) changed: \(changed) \n"
-      }
-      if hasProfile {
-        output += "\(indent) profile {\n"
-        try profile?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
-      unknownFields.writeDescriptionTo(&output, indent:indent)
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasValue {
-               hashCode = (hashCode &* 31) &+ value.hashValue
-            }
-            if hasCreated {
-               hashCode = (hashCode &* 31) &+ created.hashValue
-            }
-            if hasId {
-               hashCode = (hashCode &* 31) &+ id.hashValue
-            }
-            if hasChanged {
-               hashCode = (hashCode &* 31) &+ changed.hashValue
-            }
-            if hasProfile {
-                if let hashValueprofile = profile?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueprofile
-                }
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Services.Profile.Containers.ProfileStatusV1"
-    }
-    override public func className() -> String {
-        return "Services.Profile.Containers.ProfileStatusV1"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Profile.Containers.ProfileStatusV1.self
-    }
-    //Meta information declaration end
-
-    final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Services.Profile.Containers.ProfileStatusV1 = Services.Profile.Containers.ProfileStatusV1()
-      public func getMessage() -> Services.Profile.Containers.ProfileStatusV1 {
-          return builderResult
-      }
-
-      required override public init () {
-         super.init()
-      }
-      public var hasValue:Bool {
-           get {
-                return builderResult.hasValue
-           }
-      }
-      public var value:String {
-           get {
-                return builderResult.value
-           }
-           set (value) {
-               builderResult.hasValue = true
-               builderResult.value = value
-           }
-      }
-      public func setValue(value:String) -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        self.value = value
-        return self
-      }
-      public func clearValue() -> Services.Profile.Containers.ProfileStatusV1.Builder{
-           builderResult.hasValue = false
-           builderResult.value = ""
-           return self
-      }
-      public var hasCreated:Bool {
-           get {
-                return builderResult.hasCreated
-           }
-      }
-      public var created:String {
-           get {
-                return builderResult.created
-           }
-           set (value) {
-               builderResult.hasCreated = true
-               builderResult.created = value
-           }
-      }
-      public func setCreated(value:String) -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        self.created = value
-        return self
-      }
-      public func clearCreated() -> Services.Profile.Containers.ProfileStatusV1.Builder{
-           builderResult.hasCreated = false
-           builderResult.created = ""
-           return self
-      }
-      public var hasId:Bool {
-           get {
-                return builderResult.hasId
-           }
-      }
-      public var id:String {
-           get {
-                return builderResult.id
-           }
-           set (value) {
-               builderResult.hasId = true
-               builderResult.id = value
-           }
-      }
-      public func setId(value:String) -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        self.id = value
-        return self
-      }
-      public func clearId() -> Services.Profile.Containers.ProfileStatusV1.Builder{
-           builderResult.hasId = false
-           builderResult.id = ""
-           return self
-      }
-      public var hasChanged:Bool {
-           get {
-                return builderResult.hasChanged
-           }
-      }
-      public var changed:String {
-           get {
-                return builderResult.changed
-           }
-           set (value) {
-               builderResult.hasChanged = true
-               builderResult.changed = value
-           }
-      }
-      public func setChanged(value:String) -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        self.changed = value
-        return self
-      }
-      public func clearChanged() -> Services.Profile.Containers.ProfileStatusV1.Builder{
-           builderResult.hasChanged = false
-           builderResult.changed = ""
-           return self
-      }
-      public var hasProfile:Bool {
-           get {
-               return builderResult.hasProfile
-           }
-      }
-      public var profile:Services.Profile.Containers.ProfileV1! {
-           get {
-               if profileBuilder_ != nil {
-                  builderResult.profile = profileBuilder_.getMessage()
-               }
-               return builderResult.profile
-           }
-           set (value) {
-               builderResult.hasProfile = true
-               builderResult.profile = value
-           }
-      }
-      private var profileBuilder_:Services.Profile.Containers.ProfileV1.Builder! {
-           didSet {
-              builderResult.hasProfile = true
-           }
-      }
-      public func getProfileBuilder() -> Services.Profile.Containers.ProfileV1.Builder {
-        if profileBuilder_ == nil {
-           profileBuilder_ = Services.Profile.Containers.ProfileV1.Builder()
-           builderResult.profile = profileBuilder_.getMessage()
-           if profile != nil {
-              try! profileBuilder_.mergeFrom(profile)
-           }
-        }
-        return profileBuilder_
-      }
-      public func setProfile(value:Services.Profile.Containers.ProfileV1!) -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        self.profile = value
-        return self
-      }
-      public func mergeProfile(value:Services.Profile.Containers.ProfileV1) throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        if builderResult.hasProfile {
-          builderResult.profile = try Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.profile).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.profile = value
-        }
-        builderResult.hasProfile = true
-        return self
-      }
-      public func clearProfile() -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        profileBuilder_ = nil
-        builderResult.hasProfile = false
-        builderResult.profile = nil
-        return self
-      }
-      override public var internalGetResult:GeneratedMessage {
-           get {
-              return builderResult
-           }
-      }
-      public override func clear() -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        builderResult = Services.Profile.Containers.ProfileStatusV1()
-        return self
-      }
-      public override func clone() throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        return try Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(builderResult)
-      }
-      public override func build() throws -> Services.Profile.Containers.ProfileStatusV1 {
-           try checkInitialized()
-           return buildPartial()
-      }
-      public func buildPartial() -> Services.Profile.Containers.ProfileStatusV1 {
-        let returnMe:Services.Profile.Containers.ProfileStatusV1 = builderResult
-        return returnMe
-      }
-      public func mergeFrom(other:Services.Profile.Containers.ProfileStatusV1) throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        if other == Services.Profile.Containers.ProfileStatusV1() {
-         return self
-        }
-        if other.hasValue {
-             value = other.value
-        }
-        if other.hasCreated {
-             created = other.created
-        }
-        if other.hasId {
-             id = other.id
-        }
-        if other.hasChanged {
-             changed = other.changed
-        }
-        if (other.hasProfile) {
-            try mergeProfile(other.profile)
-        }
-        try mergeUnknownFields(other.unknownFields)
-        return self
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-        while (true) {
-          let tag = try input.readTag()
-          switch tag {
-          case 0: 
-            self.unknownFields = try unknownFieldsBuilder.build()
-            return self
-
-          case 18 :
-            value = try input.readString()
-
-          case 26 :
-            created = try input.readString()
-
-          case 34 :
-            id = try input.readString()
-
-          case 42 :
-            changed = try input.readString()
-
-          case 50 :
-            let subBuilder:Services.Profile.Containers.ProfileV1.Builder = Services.Profile.Containers.ProfileV1.Builder()
-            if hasProfile {
-              try subBuilder.mergeFrom(profile)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            profile = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

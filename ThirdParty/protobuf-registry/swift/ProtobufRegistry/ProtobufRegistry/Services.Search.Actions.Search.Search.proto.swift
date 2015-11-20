@@ -3,7 +3,7 @@
 
 import Foundation
 
-public extension Services{ public struct Search { public struct Actions { public struct Search { }}}}
+public extension Services.Search.Actions{ public struct Search { }}
 
 public func == (lhs: Services.Search.Actions.Search.RequestV1, rhs: Services.Search.Actions.Search.RequestV1) -> Bool {
   if (lhs === rhs) {

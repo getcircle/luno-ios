@@ -416,9 +416,9 @@ public var ServicesRegistryRequestsProfileprofileExists:ConcreateExtensionField 
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsProfileprofileExistsStatic
    }
 }
-public var ServicesRegistryRequestsProfilegetStatus:ConcreateExtensionField {
+public var ServicesRegistryRequestsProfiledEPRECATEDGetStatus:ConcreateExtensionField {
    get {
-       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsProfilegetStatusStatic
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsProfiledEPRECATEDGetStatusStatic
    }
 }
 public var ServicesRegistryRequestsSearchsearch:ConcreateExtensionField {
@@ -434,6 +434,16 @@ public var ServicesRegistryRequestsSearchsearchV2:ConcreateExtensionField {
 public var ServicesRegistryRequestsSearchupdateEntities:ConcreateExtensionField {
    get {
        return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsSearchupdateEntitiesStatic
+   }
+}
+public var ServicesRegistryRequestsSearchdeleteEntities:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsSearchdeleteEntitiesStatic
+   }
+}
+public var ServicesRegistryRequestsSearchcreateIndex:ConcreateExtensionField {
+   get {
+       return Services.Registry.Requests.RequestsRoot.sharedInstance.ServicesRegistryRequestsSearchcreateIndexStatic
    }
 }
 public var ServicesRegistryRequestsMediastartImageUpload:ConcreateExtensionField {
@@ -676,10 +686,12 @@ public extension Services.Registry.Requests {
     var ServicesRegistryRequestsProfilebulkUpdateProfilesStatic:ConcreateExtensionField
     var ServicesRegistryRequestsProfileremoveTagsStatic:ConcreateExtensionField
     var ServicesRegistryRequestsProfileprofileExistsStatic:ConcreateExtensionField
-    var ServicesRegistryRequestsProfilegetStatusStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsProfiledEPRECATEDGetStatusStatic:ConcreateExtensionField
     var ServicesRegistryRequestsSearchsearchStatic:ConcreateExtensionField
     var ServicesRegistryRequestsSearchsearchV2Static:ConcreateExtensionField
     var ServicesRegistryRequestsSearchupdateEntitiesStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsSearchdeleteEntitiesStatic:ConcreateExtensionField
+    var ServicesRegistryRequestsSearchcreateIndexStatic:ConcreateExtensionField
     var ServicesRegistryRequestsMediastartImageUploadStatic:ConcreateExtensionField
     var ServicesRegistryRequestsMediacompleteImageUploadStatic:ConcreateExtensionField
     var ServicesRegistryRequestsSyncstartSyncStatic:ConcreateExtensionField
@@ -775,10 +787,12 @@ public extension Services.Registry.Requests {
       ServicesRegistryRequestsProfilebulkUpdateProfilesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 313, defaultValue:Services.Profile.Actions.BulkUpdateProfiles.RequestV1(), messageOrGroupClass:Services.Profile.Actions.BulkUpdateProfiles.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsProfileremoveTagsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 314, defaultValue:Services.Profile.Actions.RemoveTags.RequestV1(), messageOrGroupClass:Services.Profile.Actions.RemoveTags.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsProfileprofileExistsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 315, defaultValue:Services.Profile.Actions.ProfileExists.RequestV1(), messageOrGroupClass:Services.Profile.Actions.ProfileExists.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
-      ServicesRegistryRequestsProfilegetStatusStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 316, defaultValue:Services.Profile.Actions.GetStatus.RequestV1(), messageOrGroupClass:Services.Profile.Actions.GetStatus.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsProfiledEPRECATEDGetStatusStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeString, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 316, defaultValue:"", messageOrGroupClass:String.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsSearchsearchStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 400, defaultValue:Services.Search.Actions.Search.RequestV1(), messageOrGroupClass:Services.Search.Actions.Search.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsSearchsearchV2Static = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 401, defaultValue:Services.Search.Actions.SearchV2.RequestV1(), messageOrGroupClass:Services.Search.Actions.SearchV2.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsSearchupdateEntitiesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 402, defaultValue:Services.Search.Actions.UpdateEntities.RequestV1(), messageOrGroupClass:Services.Search.Actions.UpdateEntities.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsSearchdeleteEntitiesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 403, defaultValue:Services.Search.Actions.DeleteEntities.RequestV1(), messageOrGroupClass:Services.Search.Actions.DeleteEntities.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryRequestsSearchcreateIndexStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 404, defaultValue:Services.Search.Actions.CreateIndex.RequestV1(), messageOrGroupClass:Services.Search.Actions.CreateIndex.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsMediastartImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 600, defaultValue:Services.Media.Actions.StartImageUpload.RequestV1(), messageOrGroupClass:Services.Media.Actions.StartImageUpload.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsMediacompleteImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 601, defaultValue:Services.Media.Actions.CompleteImageUpload.RequestV1(), messageOrGroupClass:Services.Media.Actions.CompleteImageUpload.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryRequestsSyncstartSyncStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionRequestParamsV1.self, fieldNumber: 1000, defaultValue:Services.Sync.Actions.StartSync.RequestV1(), messageOrGroupClass:Services.Sync.Actions.StartSync.RequestV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -874,10 +888,11 @@ public extension Services.Registry.Requests {
       Services.Profile.Actions.BulkUpdateProfiles.BulkUpdateProfilesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.RemoveTags.RemoveTagsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Profile.Actions.ProfileExists.ProfileExistsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
-      Services.Profile.Actions.GetStatus.GetStatusRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.Search.SearchRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.UpdateEntities.UpdateEntitiesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.SearchV2.SearchV2Root.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Actions.DeleteEntities.DeleteEntitiesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Actions.CreateIndex.CreateIndexRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.StartImageUpload.StartImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.CompleteImageUpload.CompleteImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Sync.Actions.StartSync.StartSyncRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -972,10 +987,12 @@ public extension Services.Registry.Requests {
       registry.addExtension(ServicesRegistryRequestsProfilebulkUpdateProfilesStatic)
       registry.addExtension(ServicesRegistryRequestsProfileremoveTagsStatic)
       registry.addExtension(ServicesRegistryRequestsProfileprofileExistsStatic)
-      registry.addExtension(ServicesRegistryRequestsProfilegetStatusStatic)
+      registry.addExtension(ServicesRegistryRequestsProfiledEPRECATEDGetStatusStatic)
       registry.addExtension(ServicesRegistryRequestsSearchsearchStatic)
       registry.addExtension(ServicesRegistryRequestsSearchsearchV2Static)
       registry.addExtension(ServicesRegistryRequestsSearchupdateEntitiesStatic)
+      registry.addExtension(ServicesRegistryRequestsSearchdeleteEntitiesStatic)
+      registry.addExtension(ServicesRegistryRequestsSearchcreateIndexStatic)
       registry.addExtension(ServicesRegistryRequestsMediastartImageUploadStatic)
       registry.addExtension(ServicesRegistryRequestsMediacompleteImageUploadStatic)
       registry.addExtension(ServicesRegistryRequestsSyncstartSyncStatic)
@@ -1490,8 +1507,8 @@ public extension Services.Registry.Requests {
     public class func profileExists() -> ConcreateExtensionField {
          return ServicesRegistryRequestsProfileprofileExists
     }
-    public class func getStatus() -> ConcreateExtensionField {
-         return ServicesRegistryRequestsProfilegetStatus
+    public class func dEPRECATEDGetStatus() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsProfiledEPRECATEDGetStatus
     }
     required public init() {
          super.init()
@@ -1653,6 +1670,12 @@ public extension Services.Registry.Requests {
     }
     public class func updateEntities() -> ConcreateExtensionField {
          return ServicesRegistryRequestsSearchupdateEntities
+    }
+    public class func deleteEntities() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsSearchdeleteEntities
+    }
+    public class func createIndex() -> ConcreateExtensionField {
+         return ServicesRegistryRequestsSearchcreateIndex
     }
     required public init() {
          super.init()

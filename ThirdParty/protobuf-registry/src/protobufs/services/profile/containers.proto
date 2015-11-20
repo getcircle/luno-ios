@@ -24,7 +24,7 @@ message ContactMethodV1 {
 }
 
 message ProfileV1 {
-    // reserved 1;
+    // reserved 1, 19;
 
     string id = 2;
     string organization_id = 3;
@@ -43,21 +43,10 @@ message ProfileV1 {
     string email = 16;
     bool is_admin = 17;
     string small_image_url = 18;
-    ProfileStatusV1 status = 19;
     string display_title = 20;
     string authentication_identifier = 21;
     services.common.containers.InflationsV1 inflations = 22;
     services.common.containers.FieldsV1 fields = 23;
-}
-
-message ProfileStatusV1 {
-    // reserved 1;
-
-    string value = 2;
-    string created = 3;
-    string id = 4;
-    string changed = 5;
-    ProfileV1 profile = 6;
 }
 
 message ProfileItemV1 {

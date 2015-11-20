@@ -145,7 +145,6 @@
 		BFA734BF1BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B21BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift */; };
 		BFA734C01BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B31BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift */; };
 		BFA734C11BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B41BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift */; };
-		BFA734C21BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA734B51BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */; };
 		BFC6CEF51A44B58B0081F45B /* ProtobufRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC6CEFB1A44B58B0081F45B /* ProtobufRegistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */; };
 		BFC6CF021A44B58B0081F45B /* ProtobufRegistryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CF011A44B58B0081F45B /* ProtobufRegistryTests.swift */; };
@@ -300,7 +299,6 @@
 		BFA734B21BEDABAF0087951B /* Services.Post.Actions.UpdatePost.UpdatePost.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Actions.UpdatePost.UpdatePost.proto.swift; sourceTree = "<group>"; };
 		BFA734B31BEDABAF0087951B /* Services.Post.Containers.Containers.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Post.Containers.Containers.proto.swift; sourceTree = "<group>"; };
 		BFA734B41BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift; sourceTree = "<group>"; };
-		BFA734B51BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Profile.Actions.GetStatus.GetStatus.proto.swift; sourceTree = "<group>"; };
 		BFC6CEEF1A44B58B0081F45B /* ProtobufRegistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtobufRegistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC6CEF31A44B58B0081F45B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC6CEF41A44B58B0081F45B /* ProtobufRegistry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProtobufRegistry.h; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 				BF9BADD81BB38F81008CCC7E /* Services.Profile.Actions.GetProfiles.GetProfiles.proto.swift */,
 				BF9BADD91BB38F81008CCC7E /* Services.Profile.Actions.GetProfileStats.GetProfileStats.proto.swift */,
 				BF9BADDA1BB38F81008CCC7E /* Services.Profile.Actions.GetRecentHires.GetRecentHires.proto.swift */,
-				BFA734B51BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift */,
 				BF9BADDB1BB38F81008CCC7E /* Services.Profile.Actions.GetTags.GetTags.proto.swift */,
 				BF9BADDC1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingAnniversaries.GetUpcomingAnniversaries.proto.swift */,
 				BF9BADDD1BB38F81008CCC7E /* Services.Profile.Actions.GetUpcomingBirthdays.GetUpcomingBirthdays.proto.swift */,
@@ -748,7 +745,6 @@
 				BFA734BD1BEDABAF0087951B /* Services.Post.Actions.GetPost.GetPost.proto.swift in Sources */,
 				BF9BAE4F1BB38F81008CCC7E /* Services.Search.Containers.Containers.proto.swift in Sources */,
 				BF9BAE511BB38F81008CCC7E /* Services.Sync.Actions.CompleteSync.CompleteSync.proto.swift in Sources */,
-				BFA734C21BEDABAF0087951B /* Services.Profile.Actions.GetStatus.GetStatus.proto.swift in Sources */,
 				BF9BAE521BB38F81008CCC7E /* Services.Sync.Actions.StartSync.StartSync.proto.swift in Sources */,
 				BF9BAE531BB38F81008CCC7E /* Services.Sync.Actions.Sync.Sync.proto.swift in Sources */,
 				BF9BAE541BB38F81008CCC7E /* Services.Sync.Containers.Payload.Payload.proto.swift in Sources */,

@@ -46,6 +46,7 @@ public func == (lhs: Services.Organization.Containers.OrganizationV1, rhs: Servi
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasTeamCount == rhs.hasTeamCount) && (!lhs.hasTeamCount || lhs.teamCount == rhs.teamCount)
   fieldCheck = fieldCheck && (lhs.hasLocationCount == rhs.hasLocationCount) && (!lhs.hasLocationCount || lhs.locationCount == rhs.locationCount)
+  fieldCheck = fieldCheck && (lhs.hasPostCount == rhs.hasPostCount) && (!lhs.hasPostCount || lhs.postCount == rhs.postCount)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -63,27 +64,10 @@ public func == (lhs: Services.Organization.Containers.TeamV1, rhs: Services.Orga
   fieldCheck = fieldCheck && (lhs.hasManager == rhs.hasManager) && (!lhs.hasManager || lhs.manager == rhs.manager)
   fieldCheck = fieldCheck && (lhs.hasPermissions == rhs.hasPermissions) && (!lhs.hasPermissions || lhs.permissions == rhs.permissions)
   fieldCheck = fieldCheck && (lhs.hasDescription == rhs.hasDescription) && (!lhs.hasDescription || lhs.description_ == rhs.description_)
-  fieldCheck = fieldCheck && (lhs.hasStatus == rhs.hasStatus) && (!lhs.hasStatus || lhs.status == rhs.status)
   fieldCheck = fieldCheck && (lhs.hasImageUrl == rhs.hasImageUrl) && (!lhs.hasImageUrl || lhs.imageUrl == rhs.imageUrl)
   fieldCheck = fieldCheck && (lhs.hasChildTeamCount == rhs.hasChildTeamCount) && (!lhs.hasChildTeamCount || lhs.childTeamCount == rhs.childTeamCount)
   fieldCheck = fieldCheck && (lhs.hasProfileCount == rhs.hasProfileCount) && (!lhs.hasProfileCount || lhs.profileCount == rhs.profileCount)
   fieldCheck = fieldCheck && (lhs.hasDisplayName == rhs.hasDisplayName) && (!lhs.hasDisplayName || lhs.displayName == rhs.displayName)
-  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
-  return fieldCheck
-}
-
-public func == (lhs: Services.Organization.Containers.TeamStatusV1, rhs: Services.Organization.Containers.TeamStatusV1) -> Bool {
-  if (lhs === rhs) {
-    return true
-  }
-  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
-  fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
-  fieldCheck = fieldCheck && (lhs.hasCreated == rhs.hasCreated) && (!lhs.hasCreated || lhs.created == rhs.created)
-  fieldCheck = fieldCheck && (lhs.hasByProfileId == rhs.hasByProfileId) && (!lhs.hasByProfileId || lhs.byProfileId == rhs.byProfileId)
-  fieldCheck = fieldCheck && (lhs.hasByProfile == rhs.hasByProfile) && (!lhs.hasByProfile || lhs.byProfile == rhs.byProfile)
-  fieldCheck = fieldCheck && (lhs.hasId == rhs.hasId) && (!lhs.hasId || lhs.id == rhs.id)
-  fieldCheck = fieldCheck && (lhs.hasChanged == rhs.hasChanged) && (!lhs.hasChanged || lhs.changed == rhs.changed)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -1221,6 +1205,9 @@ public extension Services.Organization.Containers {
     public private(set) var hasLocationCount:Bool = false
     public private(set) var locationCount:UInt32 = UInt32(0)
 
+    public private(set) var hasPostCount:Bool = false
+    public private(set) var postCount:UInt32 = UInt32(0)
+
     required public init() {
          super.init()
     }
@@ -1251,6 +1238,9 @@ public extension Services.Organization.Containers {
       }
       if hasLocationCount {
         try output.writeUInt32(8, value:locationCount)
+      }
+      if hasPostCount {
+        try output.writeUInt32(9, value:postCount)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -1284,6 +1274,9 @@ public extension Services.Organization.Containers {
       }
       if hasLocationCount {
         serialize_size += locationCount.computeUInt32Size(8)
+      }
+      if hasPostCount {
+        serialize_size += postCount.computeUInt32Size(9)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -1360,6 +1353,9 @@ public extension Services.Organization.Containers {
       if hasLocationCount {
         output += "\(indent) locationCount: \(locationCount) \n"
       }
+      if hasPostCount {
+        output += "\(indent) postCount: \(postCount) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -1388,6 +1384,9 @@ public extension Services.Organization.Containers {
             }
             if hasLocationCount {
                hashCode = (hashCode &* 31) &+ locationCount.hashValue
+            }
+            if hasPostCount {
+               hashCode = (hashCode &* 31) &+ postCount.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -1601,6 +1600,29 @@ public extension Services.Organization.Containers {
            builderResult.locationCount = UInt32(0)
            return self
       }
+      public var hasPostCount:Bool {
+           get {
+                return builderResult.hasPostCount
+           }
+      }
+      public var postCount:UInt32 {
+           get {
+                return builderResult.postCount
+           }
+           set (value) {
+               builderResult.hasPostCount = true
+               builderResult.postCount = value
+           }
+      }
+      public func setPostCount(value:UInt32) -> Services.Organization.Containers.OrganizationV1.Builder {
+        self.postCount = value
+        return self
+      }
+      public func clearPostCount() -> Services.Organization.Containers.OrganizationV1.Builder{
+           builderResult.hasPostCount = false
+           builderResult.postCount = UInt32(0)
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -1649,6 +1671,9 @@ public extension Services.Organization.Containers {
         if other.hasLocationCount {
              locationCount = other.locationCount
         }
+        if other.hasPostCount {
+             postCount = other.postCount
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -1688,6 +1713,9 @@ public extension Services.Organization.Containers {
           case 64 :
             locationCount = try input.readUInt32()
 
+          case 72 :
+            postCount = try input.readUInt32()
+
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
                unknownFields = try unknownFieldsBuilder.build()
@@ -1722,8 +1750,6 @@ public extension Services.Organization.Containers {
     public private(set) var permissions:Services.Common.Containers.PermissionsV1!
     public private(set) var hasDescription:Bool = false
     public private(set) var description_:Services.Common.Containers.Description.DescriptionV1!
-    public private(set) var hasStatus:Bool = false
-    public private(set) var status:Services.Organization.Containers.TeamStatusV1!
     public private(set) var hasImageUrl:Bool = false
     public private(set) var imageUrl:String = ""
 
@@ -1766,9 +1792,6 @@ public extension Services.Organization.Containers {
       }
       if hasDescription {
         try output.writeMessage(8, value:description_)
-      }
-      if hasStatus {
-        try output.writeMessage(9, value:status)
       }
       if hasImageUrl {
         try output.writeString(10, value:imageUrl)
@@ -1819,11 +1842,6 @@ public extension Services.Organization.Containers {
       if hasDescription {
           if let varSizedescription_ = description_?.computeMessageSize(8) {
               serialize_size += varSizedescription_
-          }
-      }
-      if hasStatus {
-          if let varSizestatus = status?.computeMessageSize(9) {
-              serialize_size += varSizestatus
           }
       }
       if hasImageUrl {
@@ -1919,11 +1937,6 @@ public extension Services.Organization.Containers {
         try description_?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
-      if hasStatus {
-        output += "\(indent) status {\n"
-        try status?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
       if hasImageUrl {
         output += "\(indent) imageUrl: \(imageUrl) \n"
       }
@@ -1969,11 +1982,6 @@ public extension Services.Organization.Containers {
             if hasDescription {
                 if let hashValuedescription_ = description_?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuedescription_
-                }
-            }
-            if hasStatus {
-                if let hashValuestatus = status?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuestatus
                 }
             }
             if hasImageUrl {
@@ -2284,57 +2292,6 @@ public extension Services.Organization.Containers {
         builderResult.description_ = nil
         return self
       }
-      public var hasStatus:Bool {
-           get {
-               return builderResult.hasStatus
-           }
-      }
-      public var status:Services.Organization.Containers.TeamStatusV1! {
-           get {
-               if statusBuilder_ != nil {
-                  builderResult.status = statusBuilder_.getMessage()
-               }
-               return builderResult.status
-           }
-           set (value) {
-               builderResult.hasStatus = true
-               builderResult.status = value
-           }
-      }
-      private var statusBuilder_:Services.Organization.Containers.TeamStatusV1.Builder! {
-           didSet {
-              builderResult.hasStatus = true
-           }
-      }
-      public func getStatusBuilder() -> Services.Organization.Containers.TeamStatusV1.Builder {
-        if statusBuilder_ == nil {
-           statusBuilder_ = Services.Organization.Containers.TeamStatusV1.Builder()
-           builderResult.status = statusBuilder_.getMessage()
-           if status != nil {
-              try! statusBuilder_.mergeFrom(status)
-           }
-        }
-        return statusBuilder_
-      }
-      public func setStatus(value:Services.Organization.Containers.TeamStatusV1!) -> Services.Organization.Containers.TeamV1.Builder {
-        self.status = value
-        return self
-      }
-      public func mergeStatus(value:Services.Organization.Containers.TeamStatusV1) throws -> Services.Organization.Containers.TeamV1.Builder {
-        if builderResult.hasStatus {
-          builderResult.status = try Services.Organization.Containers.TeamStatusV1.builderWithPrototype(builderResult.status).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.status = value
-        }
-        builderResult.hasStatus = true
-        return self
-      }
-      public func clearStatus() -> Services.Organization.Containers.TeamV1.Builder {
-        statusBuilder_ = nil
-        builderResult.hasStatus = false
-        builderResult.status = nil
-        return self
-      }
       public var hasImageUrl:Bool {
            get {
                 return builderResult.hasImageUrl
@@ -2475,9 +2432,6 @@ public extension Services.Organization.Containers {
         if (other.hasDescription) {
             try mergeDescription(other.description_)
         }
-        if (other.hasStatus) {
-            try mergeStatus(other.status)
-        }
         if other.hasImageUrl {
              imageUrl = other.imageUrl
         }
@@ -2544,14 +2498,6 @@ public extension Services.Organization.Containers {
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             description_ = subBuilder.buildPartial()
 
-          case 74 :
-            let subBuilder:Services.Organization.Containers.TeamStatusV1.Builder = Services.Organization.Containers.TeamStatusV1.Builder()
-            if hasStatus {
-              try subBuilder.mergeFrom(status)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            status = subBuilder.buildPartial()
-
           case 82 :
             imageUrl = try input.readString()
 
@@ -2563,504 +2509,6 @@ public extension Services.Organization.Containers {
 
           case 106 :
             displayName = try input.readString()
-
-          default:
-            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
-               unknownFields = try unknownFieldsBuilder.build()
-               return self
-            }
-          }
-        }
-      }
-    }
-
-  }
-
-  final public class TeamStatusV1 : GeneratedMessage, GeneratedMessageProtocol {
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
-    public private(set) var hasValue:Bool = false
-    public private(set) var value:String = ""
-
-    public private(set) var hasCreated:Bool = false
-    public private(set) var created:String = ""
-
-    public private(set) var hasByProfileId:Bool = false
-    public private(set) var byProfileId:String = ""
-
-    public private(set) var hasByProfile:Bool = false
-    public private(set) var byProfile:Services.Profile.Containers.ProfileV1!
-    public private(set) var hasId:Bool = false
-    public private(set) var id:String = ""
-
-    public private(set) var hasChanged:Bool = false
-    public private(set) var changed:String = ""
-
-    required public init() {
-         super.init()
-    }
-    override public func isInitialized() -> Bool {
-     return true
-    }
-    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
-      if hasValue {
-        try output.writeString(2, value:value)
-      }
-      if hasCreated {
-        try output.writeString(3, value:created)
-      }
-      if hasByProfileId {
-        try output.writeString(4, value:byProfileId)
-      }
-      if hasByProfile {
-        try output.writeMessage(5, value:byProfile)
-      }
-      if hasId {
-        try output.writeString(6, value:id)
-      }
-      if hasChanged {
-        try output.writeString(7, value:changed)
-      }
-      try unknownFields.writeToCodedOutputStream(output)
-    }
-    override public func serializedSize() -> Int32 {
-      var serialize_size:Int32 = memoizedSerializedSize
-      if serialize_size != -1 {
-       return serialize_size
-      }
-
-      serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
-      if hasValue {
-        serialize_size += value.computeStringSize(2)
-      }
-      if hasCreated {
-        serialize_size += created.computeStringSize(3)
-      }
-      if hasByProfileId {
-        serialize_size += byProfileId.computeStringSize(4)
-      }
-      if hasByProfile {
-          if let varSizebyProfile = byProfile?.computeMessageSize(5) {
-              serialize_size += varSizebyProfile
-          }
-      }
-      if hasId {
-        serialize_size += id.computeStringSize(6)
-      }
-      if hasChanged {
-        serialize_size += changed.computeStringSize(7)
-      }
-      serialize_size += unknownFields.serializedSize()
-      memoizedSerializedSize = serialize_size
-      return serialize_size
-    }
-    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.Organization.Containers.TeamStatusV1> {
-      var mergedArray = Array<Services.Organization.Containers.TeamStatusV1>()
-      while let value = try parseFromDelimitedFromInputStream(input) {
-        mergedArray += [value]
-      }
-      return mergedArray
-    }
-    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.Organization.Containers.TeamStatusV1? {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeDelimitedFromInputStream(input)?.build()
-    }
-    public class func parseFromData(data:NSData) throws -> Services.Organization.Containers.TeamStatusV1 {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFromData(data, extensionRegistry:Services.Organization.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
-    }
-    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.Organization.Containers.TeamStatusV1 {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream) throws -> Services.Organization.Containers.TeamStatusV1 {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFromInputStream(input).build()
-    }
-    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Organization.Containers.TeamStatusV1 {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.Organization.Containers.TeamStatusV1 {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFromCodedInputStream(input).build()
-    }
-    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Organization.Containers.TeamStatusV1 {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
-    }
-    public class func getBuilder() -> Services.Organization.Containers.TeamStatusV1.Builder {
-      return Services.Organization.Containers.TeamStatusV1.classBuilder() as! Services.Organization.Containers.TeamStatusV1.Builder
-    }
-    public func getBuilder() -> Services.Organization.Containers.TeamStatusV1.Builder {
-      return classBuilder() as! Services.Organization.Containers.TeamStatusV1.Builder
-    }
-    public override class func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.TeamStatusV1.Builder()
-    }
-    public override func classBuilder() -> MessageBuilder {
-      return Services.Organization.Containers.TeamStatusV1.Builder()
-    }
-    public func toBuilder() throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-      return try Services.Organization.Containers.TeamStatusV1.builderWithPrototype(self)
-    }
-    public class func builderWithPrototype(prototype:Services.Organization.Containers.TeamStatusV1) throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-      return try Services.Organization.Containers.TeamStatusV1.Builder().mergeFrom(prototype)
-    }
-    override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
-      if hasValue {
-        output += "\(indent) value: \(value) \n"
-      }
-      if hasCreated {
-        output += "\(indent) created: \(created) \n"
-      }
-      if hasByProfileId {
-        output += "\(indent) byProfileId: \(byProfileId) \n"
-      }
-      if hasByProfile {
-        output += "\(indent) byProfile {\n"
-        try byProfile?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
-      if hasId {
-        output += "\(indent) id: \(id) \n"
-      }
-      if hasChanged {
-        output += "\(indent) changed: \(changed) \n"
-      }
-      unknownFields.writeDescriptionTo(&output, indent:indent)
-    }
-    override public var hashValue:Int {
-        get {
-            var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
-            if hasValue {
-               hashCode = (hashCode &* 31) &+ value.hashValue
-            }
-            if hasCreated {
-               hashCode = (hashCode &* 31) &+ created.hashValue
-            }
-            if hasByProfileId {
-               hashCode = (hashCode &* 31) &+ byProfileId.hashValue
-            }
-            if hasByProfile {
-                if let hashValuebyProfile = byProfile?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValuebyProfile
-                }
-            }
-            if hasId {
-               hashCode = (hashCode &* 31) &+ id.hashValue
-            }
-            if hasChanged {
-               hashCode = (hashCode &* 31) &+ changed.hashValue
-            }
-            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
-            return hashCode
-        }
-    }
-
-
-    //Meta information declaration start
-
-    override public class func className() -> String {
-        return "Services.Organization.Containers.TeamStatusV1"
-    }
-    override public func className() -> String {
-        return "Services.Organization.Containers.TeamStatusV1"
-    }
-    override public func classMetaType() -> GeneratedMessage.Type {
-        return Services.Organization.Containers.TeamStatusV1.self
-    }
-    //Meta information declaration end
-
-    final public class Builder : GeneratedMessageBuilder {
-      private var builderResult:Services.Organization.Containers.TeamStatusV1 = Services.Organization.Containers.TeamStatusV1()
-      public func getMessage() -> Services.Organization.Containers.TeamStatusV1 {
-          return builderResult
-      }
-
-      required override public init () {
-         super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Organization.Containers.TeamStatusV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
-      }
-      public var hasValue:Bool {
-           get {
-                return builderResult.hasValue
-           }
-      }
-      public var value:String {
-           get {
-                return builderResult.value
-           }
-           set (value) {
-               builderResult.hasValue = true
-               builderResult.value = value
-           }
-      }
-      public func setValue(value:String) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.value = value
-        return self
-      }
-      public func clearValue() -> Services.Organization.Containers.TeamStatusV1.Builder{
-           builderResult.hasValue = false
-           builderResult.value = ""
-           return self
-      }
-      public var hasCreated:Bool {
-           get {
-                return builderResult.hasCreated
-           }
-      }
-      public var created:String {
-           get {
-                return builderResult.created
-           }
-           set (value) {
-               builderResult.hasCreated = true
-               builderResult.created = value
-           }
-      }
-      public func setCreated(value:String) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.created = value
-        return self
-      }
-      public func clearCreated() -> Services.Organization.Containers.TeamStatusV1.Builder{
-           builderResult.hasCreated = false
-           builderResult.created = ""
-           return self
-      }
-      public var hasByProfileId:Bool {
-           get {
-                return builderResult.hasByProfileId
-           }
-      }
-      public var byProfileId:String {
-           get {
-                return builderResult.byProfileId
-           }
-           set (value) {
-               builderResult.hasByProfileId = true
-               builderResult.byProfileId = value
-           }
-      }
-      public func setByProfileId(value:String) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.byProfileId = value
-        return self
-      }
-      public func clearByProfileId() -> Services.Organization.Containers.TeamStatusV1.Builder{
-           builderResult.hasByProfileId = false
-           builderResult.byProfileId = ""
-           return self
-      }
-      public var hasByProfile:Bool {
-           get {
-               return builderResult.hasByProfile
-           }
-      }
-      public var byProfile:Services.Profile.Containers.ProfileV1! {
-           get {
-               if byProfileBuilder_ != nil {
-                  builderResult.byProfile = byProfileBuilder_.getMessage()
-               }
-               return builderResult.byProfile
-           }
-           set (value) {
-               builderResult.hasByProfile = true
-               builderResult.byProfile = value
-           }
-      }
-      private var byProfileBuilder_:Services.Profile.Containers.ProfileV1.Builder! {
-           didSet {
-              builderResult.hasByProfile = true
-           }
-      }
-      public func getByProfileBuilder() -> Services.Profile.Containers.ProfileV1.Builder {
-        if byProfileBuilder_ == nil {
-           byProfileBuilder_ = Services.Profile.Containers.ProfileV1.Builder()
-           builderResult.byProfile = byProfileBuilder_.getMessage()
-           if byProfile != nil {
-              try! byProfileBuilder_.mergeFrom(byProfile)
-           }
-        }
-        return byProfileBuilder_
-      }
-      public func setByProfile(value:Services.Profile.Containers.ProfileV1!) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.byProfile = value
-        return self
-      }
-      public func mergeByProfile(value:Services.Profile.Containers.ProfileV1) throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-        if builderResult.hasByProfile {
-          builderResult.byProfile = try Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.byProfile).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.byProfile = value
-        }
-        builderResult.hasByProfile = true
-        return self
-      }
-      public func clearByProfile() -> Services.Organization.Containers.TeamStatusV1.Builder {
-        byProfileBuilder_ = nil
-        builderResult.hasByProfile = false
-        builderResult.byProfile = nil
-        return self
-      }
-      public var hasId:Bool {
-           get {
-                return builderResult.hasId
-           }
-      }
-      public var id:String {
-           get {
-                return builderResult.id
-           }
-           set (value) {
-               builderResult.hasId = true
-               builderResult.id = value
-           }
-      }
-      public func setId(value:String) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.id = value
-        return self
-      }
-      public func clearId() -> Services.Organization.Containers.TeamStatusV1.Builder{
-           builderResult.hasId = false
-           builderResult.id = ""
-           return self
-      }
-      public var hasChanged:Bool {
-           get {
-                return builderResult.hasChanged
-           }
-      }
-      public var changed:String {
-           get {
-                return builderResult.changed
-           }
-           set (value) {
-               builderResult.hasChanged = true
-               builderResult.changed = value
-           }
-      }
-      public func setChanged(value:String) -> Services.Organization.Containers.TeamStatusV1.Builder {
-        self.changed = value
-        return self
-      }
-      public func clearChanged() -> Services.Organization.Containers.TeamStatusV1.Builder{
-           builderResult.hasChanged = false
-           builderResult.changed = ""
-           return self
-      }
-      override public var internalGetResult:GeneratedMessage {
-           get {
-              return builderResult
-           }
-      }
-      public override func clear() -> Services.Organization.Containers.TeamStatusV1.Builder {
-        builderResult = Services.Organization.Containers.TeamStatusV1()
-        return self
-      }
-      public override func clone() throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-        return try Services.Organization.Containers.TeamStatusV1.builderWithPrototype(builderResult)
-      }
-      public override func build() throws -> Services.Organization.Containers.TeamStatusV1 {
-           try checkInitialized()
-           return buildPartial()
-      }
-      public func buildPartial() -> Services.Organization.Containers.TeamStatusV1 {
-        let returnMe:Services.Organization.Containers.TeamStatusV1 = builderResult
-        return returnMe
-      }
-      public func mergeFrom(other:Services.Organization.Containers.TeamStatusV1) throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-        if other == Services.Organization.Containers.TeamStatusV1() {
-         return self
-        }
-        if other.hasVersion {
-             version = other.version
-        }
-        if other.hasValue {
-             value = other.value
-        }
-        if other.hasCreated {
-             created = other.created
-        }
-        if other.hasByProfileId {
-             byProfileId = other.byProfileId
-        }
-        if (other.hasByProfile) {
-            try mergeByProfile(other.byProfile)
-        }
-        if other.hasId {
-             id = other.id
-        }
-        if other.hasChanged {
-             changed = other.changed
-        }
-        try mergeUnknownFields(other.unknownFields)
-        return self
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
-      }
-      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Organization.Containers.TeamStatusV1.Builder {
-        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
-        while (true) {
-          let tag = try input.readTag()
-          switch tag {
-          case 0: 
-            self.unknownFields = try unknownFieldsBuilder.build()
-            return self
-
-          case 8 :
-            version = try input.readUInt32()
-
-          case 18 :
-            value = try input.readString()
-
-          case 26 :
-            created = try input.readString()
-
-          case 34 :
-            byProfileId = try input.readString()
-
-          case 42 :
-            let subBuilder:Services.Profile.Containers.ProfileV1.Builder = Services.Profile.Containers.ProfileV1.Builder()
-            if hasByProfile {
-              try subBuilder.mergeFrom(byProfile)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            byProfile = subBuilder.buildPartial()
-
-          case 50 :
-            id = try input.readString()
-
-          case 58 :
-            changed = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

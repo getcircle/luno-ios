@@ -65,11 +65,12 @@ import "protobufs/services/profile/actions/bulk_create_profiles.proto";
 import "protobufs/services/profile/actions/bulk_update_profiles.proto";
 import "protobufs/services/profile/actions/remove_tags.proto";
 import "protobufs/services/profile/actions/profile_exists.proto";
-import "protobufs/services/profile/actions/get_status.proto";
 
 import "protobufs/services/search/actions/search.proto";
 import "protobufs/services/search/actions/search_v2.proto";
 import "protobufs/services/search/actions/update_entities.proto";
+import "protobufs/services/search/actions/delete_entities.proto";
+import "protobufs/services/search/actions/create_index.proto";
 
 import "protobufs/services/media/actions/start_image_upload.proto";
 import "protobufs/services/media/actions/complete_image_upload.proto";
@@ -185,7 +186,7 @@ message Profile {
         optional services.profile.actions.bulk_update_profiles.ResponseV1 bulk_update_profiles = 313;
         optional services.profile.actions.remove_tags.ResponseV1 remove_tags = 314;
         optional services.profile.actions.profile_exists.ResponseV1 profile_exists = 315;
-        optional services.profile.actions.get_status.ResponseV1 get_status = 316;
+        optional string DEPRECATED_get_status = 316;
     }
 }
 
@@ -194,6 +195,8 @@ message Search {
         optional services.search.actions.search.ResponseV1 search = 400;
         optional services.search.actions.search_v2.ResponseV1 search_v2 = 401;
         optional services.search.actions.update_entities.ResponseV1 update_entities = 402;
+        optional services.search.actions.delete_entities.ResponseV1 delete_entities = 403;
+        optional services.search.actions.create_index.ResponseV1 create_index = 404;
     }
 }
 

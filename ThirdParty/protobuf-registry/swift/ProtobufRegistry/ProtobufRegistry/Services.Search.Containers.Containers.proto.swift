@@ -15,8 +15,6 @@ public func == (lhs: Services.Search.Containers.SearchResultV1, rhs: Services.Se
   fieldCheck = fieldCheck && (lhs.hasTeam == rhs.hasTeam) && (!lhs.hasTeam || lhs.team == rhs.team)
   fieldCheck = fieldCheck && (lhs.hasLocation == rhs.hasLocation) && (!lhs.hasLocation || lhs.location == rhs.location)
   fieldCheck = fieldCheck && (lhs.hasGroup == rhs.hasGroup) && (!lhs.hasGroup || lhs.group == rhs.group)
-  fieldCheck = fieldCheck && (lhs.hasProfileStatus == rhs.hasProfileStatus) && (!lhs.hasProfileStatus || lhs.profileStatus == rhs.profileStatus)
-  fieldCheck = fieldCheck && (lhs.hasTeamStatus == rhs.hasTeamStatus) && (!lhs.hasTeamStatus || lhs.teamStatus == rhs.teamStatus)
   fieldCheck = fieldCheck && (lhs.hasScore == rhs.hasScore) && (!lhs.hasScore || lhs.score == rhs.score)
   fieldCheck = fieldCheck && (lhs.hasPost == rhs.hasPost) && (!lhs.hasPost || lhs.post == rhs.post)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
@@ -97,26 +95,6 @@ public extension Services.Search.Containers {
       public static func getGroup(value:ResultObject) -> Services.Group.Containers.GroupV1? {
            switch value {
            case .Group(let enumValue):
-                return enumValue
-           default:
-                return nil
-           }
-      }
-      case ProfileStatus(Services.Profile.Containers.ProfileStatusV1)
-
-      public static func getProfileStatus(value:ResultObject) -> Services.Profile.Containers.ProfileStatusV1? {
-           switch value {
-           case .ProfileStatus(let enumValue):
-                return enumValue
-           default:
-                return nil
-           }
-      }
-      case TeamStatus(Services.Organization.Containers.TeamStatusV1)
-
-      public static func getTeamStatus(value:ResultObject) -> Services.Organization.Containers.TeamStatusV1? {
-           switch value {
-           case .TeamStatus(let enumValue):
                 return enumValue
            default:
                 return nil
@@ -211,42 +189,6 @@ public extension Services.Search.Containers {
               storageResultObject = SearchResultV1.ResultObject.Group(newvalue)
          }
     }
-    public private(set) var hasProfileStatus:Bool {
-          get {
-               if SearchResultV1.ResultObject.getProfileStatus(storageResultObject) == nil {
-                   return false
-               }
-               return true
-          }
-          set(newValue) {
-          }
-    }
-    public private(set) var profileStatus:Services.Profile.Containers.ProfileStatusV1!{
-         get {
-              return SearchResultV1.ResultObject.getProfileStatus(storageResultObject)
-         }
-         set (newvalue) {
-              storageResultObject = SearchResultV1.ResultObject.ProfileStatus(newvalue)
-         }
-    }
-    public private(set) var hasTeamStatus:Bool {
-          get {
-               if SearchResultV1.ResultObject.getTeamStatus(storageResultObject) == nil {
-                   return false
-               }
-               return true
-          }
-          set(newValue) {
-          }
-    }
-    public private(set) var teamStatus:Services.Organization.Containers.TeamStatusV1!{
-         get {
-              return SearchResultV1.ResultObject.getTeamStatus(storageResultObject)
-         }
-         set (newvalue) {
-              storageResultObject = SearchResultV1.ResultObject.TeamStatus(newvalue)
-         }
-    }
     public private(set) var hasPost:Bool {
           get {
                if SearchResultV1.ResultObject.getPost(storageResultObject) == nil {
@@ -290,12 +232,6 @@ public extension Services.Search.Containers {
       if hasGroup {
         try output.writeMessage(5, value:group)
       }
-      if hasProfileStatus {
-        try output.writeMessage(6, value:profileStatus)
-      }
-      if hasTeamStatus {
-        try output.writeMessage(7, value:teamStatus)
-      }
       if hasScore {
         try output.writeFloat(8, value:score)
       }
@@ -332,16 +268,6 @@ public extension Services.Search.Containers {
       if hasGroup {
           if let varSizegroup = group?.computeMessageSize(5) {
               serialize_size += varSizegroup
-          }
-      }
-      if hasProfileStatus {
-          if let varSizeprofileStatus = profileStatus?.computeMessageSize(6) {
-              serialize_size += varSizeprofileStatus
-          }
-      }
-      if hasTeamStatus {
-          if let varSizeteamStatus = teamStatus?.computeMessageSize(7) {
-              serialize_size += varSizeteamStatus
           }
       }
       if hasScore {
@@ -426,16 +352,6 @@ public extension Services.Search.Containers {
         try group?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
-      if hasProfileStatus {
-        output += "\(indent) profileStatus {\n"
-        try profileStatus?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
-      if hasTeamStatus {
-        output += "\(indent) teamStatus {\n"
-        try teamStatus?.writeDescriptionTo(&output, indent:"\(indent)  ")
-        output += "\(indent) }\n"
-      }
       if hasScore {
         output += "\(indent) score: \(score) \n"
       }
@@ -470,16 +386,6 @@ public extension Services.Search.Containers {
             if hasGroup {
                 if let hashValuegroup = group?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuegroup
-                }
-            }
-            if hasProfileStatus {
-                if let hashValueprofileStatus = profileStatus?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueprofileStatus
-                }
-            }
-            if hasTeamStatus {
-                if let hashValueteamStatus = teamStatus?.hashValue {
-                    hashCode = (hashCode &* 31) &+ hashValueteamStatus
                 }
             }
             if hasScore {
@@ -745,108 +651,6 @@ public extension Services.Search.Containers {
         builderResult.group = nil
         return self
       }
-      public var hasProfileStatus:Bool {
-           get {
-               return builderResult.hasProfileStatus
-           }
-      }
-      public var profileStatus:Services.Profile.Containers.ProfileStatusV1! {
-           get {
-               if profileStatusBuilder_ != nil {
-                  builderResult.profileStatus = profileStatusBuilder_.getMessage()
-               }
-               return builderResult.profileStatus
-           }
-           set (value) {
-               builderResult.hasProfileStatus = true
-               builderResult.profileStatus = value
-           }
-      }
-      private var profileStatusBuilder_:Services.Profile.Containers.ProfileStatusV1.Builder! {
-           didSet {
-              builderResult.hasProfileStatus = true
-           }
-      }
-      public func getProfileStatusBuilder() -> Services.Profile.Containers.ProfileStatusV1.Builder {
-        if profileStatusBuilder_ == nil {
-           profileStatusBuilder_ = Services.Profile.Containers.ProfileStatusV1.Builder()
-           builderResult.profileStatus = profileStatusBuilder_.getMessage()
-           if profileStatus != nil {
-              try! profileStatusBuilder_.mergeFrom(profileStatus)
-           }
-        }
-        return profileStatusBuilder_
-      }
-      public func setProfileStatus(value:Services.Profile.Containers.ProfileStatusV1!) -> Services.Search.Containers.SearchResultV1.Builder {
-        self.profileStatus = value
-        return self
-      }
-      public func mergeProfileStatus(value:Services.Profile.Containers.ProfileStatusV1) throws -> Services.Search.Containers.SearchResultV1.Builder {
-        if builderResult.hasProfileStatus {
-          builderResult.profileStatus = try Services.Profile.Containers.ProfileStatusV1.builderWithPrototype(builderResult.profileStatus).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.profileStatus = value
-        }
-        builderResult.hasProfileStatus = true
-        return self
-      }
-      public func clearProfileStatus() -> Services.Search.Containers.SearchResultV1.Builder {
-        profileStatusBuilder_ = nil
-        builderResult.hasProfileStatus = false
-        builderResult.profileStatus = nil
-        return self
-      }
-      public var hasTeamStatus:Bool {
-           get {
-               return builderResult.hasTeamStatus
-           }
-      }
-      public var teamStatus:Services.Organization.Containers.TeamStatusV1! {
-           get {
-               if teamStatusBuilder_ != nil {
-                  builderResult.teamStatus = teamStatusBuilder_.getMessage()
-               }
-               return builderResult.teamStatus
-           }
-           set (value) {
-               builderResult.hasTeamStatus = true
-               builderResult.teamStatus = value
-           }
-      }
-      private var teamStatusBuilder_:Services.Organization.Containers.TeamStatusV1.Builder! {
-           didSet {
-              builderResult.hasTeamStatus = true
-           }
-      }
-      public func getTeamStatusBuilder() -> Services.Organization.Containers.TeamStatusV1.Builder {
-        if teamStatusBuilder_ == nil {
-           teamStatusBuilder_ = Services.Organization.Containers.TeamStatusV1.Builder()
-           builderResult.teamStatus = teamStatusBuilder_.getMessage()
-           if teamStatus != nil {
-              try! teamStatusBuilder_.mergeFrom(teamStatus)
-           }
-        }
-        return teamStatusBuilder_
-      }
-      public func setTeamStatus(value:Services.Organization.Containers.TeamStatusV1!) -> Services.Search.Containers.SearchResultV1.Builder {
-        self.teamStatus = value
-        return self
-      }
-      public func mergeTeamStatus(value:Services.Organization.Containers.TeamStatusV1) throws -> Services.Search.Containers.SearchResultV1.Builder {
-        if builderResult.hasTeamStatus {
-          builderResult.teamStatus = try Services.Organization.Containers.TeamStatusV1.builderWithPrototype(builderResult.teamStatus).mergeFrom(value).buildPartial()
-        } else {
-          builderResult.teamStatus = value
-        }
-        builderResult.hasTeamStatus = true
-        return self
-      }
-      public func clearTeamStatus() -> Services.Search.Containers.SearchResultV1.Builder {
-        teamStatusBuilder_ = nil
-        builderResult.hasTeamStatus = false
-        builderResult.teamStatus = nil
-        return self
-      }
       public var hasPost:Bool {
            get {
                return builderResult.hasPost
@@ -960,12 +764,6 @@ public extension Services.Search.Containers {
         if (other.hasGroup) {
             try mergeGroup(other.group)
         }
-        if (other.hasProfileStatus) {
-            try mergeProfileStatus(other.profileStatus)
-        }
-        if (other.hasTeamStatus) {
-            try mergeTeamStatus(other.teamStatus)
-        }
         if (other.hasPost) {
             try mergePost(other.post)
         }
@@ -1021,22 +819,6 @@ public extension Services.Search.Containers {
             }
             try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
             group = subBuilder.buildPartial()
-
-          case 50 :
-            let subBuilder:Services.Profile.Containers.ProfileStatusV1.Builder = Services.Profile.Containers.ProfileStatusV1.Builder()
-            if hasProfileStatus {
-              try subBuilder.mergeFrom(profileStatus)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            profileStatus = subBuilder.buildPartial()
-
-          case 58 :
-            let subBuilder:Services.Organization.Containers.TeamStatusV1.Builder = Services.Organization.Containers.TeamStatusV1.Builder()
-            if hasTeamStatus {
-              try subBuilder.mergeFrom(teamStatus)
-            }
-            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
-            teamStatus = subBuilder.buildPartial()
 
           case 69 :
             score = try input.readFloat()
