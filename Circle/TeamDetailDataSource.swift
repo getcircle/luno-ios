@@ -126,37 +126,6 @@ class TeamDetailDataSource: CardDataSource {
         appendCard(placeholderHeaderCard)
     }
     
-    private func addStatusCard() {
-        var statusText = ""
-        var createdTimestamp = ""
-        if let status = team.status {
-            statusText = status.value
-            createdTimestamp = status.changed
-        }
-        
-        let statusCard = Card(cardType: .TextValue, title: AppStrings.ProfileSectionStatusTitle)
-        let textData = TextData(
-            type: .TeamStatus,
-            andValue: statusText,
-            andPlaceholder: NSLocalizedString(
-                "Ask me!",
-                comment: "Generic text indicating a person should be asked about this info"
-            ),
-            andTimestamp: createdTimestamp,
-            andAuthor: team.status?.byProfile,
-            andCanEdit: canEdit()
-        )
-        
-        if canEdit() {
-            statusCard.showContentCount = false
-            statusCard.allowEditingContent = true
-        }
-        
-        statusCard.addHeader(headerClass: sectionHeaderClass)
-        statusCard.addContent(content: [textData])
-        appendCard(statusCard)
-    }
-    
     private func addDescriptionCard() {
         var description = ""
         if let value = team.description_?.value where value.trimWhitespace() != "" {
@@ -231,7 +200,6 @@ class TeamDetailDataSource: CardDataSource {
     private func populateData() {
         resetCards()
         addPlaceholderCard()
-        addStatusCard()
         addDescriptionCard()
         addManagerCard()
         addSubTeamsCard()

@@ -123,9 +123,6 @@ class SearchQueryDataSource: CardDataSource {
                     else if let location = result.location {
                         self.searchResults.append(location)
                     }
-                    else if let profileStatus = result.profileStatus {
-                        self.searchResults.append(profileStatus)
-                    }
                     else if let post = result.post {
                         self.searchResults.append(post)
                     }
@@ -200,7 +197,6 @@ class SearchQueryDataSource: CardDataSource {
             
             // Do not show info cards or search actions when results are presented in Recents
             if !emptySearchTerm {
-                addInfoCards()
                 addSearchActions()
             }
         }
@@ -222,17 +218,6 @@ class SearchQueryDataSource: CardDataSource {
             
             searchSuggestionsCard.addContent(content: searchSuggestions as [AnyObject])
             appendCard(searchSuggestionsCard)
-        }
-    }
-    
-    private func addInfoCards() {
-        if searchResults.count == 1 {
-            if let profile = searchResults.first as? Services.Profile.Containers.ProfileV1 {
-               addStatusCard(profile)
-            }
-            else if let team = searchResults.first as? Services.Organization.Containers.TeamV1 {
-                addStatusCard(team)
-            }
         }
     }
     
@@ -260,37 +245,6 @@ class SearchQueryDataSource: CardDataSource {
     override func configureHeader(header: CircleCollectionReusableView, atIndexPath indexPath: NSIndexPath) {
         if let cardHeader = header as? ProfileSectionHeaderCollectionReusableView {
             cardHeader.cardView.backgroundColor = UIColor.appSearchBackgroundColor()
-        }
-    }
-    
-    private func addStatusCard(profile: Services.Profile.Containers.ProfileV1) {
-        if let status = profile.status where status.value.trimWhitespace() != "" {
-            let statusCard = Card(cardType: .SearchTextValue, title: AppStrings.ProfileSectionStatusTitle.localizedUppercaseString())
-            statusCard.addContent(content: [
-                TextData(
-                    type: .ProfileStatus,
-                    andValue: status.value,
-                    andTimestamp: status.changed
-                )
-                ])
-            statusCard.sectionInset = UIEdgeInsetsZero
-            appendCard(statusCard)
-        }
-    }
-
-    private func addStatusCard(team: Services.Organization.Containers.TeamV1) {
-        if let status = team.status where status.value.trimWhitespace() != "" {
-            let statusCard = Card(cardType: .SearchTextValue, title: AppStrings.ProfileSectionStatusTitle.localizedUppercaseString())
-            statusCard.addContent(content: [
-                TextData(
-                    type: .TeamStatus,
-                    andValue: status.value,
-                    andTimestamp: status.changed,
-                    andAuthor: status.byProfile
-                )
-            ])
-            statusCard.sectionInset = UIEdgeInsetsZero
-            appendCard(statusCard)
         }
     }
 }

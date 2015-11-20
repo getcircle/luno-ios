@@ -129,11 +129,7 @@
 		8F0ADD561AC5344E00A44B68 /* Loader_00058@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F0ADD1B1AC5344E00A44B68 /* Loader_00058@2x.png */; };
 		8F0B96371A73288600C601A6 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */; };
 		8F0E44871A61EE99008710E7 /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */; };
-		8F12AA1B1BCF04310037A550 /* ProfileStatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12AA1A1BCF04310037A550 /* ProfileStatusDetailViewController.swift */; };
-		8F12AA1E1BCF058C0037A550 /* ProfileStatusDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12AA1D1BCF058C0037A550 /* ProfileStatusDetailDataSource.swift */; };
 		8F12AA201BCF713D0037A550 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F12AA1F1BCF713D0037A550 /* UILabelExtension.swift */; };
-		8F15A4001B756AF700693E26 /* EditProfileStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A3FF1B756AF700693E26 /* EditProfileStatusViewController.swift */; };
-		8F15A4021B7573F300693E26 /* EditTeamStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */; };
 		8F15A4081B75889900693E26 /* TextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A4071B75889900693E26 /* TextData.swift */; };
 		8F15A40C1B75C57300693E26 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A40B1B75C57300693E26 /* Location.swift */; };
 		8F15A4111B79B40700693E26 /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F15A40F1B79B40700693E26 /* ContactCollectionViewCell.swift */; };
@@ -464,11 +460,7 @@
 		8F0ADD1B1AC5344E00A44B68 /* Loader_00058@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Loader_00058@2x.png"; sourceTree = "<group>"; };
 		8F0B96361A73288600C601A6 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		8F0E44861A61EE99008710E7 /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
-		8F12AA1A1BCF04310037A550 /* ProfileStatusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatusDetailViewController.swift; sourceTree = "<group>"; };
-		8F12AA1D1BCF058C0037A550 /* ProfileStatusDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatusDetailDataSource.swift; sourceTree = "<group>"; };
 		8F12AA1F1BCF713D0037A550 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
-		8F15A3FF1B756AF700693E26 /* EditProfileStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileStatusViewController.swift; sourceTree = "<group>"; };
-		8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTeamStatusViewController.swift; sourceTree = "<group>"; };
 		8F15A4071B75889900693E26 /* TextData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
 		8F15A40B1B75C57300693E26 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		8F15A40F1B79B40700693E26 /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -761,8 +753,6 @@
 				8FC878151AB4B60F003FDB27 /* CurrentUserProfileDetailViewController.swift */,
 				8F00049C1A2419730096477A /* DetailViewController.swift */,
 				8FEE3D951A8309A400B17569 /* EditProfileViewController.swift */,
-				8F15A3FF1B756AF700693E26 /* EditProfileStatusViewController.swift */,
-				8F15A4011B7573F300693E26 /* EditTeamStatusViewController.swift */,
 				8F93E2B91B26BBFD004671D7 /* EditTeamViewController.swift */,
 				BFAE43531A8B05010085AB2B /* HomelessViewController.swift */,
 				8F9F60B71A896CE400FCAA25 /* MainTabBarViewController.swift */,
@@ -774,7 +764,6 @@
 				8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */,
 				47A1FDC91BEF1EC700C1089A /* PostDetailViewController.swift */,
 				8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */,
-				8F12AA1A1BCF04310037A550 /* ProfileStatusDetailViewController.swift */,
 				8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
 				8F29F6381B656CBC00E5D76C /* SearchViewController.swift */,
@@ -1069,7 +1058,6 @@
 				47CAC3971BB9CB9500A11652 /* LocationsSearchDataSource.swift */,
 				47A1FDCC1BEF1FE800C1089A /* PostDetailDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
-				8F12AA1D1BCF058C0037A550 /* ProfileStatusDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */,
 				BFE213CE1A5F0B1D0033E2F5 /* SearchQueryDataSource.swift */,
@@ -1598,7 +1586,6 @@
 				8F1D95101BD5A4B600434EC4 /* MessageView.swift in Sources */,
 				47A1FDCA1BEF1EC700C1089A /* PostDetailViewController.swift in Sources */,
 				8F08A9F91A748F5200B93149 /* CardFooterCollectionReusableView.swift in Sources */,
-				8F12AA1E1BCF058C0037A550 /* ProfileStatusDetailDataSource.swift in Sources */,
 				8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */,
 				BF768A741AB66E4700D677B1 /* SearchSuggestionCollectionViewCell.swift in Sources */,
 				8F22CBE51A27ED190026376E /* StickyHeaderCollectionViewLayout.swift in Sources */,
@@ -1618,7 +1605,6 @@
 				8F00049B1A2419730096477A /* ProfilesViewController.swift in Sources */,
 				8F1D0B8F1AC9101100488BD7 /* WelcomeViewController.swift in Sources */,
 				BF041BBA1A2C119B0043EC72 /* NSDateFormatterExtension.swift in Sources */,
-				8F15A4021B7573F300693E26 /* EditTeamStatusViewController.swift in Sources */,
 				8FEB032B1A5F69020081BB65 /* LocationDetailDataSource.swift in Sources */,
 				8F085A8A1A6B0CB300F8139B /* TeamDetailDataSource.swift in Sources */,
 				8F3569141A560B2D003D42F9 /* CGRectExtension.swift in Sources */,
@@ -1638,7 +1624,6 @@
 				8F93E2BB1B26BBFD004671D7 /* EditTeamViewController.swift in Sources */,
 				47CAC3941BB9C87300A11652 /* ProfilesSearchDataSource.swift in Sources */,
 				8F4805E41A5DE4B800273731 /* MapHeaderCollectionReusableView.swift in Sources */,
-				8F12AA1B1BCF04310037A550 /* ProfileStatusDetailViewController.swift in Sources */,
 				8FC8781F1AB68B38003FDB27 /* CircleButton.swift in Sources */,
 				BF0B10591ACD3DA500E27DC2 /* BackspaceTextField.swift in Sources */,
 				47CAC39A1BB9E4EF00A11652 /* SearchSectionHeaderCollectionReusableView.swift in Sources */,
@@ -1689,7 +1674,6 @@
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
 				8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */,
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
-				8F15A4001B756AF700693E26 /* EditProfileStatusViewController.swift in Sources */,
 				47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */,
 				476828D81BFD877B007672C7 /* TapTextView.swift in Sources */,
 				8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */,

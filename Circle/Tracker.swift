@@ -22,9 +22,9 @@ struct TrackerProperty {
         // Detail
         case LocationDetail = "Location Detail"
         case ProfileDetail = "Profile Detail"
-        case ProfileStatusDetail = "Profile Status Detail"
         case TeamDetail = "Team Detail"
         case LocationAddressMap = "Location Address Map"
+        case PostDetail = "Post Detail"
         
         // Lists
         case DirectReports = "Direct Reports"
@@ -44,8 +44,6 @@ struct TrackerProperty {
     
     enum ContactLocation: String {
         case ProfileDetail = "Profile Detail"
-        case ProfileDetailStatus = "Profile Detail Status"
-        case TeamDetailStatus = "Team Detail Status"
         case TeamDetailDescription = "Team Detail Description"
         case SearchSmartAction = "Search Smart Action"
     }
@@ -79,7 +77,6 @@ struct TrackerProperty {
         case Profile = "Profile"
         case Team = "Team"
         case Location = "Location"
-        case ProfileStatus = "Profile Status"
         case Post = "Post"
         
         // Smart Actions

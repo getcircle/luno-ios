@@ -385,12 +385,6 @@ class SearchViewController: UIViewController,
                 searchResultType = .Location
                 CircleCache.recordLocationSearchResult(location)
             }
-            else if let profileStatus = dataSource.contentAtIndexPath(indexPath) as? Services.Profile.Containers.ProfileStatusV1 {
-                showProfileStatusDetail(profileStatus)
-                searchResultId = profileStatus.id
-                searchResultType = .ProfileStatus
-                CircleCache.recordProfileStatusSearchResult(profileStatus)
-            }
             else if let post = dataSource.contentAtIndexPath(indexPath) as? Services.Post.Containers.PostV1 {
                 showPostDetail(post)
                 searchResultId = post.id

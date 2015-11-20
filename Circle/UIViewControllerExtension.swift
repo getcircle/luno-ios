@@ -345,12 +345,6 @@ extension UIViewController {
         navigationController?.pushViewController(locationDetailVC, animated: true)
     }
     
-    func showProfileStatusDetail(profileStatus: Services.Profile.Containers.ProfileStatusV1) {
-        let profileStatusDetailVC = ProfileStatusDetailViewController()
-        (profileStatusDetailVC.dataSource as! ProfileStatusDetailDataSource).profileStatus = profileStatus
-        navigationController?.pushViewController(profileStatusDetailVC, animated: true)
-    }
-    
     func showPostDetail(post: Services.Post.Containers.PostV1) {
         let postDetailVC = PostDetailViewController()
         (postDetailVC.dataSource as! PostDetailDataSource).post = post
