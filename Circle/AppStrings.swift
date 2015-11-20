@@ -82,7 +82,7 @@ struct AppStrings {
     static let QuickActionSlackLabel = NSLocalizedString("Slack", comment: "Title for button used send a message via Slack")
     static let QuickActionVideoLabel = NSLocalizedString("Video", comment: "Title for button used to initial a video call")
     
-    static let SearchPlaceholder = NSLocalizedString("Search knowledge, people, teams, & locations", comment: "Placeholder text for search field used to search knowledge, people, teams, and locations.")
+    static let SearchPlaceholder = NSLocalizedString("Search knowledge, people, & teams", comment: "Placeholder text for search field used to search knowledge, people, teams, and locations.")
     
     static let QuickActionEmailPlaceholder = NSLocalizedString("Who do you want to email?", comment: "Placeholder for search field used to search for the person user intends to email")
     static let QuickActionInfoPlaceholder = NSLocalizedString("Who do you want contact info on?", comment: "Placeholder for search field used to search for the person user intends to email")
