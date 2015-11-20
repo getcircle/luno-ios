@@ -13,6 +13,8 @@
 		47BA36C51BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA36C41BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift */; };
 		47BA36C71BF1860A00A26736 /* Services.File.Actions.StartUpload.StartUpload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA36C61BF1860A00A26736 /* Services.File.Actions.StartUpload.StartUpload.proto.swift */; };
 		47BA36C91BF1861900A26736 /* Services.File.Containers.Containers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA36C81BF1861900A26736 /* Services.File.Containers.Containers.proto.swift */; };
+		47E0BFC71BFFD26F00ADA975 /* Services.Search.Actions.CreateIndex.CreateIndex.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0BFC61BFFD26F00ADA975 /* Services.Search.Actions.CreateIndex.CreateIndex.proto.swift */; };
+		47E0BFC91BFFD27400ADA975 /* Services.Search.Actions.DeleteEntities.DeleteEntities.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E0BFC81BFFD27400ADA975 /* Services.Search.Actions.DeleteEntities.DeleteEntities.proto.swift */; };
 		BF3D3CC91AE070EF00B5780B /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBA1AE070EF00B5780B /* AbstractMessage.swift */; };
 		BF3D3CCA1AE070EF00B5780B /* CodedInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBB1AE070EF00B5780B /* CodedInputStream.swift */; };
 		BF3D3CCB1AE070EF00B5780B /* CodedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D3CBC1AE070EF00B5780B /* CodedOutputStream.swift */; };
@@ -167,6 +169,8 @@
 		47BA36C41BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Actions.GetFiles.GetFiles.proto.swift; sourceTree = "<group>"; };
 		47BA36C61BF1860A00A26736 /* Services.File.Actions.StartUpload.StartUpload.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Actions.StartUpload.StartUpload.proto.swift; sourceTree = "<group>"; };
 		47BA36C81BF1861900A26736 /* Services.File.Containers.Containers.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Containers.Containers.proto.swift; sourceTree = "<group>"; };
+		47E0BFC61BFFD26F00ADA975 /* Services.Search.Actions.CreateIndex.CreateIndex.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.CreateIndex.CreateIndex.proto.swift; sourceTree = "<group>"; };
+		47E0BFC81BFFD27400ADA975 /* Services.Search.Actions.DeleteEntities.DeleteEntities.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.DeleteEntities.DeleteEntities.proto.swift; sourceTree = "<group>"; };
 		BF3D3CBA1AE070EF00B5780B /* AbstractMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractMessage.swift; sourceTree = "<group>"; };
 		BF3D3CBB1AE070EF00B5780B /* CodedInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedInputStream.swift; sourceTree = "<group>"; };
 		BF3D3CBC1AE070EF00B5780B /* CodedOutputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodedOutputStream.swift; sourceTree = "<group>"; };
@@ -443,6 +447,8 @@
 				BF9BADE11BB38F81008CCC7E /* Services.Registry.All.proto.swift */,
 				BF9BADE21BB38F81008CCC7E /* Services.Registry.Requests.Requests.proto.swift */,
 				BF9BADE31BB38F81008CCC7E /* Services.Registry.Responses.Responses.proto.swift */,
+				47E0BFC61BFFD26F00ADA975 /* Services.Search.Actions.CreateIndex.CreateIndex.proto.swift */,
+				47E0BFC81BFFD27400ADA975 /* Services.Search.Actions.DeleteEntities.DeleteEntities.proto.swift */,
 				BF9BADE41BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift */,
 				BFA734A91BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift */,
 				BFA734AB1BEDABAF0087951B /* Services.Search.Actions.UpdateEntities.UpdateEntities.proto.swift */,
@@ -679,8 +685,10 @@
 				BF9BAE181BB38F81008CCC7E /* Services.Media.Containers.Containers.proto.swift in Sources */,
 				BF9BAE1A1BB38F81008CCC7E /* Services.Notification.Actions.GetPreferences.GetPreferences.proto.swift in Sources */,
 				BFA734C11BEDABAF0087951B /* Services.Notification.Actions.NoSearchResults.NoSearchResults.proto.swift in Sources */,
-				BF9BAE4E1BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift in Sources */,
 				BF9BAE1B1BB38F81008CCC7E /* Services.Notification.Actions.RegisterDevice.RegisterDevice.proto.swift in Sources */,
+				47E0BFC71BFFD26F00ADA975 /* Services.Search.Actions.CreateIndex.CreateIndex.proto.swift in Sources */,
+				47E0BFC91BFFD27400ADA975 /* Services.Search.Actions.DeleteEntities.DeleteEntities.proto.swift in Sources */,
+				BF9BAE4E1BB38F81008CCC7E /* Services.Search.Actions.Search.Search.proto.swift in Sources */,
 				BFA734B61BEDABAF0087951B /* Services.Search.Actions.SearchV2.SearchV2.proto.swift in Sources */,
 				BFA734B91BEDABAF0087951B /* Services.Search.Containers.Entity.Entity.proto.swift in Sources */,
 				BF9BAE1C1BB38F81008CCC7E /* Services.Notification.Actions.SendNotification.SendNotification.proto.swift in Sources */,
