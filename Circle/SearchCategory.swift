@@ -14,6 +14,7 @@ class SearchCategory: SearchSuggestion {
         case People = 1
         case Locations
         case Teams
+        case Posts
     }
     
     var count: Int

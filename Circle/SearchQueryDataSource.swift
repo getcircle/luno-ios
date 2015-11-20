@@ -148,6 +148,9 @@ class SearchQueryDataSource: CardDataSource {
     
     private func populateDefaultSearchSuggestions() {
         if let organization = AuthenticationViewController.getLoggedInUserOrganization() {
+            let postCount = Int(organization.postCount)
+            let postTitle = AppStrings.SearchCategoryPosts
+            
             let peopleCount = Int(organization.profileCount)
             let peopleTitle = peopleCount == 1 ? "Person" : "People"
             
@@ -158,6 +161,12 @@ class SearchQueryDataSource: CardDataSource {
             let teamsTitle = teamsCount == 1 ? "Team" : "Teams"
             
             searchSuggestions.appendContentsOf([
+                SearchCategory(
+                    categoryTitle: postTitle,
+                    ofType: .Posts,
+                    withCount: postCount,
+                    withImageSource: "searchbar_search"
+                ),
                 SearchCategory(
                     categoryTitle: peopleTitle,
                     ofType: .People,

@@ -103,6 +103,7 @@ struct TrackerProperty {
         case Profiles = "PROFILES"
         case Teams = "TEAMS"
         case Locations = "LOCATIONS"
+        case Posts = "POSTS"
     }
     
     // This is repeated from Protobuf values

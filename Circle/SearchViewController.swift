@@ -461,6 +461,22 @@ class SearchViewController: UIViewController,
                         })
                         
                         dataSource = teamsDataSource
+                        
+                    case .Posts:
+                        searchDataSource.searchCategory = .Posts
+                        let postsDataSource = PostsSearchDataSource()
+                        postsDataSource.searchLocation = .Home
+                        postsDataSource.delegate = self
+                        try postsDataSource.configureForOrganization()
+                        
+                        collectionView.dataSource = postsDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        postsDataSource.loadData({ (error) -> Void in
+                        })
+                        
+                        dataSource = postsDataSource
                     }
                 }
                 catch {
