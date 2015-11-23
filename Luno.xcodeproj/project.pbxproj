@@ -10,6 +10,7 @@
 		4744B6F91BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */; };
 		4744B6FC1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */; };
 		4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */; };
+		476828D81BFD877B007672C7 /* TapTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476828D71BFD877B007672C7 /* TapTextView.swift */; };
 		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
@@ -336,6 +337,7 @@
 		4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
+		476828D71BFD877B007672C7 /* TapTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapTextView.swift; sourceTree = "<group>"; };
 		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
@@ -812,6 +814,7 @@
 				8F9F60D31A8C481F00FCAA25 /* SettingsCollectionViewCell.swift */,
 				4744B6F81BA34D100000898C /* SettingsSectionHeaderCollectionReusableView.swift */,
 				BF2B34591ACD307200667B50 /* TagToken.swift */,
+				476828D71BFD877B007672C7 /* TapTextView.swift */,
 				BFCFDB1F1A91951A009A5FD4 /* TextValueCollectionViewCell.swift */,
 				BF97F2D61ACA0B4500F1BC2E /* TokenField.swift */,
 			);
@@ -1672,6 +1675,7 @@
 				8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */,
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
 				47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */,
+				476828D81BFD877B007672C7 /* TapTextView.swift in Sources */,
 				8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */,
 				BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,

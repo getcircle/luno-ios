@@ -12,14 +12,22 @@ import Alamofire
 
 class PostDetailDataSource: CardDataSource {
     
+    struct PostAttachment {
+        var name: String
+        var data: NSData
+    }
+    
+    private var attachments = [NSTextAttachment: PostAttachment]()
+    
     var post: Services.Post.Containers.PostV1!
     var content: NSAttributedString?
+    var textViewDelegate: UITextViewDelegate?
     
     override func loadData(completionHandler: (error: NSError?) -> Void) {
         let actionsGroup = dispatch_group_create()
         
         var storedError: NSError?
-        var images = [String: UIImage]()
+        var filesData = [String: NSData]()
         
         dispatch_group_enter(actionsGroup)
         Services.Post.Actions.getPost(post.id) { (post, error) -> Void in
@@ -35,8 +43,8 @@ class PostDetailDataSource: CardDataSource {
                             if let error = error {
                                 print("Error: \(error)")
                             }
-                            else if let data = data, image = UIImage(data: data) {
-                                images[file.sourceUrl] = image
+                            else if let data = data {
+                                filesData[file.sourceUrl] = data
                             }
                             dispatch_group_leave(actionsGroup)
                         })
@@ -49,7 +57,7 @@ class PostDetailDataSource: CardDataSource {
         }
         
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
-            self.renderContentWithFiles(self.post.files, images: images)
+            self.renderContentWithFiles(self.post.files, filesData: filesData)
             self.populateData()
             completionHandler(error: storedError)
         }
@@ -59,6 +67,13 @@ class PostDetailDataSource: CardDataSource {
         if let authorCell = cell as? ProfileCollectionViewCell {
             authorCell.disclosureIndicatorView.hidden = false
         }
+        else if let contentCell = cell as? PostContentCollectionViewCell {
+            contentCell.textView.delegate = textViewDelegate
+        }
+    }
+    
+    func attachmentForTextAttachment(textAttachment: NSTextAttachment) -> PostAttachment? {
+        return attachments[textAttachment]
     }
     
     // MARK: - Populate Data
@@ -98,7 +113,7 @@ class PostDetailDataSource: CardDataSource {
         return card
     }
     
-    private func renderContentWithFiles(files: [Services.File.Containers.FileV1]?, images: [String: UIImage]?) {
+    private func renderContentWithFiles(files: [Services.File.Containers.FileV1]?, filesData: [String: NSData]?) {
         let availableWidth = UIScreen.mainScreen().bounds.size.width - 20.0
         
         // Post content style
@@ -123,7 +138,7 @@ class PostDetailDataSource: CardDataSource {
         var attachmentStrings = [NSAttributedString]()
         if let files = files {
             for (index, file) in files.enumerate() {
-                if let image = images?[file.sourceUrl], cgImage = image.CGImage {
+                if let data = filesData?[file.sourceUrl], image = UIImage(data: data), cgImage = image.CGImage {
                     let attachment = NSTextAttachment()
                     let imageWidth = image.size.width
                     let scale = (imageWidth > availableWidth) ? (imageWidth / availableWidth) : 1.0
@@ -135,6 +150,7 @@ class PostDetailDataSource: CardDataSource {
                     attachmentString.appendAttributedString(captionString)
                     
                     attachmentStrings.insert(attachmentString, atIndex: index)
+                    attachments[attachment] = PostAttachment(name: file.name, data: data)
                 }
                 else {
                     // Make a link to the file
