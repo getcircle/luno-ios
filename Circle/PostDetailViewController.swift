@@ -40,6 +40,10 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
         collectionView.backgroundColor = UIColor.whiteColor()
     }
     
+    override internal func offsetForActivityIndicator() -> CGFloat {
+        return 0
+    }
+    
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
