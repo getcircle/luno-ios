@@ -95,9 +95,9 @@ class PostDetailDataSource: CardDataSource {
     }
     
     internal func addAuthorCard() -> Card? {
-        let card = Card(cardType: .Profiles, title: "")
+        let card = Card(cardType: .PostAuthor, title: "")
         card.showContentCount = false
-        card.sectionInset = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
+        card.sectionInset = UIEdgeInsetsZero
         if let byProfile = post.byProfile {
             card.addContent(content: [byProfile])
         }

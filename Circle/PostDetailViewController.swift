@@ -50,7 +50,7 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
         if let dataSource = collectionView.dataSource as? PostDetailDataSource {
             if let card = dataSource.cardAtSection(indexPath.section) {
                 switch card.type {
-                case .Profiles:
+                case .PostAuthor:
                     let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
                     if let profile = data as? Services.Profile.Containers.ProfileV1 {
                         showProfileDetail(profile)
