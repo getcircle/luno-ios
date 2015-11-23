@@ -224,7 +224,7 @@ class SearchViewController: UIViewController,
     // Search View Animations
     
     private func moveSearchToTop(animated: Bool) {
-        let newCenterY = -view.frameHeight/2 - 20.0
+        let newCenterY = -view.frameHeight/2 - 24.0
         if fakeSearchContainerCenterYConstraint.constant == newCenterY {
             return
         }
