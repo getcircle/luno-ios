@@ -98,7 +98,9 @@ class PostDetailDataSource: CardDataSource {
         let card = Card(cardType: .Profiles, title: "")
         card.showContentCount = false
         card.sectionInset = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
-        card.addContent(content: [post.byProfile])
+        if let byProfile = post.byProfile {
+            card.addContent(content: [byProfile])
+        }
         appendCard(card)
         return card
     }
