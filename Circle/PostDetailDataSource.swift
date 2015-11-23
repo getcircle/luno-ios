@@ -103,11 +103,11 @@ class PostDetailDataSource: CardDataSource {
         
         // Post content style
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 1.0
+        paragraphStyle.lineSpacing = 3.0
         let contentAttributes = [
             NSParagraphStyleAttributeName: paragraphStyle,
             NSForegroundColorAttributeName: UIColor.appPrimaryTextColor(),
-            NSFontAttributeName: UIFont.mainTextFont(),
+            NSFontAttributeName: UIFont.regularFont(18.0),
         ]
         
         // Image caption style
