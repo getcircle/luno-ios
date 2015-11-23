@@ -16,13 +16,11 @@ class PostsSearchDataSource: PostsOverviewDataSource {
     
     override init() {
         super.init()
-        
         cardType = .SearchResult
     }
     
     override func configureCell(cell: CircleCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
         super.configureCell(cell, atIndexPath: indexPath)
-        
         cell.backgroundColor = UIColor.appSearchBackgroundColor()
     }
     
