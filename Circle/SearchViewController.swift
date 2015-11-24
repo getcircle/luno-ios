@@ -66,13 +66,17 @@ class SearchViewController: UIViewController,
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        let loggedInUser = AuthenticationViewController.getLoggedInUser()
         if firstLoad {
             firstLoad = false
             if checkUserAndPresentAuthenticationViewController() {
                 hideAndRemoveLaunchView()
+                if let user = loggedInUser {
+                    AuthenticationViewController.fetchAndCacheUserOrganization(user.id, completion: nil)
+                }
             }
         }
-        else if AuthenticationViewController.getLoggedInUser() != nil && launchScreenView != nil {
+        else if loggedInUser != nil && launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
     }
@@ -409,6 +413,9 @@ class SearchViewController: UIViewController,
         case .SearchSuggestion:
             if let searchCategory = dataSource.contentAtIndexPath(indexPath) as? SearchCategory, searchDataSource = dataSource as? SearchQueryDataSource {
                 do {
+                    // Replace current data source with new data source for the selected category and ask it to start loading in data
+                    // Paginated data sources should notify the delegate (self) when finished loading, who should append new content to the collection view
+                    // Non-paginated data sources should reload the collection view when finished via the completion handler
                     switch searchCategory.type {
                     case .People:
                         searchDataSource.searchCategory = .Profiles
@@ -461,6 +468,22 @@ class SearchViewController: UIViewController,
                         })
                         
                         dataSource = teamsDataSource
+                        
+                    case .Posts:
+                        searchDataSource.searchCategory = .Posts
+                        let postsDataSource = PostsSearchDataSource()
+                        postsDataSource.searchLocation = .Home
+                        postsDataSource.delegate = self
+                        try postsDataSource.configureForOrganization()
+                        
+                        collectionView.dataSource = postsDataSource
+                        collectionView.reloadData()
+                        
+                        searchHeaderView.showTagWithTitle(searchCategory.title.localizedUppercaseString())
+                        postsDataSource.loadData({ (error) -> Void in
+                        })
+                        
+                        dataSource = postsDataSource
                     }
                 }
                 catch {

@@ -34,6 +34,8 @@
 		47DD71951BF3D12900AB40FA /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD71941BF3D12900AB40FA /* NSDateExtension.swift */; };
 		47DD71981BF3D76A00AB40FA /* NSDateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DD71961BF3D72D00AB40FA /* NSDateExtensionTests.swift */; };
 		47DD89471BB77FD700B9B9AD /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */; };
+		47E301871BFFD80D006FF532 /* PostsOverviewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E301861BFFD80D006FF532 /* PostsOverviewDataSource.swift */; };
+		47E3018A1BFFDCF3006FF532 /* PostsSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E301891BFFDCF3006FF532 /* PostsSearchDataSource.swift */; };
 		47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */; };
 		47E674FD1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */; };
 		47E674FF1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */; };
@@ -361,6 +363,8 @@
 		47DD71941BF3D12900AB40FA /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		47DD71961BF3D72D00AB40FA /* NSDateExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtensionTests.swift; sourceTree = "<group>"; };
 		47DD89461BB77FD700B9B9AD /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		47E301861BFFD80D006FF532 /* PostsOverviewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsOverviewDataSource.swift; sourceTree = "<group>"; };
+		47E301891BFFDCF3006FF532 /* PostsSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsSearchDataSource.swift; sourceTree = "<group>"; };
 		47E674F91BBA451A007D3A28 /* SearchActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		47E674FC1BBA454F007D3A28 /* SearchActionCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchActionCollectionViewCell.xib; sourceTree = "<group>"; };
 		47E674FE1BBA51EB007D3A28 /* SearchTextValueCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTextValueCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1057,6 +1061,8 @@
 				8FEB032A1A5F69020081BB65 /* LocationDetailDataSource.swift */,
 				47CAC3971BB9CB9500A11652 /* LocationsSearchDataSource.swift */,
 				47A1FDCC1BEF1FE800C1089A /* PostDetailDataSource.swift */,
+				47E301861BFFD80D006FF532 /* PostsOverviewDataSource.swift */,
+				47E301891BFFDCF3006FF532 /* PostsSearchDataSource.swift */,
 				8F22CBF41A2865030026376E /* ProfileDetailDataSource.swift */,
 				8F2D7DEF1A5B2412001D36B0 /* ProfilesDataSource.swift */,
 				47CAC3931BB9C87300A11652 /* ProfilesSearchDataSource.swift */,
@@ -1560,6 +1566,7 @@
 				8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */,
 				47D30D2A1BF18E620082B995 /* PostContentCollectionViewCell.swift in Sources */,
 				BF27CC631A747B2100E683C7 /* BaseDetailViewController.swift in Sources */,
+				47E3018A1BFFDCF3006FF532 /* PostsSearchDataSource.swift in Sources */,
 				8F22CBED1A283D3D0026376E /* SeparatorDecorationView.swift in Sources */,
 				BFCFDB1A1A917944009A5FD4 /* ProfileSectionHeaderCollectionReusableView.swift in Sources */,
 				8F65C4FB1A50F92500C7F3E6 /* Card.swift in Sources */,
@@ -1672,6 +1679,7 @@
 				BFAF272F1ACB75A600E881BC /* ContactInfoDataSource.swift in Sources */,
 				8F12AA201BCF713D0037A550 /* UILabelExtension.swift in Sources */,
 				8F22CBE81A27FDA70026376E /* KeyValueCollectionViewCell.swift in Sources */,
+				47E301871BFFD80D006FF532 /* PostsOverviewDataSource.swift in Sources */,
 				8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */,
 				8F5933D01ACA331700905E14 /* UIDeviceExtension.swift in Sources */,
 				47E674FA1BBA451A007D3A28 /* SearchActionCollectionViewCell.swift in Sources */,
