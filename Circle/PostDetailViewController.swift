@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocumentInteractionControllerDelegate {
+class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocumentInteractionControllerDelegate, CardDataSourceDelegate {
 
     // MARK: - Initialization
     
@@ -17,6 +17,7 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
         super.customInit()
         
         let postDetailDataSource = PostDetailDataSource()
+        postDetailDataSource.delegate = self
         postDetailDataSource.textViewDelegate = self
         dataSource = postDetailDataSource
         delegate = CardCollectionViewDelegate()
@@ -40,13 +41,17 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
         collectionView.backgroundColor = UIColor.whiteColor()
     }
     
+    override internal func offsetForActivityIndicator() -> CGFloat {
+        return 0
+    }
+    
     // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let dataSource = collectionView.dataSource as? PostDetailDataSource {
             if let card = dataSource.cardAtSection(indexPath.section) {
                 switch card.type {
-                case .Profiles:
+                case .PostAuthor:
                     let data: AnyObject? = dataSource.contentAtIndexPath(indexPath)
                     if let profile = data as? Services.Profile.Containers.ProfileV1 {
                         showProfileDetail(profile)
@@ -94,6 +99,12 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
                 print("Error: \(error)")
             }
         }
+    }
+    
+    // MARK: - CardDataSourceDelegate
+    
+    func onAllDataLoaded() {
+        collectionView.reloadData()
     }
     
 }

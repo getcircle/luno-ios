@@ -11,6 +11,8 @@
 		4744B6FC1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */; };
 		4748F1311B9E446D0083E96C /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */; };
 		476828D81BFD877B007672C7 /* TapTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476828D71BFD877B007672C7 /* TapTextView.swift */; };
+		477AFEAB1C03C1BB00C9D885 /* PostAuthorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477AFEAA1C03C1BB00C9D885 /* PostAuthorCollectionViewCell.swift */; };
+		477AFEAE1C03C1F000C9D885 /* PostAuthorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 477AFEAD1C03C1F000C9D885 /* PostAuthorCollectionViewCell.xib */; };
 		478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */; };
 		478E7A701B97938E0077B910 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */; };
 		478E7A711B97938E0077B910 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */; };
@@ -340,6 +342,8 @@
 		4744B6FB1BA34D480000898C /* SettingsSectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsSectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		4748F1301B9E446D0083E96C /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		476828D71BFD877B007672C7 /* TapTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapTextView.swift; sourceTree = "<group>"; };
+		477AFEAA1C03C1BB00C9D885 /* PostAuthorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAuthorCollectionViewCell.swift; sourceTree = "<group>"; };
+		477AFEAD1C03C1F000C9D885 /* PostAuthorCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostAuthorCollectionViewCell.xib; sourceTree = "<group>"; };
 		478E7A6C1B97938E0077B910 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		478E7A6D1B97938E0077B910 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		478E7A6E1B97938E0077B910 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
@@ -802,6 +806,7 @@
 				8F4805E31A5DE4B800273731 /* MapHeaderCollectionReusableView.swift */,
 				8F1D950F1BD5A4B600434EC4 /* MessageView.swift */,
 				8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */,
+				477AFEAA1C03C1BB00C9D885 /* PostAuthorCollectionViewCell.swift */,
 				47D30D291BF18E620082B995 /* PostContentCollectionViewCell.swift */,
 				47A1FDCE1BF1152D00C1089A /* PostTitleCollectionViewCell.swift */,
 				8FCC95CB1A52828B00421E65 /* ProfileCollectionViewCell.swift */,
@@ -904,6 +909,7 @@
 				8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */,
 				8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */,
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
+				477AFEAD1C03C1F000C9D885 /* PostAuthorCollectionViewCell.xib */,
 				47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */,
 				47A1FDD01BF1168400C1089A /* PostTitleCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
@@ -1388,6 +1394,7 @@
 				8F0ADD381AC5344E00A44B68 /* Loader_00028@2x.png in Resources */,
 				8F0ADD1C1AC5344E00A44B68 /* Loader_00000@2x.png in Resources */,
 				478E7A6F1B97938E0077B910 /* OpenSans-Light.ttf in Resources */,
+				477AFEAE1C03C1F000C9D885 /* PostAuthorCollectionViewCell.xib in Resources */,
 				47CAC3921BB9C24C00A11652 /* SearchResultCollectionViewCell.xib in Resources */,
 				8F0ADD3D1AC5344E00A44B68 /* Loader_00033@2x.png in Resources */,
 				8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */,
@@ -1643,6 +1650,7 @@
 				8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */,
 				8F7400391A6A3FF700D96B60 /* CircleAlertViewController.swift in Sources */,
 				8F65C4FE1A51222100C7F3E6 /* LocationCollectionViewCell.swift in Sources */,
+				477AFEAB1C03C1BB00C9D885 /* PostAuthorCollectionViewCell.swift in Sources */,
 				8FD907F71A6033310025A17B /* LocationDetailViewController.swift in Sources */,
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */,
