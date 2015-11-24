@@ -66,13 +66,17 @@ class SearchViewController: UIViewController,
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        let loggedInUser = AuthenticationViewController.getLoggedInUser()
         if firstLoad {
             firstLoad = false
             if checkUserAndPresentAuthenticationViewController() {
                 hideAndRemoveLaunchView()
+                if let user = loggedInUser {
+                    AuthenticationViewController.fetchAndCacheUserOrganization(user.id, completion: nil)
+                }
             }
         }
-        else if AuthenticationViewController.getLoggedInUser() != nil && launchScreenView != nil {
+        else if loggedInUser != nil && launchScreenView != nil {
             hideAndRemoveLaunchView()
         }
     }
