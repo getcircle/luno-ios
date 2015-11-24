@@ -27,7 +27,6 @@ class PostDetailDataSource: CardDataSource {
         let actionsGroup = dispatch_group_create()
         
         var storedError: NSError?
-        var filesData = [String: NSData]()
         
         dispatch_group_enter(actionsGroup)
         Services.Post.Actions.getPost(post.id) { (post, error) -> Void in
@@ -35,30 +34,15 @@ class PostDetailDataSource: CardDataSource {
                 storedError = error
             }
             else if let post = post {
-                // Download all attached images
-                for file in post.files {
-                    if file.isImage() {
-                        dispatch_group_enter(actionsGroup)
-                        Alamofire.request(.GET, file.sourceUrl).response(completionHandler: { (request, response, data, error) -> Void in
-                            if let error = error {
-                                print("Error: \(error)")
-                            }
-                            else if let data = data {
-                                filesData[file.sourceUrl] = data
-                            }
-                            dispatch_group_leave(actionsGroup)
-                        })
-                    }
-                }
-                
                 self.post = post
             }
             dispatch_group_leave(actionsGroup)
         }
         
         dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
-            self.renderContentWithFiles(self.post.files, filesData: filesData)
+            self.renderContentWithFiles(self.post.files)
             self.populateData()
+            self.loadImages()
             completionHandler(error: storedError)
         }
     }
@@ -115,7 +99,7 @@ class PostDetailDataSource: CardDataSource {
         return card
     }
     
-    private func renderContentWithFiles(files: [Services.File.Containers.FileV1]?, filesData: [String: NSData]?) {
+    private func renderContentWithFiles(files: [Services.File.Containers.FileV1]?, filesData: [String: NSData]? = nil) {
         let availableWidth = UIScreen.mainScreen().bounds.size.width - 20.0
         
         // Post content style
@@ -173,6 +157,32 @@ class PostDetailDataSource: CardDataSource {
         }
         
         self.content = contentString
+    }
+    
+    private func loadImages() {
+        let actionsGroup = dispatch_group_create()
+        
+        var filesData = [String: NSData]()
+        for file in post.files {
+            if file.isImage() {
+                dispatch_group_enter(actionsGroup)
+                Alamofire.request(.GET, file.sourceUrl).response(completionHandler: { (request, response, data, error) -> Void in
+                    if let error = error {
+                        print("Error: \(error)")
+                    }
+                    else if let data = data {
+                        filesData[file.sourceUrl] = data
+                    }
+                    dispatch_group_leave(actionsGroup)
+                })
+            }
+        }
+        
+        dispatch_group_notify(actionsGroup, GlobalMainQueue) { () -> Void in
+            self.renderContentWithFiles(self.post.files, filesData: filesData)
+            self.populateData()
+            self.delegate?.onAllDataLoaded?()
+        }
     }
     
 }

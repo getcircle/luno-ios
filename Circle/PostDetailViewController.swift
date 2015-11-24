@@ -9,7 +9,7 @@
 import UIKit
 import ProtobufRegistry
 
-class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocumentInteractionControllerDelegate {
+class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocumentInteractionControllerDelegate, CardDataSourceDelegate {
 
     // MARK: - Initialization
     
@@ -17,6 +17,7 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
         super.customInit()
         
         let postDetailDataSource = PostDetailDataSource()
+        postDetailDataSource.delegate = self
         postDetailDataSource.textViewDelegate = self
         dataSource = postDetailDataSource
         delegate = CardCollectionViewDelegate()
@@ -98,6 +99,12 @@ class PostDetailViewController: DetailViewController, UITextViewDelegate, UIDocu
                 print("Error: \(error)")
             }
         }
+    }
+    
+    // MARK: - CardDataSourceDelegate
+    
+    func onAllDataLoaded() {
+        collectionView.reloadData()
     }
     
 }
