@@ -27,6 +27,7 @@ public func == (lhs: Services.Profile.Actions.ProfileExists.ResponseV1, rhs: Ser
   fieldCheck = fieldCheck && (lhs.hasExists == rhs.hasExists) && (!lhs.hasExists || lhs.exists == rhs.exists)
   fieldCheck = fieldCheck && (lhs.hasUserId == rhs.hasUserId) && (!lhs.hasUserId || lhs.userId == rhs.userId)
   fieldCheck = fieldCheck && (lhs.hasProfileId == rhs.hasProfileId) && (!lhs.hasProfileId || lhs.profileId == rhs.profileId)
+  fieldCheck = fieldCheck && (lhs.hasOrganizationId == rhs.hasOrganizationId) && (!lhs.hasOrganizationId || lhs.organizationId == rhs.organizationId)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -390,6 +391,9 @@ public extension Services.Profile.Actions.ProfileExists {
     public private(set) var hasProfileId:Bool = false
     public private(set) var profileId:String = ""
 
+    public private(set) var hasOrganizationId:Bool = false
+    public private(set) var organizationId:String = ""
+
     required public init() {
          super.init()
     }
@@ -408,6 +412,9 @@ public extension Services.Profile.Actions.ProfileExists {
       }
       if hasProfileId {
         try output.writeString(4, value:profileId)
+      }
+      if hasOrganizationId {
+        try output.writeString(5, value:organizationId)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -429,6 +436,9 @@ public extension Services.Profile.Actions.ProfileExists {
       }
       if hasProfileId {
         serialize_size += profileId.computeStringSize(4)
+      }
+      if hasOrganizationId {
+        serialize_size += organizationId.computeStringSize(5)
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -493,6 +503,9 @@ public extension Services.Profile.Actions.ProfileExists {
       if hasProfileId {
         output += "\(indent) profileId: \(profileId) \n"
       }
+      if hasOrganizationId {
+        output += "\(indent) organizationId: \(organizationId) \n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -509,6 +522,9 @@ public extension Services.Profile.Actions.ProfileExists {
             }
             if hasProfileId {
                hashCode = (hashCode &* 31) &+ profileId.hashValue
+            }
+            if hasOrganizationId {
+               hashCode = (hashCode &* 31) &+ organizationId.hashValue
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -630,6 +646,29 @@ public extension Services.Profile.Actions.ProfileExists {
            builderResult.profileId = ""
            return self
       }
+      public var hasOrganizationId:Bool {
+           get {
+                return builderResult.hasOrganizationId
+           }
+      }
+      public var organizationId:String {
+           get {
+                return builderResult.organizationId
+           }
+           set (value) {
+               builderResult.hasOrganizationId = true
+               builderResult.organizationId = value
+           }
+      }
+      public func setOrganizationId(value:String) -> Services.Profile.Actions.ProfileExists.ResponseV1.Builder {
+        self.organizationId = value
+        return self
+      }
+      public func clearOrganizationId() -> Services.Profile.Actions.ProfileExists.ResponseV1.Builder{
+           builderResult.hasOrganizationId = false
+           builderResult.organizationId = ""
+           return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -666,6 +705,9 @@ public extension Services.Profile.Actions.ProfileExists {
         if other.hasProfileId {
              profileId = other.profileId
         }
+        if other.hasOrganizationId {
+             organizationId = other.organizationId
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -692,6 +734,9 @@ public extension Services.Profile.Actions.ProfileExists {
 
           case 34 :
             profileId = try input.readString()
+
+          case 42 :
+            organizationId = try input.readString()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

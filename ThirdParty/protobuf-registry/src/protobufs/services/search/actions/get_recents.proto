@@ -1,0 +1,10 @@
+syntax = "proto3";
+package services.search.actions.get_recents;
+
+import "protobufs/services/search/containers.proto";
+
+message RequestV1 {}
+
+message ResponseV1 {
+    repeated services.search.containers.RecentResultV1 recents = 1;
+}

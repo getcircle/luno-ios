@@ -1,4 +1,4 @@
-syntax = "proto2";
+syntax = "proto3";
 package services.search.containers;
 
 // GENERATED OPTIONS FOR: JAVA
@@ -10,9 +10,13 @@ import "protobufs/services/post/containers.proto";
 import "protobufs/services/profile/containers.proto";
 import "protobufs/services/search/containers/search.proto";
 
+message TrackingDetailsV1 {
+    string document_id = 1;
+    string document_type = 2;
+}
+
 message SearchResultV1 {
-    // reserved 6, 7;
-    optional uint32 version = 1 [default = 1];
+    // reserved 1, 6, 7;
     oneof result_object {
         services.profile.containers.ProfileV1 profile = 2;
         services.organization.containers.TeamV1 team = 3;
@@ -20,5 +24,17 @@ message SearchResultV1 {
         services.group.containers.GroupV1 group = 5;
         services.post.containers.PostV1 post = 9;
     }
-    optional float score = 8;
+    float score = 8;
+    map<string, string> highlight = 10;
+    TrackingDetailsV1 tracking_details = 11;
+}
+
+message RecentResultV1 {
+    oneof result_object {
+        services.profile.containers.ProfileV1 profile = 1;
+        services.organization.containers.TeamV1 team = 2;
+        services.organization.containers.LocationV1 location = 3;
+        services.group.containers.GroupV1 group = 4;
+        services.post.containers.PostV1 post = 5;
+    }
 }

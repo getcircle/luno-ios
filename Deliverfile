@@ -8,3 +8,4 @@
 
 app_identifier "com.rhlabs.circle" # The bundle identifier of your app
 username "admin@lunohq.com" # your Apple ID user
+automatic_release false

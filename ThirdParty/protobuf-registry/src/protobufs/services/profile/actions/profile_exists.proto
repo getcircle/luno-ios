@@ -16,4 +16,5 @@ message ResponseV1 {
     optional bool exists = 2;
     optional string user_id = 3;
     optional string profile_id = 4;
+    optional string organization_id = 5;
 }

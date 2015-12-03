@@ -71,6 +71,9 @@ import "protobufs/services/search/actions/update_entities.proto";
 import "protobufs/services/search/actions/search_v2.proto";
 import "protobufs/services/search/actions/delete_entities.proto";
 import "protobufs/services/search/actions/create_index.proto";
+import "protobufs/services/search/actions/track_recent.proto";
+import "protobufs/services/search/actions/get_recents.proto";
+import "protobufs/services/search/actions/delete_recent.proto";
 
 import "protobufs/services/media/actions/start_image_upload.proto";
 import "protobufs/services/media/actions/complete_image_upload.proto";
@@ -197,6 +200,9 @@ message Search {
         optional services.search.actions.update_entities.RequestV1 update_entities = 402;
         optional services.search.actions.delete_entities.RequestV1 delete_entities = 403;
         optional services.search.actions.create_index.RequestV1 create_index = 404;
+        optional services.search.actions.track_recent.RequestV1 track_recent = 405;
+        optional services.search.actions.get_recents.RequestV1 get_recents = 406;
+        optional services.search.actions.delete_recent.RequestV1 delete_recent = 407;
     }
 }
 

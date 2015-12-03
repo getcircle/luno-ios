@@ -1,0 +1,8 @@
+syntax = "proto3";
+package services.search.actions.delete_recent;
+
+message RequestV1 {
+    string id = 1;
+}
+
+message ResponseV1 {}

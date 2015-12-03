@@ -446,6 +446,21 @@ public var ServicesRegistryResponsesSearchcreateIndex:ConcreateExtensionField {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesSearchcreateIndexStatic
    }
 }
+public var ServicesRegistryResponsesSearchtrackRecent:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesSearchtrackRecentStatic
+   }
+}
+public var ServicesRegistryResponsesSearchgetRecents:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesSearchgetRecentsStatic
+   }
+}
+public var ServicesRegistryResponsesSearchdeleteRecent:ConcreateExtensionField {
+   get {
+       return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesSearchdeleteRecentStatic
+   }
+}
 public var ServicesRegistryResponsesMediastartImageUpload:ConcreateExtensionField {
    get {
        return Services.Registry.Responses.ResponsesRoot.sharedInstance.ServicesRegistryResponsesMediastartImageUploadStatic
@@ -692,6 +707,9 @@ public extension Services.Registry.Responses {
     var ServicesRegistryResponsesSearchupdateEntitiesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesSearchdeleteEntitiesStatic:ConcreateExtensionField
     var ServicesRegistryResponsesSearchcreateIndexStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesSearchtrackRecentStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesSearchgetRecentsStatic:ConcreateExtensionField
+    var ServicesRegistryResponsesSearchdeleteRecentStatic:ConcreateExtensionField
     var ServicesRegistryResponsesMediastartImageUploadStatic:ConcreateExtensionField
     var ServicesRegistryResponsesMediacompleteImageUploadStatic:ConcreateExtensionField
     var ServicesRegistryResponsesSyncstartSyncStatic:ConcreateExtensionField
@@ -793,6 +811,9 @@ public extension Services.Registry.Responses {
       ServicesRegistryResponsesSearchupdateEntitiesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 402, defaultValue:Services.Search.Actions.UpdateEntities.ResponseV1(), messageOrGroupClass:Services.Search.Actions.UpdateEntities.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesSearchdeleteEntitiesStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 403, defaultValue:Services.Search.Actions.DeleteEntities.ResponseV1(), messageOrGroupClass:Services.Search.Actions.DeleteEntities.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesSearchcreateIndexStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 404, defaultValue:Services.Search.Actions.CreateIndex.ResponseV1(), messageOrGroupClass:Services.Search.Actions.CreateIndex.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesSearchtrackRecentStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 405, defaultValue:Services.Search.Actions.TrackRecent.ResponseV1(), messageOrGroupClass:Services.Search.Actions.TrackRecent.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesSearchgetRecentsStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 406, defaultValue:Services.Search.Actions.GetRecents.ResponseV1(), messageOrGroupClass:Services.Search.Actions.GetRecents.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
+      ServicesRegistryResponsesSearchdeleteRecentStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 407, defaultValue:Services.Search.Actions.DeleteRecent.ResponseV1(), messageOrGroupClass:Services.Search.Actions.DeleteRecent.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesMediastartImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 600, defaultValue:Services.Media.Actions.StartImageUpload.ResponseV1(), messageOrGroupClass:Services.Media.Actions.StartImageUpload.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesMediacompleteImageUploadStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 601, defaultValue:Services.Media.Actions.CompleteImageUpload.ResponseV1(), messageOrGroupClass:Services.Media.Actions.CompleteImageUpload.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
       ServicesRegistryResponsesSyncstartSyncStatic = ConcreateExtensionField(type:ExtensionType.ExtensionTypeMessage, extendedClass:Soa.ActionResultV1.self, fieldNumber: 1000, defaultValue:Services.Sync.Actions.StartSync.ResponseV1(), messageOrGroupClass:Services.Sync.Actions.StartSync.ResponseV1.self, isRepeated:false, isPacked:false, isMessageSetWireFormat:false)
@@ -893,6 +914,9 @@ public extension Services.Registry.Responses {
       Services.Search.Actions.UpdateEntities.UpdateEntitiesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.DeleteEntities.DeleteEntitiesRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Search.Actions.CreateIndex.CreateIndexRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Actions.TrackRecent.TrackRecentRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Actions.GetRecents.GetRecentsRoot.sharedInstance.registerAllExtensions(extensionRegistry)
+      Services.Search.Actions.DeleteRecent.DeleteRecentRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.StartImageUpload.StartImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Media.Actions.CompleteImageUpload.CompleteImageUploadRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Sync.Actions.StartSync.StartSyncRoot.sharedInstance.registerAllExtensions(extensionRegistry)
@@ -993,6 +1017,9 @@ public extension Services.Registry.Responses {
       registry.addExtension(ServicesRegistryResponsesSearchupdateEntitiesStatic)
       registry.addExtension(ServicesRegistryResponsesSearchdeleteEntitiesStatic)
       registry.addExtension(ServicesRegistryResponsesSearchcreateIndexStatic)
+      registry.addExtension(ServicesRegistryResponsesSearchtrackRecentStatic)
+      registry.addExtension(ServicesRegistryResponsesSearchgetRecentsStatic)
+      registry.addExtension(ServicesRegistryResponsesSearchdeleteRecentStatic)
       registry.addExtension(ServicesRegistryResponsesMediastartImageUploadStatic)
       registry.addExtension(ServicesRegistryResponsesMediacompleteImageUploadStatic)
       registry.addExtension(ServicesRegistryResponsesSyncstartSyncStatic)
@@ -1676,6 +1703,15 @@ public extension Services.Registry.Responses {
     }
     public class func createIndex() -> ConcreateExtensionField {
          return ServicesRegistryResponsesSearchcreateIndex
+    }
+    public class func trackRecent() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesSearchtrackRecent
+    }
+    public class func getRecents() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesSearchgetRecents
+    }
+    public class func deleteRecent() -> ConcreateExtensionField {
+         return ServicesRegistryResponsesSearchdeleteRecent
     }
     required public init() {
          super.init()

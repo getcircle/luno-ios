@@ -5,17 +5,54 @@ import Foundation
 
 public extension Services.Search.Containers{}
 
+public func == (lhs: Services.Search.Containers.TrackingDetailsV1, rhs: Services.Search.Containers.TrackingDetailsV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasDocumentId == rhs.hasDocumentId) && (!lhs.hasDocumentId || lhs.documentId == rhs.documentId)
+  fieldCheck = fieldCheck && (lhs.hasDocumentType == rhs.hasDocumentType) && (!lhs.hasDocumentType || lhs.documentType == rhs.documentType)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
 public func == (lhs: Services.Search.Containers.SearchResultV1, rhs: Services.Search.Containers.SearchResultV1) -> Bool {
   if (lhs === rhs) {
     return true
   }
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
-  fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
   fieldCheck = fieldCheck && (lhs.hasTeam == rhs.hasTeam) && (!lhs.hasTeam || lhs.team == rhs.team)
   fieldCheck = fieldCheck && (lhs.hasLocation == rhs.hasLocation) && (!lhs.hasLocation || lhs.location == rhs.location)
   fieldCheck = fieldCheck && (lhs.hasGroup == rhs.hasGroup) && (!lhs.hasGroup || lhs.group == rhs.group)
   fieldCheck = fieldCheck && (lhs.hasScore == rhs.hasScore) && (!lhs.hasScore || lhs.score == rhs.score)
+  fieldCheck = fieldCheck && (lhs.hasPost == rhs.hasPost) && (!lhs.hasPost || lhs.post == rhs.post)
+  fieldCheck = fieldCheck && (lhs.highlight == rhs.highlight)
+  fieldCheck = fieldCheck && (lhs.hasTrackingDetails == rhs.hasTrackingDetails) && (!lhs.hasTrackingDetails || lhs.trackingDetails == rhs.trackingDetails)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Services.Search.Containers.SearchResultV1.HighlightEntry, rhs: Services.Search.Containers.SearchResultV1.HighlightEntry) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasKey == rhs.hasKey) && (!lhs.hasKey || lhs.key == rhs.key)
+  fieldCheck = fieldCheck && (lhs.hasValue == rhs.hasValue) && (!lhs.hasValue || lhs.value == rhs.value)
+  fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
+  return fieldCheck
+}
+
+public func == (lhs: Services.Search.Containers.RecentResultV1, rhs: Services.Search.Containers.RecentResultV1) -> Bool {
+  if (lhs === rhs) {
+    return true
+  }
+  var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
+  fieldCheck = fieldCheck && (lhs.hasProfile == rhs.hasProfile) && (!lhs.hasProfile || lhs.profile == rhs.profile)
+  fieldCheck = fieldCheck && (lhs.hasTeam == rhs.hasTeam) && (!lhs.hasTeam || lhs.team == rhs.team)
+  fieldCheck = fieldCheck && (lhs.hasLocation == rhs.hasLocation) && (!lhs.hasLocation || lhs.location == rhs.location)
+  fieldCheck = fieldCheck && (lhs.hasGroup == rhs.hasGroup) && (!lhs.hasGroup || lhs.group == rhs.group)
   fieldCheck = fieldCheck && (lhs.hasPost == rhs.hasPost) && (!lhs.hasPost || lhs.post == rhs.post)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
@@ -44,7 +81,493 @@ public extension Services.Search.Containers {
     }
   }
 
+  final public class TrackingDetailsV1 : GeneratedMessage, GeneratedMessageProtocol {
+    public private(set) var hasDocumentId:Bool = false
+    public private(set) var documentId:String = ""
+
+    public private(set) var hasDocumentType:Bool = false
+    public private(set) var documentType:String = ""
+
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      if hasDocumentId {
+        try output.writeString(1, value:documentId)
+      }
+      if hasDocumentType {
+        try output.writeString(2, value:documentType)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasDocumentId {
+        serialize_size += documentId.computeStringSize(1)
+      }
+      if hasDocumentType {
+        serialize_size += documentType.computeStringSize(2)
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.Search.Containers.TrackingDetailsV1> {
+      var mergedArray = Array<Services.Search.Containers.TrackingDetailsV1>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.Search.Containers.TrackingDetailsV1? {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Services.Search.Containers.TrackingDetailsV1 {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFromData(data, extensionRegistry:Services.Search.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.TrackingDetailsV1 {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Services.Search.Containers.TrackingDetailsV1 {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.TrackingDetailsV1 {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.Search.Containers.TrackingDetailsV1 {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.TrackingDetailsV1 {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Services.Search.Containers.TrackingDetailsV1.Builder {
+      return Services.Search.Containers.TrackingDetailsV1.classBuilder() as! Services.Search.Containers.TrackingDetailsV1.Builder
+    }
+    public func getBuilder() -> Services.Search.Containers.TrackingDetailsV1.Builder {
+      return classBuilder() as! Services.Search.Containers.TrackingDetailsV1.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Search.Containers.TrackingDetailsV1.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Search.Containers.TrackingDetailsV1.Builder()
+    }
+    public func toBuilder() throws -> Services.Search.Containers.TrackingDetailsV1.Builder {
+      return try Services.Search.Containers.TrackingDetailsV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Search.Containers.TrackingDetailsV1) throws -> Services.Search.Containers.TrackingDetailsV1.Builder {
+      return try Services.Search.Containers.TrackingDetailsV1.Builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) throws {
+      if hasDocumentId {
+        output += "\(indent) documentId: \(documentId) \n"
+      }
+      if hasDocumentType {
+        output += "\(indent) documentType: \(documentType) \n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasDocumentId {
+               hashCode = (hashCode &* 31) &+ documentId.hashValue
+            }
+            if hasDocumentType {
+               hashCode = (hashCode &* 31) &+ documentType.hashValue
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Search.Containers.TrackingDetailsV1"
+    }
+    override public func className() -> String {
+        return "Services.Search.Containers.TrackingDetailsV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Search.Containers.TrackingDetailsV1.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Services.Search.Containers.TrackingDetailsV1 = Services.Search.Containers.TrackingDetailsV1()
+      public func getMessage() -> Services.Search.Containers.TrackingDetailsV1 {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var hasDocumentId:Bool {
+           get {
+                return builderResult.hasDocumentId
+           }
+      }
+      public var documentId:String {
+           get {
+                return builderResult.documentId
+           }
+           set (value) {
+               builderResult.hasDocumentId = true
+               builderResult.documentId = value
+           }
+      }
+      public func setDocumentId(value:String) -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        self.documentId = value
+        return self
+      }
+      public func clearDocumentId() -> Services.Search.Containers.TrackingDetailsV1.Builder{
+           builderResult.hasDocumentId = false
+           builderResult.documentId = ""
+           return self
+      }
+      public var hasDocumentType:Bool {
+           get {
+                return builderResult.hasDocumentType
+           }
+      }
+      public var documentType:String {
+           get {
+                return builderResult.documentType
+           }
+           set (value) {
+               builderResult.hasDocumentType = true
+               builderResult.documentType = value
+           }
+      }
+      public func setDocumentType(value:String) -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        self.documentType = value
+        return self
+      }
+      public func clearDocumentType() -> Services.Search.Containers.TrackingDetailsV1.Builder{
+           builderResult.hasDocumentType = false
+           builderResult.documentType = ""
+           return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        builderResult = Services.Search.Containers.TrackingDetailsV1()
+        return self
+      }
+      public override func clone() throws -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        return try Services.Search.Containers.TrackingDetailsV1.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Services.Search.Containers.TrackingDetailsV1 {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Services.Search.Containers.TrackingDetailsV1 {
+        let returnMe:Services.Search.Containers.TrackingDetailsV1 = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Services.Search.Containers.TrackingDetailsV1) throws -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        if other == Services.Search.Containers.TrackingDetailsV1() {
+         return self
+        }
+        if other.hasDocumentId {
+             documentId = other.documentId
+        }
+        if other.hasDocumentType {
+             documentType = other.documentType
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.Search.Containers.TrackingDetailsV1.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let tag = try input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 10 :
+            documentId = try input.readString()
+
+          case 18 :
+            documentType = try input.readString()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
   final public class SearchResultV1 : GeneratedMessage, GeneratedMessageProtocol {
+
+
+    //Nested type declaration start
+
+      final public class HighlightEntry : GeneratedMessage, GeneratedMessageProtocol {
+        public private(set) var hasKey:Bool = false
+        public private(set) var key:String = ""
+
+        public private(set) var hasValue:Bool = false
+        public private(set) var value:String = ""
+
+        required public init() {
+             super.init()
+        }
+        override public func isInitialized() -> Bool {
+         return true
+        }
+        override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+          if hasKey {
+            try output.writeString(1, value:key)
+          }
+          if hasValue {
+            try output.writeString(2, value:value)
+          }
+          try unknownFields.writeToCodedOutputStream(output)
+        }
+        override public func serializedSize() -> Int32 {
+          var serialize_size:Int32 = memoizedSerializedSize
+          if serialize_size != -1 {
+           return serialize_size
+          }
+
+          serialize_size = 0
+          if hasKey {
+            serialize_size += key.computeStringSize(1)
+          }
+          if hasValue {
+            serialize_size += value.computeStringSize(2)
+          }
+          serialize_size += unknownFields.serializedSize()
+          memoizedSerializedSize = serialize_size
+          return serialize_size
+        }
+        public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.Search.Containers.SearchResultV1.HighlightEntry> {
+          var mergedArray = Array<Services.Search.Containers.SearchResultV1.HighlightEntry>()
+          while let value = try parseFromDelimitedFromInputStream(input) {
+            mergedArray += [value]
+          }
+          return mergedArray
+        }
+        public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry? {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeDelimitedFromInputStream(input)?.build()
+        }
+        public class func parseFromData(data:NSData) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFromData(data, extensionRegistry:Services.Search.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+        }
+        public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+        }
+        public class func parseFromInputStream(input:NSInputStream) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFromInputStream(input).build()
+        }
+        public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+        }
+        public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFromCodedInputStream(input).build()
+        }
+        public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+        }
+        public class func getBuilder() -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+          return Services.Search.Containers.SearchResultV1.HighlightEntry.classBuilder() as! Services.Search.Containers.SearchResultV1.HighlightEntry.Builder
+        }
+        public func getBuilder() -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+          return classBuilder() as! Services.Search.Containers.SearchResultV1.HighlightEntry.Builder
+        }
+        public override class func classBuilder() -> MessageBuilder {
+          return Services.Search.Containers.SearchResultV1.HighlightEntry.Builder()
+        }
+        public override func classBuilder() -> MessageBuilder {
+          return Services.Search.Containers.SearchResultV1.HighlightEntry.Builder()
+        }
+        public func toBuilder() throws -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.builderWithPrototype(self)
+        }
+        public class func builderWithPrototype(prototype:Services.Search.Containers.SearchResultV1.HighlightEntry) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+          return try Services.Search.Containers.SearchResultV1.HighlightEntry.Builder().mergeFrom(prototype)
+        }
+        override public func writeDescriptionTo(inout output:String, indent:String) throws {
+          if hasKey {
+            output += "\(indent) key: \(key) \n"
+          }
+          if hasValue {
+            output += "\(indent) value: \(value) \n"
+          }
+          unknownFields.writeDescriptionTo(&output, indent:indent)
+        }
+        override public var hashValue:Int {
+            get {
+                var hashCode:Int = 7
+                if hasKey {
+                   hashCode = (hashCode &* 31) &+ key.hashValue
+                }
+                if hasValue {
+                   hashCode = (hashCode &* 31) &+ value.hashValue
+                }
+                hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+                return hashCode
+            }
+        }
+
+
+        //Meta information declaration start
+
+        override public class func className() -> String {
+            return "Services.Search.Containers.SearchResultV1.HighlightEntry"
+        }
+        override public func className() -> String {
+            return "Services.Search.Containers.SearchResultV1.HighlightEntry"
+        }
+        override public func classMetaType() -> GeneratedMessage.Type {
+            return Services.Search.Containers.SearchResultV1.HighlightEntry.self
+        }
+        //Meta information declaration end
+
+        final public class Builder : GeneratedMessageBuilder {
+          private var builderResult:Services.Search.Containers.SearchResultV1.HighlightEntry = Services.Search.Containers.SearchResultV1.HighlightEntry()
+          public func getMessage() -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+              return builderResult
+          }
+
+          required override public init () {
+             super.init()
+          }
+          public var hasKey:Bool {
+               get {
+                    return builderResult.hasKey
+               }
+          }
+          public var key:String {
+               get {
+                    return builderResult.key
+               }
+               set (value) {
+                   builderResult.hasKey = true
+                   builderResult.key = value
+               }
+          }
+          public func setKey(value:String) -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+            self.key = value
+            return self
+          }
+          public func clearKey() -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder{
+               builderResult.hasKey = false
+               builderResult.key = ""
+               return self
+          }
+          public var hasValue:Bool {
+               get {
+                    return builderResult.hasValue
+               }
+          }
+          public var value:String {
+               get {
+                    return builderResult.value
+               }
+               set (value) {
+                   builderResult.hasValue = true
+                   builderResult.value = value
+               }
+          }
+          public func setValue(value:String) -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+            self.value = value
+            return self
+          }
+          public func clearValue() -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder{
+               builderResult.hasValue = false
+               builderResult.value = ""
+               return self
+          }
+          override public var internalGetResult:GeneratedMessage {
+               get {
+                  return builderResult
+               }
+          }
+          public override func clear() -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+            builderResult = Services.Search.Containers.SearchResultV1.HighlightEntry()
+            return self
+          }
+          public override func clone() throws -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+            return try Services.Search.Containers.SearchResultV1.HighlightEntry.builderWithPrototype(builderResult)
+          }
+          public override func build() throws -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+               try checkInitialized()
+               return buildPartial()
+          }
+          public func buildPartial() -> Services.Search.Containers.SearchResultV1.HighlightEntry {
+            let returnMe:Services.Search.Containers.SearchResultV1.HighlightEntry = builderResult
+            return returnMe
+          }
+          public func mergeFrom(other:Services.Search.Containers.SearchResultV1.HighlightEntry) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+            if other == Services.Search.Containers.SearchResultV1.HighlightEntry() {
+             return self
+            }
+            if other.hasKey {
+                 key = other.key
+            }
+            if other.hasValue {
+                 value = other.value
+            }
+            try mergeUnknownFields(other.unknownFields)
+            return self
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+               return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+          }
+          public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.SearchResultV1.HighlightEntry.Builder {
+            let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+            while (true) {
+              let tag = try input.readTag()
+              switch tag {
+              case 0: 
+                self.unknownFields = try unknownFieldsBuilder.build()
+                return self
+
+              case 10 :
+                key = try input.readString()
+
+              case 18 :
+                value = try input.readString()
+
+              default:
+                if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
+                   unknownFields = try unknownFieldsBuilder.build()
+                   return self
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+    //Nested type declaration end
+
 
 
     //OneOf declaration start
@@ -114,9 +637,6 @@ public extension Services.Search.Containers {
     //OneOf declaration end
 
     private var storageResultObject:SearchResultV1.ResultObject =  SearchResultV1.ResultObject.ResultObjectOneOfNotSet
-    public private(set) var hasVersion:Bool = false
-    public private(set) var version:UInt32 = UInt32(1)
-
     public private(set) var hasProfile:Bool {
           get {
                if SearchResultV1.ResultObject.getProfile(storageResultObject) == nil {
@@ -210,6 +730,9 @@ public extension Services.Search.Containers {
     public private(set) var hasScore:Bool = false
     public private(set) var score:Float = Float(0)
 
+    public private(set) var highlight:Array<Services.Search.Containers.SearchResultV1.HighlightEntry>  = Array<Services.Search.Containers.SearchResultV1.HighlightEntry>()
+    public private(set) var hasTrackingDetails:Bool = false
+    public private(set) var trackingDetails:Services.Search.Containers.TrackingDetailsV1!
     required public init() {
          super.init()
     }
@@ -217,9 +740,6 @@ public extension Services.Search.Containers {
      return true
     }
     override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
-      if hasVersion {
-        try output.writeUInt32(1, value:version)
-      }
       if hasProfile {
         try output.writeMessage(2, value:profile)
       }
@@ -238,6 +758,12 @@ public extension Services.Search.Containers {
       if hasPost {
         try output.writeMessage(9, value:post)
       }
+      for oneElementhighlight in highlight {
+          try output.writeMessage(10, value:oneElementhighlight)
+      }
+      if hasTrackingDetails {
+        try output.writeMessage(11, value:trackingDetails)
+      }
       try unknownFields.writeToCodedOutputStream(output)
     }
     override public func serializedSize() -> Int32 {
@@ -247,9 +773,6 @@ public extension Services.Search.Containers {
       }
 
       serialize_size = 0
-      if hasVersion {
-        serialize_size += version.computeUInt32Size(1)
-      }
       if hasProfile {
           if let varSizeprofile = profile?.computeMessageSize(2) {
               serialize_size += varSizeprofile
@@ -276,6 +799,14 @@ public extension Services.Search.Containers {
       if hasPost {
           if let varSizepost = post?.computeMessageSize(9) {
               serialize_size += varSizepost
+          }
+      }
+      for oneElementhighlight in highlight {
+          serialize_size += oneElementhighlight.computeMessageSize(10)
+      }
+      if hasTrackingDetails {
+          if let varSizetrackingDetails = trackingDetails?.computeMessageSize(11) {
+              serialize_size += varSizetrackingDetails
           }
       }
       serialize_size += unknownFields.serializedSize()
@@ -329,9 +860,6 @@ public extension Services.Search.Containers {
       return try Services.Search.Containers.SearchResultV1.Builder().mergeFrom(prototype)
     }
     override public func writeDescriptionTo(inout output:String, indent:String) throws {
-      if hasVersion {
-        output += "\(indent) version: \(version) \n"
-      }
       if hasProfile {
         output += "\(indent) profile {\n"
         try profile?.writeDescriptionTo(&output, indent:"\(indent)  ")
@@ -360,14 +888,23 @@ public extension Services.Search.Containers {
         try post?.writeDescriptionTo(&output, indent:"\(indent)  ")
         output += "\(indent) }\n"
       }
+      var highlightElementIndex:Int = 0
+      for oneElementhighlight in highlight {
+          output += "\(indent) highlight[\(highlightElementIndex)] {\n"
+          try oneElementhighlight.writeDescriptionTo(&output, indent:"\(indent)  ")
+          output += "\(indent)}\n"
+          highlightElementIndex++
+      }
+      if hasTrackingDetails {
+        output += "\(indent) trackingDetails {\n"
+        try trackingDetails?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
         get {
             var hashCode:Int = 7
-            if hasVersion {
-               hashCode = (hashCode &* 31) &+ version.hashValue
-            }
             if hasProfile {
                 if let hashValueprofile = profile?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValueprofile
@@ -394,6 +931,14 @@ public extension Services.Search.Containers {
             if hasPost {
                 if let hashValuepost = post?.hashValue {
                     hashCode = (hashCode &* 31) &+ hashValuepost
+                }
+            }
+            for oneElementhighlight in highlight {
+                hashCode = (hashCode &* 31) &+ oneElementhighlight.hashValue
+            }
+            if hasTrackingDetails {
+                if let hashValuetrackingDetails = trackingDetails?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuetrackingDetails
                 }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
@@ -423,29 +968,6 @@ public extension Services.Search.Containers {
 
       required override public init () {
          super.init()
-      }
-      public var hasVersion:Bool {
-           get {
-                return builderResult.hasVersion
-           }
-      }
-      public var version:UInt32 {
-           get {
-                return builderResult.version
-           }
-           set (value) {
-               builderResult.hasVersion = true
-               builderResult.version = value
-           }
-      }
-      public func setVersion(value:UInt32) -> Services.Search.Containers.SearchResultV1.Builder {
-        self.version = value
-        return self
-      }
-      public func clearVersion() -> Services.Search.Containers.SearchResultV1.Builder{
-           builderResult.hasVersion = false
-           builderResult.version = UInt32(1)
-           return self
       }
       public var hasProfile:Bool {
            get {
@@ -725,6 +1247,73 @@ public extension Services.Search.Containers {
            builderResult.score = Float(0)
            return self
       }
+      public var highlight:Array<Services.Search.Containers.SearchResultV1.HighlightEntry> {
+           get {
+               return builderResult.highlight
+           }
+           set (value) {
+               builderResult.highlight = value
+           }
+      }
+      public func setHighlight(value:Array<Services.Search.Containers.SearchResultV1.HighlightEntry>) -> Services.Search.Containers.SearchResultV1.Builder {
+        self.highlight = value
+        return self
+      }
+      public func clearHighlight() -> Services.Search.Containers.SearchResultV1.Builder {
+        builderResult.highlight.removeAll(keepCapacity: false)
+        return self
+      }
+      public var hasTrackingDetails:Bool {
+           get {
+               return builderResult.hasTrackingDetails
+           }
+      }
+      public var trackingDetails:Services.Search.Containers.TrackingDetailsV1! {
+           get {
+               if trackingDetailsBuilder_ != nil {
+                  builderResult.trackingDetails = trackingDetailsBuilder_.getMessage()
+               }
+               return builderResult.trackingDetails
+           }
+           set (value) {
+               builderResult.hasTrackingDetails = true
+               builderResult.trackingDetails = value
+           }
+      }
+      private var trackingDetailsBuilder_:Services.Search.Containers.TrackingDetailsV1.Builder! {
+           didSet {
+              builderResult.hasTrackingDetails = true
+           }
+      }
+      public func getTrackingDetailsBuilder() -> Services.Search.Containers.TrackingDetailsV1.Builder {
+        if trackingDetailsBuilder_ == nil {
+           trackingDetailsBuilder_ = Services.Search.Containers.TrackingDetailsV1.Builder()
+           builderResult.trackingDetails = trackingDetailsBuilder_.getMessage()
+           if trackingDetails != nil {
+              try! trackingDetailsBuilder_.mergeFrom(trackingDetails)
+           }
+        }
+        return trackingDetailsBuilder_
+      }
+      public func setTrackingDetails(value:Services.Search.Containers.TrackingDetailsV1!) -> Services.Search.Containers.SearchResultV1.Builder {
+        self.trackingDetails = value
+        return self
+      }
+      public func mergeTrackingDetails(value:Services.Search.Containers.TrackingDetailsV1) throws -> Services.Search.Containers.SearchResultV1.Builder {
+        if builderResult.hasTrackingDetails {
+          builderResult.trackingDetails = try Services.Search.Containers.TrackingDetailsV1.builderWithPrototype(builderResult.trackingDetails).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.trackingDetails = value
+        }
+        builderResult.hasTrackingDetails = true
+        return self
+      }
+      public func clearTrackingDetails() -> Services.Search.Containers.SearchResultV1.Builder {
+        trackingDetailsBuilder_ = nil
+        builderResult.hasTrackingDetails = false
+        builderResult.trackingDetails = nil
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -749,9 +1338,6 @@ public extension Services.Search.Containers {
         if other == Services.Search.Containers.SearchResultV1() {
          return self
         }
-        if other.hasVersion {
-             version = other.version
-        }
         if (other.hasProfile) {
             try mergeProfile(other.profile)
         }
@@ -770,6 +1356,12 @@ public extension Services.Search.Containers {
         if other.hasScore {
              score = other.score
         }
+        if !other.highlight.isEmpty  {
+           builderResult.highlight += other.highlight
+        }
+        if (other.hasTrackingDetails) {
+            try mergeTrackingDetails(other.trackingDetails)
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -784,9 +1376,6 @@ public extension Services.Search.Containers {
           case 0: 
             self.unknownFields = try unknownFieldsBuilder.build()
             return self
-
-          case 8 :
-            version = try input.readUInt32()
 
           case 18 :
             let subBuilder:Services.Profile.Containers.ProfileV1.Builder = Services.Profile.Containers.ProfileV1.Builder()
@@ -824,6 +1413,730 @@ public extension Services.Search.Containers {
             score = try input.readFloat()
 
           case 74 :
+            let subBuilder:Services.Post.Containers.PostV1.Builder = Services.Post.Containers.PostV1.Builder()
+            if hasPost {
+              try subBuilder.mergeFrom(post)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            post = subBuilder.buildPartial()
+
+          case 82 :
+            let subBuilder = Services.Search.Containers.SearchResultV1.HighlightEntry.Builder()
+            try input.readMessage(subBuilder,extensionRegistry:extensionRegistry)
+            highlight += [subBuilder.buildPartial()]
+
+          case 90 :
+            let subBuilder:Services.Search.Containers.TrackingDetailsV1.Builder = Services.Search.Containers.TrackingDetailsV1.Builder()
+            if hasTrackingDetails {
+              try subBuilder.mergeFrom(trackingDetails)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            trackingDetails = subBuilder.buildPartial()
+
+          default:
+            if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {
+               unknownFields = try unknownFieldsBuilder.build()
+               return self
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  final public class RecentResultV1 : GeneratedMessage, GeneratedMessageProtocol {
+
+
+    //OneOf declaration start
+
+    public enum ResultObject {
+      case ResultObjectOneOfNotSet
+
+      public func checkOneOfIsSet() -> Bool {
+           switch self {
+           case .ResultObjectOneOfNotSet:
+                return false
+           default:
+                return true
+           }
+      }
+      case Profile(Services.Profile.Containers.ProfileV1)
+
+      public static func getProfile(value:ResultObject) -> Services.Profile.Containers.ProfileV1? {
+           switch value {
+           case .Profile(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Team(Services.Organization.Containers.TeamV1)
+
+      public static func getTeam(value:ResultObject) -> Services.Organization.Containers.TeamV1? {
+           switch value {
+           case .Team(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Location(Services.Organization.Containers.LocationV1)
+
+      public static func getLocation(value:ResultObject) -> Services.Organization.Containers.LocationV1? {
+           switch value {
+           case .Location(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Group(Services.Group.Containers.GroupV1)
+
+      public static func getGroup(value:ResultObject) -> Services.Group.Containers.GroupV1? {
+           switch value {
+           case .Group(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+      case Post(Services.Post.Containers.PostV1)
+
+      public static func getPost(value:ResultObject) -> Services.Post.Containers.PostV1? {
+           switch value {
+           case .Post(let enumValue):
+                return enumValue
+           default:
+                return nil
+           }
+      }
+    }
+    //OneOf declaration end
+
+    private var storageResultObject:RecentResultV1.ResultObject =  RecentResultV1.ResultObject.ResultObjectOneOfNotSet
+    public private(set) var hasProfile:Bool {
+          get {
+               if RecentResultV1.ResultObject.getProfile(storageResultObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var profile:Services.Profile.Containers.ProfileV1!{
+         get {
+              return RecentResultV1.ResultObject.getProfile(storageResultObject)
+         }
+         set (newvalue) {
+              storageResultObject = RecentResultV1.ResultObject.Profile(newvalue)
+         }
+    }
+    public private(set) var hasTeam:Bool {
+          get {
+               if RecentResultV1.ResultObject.getTeam(storageResultObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var team:Services.Organization.Containers.TeamV1!{
+         get {
+              return RecentResultV1.ResultObject.getTeam(storageResultObject)
+         }
+         set (newvalue) {
+              storageResultObject = RecentResultV1.ResultObject.Team(newvalue)
+         }
+    }
+    public private(set) var hasLocation:Bool {
+          get {
+               if RecentResultV1.ResultObject.getLocation(storageResultObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var location:Services.Organization.Containers.LocationV1!{
+         get {
+              return RecentResultV1.ResultObject.getLocation(storageResultObject)
+         }
+         set (newvalue) {
+              storageResultObject = RecentResultV1.ResultObject.Location(newvalue)
+         }
+    }
+    public private(set) var hasGroup:Bool {
+          get {
+               if RecentResultV1.ResultObject.getGroup(storageResultObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var group:Services.Group.Containers.GroupV1!{
+         get {
+              return RecentResultV1.ResultObject.getGroup(storageResultObject)
+         }
+         set (newvalue) {
+              storageResultObject = RecentResultV1.ResultObject.Group(newvalue)
+         }
+    }
+    public private(set) var hasPost:Bool {
+          get {
+               if RecentResultV1.ResultObject.getPost(storageResultObject) == nil {
+                   return false
+               }
+               return true
+          }
+          set(newValue) {
+          }
+    }
+    public private(set) var post:Services.Post.Containers.PostV1!{
+         get {
+              return RecentResultV1.ResultObject.getPost(storageResultObject)
+         }
+         set (newvalue) {
+              storageResultObject = RecentResultV1.ResultObject.Post(newvalue)
+         }
+    }
+    required public init() {
+         super.init()
+    }
+    override public func isInitialized() -> Bool {
+     return true
+    }
+    override public func writeToCodedOutputStream(output:CodedOutputStream) throws {
+      if hasProfile {
+        try output.writeMessage(1, value:profile)
+      }
+      if hasTeam {
+        try output.writeMessage(2, value:team)
+      }
+      if hasLocation {
+        try output.writeMessage(3, value:location)
+      }
+      if hasGroup {
+        try output.writeMessage(4, value:group)
+      }
+      if hasPost {
+        try output.writeMessage(5, value:post)
+      }
+      try unknownFields.writeToCodedOutputStream(output)
+    }
+    override public func serializedSize() -> Int32 {
+      var serialize_size:Int32 = memoizedSerializedSize
+      if serialize_size != -1 {
+       return serialize_size
+      }
+
+      serialize_size = 0
+      if hasProfile {
+          if let varSizeprofile = profile?.computeMessageSize(1) {
+              serialize_size += varSizeprofile
+          }
+      }
+      if hasTeam {
+          if let varSizeteam = team?.computeMessageSize(2) {
+              serialize_size += varSizeteam
+          }
+      }
+      if hasLocation {
+          if let varSizelocation = location?.computeMessageSize(3) {
+              serialize_size += varSizelocation
+          }
+      }
+      if hasGroup {
+          if let varSizegroup = group?.computeMessageSize(4) {
+              serialize_size += varSizegroup
+          }
+      }
+      if hasPost {
+          if let varSizepost = post?.computeMessageSize(5) {
+              serialize_size += varSizepost
+          }
+      }
+      serialize_size += unknownFields.serializedSize()
+      memoizedSerializedSize = serialize_size
+      return serialize_size
+    }
+    public class func parseArrayDelimitedFromInputStream(input:NSInputStream) throws -> Array<Services.Search.Containers.RecentResultV1> {
+      var mergedArray = Array<Services.Search.Containers.RecentResultV1>()
+      while let value = try parseFromDelimitedFromInputStream(input) {
+        mergedArray += [value]
+      }
+      return mergedArray
+    }
+    public class func parseFromDelimitedFromInputStream(input:NSInputStream) throws -> Services.Search.Containers.RecentResultV1? {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeDelimitedFromInputStream(input)?.build()
+    }
+    public class func parseFromData(data:NSData) throws -> Services.Search.Containers.RecentResultV1 {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFromData(data, extensionRegistry:Services.Search.Containers.ContainersRoot.sharedInstance.extensionRegistry).build()
+    }
+    public class func parseFromData(data:NSData, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.RecentResultV1 {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFromData(data, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream) throws -> Services.Search.Containers.RecentResultV1 {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFromInputStream(input).build()
+    }
+    public class func parseFromInputStream(input:NSInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.RecentResultV1 {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFromInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream) throws -> Services.Search.Containers.RecentResultV1 {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFromCodedInputStream(input).build()
+    }
+    public class func parseFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.RecentResultV1 {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFromCodedInputStream(input, extensionRegistry:extensionRegistry).build()
+    }
+    public class func getBuilder() -> Services.Search.Containers.RecentResultV1.Builder {
+      return Services.Search.Containers.RecentResultV1.classBuilder() as! Services.Search.Containers.RecentResultV1.Builder
+    }
+    public func getBuilder() -> Services.Search.Containers.RecentResultV1.Builder {
+      return classBuilder() as! Services.Search.Containers.RecentResultV1.Builder
+    }
+    public override class func classBuilder() -> MessageBuilder {
+      return Services.Search.Containers.RecentResultV1.Builder()
+    }
+    public override func classBuilder() -> MessageBuilder {
+      return Services.Search.Containers.RecentResultV1.Builder()
+    }
+    public func toBuilder() throws -> Services.Search.Containers.RecentResultV1.Builder {
+      return try Services.Search.Containers.RecentResultV1.builderWithPrototype(self)
+    }
+    public class func builderWithPrototype(prototype:Services.Search.Containers.RecentResultV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+      return try Services.Search.Containers.RecentResultV1.Builder().mergeFrom(prototype)
+    }
+    override public func writeDescriptionTo(inout output:String, indent:String) throws {
+      if hasProfile {
+        output += "\(indent) profile {\n"
+        try profile?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if hasTeam {
+        output += "\(indent) team {\n"
+        try team?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if hasLocation {
+        output += "\(indent) location {\n"
+        try location?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if hasGroup {
+        output += "\(indent) group {\n"
+        try group?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if hasPost {
+        output += "\(indent) post {\n"
+        try post?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      unknownFields.writeDescriptionTo(&output, indent:indent)
+    }
+    override public var hashValue:Int {
+        get {
+            var hashCode:Int = 7
+            if hasProfile {
+                if let hashValueprofile = profile?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueprofile
+                }
+            }
+            if hasTeam {
+                if let hashValueteam = team?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueteam
+                }
+            }
+            if hasLocation {
+                if let hashValuelocation = location?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuelocation
+                }
+            }
+            if hasGroup {
+                if let hashValuegroup = group?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuegroup
+                }
+            }
+            if hasPost {
+                if let hashValuepost = post?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuepost
+                }
+            }
+            hashCode = (hashCode &* 31) &+  unknownFields.hashValue
+            return hashCode
+        }
+    }
+
+
+    //Meta information declaration start
+
+    override public class func className() -> String {
+        return "Services.Search.Containers.RecentResultV1"
+    }
+    override public func className() -> String {
+        return "Services.Search.Containers.RecentResultV1"
+    }
+    override public func classMetaType() -> GeneratedMessage.Type {
+        return Services.Search.Containers.RecentResultV1.self
+    }
+    //Meta information declaration end
+
+    final public class Builder : GeneratedMessageBuilder {
+      private var builderResult:Services.Search.Containers.RecentResultV1 = Services.Search.Containers.RecentResultV1()
+      public func getMessage() -> Services.Search.Containers.RecentResultV1 {
+          return builderResult
+      }
+
+      required override public init () {
+         super.init()
+      }
+      public var hasProfile:Bool {
+           get {
+               return builderResult.hasProfile
+           }
+      }
+      public var profile:Services.Profile.Containers.ProfileV1! {
+           get {
+               if profileBuilder_ != nil {
+                  builderResult.profile = profileBuilder_.getMessage()
+               }
+               return builderResult.profile
+           }
+           set (value) {
+               builderResult.hasProfile = true
+               builderResult.profile = value
+           }
+      }
+      private var profileBuilder_:Services.Profile.Containers.ProfileV1.Builder! {
+           didSet {
+              builderResult.hasProfile = true
+           }
+      }
+      public func getProfileBuilder() -> Services.Profile.Containers.ProfileV1.Builder {
+        if profileBuilder_ == nil {
+           profileBuilder_ = Services.Profile.Containers.ProfileV1.Builder()
+           builderResult.profile = profileBuilder_.getMessage()
+           if profile != nil {
+              try! profileBuilder_.mergeFrom(profile)
+           }
+        }
+        return profileBuilder_
+      }
+      public func setProfile(value:Services.Profile.Containers.ProfileV1!) -> Services.Search.Containers.RecentResultV1.Builder {
+        self.profile = value
+        return self
+      }
+      public func mergeProfile(value:Services.Profile.Containers.ProfileV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        if builderResult.hasProfile {
+          builderResult.profile = try Services.Profile.Containers.ProfileV1.builderWithPrototype(builderResult.profile).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.profile = value
+        }
+        builderResult.hasProfile = true
+        return self
+      }
+      public func clearProfile() -> Services.Search.Containers.RecentResultV1.Builder {
+        profileBuilder_ = nil
+        builderResult.hasProfile = false
+        builderResult.profile = nil
+        return self
+      }
+      public var hasTeam:Bool {
+           get {
+               return builderResult.hasTeam
+           }
+      }
+      public var team:Services.Organization.Containers.TeamV1! {
+           get {
+               if teamBuilder_ != nil {
+                  builderResult.team = teamBuilder_.getMessage()
+               }
+               return builderResult.team
+           }
+           set (value) {
+               builderResult.hasTeam = true
+               builderResult.team = value
+           }
+      }
+      private var teamBuilder_:Services.Organization.Containers.TeamV1.Builder! {
+           didSet {
+              builderResult.hasTeam = true
+           }
+      }
+      public func getTeamBuilder() -> Services.Organization.Containers.TeamV1.Builder {
+        if teamBuilder_ == nil {
+           teamBuilder_ = Services.Organization.Containers.TeamV1.Builder()
+           builderResult.team = teamBuilder_.getMessage()
+           if team != nil {
+              try! teamBuilder_.mergeFrom(team)
+           }
+        }
+        return teamBuilder_
+      }
+      public func setTeam(value:Services.Organization.Containers.TeamV1!) -> Services.Search.Containers.RecentResultV1.Builder {
+        self.team = value
+        return self
+      }
+      public func mergeTeam(value:Services.Organization.Containers.TeamV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        if builderResult.hasTeam {
+          builderResult.team = try Services.Organization.Containers.TeamV1.builderWithPrototype(builderResult.team).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.team = value
+        }
+        builderResult.hasTeam = true
+        return self
+      }
+      public func clearTeam() -> Services.Search.Containers.RecentResultV1.Builder {
+        teamBuilder_ = nil
+        builderResult.hasTeam = false
+        builderResult.team = nil
+        return self
+      }
+      public var hasLocation:Bool {
+           get {
+               return builderResult.hasLocation
+           }
+      }
+      public var location:Services.Organization.Containers.LocationV1! {
+           get {
+               if locationBuilder_ != nil {
+                  builderResult.location = locationBuilder_.getMessage()
+               }
+               return builderResult.location
+           }
+           set (value) {
+               builderResult.hasLocation = true
+               builderResult.location = value
+           }
+      }
+      private var locationBuilder_:Services.Organization.Containers.LocationV1.Builder! {
+           didSet {
+              builderResult.hasLocation = true
+           }
+      }
+      public func getLocationBuilder() -> Services.Organization.Containers.LocationV1.Builder {
+        if locationBuilder_ == nil {
+           locationBuilder_ = Services.Organization.Containers.LocationV1.Builder()
+           builderResult.location = locationBuilder_.getMessage()
+           if location != nil {
+              try! locationBuilder_.mergeFrom(location)
+           }
+        }
+        return locationBuilder_
+      }
+      public func setLocation(value:Services.Organization.Containers.LocationV1!) -> Services.Search.Containers.RecentResultV1.Builder {
+        self.location = value
+        return self
+      }
+      public func mergeLocation(value:Services.Organization.Containers.LocationV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        if builderResult.hasLocation {
+          builderResult.location = try Services.Organization.Containers.LocationV1.builderWithPrototype(builderResult.location).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.location = value
+        }
+        builderResult.hasLocation = true
+        return self
+      }
+      public func clearLocation() -> Services.Search.Containers.RecentResultV1.Builder {
+        locationBuilder_ = nil
+        builderResult.hasLocation = false
+        builderResult.location = nil
+        return self
+      }
+      public var hasGroup:Bool {
+           get {
+               return builderResult.hasGroup
+           }
+      }
+      public var group:Services.Group.Containers.GroupV1! {
+           get {
+               if groupBuilder_ != nil {
+                  builderResult.group = groupBuilder_.getMessage()
+               }
+               return builderResult.group
+           }
+           set (value) {
+               builderResult.hasGroup = true
+               builderResult.group = value
+           }
+      }
+      private var groupBuilder_:Services.Group.Containers.GroupV1.Builder! {
+           didSet {
+              builderResult.hasGroup = true
+           }
+      }
+      public func getGroupBuilder() -> Services.Group.Containers.GroupV1.Builder {
+        if groupBuilder_ == nil {
+           groupBuilder_ = Services.Group.Containers.GroupV1.Builder()
+           builderResult.group = groupBuilder_.getMessage()
+           if group != nil {
+              try! groupBuilder_.mergeFrom(group)
+           }
+        }
+        return groupBuilder_
+      }
+      public func setGroup(value:Services.Group.Containers.GroupV1!) -> Services.Search.Containers.RecentResultV1.Builder {
+        self.group = value
+        return self
+      }
+      public func mergeGroup(value:Services.Group.Containers.GroupV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        if builderResult.hasGroup {
+          builderResult.group = try Services.Group.Containers.GroupV1.builderWithPrototype(builderResult.group).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.group = value
+        }
+        builderResult.hasGroup = true
+        return self
+      }
+      public func clearGroup() -> Services.Search.Containers.RecentResultV1.Builder {
+        groupBuilder_ = nil
+        builderResult.hasGroup = false
+        builderResult.group = nil
+        return self
+      }
+      public var hasPost:Bool {
+           get {
+               return builderResult.hasPost
+           }
+      }
+      public var post:Services.Post.Containers.PostV1! {
+           get {
+               if postBuilder_ != nil {
+                  builderResult.post = postBuilder_.getMessage()
+               }
+               return builderResult.post
+           }
+           set (value) {
+               builderResult.hasPost = true
+               builderResult.post = value
+           }
+      }
+      private var postBuilder_:Services.Post.Containers.PostV1.Builder! {
+           didSet {
+              builderResult.hasPost = true
+           }
+      }
+      public func getPostBuilder() -> Services.Post.Containers.PostV1.Builder {
+        if postBuilder_ == nil {
+           postBuilder_ = Services.Post.Containers.PostV1.Builder()
+           builderResult.post = postBuilder_.getMessage()
+           if post != nil {
+              try! postBuilder_.mergeFrom(post)
+           }
+        }
+        return postBuilder_
+      }
+      public func setPost(value:Services.Post.Containers.PostV1!) -> Services.Search.Containers.RecentResultV1.Builder {
+        self.post = value
+        return self
+      }
+      public func mergePost(value:Services.Post.Containers.PostV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        if builderResult.hasPost {
+          builderResult.post = try Services.Post.Containers.PostV1.builderWithPrototype(builderResult.post).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.post = value
+        }
+        builderResult.hasPost = true
+        return self
+      }
+      public func clearPost() -> Services.Search.Containers.RecentResultV1.Builder {
+        postBuilder_ = nil
+        builderResult.hasPost = false
+        builderResult.post = nil
+        return self
+      }
+      override public var internalGetResult:GeneratedMessage {
+           get {
+              return builderResult
+           }
+      }
+      public override func clear() -> Services.Search.Containers.RecentResultV1.Builder {
+        builderResult = Services.Search.Containers.RecentResultV1()
+        return self
+      }
+      public override func clone() throws -> Services.Search.Containers.RecentResultV1.Builder {
+        return try Services.Search.Containers.RecentResultV1.builderWithPrototype(builderResult)
+      }
+      public override func build() throws -> Services.Search.Containers.RecentResultV1 {
+           try checkInitialized()
+           return buildPartial()
+      }
+      public func buildPartial() -> Services.Search.Containers.RecentResultV1 {
+        let returnMe:Services.Search.Containers.RecentResultV1 = builderResult
+        return returnMe
+      }
+      public func mergeFrom(other:Services.Search.Containers.RecentResultV1) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        if other == Services.Search.Containers.RecentResultV1() {
+         return self
+        }
+        if (other.hasProfile) {
+            try mergeProfile(other.profile)
+        }
+        if (other.hasTeam) {
+            try mergeTeam(other.team)
+        }
+        if (other.hasLocation) {
+            try mergeLocation(other.location)
+        }
+        if (other.hasGroup) {
+            try mergeGroup(other.group)
+        }
+        if (other.hasPost) {
+            try mergePost(other.post)
+        }
+        try mergeUnknownFields(other.unknownFields)
+        return self
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream) throws -> Services.Search.Containers.RecentResultV1.Builder {
+           return try mergeFromCodedInputStream(input, extensionRegistry:ExtensionRegistry())
+      }
+      public override func mergeFromCodedInputStream(input:CodedInputStream, extensionRegistry:ExtensionRegistry) throws -> Services.Search.Containers.RecentResultV1.Builder {
+        let unknownFieldsBuilder:UnknownFieldSet.Builder = try UnknownFieldSet.builderWithUnknownFields(self.unknownFields)
+        while (true) {
+          let tag = try input.readTag()
+          switch tag {
+          case 0: 
+            self.unknownFields = try unknownFieldsBuilder.build()
+            return self
+
+          case 10 :
+            let subBuilder:Services.Profile.Containers.ProfileV1.Builder = Services.Profile.Containers.ProfileV1.Builder()
+            if hasProfile {
+              try subBuilder.mergeFrom(profile)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            profile = subBuilder.buildPartial()
+
+          case 18 :
+            let subBuilder:Services.Organization.Containers.TeamV1.Builder = Services.Organization.Containers.TeamV1.Builder()
+            if hasTeam {
+              try subBuilder.mergeFrom(team)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            team = subBuilder.buildPartial()
+
+          case 26 :
+            let subBuilder:Services.Organization.Containers.LocationV1.Builder = Services.Organization.Containers.LocationV1.Builder()
+            if hasLocation {
+              try subBuilder.mergeFrom(location)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            location = subBuilder.buildPartial()
+
+          case 34 :
+            let subBuilder:Services.Group.Containers.GroupV1.Builder = Services.Group.Containers.GroupV1.Builder()
+            if hasGroup {
+              try subBuilder.mergeFrom(group)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            group = subBuilder.buildPartial()
+
+          case 42 :
             let subBuilder:Services.Post.Containers.PostV1.Builder = Services.Post.Containers.PostV1.Builder()
             if hasPost {
               try subBuilder.mergeFrom(post)
