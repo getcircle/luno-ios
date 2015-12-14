@@ -15,4 +15,5 @@ message FileV1 {
     string content_type = 5;
     string created = 6;
     string name = 7;
+    bytes bytes = 8;
 }

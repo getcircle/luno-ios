@@ -119,6 +119,7 @@ import "protobufs/services/file/actions/start_upload.proto";
 import "protobufs/services/file/actions/complete_upload.proto";
 import "protobufs/services/file/actions/delete.proto";
 import "protobufs/services/file/actions/get_files.proto";
+import "protobufs/services/file/actions/upload.proto";
 
 message User {
     extend soa.ActionRequestParamsV1 {
@@ -288,5 +289,6 @@ message File {
         optional services.file.actions.complete_upload.RequestV1 complete_upload = 1801;
         optional services.file.actions.delete.RequestV1 delete = 1802;
         optional services.file.actions.get_files.RequestV1 get_files = 1803;
+        optional services.file.actions.upload.RequestV1 upload = 1804;
     }
 }

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.file.actions.upload;
+
+import "protobufs/services/file/containers.proto";
+
+message RequestV1 {
+    services.file.containers.FileV1 file = 1;
+}
+
+message ResponseV1 {
+    services.file.containers.FileV1 file = 1;
+}
