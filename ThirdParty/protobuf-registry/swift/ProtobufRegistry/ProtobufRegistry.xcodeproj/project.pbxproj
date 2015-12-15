@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		470CFC641BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470CFC631BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift */; };
+		4758DC3A1C20B17A004C9685 /* Services.File.Actions.Upload.Upload.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758DC391C20B17A004C9685 /* Services.File.Actions.Upload.Upload.proto.swift */; };
 		47A2120E1C0CF0C800D2A8BA /* Services.Search.Actions.DeleteRecent.DeleteRecent.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A2120D1C0CF0C800D2A8BA /* Services.Search.Actions.DeleteRecent.DeleteRecent.proto.swift */; };
 		47A212101C0CF0CF00D2A8BA /* Services.Search.Actions.GetRecents.GetRecents.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A2120F1C0CF0CF00D2A8BA /* Services.Search.Actions.GetRecents.GetRecents.proto.swift */; };
 		47A212121C0CF0D500D2A8BA /* Services.Search.Actions.TrackRecent.TrackRecent.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A212111C0CF0D500D2A8BA /* Services.Search.Actions.TrackRecent.TrackRecent.proto.swift */; };
@@ -167,6 +168,7 @@
 
 /* Begin PBXFileReference section */
 		470CFC631BF52E6B005AFC78 /* Services.User.Actions.Xauth.Xauth.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.User.Actions.Xauth.Xauth.proto.swift; sourceTree = "<group>"; };
+		4758DC391C20B17A004C9685 /* Services.File.Actions.Upload.Upload.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.File.Actions.Upload.Upload.proto.swift; sourceTree = "<group>"; };
 		47A2120D1C0CF0C800D2A8BA /* Services.Search.Actions.DeleteRecent.DeleteRecent.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.DeleteRecent.DeleteRecent.proto.swift; sourceTree = "<group>"; };
 		47A2120F1C0CF0CF00D2A8BA /* Services.Search.Actions.GetRecents.GetRecents.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.GetRecents.GetRecents.proto.swift; sourceTree = "<group>"; };
 		47A212111C0CF0D500D2A8BA /* Services.Search.Actions.TrackRecent.TrackRecent.proto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.Search.Actions.TrackRecent.TrackRecent.proto.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				47BA36C21BF185F500A26736 /* Services.File.Actions.Delete.Delete.proto.swift */,
 				47BA36C41BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift */,
 				47BA36C61BF1860A00A26736 /* Services.File.Actions.StartUpload.StartUpload.proto.swift */,
+				4758DC391C20B17A004C9685 /* Services.File.Actions.Upload.Upload.proto.swift */,
 				47BA36C81BF1861900A26736 /* Services.File.Containers.Containers.proto.swift */,
 				BF9BAD971BB38F81008CCC7E /* Services.Glossary.Actions.CreateTerm.CreateTerm.proto.swift */,
 				BF9BAD981BB38F81008CCC7E /* Services.Glossary.Actions.DeleteTerm.DeleteTerm.proto.swift */,
@@ -667,6 +670,7 @@
 				47BA36C31BF185F500A26736 /* Services.File.Actions.Delete.Delete.proto.swift in Sources */,
 				47BA36C51BF185FD00A26736 /* Services.File.Actions.GetFiles.GetFiles.proto.swift in Sources */,
 				47BA36C71BF1860A00A26736 /* Services.File.Actions.StartUpload.StartUpload.proto.swift in Sources */,
+				4758DC3A1C20B17A004C9685 /* Services.File.Actions.Upload.Upload.proto.swift in Sources */,
 				47BA36C91BF1861900A26736 /* Services.File.Containers.Containers.proto.swift in Sources */,
 				BF9BAE031BB38F81008CCC7E /* Services.Glossary.Actions.GetTerm.GetTerm.proto.swift in Sources */,
 				BF9BAE041BB38F81008CCC7E /* Services.Glossary.Actions.GetTerms.GetTerms.proto.swift in Sources */,
