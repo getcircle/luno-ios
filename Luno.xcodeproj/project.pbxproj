@@ -287,8 +287,8 @@
 		BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDB1421A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift */; };
 		BFEDF2EF1ABA251C00E6F3D5 /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEDF2EE1ABA251C00E6F3D5 /* OverviewViewController.swift */; };
 		BFF5E6F51A814C2C00827757 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF5E6F31A814C2C00827757 /* AuthorizationViewController.swift */; };
-		DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE4CE18D8FDD109BFC6307A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EB54E3185BD76EB7E29EEA8C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE4CE18D8FDD109BFC6307A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DF400245E813C40A9AB735B3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE4CE18D8FDD109BFC6307A /* Pods.framework */; };
+		EB54E3185BD76EB7E29EEA8C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BE4CE18D8FDD109BFC6307A /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
