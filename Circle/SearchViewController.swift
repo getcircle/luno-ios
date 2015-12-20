@@ -97,6 +97,7 @@ class SearchViewController: UIViewController,
     
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
+        edgesForExtendedLayout = .None
         setNavigationTitle(false)
     }
     
