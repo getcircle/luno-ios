@@ -105,7 +105,6 @@ class DetailViewController: BaseDetailViewController,
         collectionView.bounces = true
         collectionView.alwaysBounceVertical = true
         (collectionView.delegate as! CardCollectionViewDelegate).delegate = self
-        collectionView.contentInset = UIEdgeInsetsMake(0.0, 0.0, tabBarController?.tabBar.frameHeight ?? 0.0, 0.0)
         collectionView.scrollIndicatorInsets = collectionView.contentInset
     }
     
