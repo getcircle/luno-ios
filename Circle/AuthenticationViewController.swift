@@ -611,19 +611,21 @@ class AuthenticationViewController: UIViewController {
     private func checkAuthenticationMethod() {
         Services.User.Actions.getAuthenticationInstructions(workEmailTextField.text ?? "", completionHandler: { (backend, accountExists, authorizationURL, providerName, error) -> Void in
             self.hideLoadingState()
-            
-            var provider: Services.User.Containers.IdentityV1.ProviderV1
-            switch backend! {
-            case .Okta:
-                provider = .Okta
-            default:
-                provider = .Google
-            }
+
             
             if error != nil {
                 self.signInButton.addShakeAnimation()
             }
-            else if let authorizationURL = authorizationURL, providerName = providerName where authorizationURL.trimWhitespace() != "" {
+            else if let authorizationURL = authorizationURL, providerName = providerName, backend = backend where authorizationURL.trimWhitespace() != "" {
+                
+                var provider: Services.User.Containers.IdentityV1.ProviderV1
+                switch backend {
+                case .Okta:
+                    provider = .Okta
+                default:
+                    provider = .Google
+                }
+                
                 self.openExternalAuthentication(provider, authorizationURL: authorizationURL, providerName: providerName)
             }
             else {
