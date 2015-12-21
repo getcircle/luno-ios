@@ -153,7 +153,7 @@ struct ServiceHttpRequest: URLRequestConvertible {
         var host: String {
             switch self {
             case .Dev: return "api.dev.lunohq.com"
-            case .Local: return "localhost"
+            case .Local: return "api.local.lunohq.com"
             case .Staging: return "api.lunohq.com"
             case .Production: return "api.lunohq.com"
             }
