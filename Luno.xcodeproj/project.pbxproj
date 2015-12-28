@@ -221,6 +221,9 @@
 		8F9F60D61A8C481F00FCAA25 /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */; };
 		8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAA14BA1B093D190098CC45 /* SplashViewController.swift */; };
 		8FAA14BD1B093D190098CC45 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAA14BB1B093D190098CC45 /* SplashViewController.xib */; };
+		8FB1160B1C30A5D900161C17 /* PostDetailViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB116091C30A5D900161C17 /* PostDetailViewControllerV2.swift */; };
+		8FB1160C1C30A5D900161C17 /* PostDetailViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB1160A1C30A5D900161C17 /* PostDetailViewControllerV2.xib */; };
+		8FB116111C30FECD00161C17 /* PostTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 8FB116101C30FECD00161C17 /* PostTemplate.html */; };
 		8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
@@ -559,6 +562,9 @@
 		8F9F60D41A8C481F00FCAA25 /* SettingsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8FAA14BA1B093D190098CC45 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		8FAA14BB1B093D190098CC45 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
+		8FB116091C30A5D900161C17 /* PostDetailViewControllerV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewControllerV2.swift; sourceTree = "<group>"; };
+		8FB1160A1C30A5D900161C17 /* PostDetailViewControllerV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetailViewControllerV2.xib; sourceTree = "<group>"; };
+		8FB116101C30FECD00161C17 /* PostTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PostTemplate.html; sourceTree = "<group>"; };
 		8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchResult.swift; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -727,6 +733,7 @@
 				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 				8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */,
 				8F0004941A2419730096477A /* Info.plist */,
+				8FB116101C30FECD00161C17 /* PostTemplate.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -771,6 +778,7 @@
 				8F7E2DC41A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift */,
 				8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */,
 				47A1FDC91BEF1EC700C1089A /* PostDetailViewController.swift */,
+				8FB116091C30A5D900161C17 /* PostDetailViewControllerV2.swift */,
 				8FC8780A1AB276B1003FDB27 /* ProfileDetailViewController.swift */,
 				8F50CB9F1B1392C100AC5277 /* ProfilesSelectorViewController.swift */,
 				8F00049A1A2419730096477A /* ProfilesViewController.swift */,
@@ -911,6 +919,7 @@
 				BFCFDB101A9165A9009A5FD4 /* PositionCollectionViewCell.xib */,
 				477AFEAD1C03C1F000C9D885 /* PostAuthorCollectionViewCell.xib */,
 				47D30D2B1BF18E7A0082B995 /* PostContentCollectionViewCell.xib */,
+				8FB1160A1C30A5D900161C17 /* PostDetailViewControllerV2.xib */,
 				47A1FDD01BF1168400C1089A /* PostTitleCollectionViewCell.xib */,
 				8FCC95CC1A52828B00421E65 /* ProfileCollectionViewCell.xib */,
 				8F57AD341B0FD6F400DD40D8 /* ProfileGridItemCollectionViewCell.xib */,
@@ -1362,6 +1371,7 @@
 				8F0ADD321AC5344E00A44B68 /* Loader_00022@2x.png in Resources */,
 				8F0ADD2D1AC5344E00A44B68 /* Loader_00017@2x.png in Resources */,
 				8F0ADD3C1AC5344E00A44B68 /* Loader_00032@2x.png in Resources */,
+				8FB116111C30FECD00161C17 /* PostTemplate.html in Resources */,
 				47D30D2C1BF18E7A0082B995 /* PostContentCollectionViewCell.xib in Resources */,
 				8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */,
 				8F0ADD461AC5344E00A44B68 /* Loader_00042@2x.png in Resources */,
@@ -1399,6 +1409,7 @@
 				8F0ADD3D1AC5344E00A44B68 /* Loader_00033@2x.png in Resources */,
 				8F9F60CD1A8C439E00FCAA25 /* SettingsViewController.xib in Resources */,
 				8F0ADD211AC5344E00A44B68 /* Loader_00005@2x.png in Resources */,
+				8FB1160C1C30A5D900161C17 /* PostDetailViewControllerV2.xib in Resources */,
 				8F0ADD4D1AC5344E00A44B68 /* Loader_00049@2x.png in Resources */,
 				8F29F63B1B656CBC00E5D76C /* SearchViewController.xib in Resources */,
 				8F07ACB31AE878F100D1F41D /* MPDismissKeyboard.png in Resources */,
@@ -1655,6 +1666,7 @@
 				BFEDB1431A2A8CA700250165 /* UICollectionViewFlowLayoutExtension.swift in Sources */,
 				BF768A621AB402D100D677B1 /* PaginatorExtension.swift in Sources */,
 				8F22CBF81A29A8EB0026376E /* AuthenticationViewController.swift in Sources */,
+				8FB1160B1C30A5D900161C17 /* PostDetailViewControllerV2.swift in Sources */,
 				8F7E2DC61A8FC00000B8548D /* PasscodeTouchIDSplashViewController.swift in Sources */,
 				8FC8780B1AB276B1003FDB27 /* ProfileDetailViewController.swift in Sources */,
 				8F9F60B81A896CE400FCAA25 /* MainTabBarViewController.swift in Sources */,
