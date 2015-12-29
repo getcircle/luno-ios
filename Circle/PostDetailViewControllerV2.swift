@@ -74,13 +74,8 @@ WKNavigationDelegate {
     
     private func configureAuthorButton() {
         authorButton.setBackgroundImage(
-            UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: authorButton.frame),
+            UIImage.imageFromColor(UIColor(red: 206, green: 206, blue: 206), withRect: authorButton.bounds),
             forState: .Highlighted
-        )
-
-        authorButton.setBackgroundImage(
-            UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: authorButton.frame),
-            forState: .Selected
         )
     }
     
