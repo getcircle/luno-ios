@@ -52,6 +52,7 @@ struct AppStrings {
     static let GenericSaveButtonTitle = NSLocalizedString("Save", comment: "Generic button title for saving changes a user has made")
     static let GenericPostButtonTitle = NSLocalizedString("Post", comment: "Generic button title for posting content")
 
+    static let KnowledgePostTitle = NSLocalizedString("Knowledge Post", comment: "Generic title for all knowledge posts")
     static let LocalTimeLabel = NSLocalizedString("Local Time", comment: "Label indicating the local time of a location")
 
     static let NotificationTitle = NSLocalizedString("Notification", comment: "Title for showing a notification message")

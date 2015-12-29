@@ -12,24 +12,77 @@ import ProtobufRegistry
 
 class PostDetailViewControllerV2: UIViewController {
     
-    @IBOutlet weak private(set) var contentView: UIWebView!
-    
+    @IBOutlet weak private(set) var authorLabel: UILabel!
+    @IBOutlet weak private(set) var authorImageView: CircleImageView!
+    @IBOutlet weak private(set) var authorTitleLabel: UILabel!
+    @IBOutlet weak private(set) var headerView: UIView!
+    @IBOutlet weak private(set) var timestampLabel: UILabel!
+    @IBOutlet weak private(set) var titleLabel: UILabel!
+    @IBOutlet weak private(set) var titleLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak private(set) var titleLabelTopConstraint: NSLayoutConstraint!
+
     var post: Services.Post.Containers.PostV1!
-    private var webView: WKWebView?
-    static var templateString: String?
     
+    static var templateString: String?
+
+    private var webView: WKWebView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+        configureTitleAndTimestampViews()
+        configureAuthorViews()
         initAndConfigureWebView()
         loadPost()
     }
 
+    // MARK: - Configuration
+    
+    private func configureView() {
+        title = AppStrings.KnowledgePostTitle
+    }
+    
+    private func configureTitleAndTimestampViews() {
+        titleLabel.text = ""
+        timestampLabel.text = ""
+    }
+    
+    private func configureAuthorViews() {
+        authorLabel.font = UIFont.mainTextFont()
+        authorLabel.textColor = UIColor.appPrimaryTextColor()
+        authorLabel.text = ""
+        
+        authorTitleLabel.font = UIFont.secondaryTextFont()
+        authorTitleLabel.textColor = UIColor.appSecondaryTextColor()
+        authorTitleLabel.text = ""
+        
+        authorImageView.makeItCircular()
+        authorImageView.contentMode = .ScaleAspectFill
+    }
+    
     private func initAndConfigureWebView() {
         webView = WKWebView(forAutoLayout: ())
         if let webView = webView {
-            view.addSubview(webView)
+            view.insertSubview(webView, belowSubview: headerView)
             webView.autoPinEdgesToSuperviewEdges()
         }
+    }
+    
+    private func getTemplateString() -> String? {
+        if self.dynamicType.templateString == nil {
+            do {
+                print("Fetching template")
+                if let templateFile = NSBundle.mainBundle().pathForResource("PostTemplate", ofType: "html") {
+                    let htmlTemplate = try NSString(contentsOfFile: templateFile, encoding: 4)
+                    self.dynamicType.templateString = htmlTemplate as String
+                }
+            }
+            catch {
+                print("Error: \(error)")
+            }
+        }
+        
+        return self.dynamicType.templateString
     }
     
     private func loadPost() {
@@ -47,22 +100,27 @@ class PostDetailViewControllerV2: UIViewController {
             return
         }
         
-        if self.dynamicType.templateString == nil {
-            do {
-                print("Fetching template")
-                if let templateFile = NSBundle.mainBundle().pathForResource("PostTemplate", ofType: "html") {
-                    let htmlTemplate = try NSString(contentsOfFile: templateFile, encoding: 4)
-                    self.dynamicType.templateString = htmlTemplate as String
-                }
-            }
-            catch {
-                print("Error: \(error)")
-            }
-        }
-        
-        if let template = self.dynamicType.templateString {
+        // Content
+        if let template = self.getTemplateString() {
             let content = template.stringByReplacingOccurrencesOfString("{POST_CONTENT}", withString: post.content)
             webView.loadHTMLString(content, baseURL: nil)
         }
+        
+        // Title & Timestamp
+        titleLabel.text = post.title
+        if let timestamp = post.getFormattedChangedDate() {
+            timestampLabel.text = " \u{2013} Last updated \(timestamp)"
+        }
+        
+        // Author
+        authorLabel.text = post.byProfile.fullName
+        authorTitleLabel.text = post.byProfile.hasDisplayTitle ? post.byProfile.displayTitle : post.byProfile.title
+        authorImageView.imageProfileIdentifier = post.byProfile.id
+        authorImageView.setImageWithProfile(post.byProfile)
+        
+        // Size header and set content insets
+        let titleSize = titleLabel.intrinsicContentSize()
+        let headerViewHeight = titleLabelTopConstraint.constant + titleSize.height + titleLabelBottomConstraint.constant
+        webView.scrollView.contentInset = UIEdgeInsetsMake(headerViewHeight, 0.0, 0.0, 0.0)
     }
 }
