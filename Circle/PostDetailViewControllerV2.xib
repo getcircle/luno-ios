@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostDetailViewControllerV2" customModule="luno" customModuleProvider="target">
             <connections>
+                <outlet property="authorButton" destination="HDz-9M-FGP" id="8Ba-Fg-qER"/>
                 <outlet property="authorImageView" destination="nq0-ad-kpx" id="X4F-vW-rUw"/>
                 <outlet property="authorLabel" destination="z76-CG-Bye" id="YWO-do-yAR"/>
                 <outlet property="authorTitleLabel" destination="m3o-zZ-RBe" id="QOu-gB-d76"/>
@@ -33,65 +34,75 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1t-Kh-6Ec" userLabel="HeaderView">
-                    <rect key="frame" x="15" y="0.0" width="570" height="139"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="139"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Knowledge Post Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlP-S9-LM4">
-                            <rect key="frame" x="0.0" y="10" width="570" height="33"/>
+                            <rect key="frame" x="15" y="10" width="570" height="33"/>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="24"/>
                             <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Updated 10 months ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZG-Vy-QQb" userLabel="TimestampView">
-                            <rect key="frame" x="0.0" y="43" width="570" height="22"/>
+                            <rect key="frame" x="15" y="43" width="570" height="22"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nq0-ad-kpx" customClass="CircleImageView" customModule="luno" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="85" width="44" height="44"/>
+                            <rect key="frame" x="15" y="85" width="44" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="44" id="5ha-4Y-aZ5"/>
                                 <constraint firstAttribute="width" secondItem="nq0-ad-kpx" secondAttribute="height" multiplier="1:1" id="yvX-4f-36p"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3o-zZ-RBe">
-                            <rect key="frame" x="54" y="107" width="506" height="15"/>
+                            <rect key="frame" x="69" y="107" width="516" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z76-CG-Bye">
-                            <rect key="frame" x="54" y="90" width="506" height="17"/>
+                            <rect key="frame" x="69" y="90" width="516" height="17"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDz-9M-FGP" userLabel="Author View Button">
+                            <rect key="frame" x="0.0" y="85" width="600" height="44"/>
+                            <connections>
+                                <action selector="authorTapped:" destination="-1" eventType="touchUpInside" id="7du-8u-FsQ"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="OlP-S9-LM4" firstAttribute="top" secondItem="D1t-Kh-6Ec" secondAttribute="top" constant="10" id="1aH-aT-xud"/>
+                        <constraint firstItem="HDz-9M-FGP" firstAttribute="top" secondItem="nq0-ad-kpx" secondAttribute="top" id="3h6-b9-UyA"/>
                         <constraint firstItem="m3o-zZ-RBe" firstAttribute="top" secondItem="z76-CG-Bye" secondAttribute="bottom" id="7gy-Sk-WIT"/>
                         <constraint firstItem="m3o-zZ-RBe" firstAttribute="leading" secondItem="nq0-ad-kpx" secondAttribute="trailing" constant="10" id="85a-9C-HvV"/>
-                        <constraint firstItem="OlP-S9-LM4" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" id="DlP-JD-rwt"/>
-                        <constraint firstAttribute="trailing" secondItem="OlP-S9-LM4" secondAttribute="trailing" id="HmP-57-UEv"/>
+                        <constraint firstItem="OlP-S9-LM4" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" constant="15" id="DlP-JD-rwt"/>
+                        <constraint firstAttribute="trailing" secondItem="OlP-S9-LM4" secondAttribute="trailing" constant="15" id="HmP-57-UEv"/>
                         <constraint firstItem="z76-CG-Bye" firstAttribute="top" secondItem="lZG-Vy-QQb" secondAttribute="bottom" constant="25" id="N73-iV-n91"/>
                         <constraint firstAttribute="bottom" secondItem="nq0-ad-kpx" secondAttribute="bottom" constant="10" id="P1O-Jn-5rE"/>
-                        <constraint firstAttribute="trailing" secondItem="lZG-Vy-QQb" secondAttribute="trailing" id="Ueb-NZ-7Jr"/>
+                        <constraint firstAttribute="trailing" secondItem="lZG-Vy-QQb" secondAttribute="trailing" constant="15" id="Ueb-NZ-7Jr"/>
                         <constraint firstItem="z76-CG-Bye" firstAttribute="leading" secondItem="nq0-ad-kpx" secondAttribute="trailing" constant="10" id="V22-Zc-2Ta"/>
-                        <constraint firstAttribute="trailing" secondItem="m3o-zZ-RBe" secondAttribute="trailing" constant="10" id="bGl-eM-qSa"/>
-                        <constraint firstItem="nq0-ad-kpx" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" id="cVI-cc-poX"/>
+                        <constraint firstItem="HDz-9M-FGP" firstAttribute="bottom" secondItem="nq0-ad-kpx" secondAttribute="bottom" id="ZX9-Pl-Maj"/>
+                        <constraint firstAttribute="trailing" secondItem="m3o-zZ-RBe" secondAttribute="trailing" constant="15" id="bGl-eM-qSa"/>
+                        <constraint firstItem="nq0-ad-kpx" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" constant="15" id="cVI-cc-poX"/>
                         <constraint firstItem="nq0-ad-kpx" firstAttribute="top" secondItem="lZG-Vy-QQb" secondAttribute="bottom" constant="20" id="ceA-AW-HVe"/>
-                        <constraint firstAttribute="trailing" secondItem="z76-CG-Bye" secondAttribute="trailing" constant="10" id="e8t-xM-RI0"/>
+                        <constraint firstItem="HDz-9M-FGP" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" id="da9-Al-tJQ"/>
+                        <constraint firstAttribute="trailing" secondItem="z76-CG-Bye" secondAttribute="trailing" constant="15" id="e8t-xM-RI0"/>
                         <constraint firstAttribute="bottom" secondItem="OlP-S9-LM4" secondAttribute="bottom" constant="96" id="eHv-Ug-1Kv"/>
+                        <constraint firstAttribute="trailing" secondItem="HDz-9M-FGP" secondAttribute="trailing" id="hFh-j7-jEj"/>
                         <constraint firstItem="lZG-Vy-QQb" firstAttribute="top" secondItem="OlP-S9-LM4" secondAttribute="bottom" id="lNz-3p-5aK"/>
-                        <constraint firstItem="lZG-Vy-QQb" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" id="qoo-eO-Abh"/>
+                        <constraint firstItem="lZG-Vy-QQb" firstAttribute="leading" secondItem="D1t-Kh-6Ec" secondAttribute="leading" constant="15" id="qoo-eO-Abh"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="D1t-Kh-6Ec" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="O8H-KV-Amt"/>
-                <constraint firstAttribute="trailing" secondItem="D1t-Kh-6Ec" secondAttribute="trailing" constant="15" id="jo7-Wj-XMB"/>
+                <constraint firstItem="D1t-Kh-6Ec" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="O8H-KV-Amt"/>
+                <constraint firstAttribute="trailing" secondItem="D1t-Kh-6Ec" secondAttribute="trailing" id="jo7-Wj-XMB"/>
                 <constraint firstItem="D1t-Kh-6Ec" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uC1-LM-Eam"/>
             </constraints>
             <point key="canvasLocation" x="282" y="373"/>

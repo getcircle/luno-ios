@@ -12,6 +12,7 @@ import ProtobufRegistry
 
 class PostDetailViewControllerV2: UIViewController {
     
+    @IBOutlet weak private(set) var authorButton: UIButton!
     @IBOutlet weak private(set) var authorLabel: UILabel!
     @IBOutlet weak private(set) var authorImageView: CircleImageView!
     @IBOutlet weak private(set) var authorTitleLabel: UILabel!
@@ -31,6 +32,7 @@ class PostDetailViewControllerV2: UIViewController {
         super.viewDidLoad()
         configureView()
         configureTitleAndTimestampViews()
+        configureAuthorButton()
         configureAuthorViews()
         initAndConfigureWebView()
         loadPost()
@@ -39,12 +41,25 @@ class PostDetailViewControllerV2: UIViewController {
     // MARK: - Configuration
     
     private func configureView() {
-        title = AppStrings.KnowledgePostTitle
+        view.backgroundColor = UIColor.appViewBackgroundColor()
+        navigationItem.title = AppStrings.KnowledgePostTitle
     }
     
     private func configureTitleAndTimestampViews() {
         titleLabel.text = ""
         timestampLabel.text = ""
+    }
+    
+    private func configureAuthorButton() {
+        authorButton.setBackgroundImage(
+            UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: authorButton.frame),
+            forState: .Highlighted
+        )
+
+        authorButton.setBackgroundImage(
+            UIImage.imageFromColor(UIColor.appControlHighlightedColor(), withRect: authorButton.frame),
+            forState: .Selected
+        )
     }
     
     private func configureAuthorViews() {
@@ -68,6 +83,8 @@ class PostDetailViewControllerV2: UIViewController {
         }
     }
     
+    // MARK: - Helpers
+    
     private func getTemplateString() -> String? {
         if self.dynamicType.templateString == nil {
             do {
@@ -84,6 +101,8 @@ class PostDetailViewControllerV2: UIViewController {
         
         return self.dynamicType.templateString
     }
+    
+    // MARK: - Data Source
     
     private func loadPost() {
         Services.Post.Actions.getPost(post.id) { (post, error) -> Void in
@@ -122,5 +141,11 @@ class PostDetailViewControllerV2: UIViewController {
         let titleSize = titleLabel.intrinsicContentSize()
         let headerViewHeight = titleLabelTopConstraint.constant + titleSize.height + titleLabelBottomConstraint.constant
         webView.scrollView.contentInset = UIEdgeInsetsMake(headerViewHeight, 0.0, 0.0, 0.0)
+    }
+
+    // MARK: - IBActions
+    
+    @IBAction func authorTapped(sender: AnyObject) {
+        showProfileDetail(post.byProfile)
     }
 }
