@@ -43,6 +43,10 @@ WKNavigationDelegate {
         configureAuthorButton()
         configureAuthorViews()
         initAndConfigureWebView()
+        Tracker.sharedInstance.trackPageView(
+            pageType: .PostDetail,
+            pageId: post.id
+        )
         loadPost()
     }
 
