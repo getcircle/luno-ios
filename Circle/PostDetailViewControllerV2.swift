@@ -10,13 +10,14 @@ import UIKit
 import WebKit
 import ProtobufRegistry
 
-class PostDetailViewControllerV2: UIViewController {
+class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak private(set) var authorButton: UIButton!
     @IBOutlet weak private(set) var authorLabel: UILabel!
     @IBOutlet weak private(set) var authorImageView: CircleImageView!
     @IBOutlet weak private(set) var authorTitleLabel: UILabel!
     @IBOutlet weak private(set) var headerView: UIView!
+    @IBOutlet weak private(set) var headerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak private(set) var timestampLabel: UILabel!
     @IBOutlet weak private(set) var titleLabel: UILabel!
     @IBOutlet weak private(set) var titleLabelBottomConstraint: NSLayoutConstraint!
@@ -38,6 +39,10 @@ class PostDetailViewControllerV2: UIViewController {
         loadPost()
     }
 
+    deinit {
+        webView?.scrollView.delegate = nil
+    }
+    
     // MARK: - Configuration
     
     private func configureView() {
@@ -80,6 +85,7 @@ class PostDetailViewControllerV2: UIViewController {
         if let webView = webView {
             view.insertSubview(webView, belowSubview: headerView)
             webView.autoPinEdgesToSuperviewEdges()
+            webView.scrollView.delegate = self
         }
     }
     
@@ -147,5 +153,13 @@ class PostDetailViewControllerV2: UIViewController {
     
     @IBAction func authorTapped(sender: AnyObject) {
         showProfileDetail(post.byProfile)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {        
+        headerViewTopConstraint.constant = -1 * (scrollView.contentInset.top + scrollView.contentOffset.y)
+        headerView.setNeedsUpdateConstraints()
+        headerView.layoutIfNeeded()
     }
 }

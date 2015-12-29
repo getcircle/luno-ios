@@ -21,6 +21,7 @@
                 <outlet property="authorLabel" destination="z76-CG-Bye" id="YWO-do-yAR"/>
                 <outlet property="authorTitleLabel" destination="m3o-zZ-RBe" id="QOu-gB-d76"/>
                 <outlet property="headerView" destination="D1t-Kh-6Ec" id="bCn-GW-gGN"/>
+                <outlet property="headerViewTopConstraint" destination="uC1-LM-Eam" id="web-yA-Wcj"/>
                 <outlet property="timestampLabel" destination="lZG-Vy-QQb" id="hMB-Hk-KU1"/>
                 <outlet property="titleLabel" destination="OlP-S9-LM4" id="6Lw-aI-zf6"/>
                 <outlet property="titleLabelBottomConstraint" destination="eHv-Ug-1Kv" id="OVM-aH-mbi"/>
