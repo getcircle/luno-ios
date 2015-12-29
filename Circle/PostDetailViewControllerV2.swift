@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import ProtobufRegistry
 
-class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
+class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate, WKNavigationDelegate {
     
     @IBOutlet weak private(set) var authorButton: UIButton!
     @IBOutlet weak private(set) var authorLabel: UILabel!
@@ -27,6 +27,7 @@ class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
     
     static var templateString: String?
 
+    private var activityIndicatorView: CircleActivityIndicatorView?
     private var webView: WKWebView?
 
     override func viewDidLoad() {
@@ -41,6 +42,7 @@ class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
 
     deinit {
         webView?.scrollView.delegate = nil
+        webView?.navigationDelegate = nil
     }
     
     // MARK: - Configuration
@@ -48,6 +50,10 @@ class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
         navigationItem.title = AppStrings.KnowledgePostTitle
+        activityIndicatorView = view.addActivityIndicator()
+        if let activityIndicatorView = activityIndicatorView {
+            activityIndicatorView.startAnimating()
+        }
     }
     
     private func configureTitleAndTimestampViews() {
@@ -86,6 +92,7 @@ class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
             view.insertSubview(webView, belowSubview: headerView)
             webView.autoPinEdgesToSuperviewEdges()
             webView.scrollView.delegate = self
+            webView.navigationDelegate = self
         }
     }
     
@@ -163,5 +170,13 @@ class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
         headerViewTopConstraint.constant = -1 * (scrollView.contentInset.top + scrollView.contentOffset.y)
         headerView.setNeedsUpdateConstraints()
         headerView.layoutIfNeeded()
+    }
+    
+    // MARK: - WKNavigationDelegate
+
+    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
+        if let activityIndicatorView = activityIndicatorView {
+            activityIndicatorView.stopAnimating()
+        }
     }
 }
