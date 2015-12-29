@@ -146,7 +146,9 @@ class PostDetailViewControllerV2: UIViewController, UIScrollViewDelegate {
         // Size header and set content insets
         let titleSize = titleLabel.intrinsicContentSize()
         let headerViewHeight = titleLabelTopConstraint.constant + titleSize.height + titleLabelBottomConstraint.constant
-        webView.scrollView.contentInset = UIEdgeInsetsMake(headerViewHeight, 0.0, 0.0, 0.0)
+        var contentInsets = webView.scrollView.contentInset
+        contentInsets.top = headerViewHeight
+        webView.scrollView.contentInset = contentInsets
     }
 
     // MARK: - IBActions
