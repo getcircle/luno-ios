@@ -11,6 +11,7 @@ import WebKit
 import Alamofire
 import MBProgressHUD
 import ProtobufRegistry
+import SafariServices
 
 class PostDetailViewControllerV2: UIViewController,
 UIScrollViewDelegate,
@@ -295,6 +296,12 @@ WKNavigationDelegate {
     }
     
     private func openURLInBrowser(url: NSURL) {
-        UIApplication.sharedApplication().openURL(url)
+        if #available(iOS 9, *) {
+            let safariVC = SFSafariViewController(URL: url)
+            presentViewController(safariVC, animated: true, completion: nil)
+        }
+        else {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
 }
