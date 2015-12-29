@@ -126,7 +126,9 @@ WKNavigationDelegate {
         
         // Content
         if let template = self.getTemplateString() {
-            let content = template.stringByReplacingOccurrencesOfString("{POST_CONTENT}", withString: post.content)
+            let content = template
+                .stringByReplacingOccurrencesOfString("{POST_TITLE}", withString: post.title)
+                .stringByReplacingOccurrencesOfString("{POST_CONTENT}", withString: post.content)
             webView.loadHTMLString(content, baseURL: nil)
         }
         
