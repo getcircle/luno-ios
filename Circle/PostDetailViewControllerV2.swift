@@ -34,6 +34,7 @@ WKNavigationDelegate {
     static var templateString: String?
 
     private var activityIndicatorView: CircleActivityIndicatorView?
+    private var contentLoaded = false
     private var webView: WKWebView?
 
     override func viewDidLoad() {
@@ -179,10 +180,20 @@ WKNavigationDelegate {
     
     // MARK: - UIScrollViewDelegate
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {        
-        headerViewTopConstraint.constant = -1 * (scrollView.contentInset.top + scrollView.contentOffset.y)
-        headerView.setNeedsUpdateConstraints()
-        headerView.layoutIfNeeded()
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if contentLoaded {
+            let headerTopConstraintConstant = -1 * (scrollView.contentInset.top + scrollView.contentOffset.y)
+            headerViewTopConstraint.constant = headerTopConstraintConstant
+            headerView.setNeedsUpdateConstraints()
+            headerView.layoutIfNeeded()
+            
+            if (-1 * headerTopConstraintConstant) >= scrollView.contentInset.top {
+                navigationItem.title = post.title
+            }
+            else {
+                navigationItem.title = AppStrings.KnowledgePostTitle
+            }
+        }
     }
     
     // MARK: - WKNavigationDelegate
@@ -190,6 +201,7 @@ WKNavigationDelegate {
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
         if let activityIndicatorView = activityIndicatorView {
             activityIndicatorView.stopAnimating()
+            contentLoaded = true
         }
     }
     
