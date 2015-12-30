@@ -187,8 +187,8 @@ struct ServiceHttpRequest: URLRequestConvertible {
     }
     
 //    static let environment = Environment.Production
-    static let environment = Environment.Local
-//    static let environment = Environment.Dev
+//    static let environment = Environment.Local
+    static let environment = Environment.Dev
     
     var data: NSData
     var token: String?
