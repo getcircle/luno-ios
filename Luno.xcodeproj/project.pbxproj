@@ -200,6 +200,7 @@
 		8F7E2DC71A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */; };
 		8F7E2DCD1A8FDBB600B8548D /* PasscodeTouchIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */; };
 		8F7E2DCE1A8FDBB600B8548D /* PasscodeTouchIDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */; };
+		8F8125DE1C33AE870093473D /* PostShareProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8125DD1C33AE870093473D /* PostShareProvider.swift */; };
 		8F81713C1A62E07000CB7692 /* VerifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */; };
 		8F81713D1A62E07000CB7692 /* VerifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */; };
 		8F823E431A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */; };
@@ -541,6 +542,7 @@
 		8F7E2DC51A8FC00000B8548D /* PasscodeTouchIDSplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasscodeTouchIDSplashViewController.xib; sourceTree = "<group>"; };
 		8F7E2DCB1A8FDBB500B8548D /* PasscodeTouchIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeTouchIDViewController.swift; sourceTree = "<group>"; };
 		8F7E2DCC1A8FDBB500B8548D /* PasscodeTouchIDViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PasscodeTouchIDViewController.xib; sourceTree = "<group>"; };
+		8F8125DD1C33AE870093473D /* PostShareProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostShareProvider.swift; sourceTree = "<group>"; };
 		8F81713A1A62E07000CB7692 /* VerifyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyProfileViewController.swift; sourceTree = "<group>"; };
 		8F81713B1A62E07000CB7692 /* VerifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerifyProfileViewController.xib; sourceTree = "<group>"; };
 		8F823E411A714B5D0006264B /* OrganizationHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -1099,6 +1101,7 @@
 				8FC877FB1AB21775003FDB27 /* DebugUtils.swift */,
 				8FEE3D9A1A84172800B17569 /* FormBuilder.swift */,
 				8F22CBFD1A29C7120026376E /* GCDUtils.swift */,
+				8F8125DD1C33AE870093473D /* PostShareProvider.swift */,
 				8F5933E21ACBC12400905E14 /* ProfileExtension.swift */,
 			);
 			name = Utils;
@@ -1706,6 +1709,7 @@
 				476828D81BFD877B007672C7 /* TapTextView.swift in Sources */,
 				8FAA14BC1B093D190098CC45 /* SplashViewController.swift in Sources */,
 				BFB83F131A8D2D80000223C0 /* Mixpanel.swift in Sources */,
+				8F8125DE1C33AE870093473D /* PostShareProvider.swift in Sources */,
 				8F65C5011A51462500C7F3E6 /* CircleCollectionViewCell.swift in Sources */,
 				8F9F60D21A8C46C100FCAA25 /* SettingsDataSource.swift in Sources */,
 				8F834F971A9E9F21007B7095 /* ContactInfoViewController.swift in Sources */,

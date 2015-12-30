@@ -65,6 +65,9 @@ WKNavigationDelegate {
         if let activityIndicatorView = activityIndicatorView {
             activityIndicatorView.startAnimating()
         }
+        
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "sharePost:")
+        navigationItem.rightBarButtonItem = shareButton
     }
     
     private func configureTitleAndTimestampViews() {
@@ -151,6 +154,27 @@ WKNavigationDelegate {
     
     @IBAction func authorTapped(sender: AnyObject) {
         showProfileDetail(post.byProfile)
+    }
+    
+    func sharePost(sender: AnyObject) {
+        let activityVC = UIActivityViewController(
+            activityItems: [PostShareProvider(post: post)],
+            applicationActivities: nil
+        )
+        activityVC.excludedActivityTypes = [
+            UIActivityTypePostToFacebook,
+            UIActivityTypePostToFacebook,
+            UIActivityTypePostToTwitter,
+            UIActivityTypePostToWeibo,
+            UIActivityTypeMessage,
+            UIActivityTypePrint,
+            UIActivityTypeAssignToContact,
+            UIActivityTypeSaveToCameraRoll,
+            UIActivityTypePostToFlickr,
+            UIActivityTypePostToVimeo,
+            UIActivityTypePostToTencentWeibo
+        ]
+        presentViewController(activityVC, animated: true, completion: nil)
     }
     
     // MARK: - UIScrollViewDelegate
