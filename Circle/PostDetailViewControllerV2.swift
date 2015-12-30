@@ -257,6 +257,9 @@ WKNavigationDelegate {
             
             // PDF
             "pdf",
+            
+            // Media
+            "mp4", "mp3", "mov",
         ]
         
         if let fileExtension = url.pathExtension where supportedExtensions.contains(fileExtension)  {
