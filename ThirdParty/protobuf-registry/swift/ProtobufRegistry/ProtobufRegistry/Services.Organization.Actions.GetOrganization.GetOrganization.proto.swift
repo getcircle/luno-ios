@@ -12,6 +12,8 @@ public func == (lhs: Services.Organization.Actions.GetOrganization.RequestV1, rh
   var fieldCheck:Bool = (lhs.hashValue == rhs.hashValue)
   fieldCheck = fieldCheck && (lhs.hasVersion == rhs.hasVersion) && (!lhs.hasVersion || lhs.version == rhs.version)
   fieldCheck = fieldCheck && (lhs.hasDomain == rhs.hasDomain) && (!lhs.hasDomain || lhs.domain == rhs.domain)
+  fieldCheck = fieldCheck && (lhs.hasInflations == rhs.hasInflations) && (!lhs.hasInflations || lhs.inflations == rhs.inflations)
+  fieldCheck = fieldCheck && (lhs.hasFields == rhs.hasFields) && (!lhs.hasFields || lhs.fields == rhs.fields)
   fieldCheck = (fieldCheck && (lhs.unknownFields == rhs.unknownFields))
   return fieldCheck
 }
@@ -40,6 +42,7 @@ public extension Services.Organization.Actions.GetOrganization {
     init() {
       extensionRegistry = ExtensionRegistry()
       registerAllExtensions(extensionRegistry)
+      Services.Common.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
       Services.Organization.Containers.ContainersRoot.sharedInstance.registerAllExtensions(extensionRegistry)
     }
     public func registerAllExtensions(registry:ExtensionRegistry) {
@@ -53,6 +56,10 @@ public extension Services.Organization.Actions.GetOrganization {
     public private(set) var hasDomain:Bool = false
     public private(set) var domain:String = ""
 
+    public private(set) var hasInflations:Bool = false
+    public private(set) var inflations:Services.Common.Containers.InflationsV1!
+    public private(set) var hasFields:Bool = false
+    public private(set) var fields:Services.Common.Containers.FieldsV1!
     required public init() {
          super.init()
     }
@@ -65,6 +72,12 @@ public extension Services.Organization.Actions.GetOrganization {
       }
       if hasDomain {
         try output.writeString(2, value:domain)
+      }
+      if hasInflations {
+        try output.writeMessage(3, value:inflations)
+      }
+      if hasFields {
+        try output.writeMessage(4, value:fields)
       }
       try unknownFields.writeToCodedOutputStream(output)
     }
@@ -80,6 +93,16 @@ public extension Services.Organization.Actions.GetOrganization {
       }
       if hasDomain {
         serialize_size += domain.computeStringSize(2)
+      }
+      if hasInflations {
+          if let varSizeinflations = inflations?.computeMessageSize(3) {
+              serialize_size += varSizeinflations
+          }
+      }
+      if hasFields {
+          if let varSizefields = fields?.computeMessageSize(4) {
+              serialize_size += varSizefields
+          }
       }
       serialize_size += unknownFields.serializedSize()
       memoizedSerializedSize = serialize_size
@@ -138,6 +161,16 @@ public extension Services.Organization.Actions.GetOrganization {
       if hasDomain {
         output += "\(indent) domain: \(domain) \n"
       }
+      if hasInflations {
+        output += "\(indent) inflations {\n"
+        try inflations?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
+      if hasFields {
+        output += "\(indent) fields {\n"
+        try fields?.writeDescriptionTo(&output, indent:"\(indent)  ")
+        output += "\(indent) }\n"
+      }
       unknownFields.writeDescriptionTo(&output, indent:indent)
     }
     override public var hashValue:Int {
@@ -148,6 +181,16 @@ public extension Services.Organization.Actions.GetOrganization {
             }
             if hasDomain {
                hashCode = (hashCode &* 31) &+ domain.hashValue
+            }
+            if hasInflations {
+                if let hashValueinflations = inflations?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValueinflations
+                }
+            }
+            if hasFields {
+                if let hashValuefields = fields?.hashValue {
+                    hashCode = (hashCode &* 31) &+ hashValuefields
+                }
             }
             hashCode = (hashCode &* 31) &+  unknownFields.hashValue
             return hashCode
@@ -223,6 +266,108 @@ public extension Services.Organization.Actions.GetOrganization {
            builderResult.domain = ""
            return self
       }
+      public var hasInflations:Bool {
+           get {
+               return builderResult.hasInflations
+           }
+      }
+      public var inflations:Services.Common.Containers.InflationsV1! {
+           get {
+               if inflationsBuilder_ != nil {
+                  builderResult.inflations = inflationsBuilder_.getMessage()
+               }
+               return builderResult.inflations
+           }
+           set (value) {
+               builderResult.hasInflations = true
+               builderResult.inflations = value
+           }
+      }
+      private var inflationsBuilder_:Services.Common.Containers.InflationsV1.Builder! {
+           didSet {
+              builderResult.hasInflations = true
+           }
+      }
+      public func getInflationsBuilder() -> Services.Common.Containers.InflationsV1.Builder {
+        if inflationsBuilder_ == nil {
+           inflationsBuilder_ = Services.Common.Containers.InflationsV1.Builder()
+           builderResult.inflations = inflationsBuilder_.getMessage()
+           if inflations != nil {
+              try! inflationsBuilder_.mergeFrom(inflations)
+           }
+        }
+        return inflationsBuilder_
+      }
+      public func setInflations(value:Services.Common.Containers.InflationsV1!) -> Services.Organization.Actions.GetOrganization.RequestV1.Builder {
+        self.inflations = value
+        return self
+      }
+      public func mergeInflations(value:Services.Common.Containers.InflationsV1) throws -> Services.Organization.Actions.GetOrganization.RequestV1.Builder {
+        if builderResult.hasInflations {
+          builderResult.inflations = try Services.Common.Containers.InflationsV1.builderWithPrototype(builderResult.inflations).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.inflations = value
+        }
+        builderResult.hasInflations = true
+        return self
+      }
+      public func clearInflations() -> Services.Organization.Actions.GetOrganization.RequestV1.Builder {
+        inflationsBuilder_ = nil
+        builderResult.hasInflations = false
+        builderResult.inflations = nil
+        return self
+      }
+      public var hasFields:Bool {
+           get {
+               return builderResult.hasFields
+           }
+      }
+      public var fields:Services.Common.Containers.FieldsV1! {
+           get {
+               if fieldsBuilder_ != nil {
+                  builderResult.fields = fieldsBuilder_.getMessage()
+               }
+               return builderResult.fields
+           }
+           set (value) {
+               builderResult.hasFields = true
+               builderResult.fields = value
+           }
+      }
+      private var fieldsBuilder_:Services.Common.Containers.FieldsV1.Builder! {
+           didSet {
+              builderResult.hasFields = true
+           }
+      }
+      public func getFieldsBuilder() -> Services.Common.Containers.FieldsV1.Builder {
+        if fieldsBuilder_ == nil {
+           fieldsBuilder_ = Services.Common.Containers.FieldsV1.Builder()
+           builderResult.fields = fieldsBuilder_.getMessage()
+           if fields != nil {
+              try! fieldsBuilder_.mergeFrom(fields)
+           }
+        }
+        return fieldsBuilder_
+      }
+      public func setFields(value:Services.Common.Containers.FieldsV1!) -> Services.Organization.Actions.GetOrganization.RequestV1.Builder {
+        self.fields = value
+        return self
+      }
+      public func mergeFields(value:Services.Common.Containers.FieldsV1) throws -> Services.Organization.Actions.GetOrganization.RequestV1.Builder {
+        if builderResult.hasFields {
+          builderResult.fields = try Services.Common.Containers.FieldsV1.builderWithPrototype(builderResult.fields).mergeFrom(value).buildPartial()
+        } else {
+          builderResult.fields = value
+        }
+        builderResult.hasFields = true
+        return self
+      }
+      public func clearFields() -> Services.Organization.Actions.GetOrganization.RequestV1.Builder {
+        fieldsBuilder_ = nil
+        builderResult.hasFields = false
+        builderResult.fields = nil
+        return self
+      }
       override public var internalGetResult:GeneratedMessage {
            get {
               return builderResult
@@ -253,6 +398,12 @@ public extension Services.Organization.Actions.GetOrganization {
         if other.hasDomain {
              domain = other.domain
         }
+        if (other.hasInflations) {
+            try mergeInflations(other.inflations)
+        }
+        if (other.hasFields) {
+            try mergeFields(other.fields)
+        }
         try mergeUnknownFields(other.unknownFields)
         return self
       }
@@ -273,6 +424,22 @@ public extension Services.Organization.Actions.GetOrganization {
 
           case 18 :
             domain = try input.readString()
+
+          case 26 :
+            let subBuilder:Services.Common.Containers.InflationsV1.Builder = Services.Common.Containers.InflationsV1.Builder()
+            if hasInflations {
+              try subBuilder.mergeFrom(inflations)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            inflations = subBuilder.buildPartial()
+
+          case 34 :
+            let subBuilder:Services.Common.Containers.FieldsV1.Builder = Services.Common.Containers.FieldsV1.Builder()
+            if hasFields {
+              try subBuilder.mergeFrom(fields)
+            }
+            try input.readMessage(subBuilder, extensionRegistry:extensionRegistry)
+            fields = subBuilder.buildPartial()
 
           default:
             if (!(try parseUnknownField(input,unknownFields:unknownFieldsBuilder, extensionRegistry:extensionRegistry, tag:tag))) {

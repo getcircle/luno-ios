@@ -40,6 +40,8 @@ message OrganizationV1 {
     optional uint32 team_count = 7;
     optional uint32 location_count = 8;
     optional uint32 post_count = 9;
+    optional services.common.containers.InflationsV1 inflations = 10;
+    optional services.common.containers.FieldsV1 fields = 11;
 }
 
 message TeamV1 {
