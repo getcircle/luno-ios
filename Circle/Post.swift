@@ -27,6 +27,10 @@ extension Services.Post.Actions {
     static func getPost(postId: String, completionHandler: GetPostCompletionHandler?) {
         let requestBuilder = Services.Post.Actions.GetPost.RequestV1.Builder()
         requestBuilder.id = postId
+        
+        let fieldsBuilder = Services.Common.Containers.FieldsV1.Builder()
+        fieldsBuilder.exclude = ["content"]
+        requestBuilder.fields = try! fieldsBuilder.build()
         getPost(requestBuilder, completionHandler: completionHandler)
     }
 

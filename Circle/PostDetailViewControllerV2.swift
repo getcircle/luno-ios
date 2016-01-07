@@ -123,13 +123,7 @@ WKNavigationDelegate {
             return
         }
         
-        // Content
-        if let template = self.getTemplateString() {
-            let content = template
-                .stringByReplacingOccurrencesOfString("{POST_TITLE}", withString: post.title)
-                .stringByReplacingOccurrencesOfString("{POST_CONTENT}", withString: post.content)
-            webView.loadHTMLString(content, baseURL: nil)
-        }
+        webView.loadHTMLString(post.htmlDocument, baseURL: nil)
         
         // Title & Timestamp
         titleLabel.text = post.title
