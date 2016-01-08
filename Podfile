@@ -5,8 +5,8 @@ workspace 'Luno'
 xcodeproj 'Luno.xcodeproj'
 use_frameworks!
 
-pod 'AFNetworking', '~> 3.0'
-pod 'Alamofire', '~> 3.1'
+pod 'AFNetworking', '~> 2.6'
+pod 'Alamofire', '~> 2.0'
 pod 'libPhoneNumber-iOS', '~> 0.8'
 pod 'Locksmith', '~> 2.0'
 pod 'MBProgressHUD', '~> 0.9'
