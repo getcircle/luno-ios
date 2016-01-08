@@ -1,6 +1,7 @@
 syntax = "proto3";
 package services.post.actions.get_posts;
 
+import "protobufs/services/common/containers.proto";
 import "protobufs/services/post/containers.proto";
 
 message RequestV1 {
@@ -8,6 +9,8 @@ message RequestV1 {
     services.post.containers.PostStateV1 state = 2;
     bool all_states = 3;
     repeated string ids = 4;
+    services.common.containers.InflationsV1 inflations = 5;
+    services.common.containers.FieldsV1 fields = 6;
 }
 
 message ResponseV1 {
