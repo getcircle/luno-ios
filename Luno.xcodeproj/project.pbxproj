@@ -224,7 +224,6 @@
 		8FAA14BD1B093D190098CC45 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FAA14BB1B093D190098CC45 /* SplashViewController.xib */; };
 		8FB1160B1C30A5D900161C17 /* PostDetailViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB116091C30A5D900161C17 /* PostDetailViewControllerV2.swift */; };
 		8FB1160C1C30A5D900161C17 /* PostDetailViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB1160A1C30A5D900161C17 /* PostDetailViewControllerV2.xib */; };
-		8FB116111C30FECD00161C17 /* PostTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 8FB116101C30FECD00161C17 /* PostTemplate.html */; };
 		8FB35CD91B7D56CE00A3FE07 /* RecentSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */; };
 		8FC7BB3B1A58A6E2005BDDDB /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */; };
 		8FC7BB431A58B15B005BDDDB /* CardCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */; };
@@ -566,7 +565,6 @@
 		8FAA14BB1B093D190098CC45 /* SplashViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		8FB116091C30A5D900161C17 /* PostDetailViewControllerV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewControllerV2.swift; sourceTree = "<group>"; };
 		8FB1160A1C30A5D900161C17 /* PostDetailViewControllerV2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostDetailViewControllerV2.xib; sourceTree = "<group>"; };
-		8FB116101C30FECD00161C17 /* PostTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PostTemplate.html; sourceTree = "<group>"; };
 		8FB35CD81B7D56CE00A3FE07 /* RecentSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearchResult.swift; sourceTree = "<group>"; };
 		8FC7BB3A1A58A6E2005BDDDB /* CardDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
 		8FC7BB421A58B15B005BDDDB /* CardCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -735,7 +733,6 @@
 				8F834F9F1A9FFC2F007B7095 /* AppStrings.swift */,
 				8F22CB7A1A268C040026376E /* Circle-Bridging-Header.h */,
 				8F0004941A2419730096477A /* Info.plist */,
-				8FB116101C30FECD00161C17 /* PostTemplate.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1374,7 +1371,6 @@
 				8F0ADD321AC5344E00A44B68 /* Loader_00022@2x.png in Resources */,
 				8F0ADD2D1AC5344E00A44B68 /* Loader_00017@2x.png in Resources */,
 				8F0ADD3C1AC5344E00A44B68 /* Loader_00032@2x.png in Resources */,
-				8FB116111C30FECD00161C17 /* PostTemplate.html in Resources */,
 				47D30D2C1BF18E7A0082B995 /* PostContentCollectionViewCell.xib in Resources */,
 				8F823E4D1A729E1B0006264B /* TeamsOverviewViewController.xib in Resources */,
 				8F0ADD461AC5344E00A44B68 /* Loader_00042@2x.png in Resources */,
