@@ -61,6 +61,7 @@ WKNavigationDelegate {
     private func configureView() {
         view.backgroundColor = UIColor.appViewBackgroundColor()
         navigationItem.title = AppStrings.KnowledgePostTitle
+        navigationController?.navigationBar.topItem?.title = ""
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)        
         activityIndicatorView = view.addActivityIndicator()
         if let activityIndicatorView = activityIndicatorView {
