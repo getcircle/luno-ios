@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthenticationViewController" customModule="luno">
+            <connections>
+                <outlet property="instructionLabel" destination="xL8-RD-N8m" id="lat-Bz-cu1"/>
+                <outlet property="passwordTextField" destination="lwh-CK-sRs" id="j1o-cL-fNs"/>
+                <outlet property="signInButton" destination="cBC-Rj-jaa" id="y2t-xH-ZyA"/>
+                <outlet property="signInButtonTopConstraint" destination="Gzc-1v-4ht" id="YjR-9v-1gn"/>
+                <outlet property="titleLabel" destination="nw4-1F-dm6" id="Kfs-ey-4gn"/>
+                <outlet property="view" destination="ba3-xx-xRk" id="XSY-D5-AkP"/>
+                <outlet property="workEmailTextField" destination="8WP-wI-uMy" id="syZ-gC-tjA"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ba3-xx-xRk">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to start connecting with your co-workers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xL8-RD-N8m" userLabel="InstructionLabel">
+                    <rect key="frame" x="15" y="79" width="570" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email@company.com" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8WP-wI-uMy" userLabel="WorkEmailField">
+                    <rect key="frame" x="15" y="125" width="570" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="V8E-1c-zfa"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="ust-u8-kHs"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-CK-sRs" userLabel="PasswordField">
+                    <rect key="frame" x="15" y="170" width="570" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="zoZ-7B-iIs"/>
+                    </constraints>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="1yD-rI-9uD"/>
+                    </connections>
+                </textField>
+                <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBC-Rj-jaa" userLabel="SignInButton">
+                    <rect key="frame" x="15" y="180" width="570" height="50"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.0" green="0.78823529410000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Ux6-yw-qpy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signInButtonTapped:" destination="-1" eventType="touchUpInside" id="8k4-hL-vlv"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nw4-1F-dm6">
+                    <rect key="frame" x="20" y="41" width="560" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" red="0.28235294117647058" green="0.28627450980392155" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="centerX" secondItem="8WP-wI-uMy" secondAttribute="centerX" id="3pq-0p-9Oi"/>
+                <constraint firstItem="xL8-RD-N8m" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="671-8K-ZXn"/>
+                <constraint firstAttribute="trailing" secondItem="nw4-1F-dm6" secondAttribute="trailing" constant="20" symbolic="YES" id="FQM-cg-HHH"/>
+                <constraint firstAttribute="centerX" secondItem="8WP-wI-uMy" secondAttribute="centerX" id="Frs-eO-r8B"/>
+                <constraint firstItem="cBC-Rj-jaa" firstAttribute="top" secondItem="8WP-wI-uMy" secondAttribute="bottom" constant="25" id="Gzc-1v-4ht"/>
+                <constraint firstAttribute="trailing" secondItem="8WP-wI-uMy" secondAttribute="trailing" constant="15" id="JDk-hA-FZE"/>
+                <constraint firstItem="nw4-1F-dm6" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="20" symbolic="YES" id="JPK-uF-Bwk"/>
+                <constraint firstItem="8WP-wI-uMy" firstAttribute="width" secondItem="xL8-RD-N8m" secondAttribute="width" multiplier="0.6" id="Qc5-rk-p75">
+                    <variation key="heightClass=regular-widthClass=regular" constant="1"/>
+                </constraint>
+                <constraint firstItem="8WP-wI-uMy" firstAttribute="width" secondItem="cBC-Rj-jaa" secondAttribute="width" id="T4z-gq-nJI"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="top" secondItem="8WP-wI-uMy" secondAttribute="bottom" constant="15" id="VFJ-nN-pvy"/>
+                <constraint firstItem="nw4-1F-dm6" firstAttribute="top" secondItem="ba3-xx-xRk" secondAttribute="top" constant="41" id="VeE-jN-del"/>
+                <constraint firstItem="xL8-RD-N8m" firstAttribute="top" secondItem="ba3-xx-xRk" secondAttribute="top" constant="79" id="Xtb-F8-OsT"/>
+                <constraint firstItem="8WP-wI-uMy" firstAttribute="leading" secondItem="ba3-xx-xRk" secondAttribute="leading" constant="15" id="bDg-5b-ESJ"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="leading" secondItem="8WP-wI-uMy" secondAttribute="leading" id="c5b-BF-Ay3"/>
+                <constraint firstItem="8WP-wI-uMy" firstAttribute="top" secondItem="xL8-RD-N8m" secondAttribute="bottom" constant="25" id="m4y-0V-1PS"/>
+                <constraint firstAttribute="trailing" secondItem="xL8-RD-N8m" secondAttribute="trailing" constant="15" id="qoo-ux-OkR"/>
+                <constraint firstAttribute="centerX" secondItem="cBC-Rj-jaa" secondAttribute="centerX" id="xwU-AC-5EK"/>
+                <constraint firstItem="lwh-CK-sRs" firstAttribute="trailing" secondItem="8WP-wI-uMy" secondAttribute="trailing" id="xxM-bq-ht2"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Frs-eO-r8B"/>
+                    <exclude reference="Qc5-rk-p75"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="Frs-eO-r8B"/>
+                    <exclude reference="JDk-hA-FZE"/>
+                    <include reference="Qc5-rk-p75"/>
+                    <exclude reference="bDg-5b-ESJ"/>
+                </mask>
+            </variation>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="YoK-1K-HFw" appends="YES" id="E74-4a-osp"/>
+            </connections>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+        <tapGestureRecognizer id="YoK-1K-HFw"/>
+    </objects>
+</document>

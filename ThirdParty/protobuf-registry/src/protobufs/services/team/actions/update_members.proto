@@ -1,0 +1,11 @@
+syntax = "proto3";
+package services.team.actions.update_members;
+
+import "protobufs/services/team/containers.proto";
+
+message RequestV1 {
+    string team_id = 1;
+    repeated services.team.containers.TeamMemberV1 members = 2;
+}
+
+message ResponseV1 {}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package services.user.actions.logout;
+
+import "protobufs/services/user/containers/token.proto";
+
+message RequestV1 {
+    services.user.containers.token.ClientTypeV1 client_type = 1;
+    bool revoke_all = 2;
+}
+
+message ResponseV1 {}

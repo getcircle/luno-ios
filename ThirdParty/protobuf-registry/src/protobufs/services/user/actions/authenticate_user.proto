@@ -1,0 +1,30 @@
+syntax = "proto3";
+package services.user.actions.authenticate_user;
+
+import "protobufs/services/user/containers.proto";
+import "protobufs/services/user/containers/token.proto";
+
+message RequestV1 {
+
+    enum AuthBackendV1 {
+        INTERNAL = 0;
+        GOOGLE = 1;
+        OKTA = 2;
+    }
+
+    message CredentialsV1 {
+        string key = 1;
+        string secret = 2;
+    }
+
+    AuthBackendV1 backend = 1;
+    CredentialsV1 credentials = 2;
+    services.user.containers.token.ClientTypeV1 client_type = 3;
+    string organization_domain = 4;
+}
+
+message ResponseV1 {
+    services.user.containers.UserV1 user = 1;
+    string token = 2;
+    bool new_user = 3;
+}

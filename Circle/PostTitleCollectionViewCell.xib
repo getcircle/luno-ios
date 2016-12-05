@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostTitleCollectionViewCell" customModule="luno" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-9i-Ta0">
+                    <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="24"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Updated 11 months ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g94-jA-Vmg">
+                    <rect key="frame" x="10" y="45" width="300" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="CZq-tm-Mc6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fgI-9i-Ta0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="D5z-A8-Ul6"/>
+                <constraint firstItem="g94-jA-Vmg" firstAttribute="top" secondItem="fgI-9i-Ta0" secondAttribute="bottom" constant="2" id="IPJ-be-NIC"/>
+                <constraint firstItem="g94-jA-Vmg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="LFx-Zv-Pau"/>
+                <constraint firstAttribute="trailing" secondItem="fgI-9i-Ta0" secondAttribute="trailing" constant="10" id="SP7-vR-Tpd"/>
+                <constraint firstItem="fgI-9i-Ta0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lHf-tp-yGI"/>
+                <constraint firstAttribute="trailing" secondItem="g94-jA-Vmg" secondAttribute="trailing" constant="10" id="qpN-If-9aE"/>
+                <constraint firstAttribute="bottom" secondItem="g94-jA-Vmg" secondAttribute="bottom" id="toC-ef-adC"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="timestampLabel" destination="g94-jA-Vmg" id="dP2-HP-1cx"/>
+                <outlet property="titleLabel" destination="fgI-9i-Ta0" id="sYS-md-LHv"/>
+                <outlet property="titleLabelBottomSpaceConstraint" destination="IPJ-be-NIC" id="596-fC-ex3"/>
+            </connections>
+        </view>
+    </objects>
+</document>

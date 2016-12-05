@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.notification.actions.update_preference;
+
+import "protobufs/services/notification/containers.proto";
+
+message RequestV1 {
+    services.notification.containers.NotificationPreferenceV1 preference = 1;
+}
+
+message ResponseV1 {
+    services.notification.containers.NotificationPreferenceV1 preference = 1;
+}

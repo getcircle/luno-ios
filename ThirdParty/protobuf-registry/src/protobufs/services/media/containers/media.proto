@@ -1,0 +1,8 @@
+syntax = "proto3";
+package services.media.containers.media;
+
+enum MediaTypeV1 {
+    PROFILE = 0;
+    TEAM = 1;
+    LOCATION = 2;
+}

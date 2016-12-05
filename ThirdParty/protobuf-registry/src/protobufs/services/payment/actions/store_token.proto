@@ -1,0 +1,9 @@
+syntax = "proto3";
+package services.payment.actions.store_token;
+
+message RequestV1 {
+    string token = 1;
+    string email = 2;
+}
+
+message ResponseV1 {}

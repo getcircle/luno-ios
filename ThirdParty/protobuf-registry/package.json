@@ -1,0 +1,25 @@
+{
+  "name": "protobufs",
+  "version": "4.0.1",
+  "description": "Circle Javascript Protobufs",
+  "main": "js/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getcircle/protobuf-registry.git"
+  },
+  "author": "Michael Hahn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getcircle/protobuf-registry/issues"
+  },
+  "homepage": "https://github.com/getcircle/protobuf-registry",
+  "dependencies": {
+    "protobufjs": "~5.0.0"
+  }
+}

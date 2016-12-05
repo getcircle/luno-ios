@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TextInputViewController" customModule="luno" customModuleProvider="target">
+            <connections>
+                <outlet property="characterLimitLabel" destination="0vY-qU-4zk" id="IBv-6p-Vsi"/>
+                <outlet property="controlsContainer" destination="Yp0-Eg-r2B" id="2PB-e3-sMq"/>
+                <outlet property="controlsContainerBottomConstraint" destination="Fnq-KI-2gm" id="438-R0-799"/>
+                <outlet property="placeholderLabel" destination="zyX-as-QsV" id="hcr-ta-FrK"/>
+                <outlet property="textView" destination="2W3-xn-7Nn" id="7h8-0J-cpn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yp0-Eg-r2B" userLabel="ControlsContainer">
+                    <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you working on?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyX-as-QsV" userLabel="PlaceholderLabel">
+                            <rect key="frame" x="21" y="18" width="558" height="24"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                            <color key="textColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is a test" translatesAutoresizingMaskIntoConstraints="NO" id="2W3-xn-7Nn">
+                            <rect key="frame" x="15" y="10" width="570" height="501"/>
+                            <animations/>
+                            <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="7A0-jC-2gS"/>
+                            </connections>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="144" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vY-qU-4zk" userLabel="CharacterLimitLabel">
+                            <rect key="frame" x="564" y="505" width="26" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                            <color key="textColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="2W3-xn-7Nn" secondAttribute="bottom" constant="25" id="046-fd-vBt"/>
+                        <constraint firstItem="zyX-as-QsV" firstAttribute="top" secondItem="Yp0-Eg-r2B" secondAttribute="top" constant="18" id="0oj-M2-BQY"/>
+                        <constraint firstItem="2W3-xn-7Nn" firstAttribute="top" secondItem="Yp0-Eg-r2B" secondAttribute="top" constant="10" id="3VU-f0-5lR"/>
+                        <constraint firstAttribute="trailing" secondItem="0vY-qU-4zk" secondAttribute="trailing" constant="10" id="GQ1-yA-g4e"/>
+                        <constraint firstAttribute="trailing" secondItem="zyX-as-QsV" secondAttribute="trailing" constant="21" id="Mz4-vf-cHk"/>
+                        <constraint firstAttribute="bottom" secondItem="0vY-qU-4zk" secondAttribute="bottom" constant="10" id="flL-NM-2pm"/>
+                        <constraint firstItem="2W3-xn-7Nn" firstAttribute="leading" secondItem="Yp0-Eg-r2B" secondAttribute="leading" constant="15" id="fpD-Nc-bzh"/>
+                        <constraint firstAttribute="trailing" secondItem="2W3-xn-7Nn" secondAttribute="trailing" constant="15" id="jcY-Ol-Eoa"/>
+                        <constraint firstItem="zyX-as-QsV" firstAttribute="leading" secondItem="Yp0-Eg-r2B" secondAttribute="leading" constant="21" id="v4x-o7-Ioz"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Yp0-Eg-r2B" secondAttribute="bottom" id="Fnq-KI-2gm"/>
+                <constraint firstItem="Yp0-Eg-r2B" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Xx7-8C-8pC"/>
+                <constraint firstItem="Yp0-Eg-r2B" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bux-HX-PhM"/>
+                <constraint firstAttribute="trailing" secondItem="Yp0-Eg-r2B" secondAttribute="trailing" id="fYW-aG-N8G"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="-490" y="-68"/>
+        </view>
+    </objects>
+</document>

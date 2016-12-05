@@ -1,0 +1,30 @@
+syntax = "proto3";
+package services.history.containers;
+
+enum ActionTypeV1 {
+    UPDATE_DESCRIPTION = 0;
+    CREATE_INSTANCE = 1;
+    UPDATE_TEAM_MEMBER_ROLE = 2;
+}
+
+enum MethodTypeV1 {
+    UPDATE = 0;
+    DELETE = 1;
+    CREATE = 2;
+}
+
+message ActionV1 {
+    string id = 1;
+    string column_name = 2;
+    string data_type = 3;
+    string old_value = 4;
+    string new_value = 5;
+    ActionTypeV1 action_type = 6;
+    MethodTypeV1 method_type = 7;
+    string organization_id = 8;
+    string correlation_id = 9;
+    string by_profile_id = 10;
+    string table_name = 11;
+    string primary_key_name = 12;
+    string primary_key_value = 13;
+}

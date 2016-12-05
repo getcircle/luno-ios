@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.notification.actions.send_notification;
+
+import "protobufs/services/notification/containers.proto";
+
+message RequestV1 {
+    string to_profile_id = 1;
+    services.notification.containers.NotificationV1 notification = 2;
+    repeated string to_profile_ids = 3;
+}
+
+message ResponseV1 {}

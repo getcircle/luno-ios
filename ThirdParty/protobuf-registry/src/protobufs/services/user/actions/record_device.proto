@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.user.actions.record_device;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    services.user.containers.DeviceV1 device = 1;
+}
+
+message ResponseV1 {
+    services.user.containers.DeviceV1 device = 1;
+}

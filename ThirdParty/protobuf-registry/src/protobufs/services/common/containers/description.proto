@@ -1,0 +1,11 @@
+syntax = "proto3";
+package services.common.containers.description;
+
+import "protobufs/services/profile/containers.proto";
+
+message DescriptionV1 {
+    string value = 1;
+    string by_profile_id = 2;
+    string changed = 3;
+    services.profile.containers.ProfileV1 by_profile = 4;
+}

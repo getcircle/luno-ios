@@ -1,0 +1,15 @@
+syntax = "proto3";
+package services.profile.actions.profile_exists;
+
+message RequestV1 {
+    string domain = 1;
+    string email = 2;
+    string authentication_identifier = 3;
+}
+
+message ResponseV1 {
+    bool exists = 1;
+    string user_id = 2;
+    string profile_id = 3;
+    string organization_id = 4;
+}

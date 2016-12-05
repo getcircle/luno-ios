@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ContactCollectionViewCell" customModule="luno" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_email" translatesAutoresizingMaskIntoConstraints="NO" id="gV9-AB-Nqx">
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="eBF-gL-0iP"/>
+                            <constraint firstAttribute="width" secondItem="gV9-AB-Nqx" secondAttribute="height" multiplier="1:1" id="kvl-Hs-Jbu"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="ravirani@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aom-or-946">
+                        <rect key="frame" x="72" y="25" width="248" height="20"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="aom-or-946" firstAttribute="leading" secondItem="gV9-AB-Nqx" secondAttribute="trailing" constant="12" id="3VN-8J-Kde"/>
+                <constraint firstAttribute="centerY" secondItem="aom-or-946" secondAttribute="centerY" id="CYk-oO-Par"/>
+                <constraint firstItem="gV9-AB-Nqx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="ass-xJ-cbJ"/>
+                <constraint firstAttribute="trailing" secondItem="aom-or-946" secondAttribute="trailing" id="gca-FF-GuX"/>
+                <constraint firstAttribute="centerY" secondItem="gV9-AB-Nqx" secondAttribute="centerY" id="i2u-Lt-OpN"/>
+            </constraints>
+            <size key="customSize" width="349" height="50"/>
+            <connections>
+                <outlet property="contactImageView" destination="gV9-AB-Nqx" id="N8z-Mg-3uY"/>
+                <outlet property="contactMethodValueLabel" destination="aom-or-946" id="NQM-Zf-GLc"/>
+            </connections>
+            <point key="canvasLocation" x="202.5" y="100"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="detail_email" width="50" height="50"/>
+    </resources>
+</document>

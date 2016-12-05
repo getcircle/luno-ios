@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.user.actions.get_identities;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    string user_id = 1;
+}
+
+message ResponseV1 {
+    repeated services.user.containers.IdentityV1 identities = 1;
+}

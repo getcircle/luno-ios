@@ -1,0 +1,15 @@
+syntax = "proto3";
+package services.organization.actions.get_locations;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    string profile_id = 1;
+    services.common.containers.InflationsV1 inflations = 2;
+    repeated string ids = 3;
+}
+
+message ResponseV1 {
+    repeated services.organization.containers.LocationV1 locations = 1;
+}

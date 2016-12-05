@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.organization.actions.update_team;
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    services.organization.containers.TeamV1 team = 1;
+}
+
+message ResponseV1 {
+    services.organization.containers.TeamV1 team = 1;
+}

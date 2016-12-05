@@ -1,0 +1,10 @@
+syntax = "proto3";
+package services.history.actions.record_action;
+
+import "protobufs/services/history/containers.proto";
+
+message RequestV1 {
+    services.history.containers.ActionV1 action = 1;
+}
+
+message ResponseV1 {}

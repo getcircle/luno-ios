@@ -1,0 +1,14 @@
+syntax = "proto3";
+package services.user.actions.create_user;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    string password = 1;
+    string email = 2;
+    string organization_id = 3;
+}
+
+message ResponseV1 {
+    services.user.containers.UserV1 user = 1;
+}

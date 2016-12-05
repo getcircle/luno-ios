@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.organization.actions.get_sso;
+
+import "protobufs/services/organization/containers/sso.proto";
+
+message RequestV1 {
+    string organization_domain = 1;
+}
+
+message ResponseV1 {
+    services.organization.containers.sso.SSOV1 sso = 1;
+}

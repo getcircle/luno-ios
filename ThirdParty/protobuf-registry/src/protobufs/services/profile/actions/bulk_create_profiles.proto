@@ -1,0 +1,13 @@
+syntax = "proto3";
+package services.profile.actions.bulk_create_profiles;
+
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    repeated services.profile.containers.ProfileV1 profiles = 1;
+    bool should_update = 2;
+}
+
+message ResponseV1 {
+    repeated services.profile.containers.ProfileV1 profiles = 1;
+}

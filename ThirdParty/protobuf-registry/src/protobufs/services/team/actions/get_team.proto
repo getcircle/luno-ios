@@ -1,0 +1,16 @@
+syntax = "proto3";
+package services.team.actions.get_team;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/team/containers.proto";
+
+message RequestV1 {
+    string team_id = 1;
+    services.common.containers.InflationsV1 inflations = 2;
+    services.common.containers.FieldsV1 fields = 3;
+}
+
+message ResponseV1 {
+    services.team.containers.TeamV1 team = 1;
+    bool is_member = 2;
+}

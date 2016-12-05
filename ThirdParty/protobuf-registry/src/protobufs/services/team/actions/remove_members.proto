@@ -1,0 +1,9 @@
+syntax = "proto3";
+package services.team.actions.remove_members;
+
+message RequestV1 {
+    string team_id = 1;
+    repeated string profile_ids = 2;
+}
+
+message ResponseV1 {}

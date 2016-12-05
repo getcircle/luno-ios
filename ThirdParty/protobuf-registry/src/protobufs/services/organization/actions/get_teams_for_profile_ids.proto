@@ -1,0 +1,20 @@
+syntax = "proto3";
+package services.organization.actions.get_teams_for_profile_ids;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    repeated string profile_ids = 1;
+    services.common.containers.FieldsV1 fields = 2;
+}
+
+message ResponseV1 {
+
+    message ProfileTeamV1 {
+        string profile_id = 1;
+        services.organization.containers.TeamV1 team = 2;
+    }
+
+    repeated ProfileTeamV1 profiles_teams = 1;
+}

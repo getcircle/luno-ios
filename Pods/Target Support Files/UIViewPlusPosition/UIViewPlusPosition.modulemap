@@ -1,0 +1,6 @@
+framework module UIViewPlusPosition {
+  umbrella header "UIViewPlusPosition-umbrella.h"
+
+  export *
+  module * { export * }
+}

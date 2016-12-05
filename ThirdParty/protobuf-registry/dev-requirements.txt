@@ -1,0 +1,4 @@
+nose>=1.0
+coverage>=1.0
+mock==1.0.1
+django>=1.7.1

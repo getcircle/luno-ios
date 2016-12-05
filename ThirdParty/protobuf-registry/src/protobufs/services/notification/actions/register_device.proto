@@ -1,0 +1,13 @@
+syntax = "proto3";
+package services.notification.actions.register_device;
+
+import "protobufs/services/notification/containers.proto";
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    services.user.containers.DeviceV1 device = 1;
+}
+
+message ResponseV1 {
+    services.notification.containers.NotificationTokenV1 notification_token = 1;
+}

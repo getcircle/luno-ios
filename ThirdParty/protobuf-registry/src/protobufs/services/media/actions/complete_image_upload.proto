@@ -1,0 +1,15 @@
+syntax = "proto3";
+package services.media.actions.complete_image_upload;
+
+import "protobufs/services/media/containers/media.proto";
+
+message RequestV1 {
+    services.media.containers.media.MediaTypeV1 media_type = 1;
+    string media_key = 2;
+    string upload_key = 3;
+    string upload_id = 4;
+}
+
+message ResponseV1 {
+    string media_url = 1;
+}

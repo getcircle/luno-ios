@@ -1,0 +1,14 @@
+syntax = "proto3";
+package services.organization.actions.add_direct_reports;
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    string profile_id = 1;
+    repeated string direct_reports_profile_ids = 2;
+}
+
+message ResponseV1 {
+    services.organization.containers.TeamV1 team = 1;
+    bool created = 2;
+}

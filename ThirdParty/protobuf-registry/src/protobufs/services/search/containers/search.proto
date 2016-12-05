@@ -1,0 +1,17 @@
+syntax = "proto3";
+package services.search.containers.search;
+
+enum CategoryV1 {
+    PROFILES = 0;
+    TEAMS = 1;
+    LOCATIONS = 2;
+    SKILLS = 3;
+    INTERESTS = 4;
+    GROUPS = 5;
+    POSTS = 6;
+}
+
+enum AttributeV1 {
+    LOCATION_ID = 0;
+    TEAM_ID = 1;
+}

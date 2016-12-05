@@ -1,0 +1,13 @@
+syntax = "proto3";
+package services.user.actions.bulk_create_users;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    repeated services.user.containers.UserV1 users = 1;
+    string organization_id = 2;
+}
+
+message ResponseV1 {
+    repeated services.user.containers.UserV1 users = 1;
+}

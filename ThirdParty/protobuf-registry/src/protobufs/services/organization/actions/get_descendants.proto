@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.organization.actions.get_descendants;
+
+message RequestV1 {
+    string profile_id = 1;
+    string team_id = 2;
+    bool direct = 3;
+}
+
+message ResponseV1 {
+    repeated string profile_ids = 1;
+}

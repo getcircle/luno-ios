@@ -1,0 +1,71 @@
+syntax = "proto3";
+package services.user.containers;
+
+message DeviceV1 {
+
+    enum ProviderV1 {
+        APPLE = 0;
+        GOOGLE = 1;
+    }
+
+    string id = 1;
+    string notification_token = 2;
+    string platform = 3;
+    string os_version = 4;
+    string app_version = 5;
+    string device_uuid = 6;
+    string user_id = 7;
+    string language_preference = 8;
+    ProviderV1 provider = 9;
+    string organization_id = 10;
+}
+
+message IdentityV1 {
+
+    enum ProviderV1 {
+        INTERNAL = 0;
+        LINKEDIN = 1;
+        GOOGLE = 2;
+        OKTA = 3;
+    }
+
+    string id = 1;
+    ProviderV1 provider = 2;
+    string full_name = 3;
+    string email = 4;
+    string access_token = 5;
+    string expires_at = 6;
+    string provider_uid = 7;
+    string user_id = 8;
+    string refresh_token = 9;
+    string organization_id = 10;
+}
+
+message OAuth2DetailsV1 {
+    string code = 1;
+    string state = 2;
+}
+
+message UserV1 {
+    string id = 1;
+    string primary_email = 2;
+    bool is_admin = 3;
+    bool is_active = 4;
+    string password = 5;
+    string organization_id = 6;
+}
+
+message SAMLDetailsV1 {
+    string saml_response = 1;
+    string relay_state = 2;
+    string domain = 3;
+}
+
+message SAMLCredentialsV1 {
+    string state = 1;
+}
+
+message GoogleCredentialsV1 {
+    string code = 1;
+    string id_token = 2;
+}

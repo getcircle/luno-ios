@@ -1,0 +1,21 @@
+syntax = "proto3";
+package services.profile.actions.get_extended_profile;
+
+import "protobufs/services/organization/containers.proto";
+import "protobufs/services/profile/containers.proto";
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    string profile_id = 1;
+}
+
+message ResponseV1 {
+    services.profile.containers.ProfileV1 profile = 1;
+    services.profile.containers.ProfileV1 manager = 2;
+    services.organization.containers.TeamV1 team = 3;
+    repeated services.user.containers.IdentityV1 identities = 4;
+    repeated services.profile.containers.ProfileV1 direct_reports = 5;
+    repeated services.organization.containers.LocationV1 locations = 6;
+    services.organization.containers.TeamV1 manages_team = 7;
+    repeated services.profile.containers.ProfileV1 peers = 8;
+}

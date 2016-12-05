@@ -1,0 +1,20 @@
+syntax = "proto3";
+package services.file.containers;
+
+message UploadInstructionsV1 {
+    string upload_id = 1;
+    string upload_url = 2;
+    string upload_key = 3;
+}
+
+message FileV1 {
+    string id = 1;
+    string by_profile_id = 2;
+    string organization_id = 3;
+    string source_url = 4;
+    string content_type = 5;
+    string created = 6;
+    string name = 7;
+    bytes bytes = 8;
+    uint32 size = 9;
+}

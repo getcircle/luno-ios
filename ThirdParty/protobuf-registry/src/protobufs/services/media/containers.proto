@@ -1,0 +1,8 @@
+syntax = "proto3";
+package services.media.containers;
+
+message UploadInstructionsV1 {
+    string upload_id = 1;
+    string upload_url = 2;
+    string upload_key = 3;
+}

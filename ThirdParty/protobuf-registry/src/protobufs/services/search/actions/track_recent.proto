@@ -1,0 +1,10 @@
+syntax = "proto3";
+package services.search.actions.track_recent;
+
+import "protobufs/services/search/containers.proto";
+
+message RequestV1 {
+    services.search.containers.TrackingDetailsV1 tracking_details = 1;
+}
+
+message ResponseV1 {}

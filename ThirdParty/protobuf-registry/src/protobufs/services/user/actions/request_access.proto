@@ -1,0 +1,17 @@
+syntax = "proto3";
+package services.user.actions.request_access;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+
+    message AnonymousUserV1 {
+        string user_info = 1;
+        string domain = 2;
+        string location = 3;
+    }
+
+    AnonymousUserV1 anonymous_user = 1;
+}
+
+message ResponseV1 {}

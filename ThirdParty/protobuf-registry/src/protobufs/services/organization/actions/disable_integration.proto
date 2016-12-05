@@ -1,0 +1,10 @@
+syntax = "proto3";
+package services.organization.actions.disable_integration;
+
+import "protobufs/services/organization/containers/integration.proto";
+
+message RequestV1 {
+    services.organization.containers.integration.IntegrationTypeV1 integration_type = 1;
+}
+
+message ResponseV1 {}

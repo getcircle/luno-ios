@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.user.actions.get_active_devices;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    string user_id = 1;
+}
+
+message ResponseV1 {
+    repeated services.user.containers.DeviceV1 devices = 1;
+}

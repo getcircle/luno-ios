@@ -1,0 +1,14 @@
+syntax = "proto3";
+package services.profile.actions.get_profile_stats;
+
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    repeated string address_ids = 1;
+    repeated string location_ids = 2;
+    repeated string team_ids = 3;
+}
+
+message ResponseV1 {
+    repeated services.profile.containers.StatV1 stats = 1;
+}

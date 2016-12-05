@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileHeaderCollectionReusableView" id="U6b-Vx-4bR" customClass="ProfileHeaderCollectionReusableView" customModule="luno" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="474" height="258"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="65x-XU-UUc" userLabel="BackgroundImageView" customClass="CircleImageView" customModule="luno" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="474" height="258"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUx-bd-ahe" userLabel="ContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="474" height="258"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kX0-a4-Q8w" userLabel="ProfileImageView" customClass="CircleImageView" customModule="luno" customModuleProvider="target">
+                            <rect key="frame" x="187" y="44" width="100" height="100"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="kX0-a4-Q8w" secondAttribute="height" multiplier="1:1" id="147-lS-seV"/>
+                                <constraint firstAttribute="width" constant="100" id="x17-ec-d5B"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ravi Rani" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="1Tu-Zx-9yR" userLabel="NameLabel">
+                            <rect key="frame" x="186" y="152" width="102" height="33"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="24"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Co-founder &amp; CEO (EStaff)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GGm-ME-NAZ" userLabel="TitleLabel">
+                            <rect key="frame" x="169" y="189" width="137" height="15"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="At RH Labs since January 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG1-Nl-XRF" userLabel="SecondaryInfoLabel">
+                            <rect key="frame" x="153" y="210" width="168" height="17"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="centerX" secondItem="kX0-a4-Q8w" secondAttribute="centerX" id="0Mb-av-Phn"/>
+                        <constraint firstItem="tG1-Nl-XRF" firstAttribute="top" secondItem="GGm-ME-NAZ" secondAttribute="bottom" constant="6" id="3X3-Pj-Lei"/>
+                        <constraint firstAttribute="centerX" secondItem="tG1-Nl-XRF" secondAttribute="centerX" id="4s5-Wj-RLF"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Tu-Zx-9yR" secondAttribute="trailing" constant="15" id="5He-Dz-wX2"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tG1-Nl-XRF" secondAttribute="trailing" constant="10" id="A3a-pG-cI9"/>
+                        <constraint firstAttribute="centerY" secondItem="kX0-a4-Q8w" secondAttribute="centerY" constant="35" id="Cq9-g3-mi2"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GGm-ME-NAZ" secondAttribute="trailing" constant="15" id="L4T-g7-5tl"/>
+                        <constraint firstItem="1Tu-Zx-9yR" firstAttribute="top" secondItem="kX0-a4-Q8w" secondAttribute="bottom" constant="8" id="b8p-d8-vRT"/>
+                        <constraint firstItem="GGm-ME-NAZ" firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="beT-MI-PAr"/>
+                        <constraint firstAttribute="centerX" secondItem="1Tu-Zx-9yR" secondAttribute="centerX" id="dFv-F5-py9"/>
+                        <constraint firstItem="1Tu-Zx-9yR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="15" id="dVp-vy-znz"/>
+                        <constraint firstItem="tG1-Nl-XRF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="10" id="plc-jI-cQ4"/>
+                        <constraint firstItem="GGm-ME-NAZ" firstAttribute="top" secondItem="1Tu-Zx-9yR" secondAttribute="bottom" constant="4" id="smn-TP-dV4"/>
+                        <constraint firstItem="GGm-ME-NAZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUx-bd-ahe" secondAttribute="leading" constant="15" id="zVE-Z1-qvJ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="65x-XU-UUc" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="7FU-uk-nJx"/>
+                <constraint firstAttribute="bottom" secondItem="65x-XU-UUc" secondAttribute="bottom" id="A9H-5y-pLm"/>
+                <constraint firstItem="JUx-bd-ahe" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="OuN-qa-t9V"/>
+                <constraint firstItem="65x-XU-UUc" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="bdw-jq-pCf"/>
+                <constraint firstItem="JUx-bd-ahe" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="bgd-Eq-vy1"/>
+                <constraint firstAttribute="bottom" secondItem="JUx-bd-ahe" secondAttribute="bottom" id="eZP-oN-XrD"/>
+                <constraint firstAttribute="trailing" secondItem="65x-XU-UUc" secondAttribute="trailing" id="iqq-Xz-0nC"/>
+                <constraint firstAttribute="trailing" secondItem="JUx-bd-ahe" secondAttribute="trailing" id="t9s-un-UWP"/>
+            </constraints>
+            <connections>
+                <outlet property="backgroundImageView" destination="65x-XU-UUc" id="N2p-Zs-1AQ"/>
+                <outlet property="containerView" destination="JUx-bd-ahe" id="YQJ-86-Iry"/>
+                <outlet property="nameLabel" destination="1Tu-Zx-9yR" id="dCN-I3-cEP"/>
+                <outlet property="profileImage" destination="kX0-a4-Q8w" id="idA-m8-Iy4"/>
+                <outlet property="profileImageCenterYConstraint" destination="Cq9-g3-mi2" id="1r7-Vb-ruU"/>
+                <outlet property="secondaryInfoLabel" destination="tG1-Nl-XRF" id="VMJ-PH-Uvo"/>
+                <outlet property="titleLabel" destination="GGm-ME-NAZ" id="FRS-1Y-xvS"/>
+            </connections>
+            <point key="canvasLocation" x="-1627" y="-503"/>
+        </collectionReusableView>
+    </objects>
+</document>

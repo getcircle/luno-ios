@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="EducationCollectionViewCell" customModule="luno" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="University of California, Berkeley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hha-bZ-WbK">
+                        <rect key="frame" x="15" y="8" width="252" height="22"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
+                        <color key="textColor" red="0.15056315064430237" green="0.15055865049362183" blue="0.15056121349334717" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="B.A., Economics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j01-9K-Y2h">
+                        <rect key="frame" x="15" y="32" width="109.5" height="21.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2008 - 2010" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQM-dK-UMk">
+                        <rect key="frame" x="15" y="55.5" width="81.5" height="20.5"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="1VK-UM-tD3"/>
+                <constraint firstAttribute="trailing" secondItem="DQM-dK-UMk" secondAttribute="trailing" constant="8" id="36I-Bz-Wnb"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="width" secondItem="DQM-dK-UMk" secondAttribute="width" id="CMJ-oj-4ov"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="top" secondItem="j01-9K-Y2h" secondAttribute="bottom" constant="2" id="CQg-KO-Ycb"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="DgZ-NE-RiI"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="width" secondItem="DQM-dK-UMk" secondAttribute="width" id="E9X-d2-2Sl"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="width" secondItem="hha-bZ-WbK" secondAttribute="height" multiplier="91:12" id="GmM-sp-QHU"/>
+                <constraint firstAttribute="bottom" secondItem="DQM-dK-UMk" secondAttribute="bottom" constant="5" id="HAP-2Q-H56"/>
+                <constraint firstItem="hha-bZ-WbK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="I8h-lH-8e1"/>
+                <constraint firstItem="hha-bZ-WbK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="J0Q-IR-IKF"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="hha-bZ-WbK" secondAttribute="trailing" constant="2" id="KKq-T4-G8j"/>
+                <constraint firstAttribute="trailing" secondItem="hha-bZ-WbK" secondAttribute="trailing" constant="8" id="KmJ-mW-jfJ"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="TAa-Dn-nZV"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="hha-bZ-WbK" secondAttribute="leading" id="WSJ-BJ-FLW"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="XIT-r3-zeE"/>
+                <constraint firstItem="hha-bZ-WbK" firstAttribute="leading" secondItem="j01-9K-Y2h" secondAttribute="leading" id="YjT-rT-O30"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="width" secondItem="hha-bZ-WbK" secondAttribute="width" id="a8f-rM-4Iq"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="cyb-Hz-kc4"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="top" secondItem="hha-bZ-WbK" secondAttribute="bottom" constant="2" id="evq-ZP-D7W"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="top" secondItem="hha-bZ-WbK" secondAttribute="bottom" constant="3" id="jQF-g9-aOW"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="top" secondItem="j01-9K-Y2h" secondAttribute="bottom" constant="2" id="nGa-z4-cfJ"/>
+                <constraint firstItem="DQM-dK-UMk" firstAttribute="leading" secondItem="j01-9K-Y2h" secondAttribute="trailing" constant="2" id="vpk-Wv-Ez6"/>
+                <constraint firstItem="j01-9K-Y2h" firstAttribute="top" secondItem="hha-bZ-WbK" secondAttribute="bottom" constant="2" id="vsG-Ab-dx2"/>
+            </constraints>
+            <size key="customSize" width="375" height="81"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="KmJ-mW-jfJ"/>
+                    <exclude reference="1VK-UM-tD3"/>
+                    <exclude reference="CMJ-oj-4ov"/>
+                    <exclude reference="E9X-d2-2Sl"/>
+                    <exclude reference="GmM-sp-QHU"/>
+                    <exclude reference="a8f-rM-4Iq"/>
+                    <exclude reference="cyb-Hz-kc4"/>
+                    <exclude reference="evq-ZP-D7W"/>
+                    <exclude reference="36I-Bz-Wnb"/>
+                    <exclude reference="DgZ-NE-RiI"/>
+                    <exclude reference="KKq-T4-G8j"/>
+                    <exclude reference="TAa-Dn-nZV"/>
+                    <exclude reference="XIT-r3-zeE"/>
+                    <exclude reference="jQF-g9-aOW"/>
+                    <exclude reference="nGa-z4-cfJ"/>
+                    <exclude reference="vpk-Wv-Ez6"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="degreeAndFieldOfStudyLabel" destination="j01-9K-Y2h" id="y1e-wY-X6m"/>
+                <outlet property="degreeAndFieldOfStudyLabelTopConstraint" destination="evq-ZP-D7W" id="DJK-EC-eH7"/>
+                <outlet property="durationLabel" destination="DQM-dK-UMk" id="q8e-87-Wd4"/>
+                <outlet property="durationLabelBottomConstraint" destination="HAP-2Q-H56" id="3Qr-CC-wON"/>
+                <outlet property="durationLabelTopConstraint" destination="HAP-2Q-H56" id="aTk-vm-nEf"/>
+                <outlet property="schoolNameLabel" destination="hha-bZ-WbK" id="kDz-vf-NSj"/>
+                <outlet property="schoolNameLabelTopConstraint" destination="I8h-lH-8e1" id="qDZ-Nq-1cX"/>
+            </connections>
+            <point key="canvasLocation" x="978.5" y="692.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

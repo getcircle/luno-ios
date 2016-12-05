@@ -1,0 +1,49 @@
+syntax = "proto3";
+package services.notification.containers;
+
+enum NotificationChannelV1 {
+    MOBILE_PUSH = 0;
+}
+
+message NotificationTokenV1 {
+
+    enum ProviderV1 {
+        SNS = 0;
+    }
+
+    enum ProviderPlatformV1 {
+        APNS = 0;
+        GCM = 1;
+    }
+
+    string user_id = 1;
+    string device_id = 2;
+    string provider_token = 3;
+    ProviderV1 provider = 4;
+    ProviderPlatformV1 provider_platform = 5;
+    string organization_id = 6;
+}
+
+message NotificationPreferenceV1 {
+    string id = 1;
+    string profile_id = 2;
+    NotificationTypeV1.TypeIdV1 notification_type_id = 3;
+    bool subscribed = 4;
+    NotificationTypeV1 notification_type = 5;
+    string organization_id = 6;
+}
+
+message NotificationTypeV1 {
+
+    enum TypeIdV1 {
+         GOOGLE_GROUPS = 0;
+    }
+    TypeIdV1 id = 1;
+    string description = 2;
+    bool opt_in = 3;
+    bool mobile_push = 4;
+}
+
+message NotificationV1 {
+    NotificationTypeV1.TypeIdV1 notification_type_id = 1;
+}

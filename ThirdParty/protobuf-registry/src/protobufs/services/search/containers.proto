@@ -1,0 +1,35 @@
+syntax = "proto3";
+package services.search.containers;
+
+import "protobufs/services/organization/containers.proto";
+import "protobufs/services/post/containers.proto";
+import "protobufs/services/profile/containers.proto";
+import "protobufs/services/search/containers/search.proto";
+
+message TrackingDetailsV1 {
+    string document_id = 1;
+    string document_type = 2;
+}
+
+message SearchResultV1 {
+    reserved 4;
+    oneof result_object {
+        services.profile.containers.ProfileV1 profile = 1;
+        services.organization.containers.TeamV1 team = 2;
+        services.organization.containers.LocationV1 location = 3;
+        services.post.containers.PostV1 post = 5;
+    }
+    float score = 6;
+    map<string, string> highlight = 7;
+    TrackingDetailsV1 tracking_details = 8;
+}
+
+message RecentResultV1 {
+    reserved 4;
+    oneof result_object {
+        services.profile.containers.ProfileV1 profile = 1;
+        services.organization.containers.TeamV1 team = 2;
+        services.organization.containers.LocationV1 location = 3;
+        services.post.containers.PostV1 post = 5;
+    }
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+package services.team.containers;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/common/containers/description.proto";
+import "protobufs/services/profile/containers.proto";
+
+message TeamV1 {
+    string id = 1;
+    string name = 2;
+    services.common.containers.description.DescriptionV1 description = 3;
+    services.common.containers.PermissionsV1 permissions = 4;
+    string organization_id = 5;
+    services.common.containers.InflationsV1 inflations = 6;
+    services.common.containers.FieldsV1 fields = 7;
+}
+
+message TeamMemberV1 {
+
+    enum RoleV1 {
+        MEMBER = 0;
+        COORDINATOR = 1;
+    }
+
+    string id = 1;
+    string profile_id = 2;
+    RoleV1 role = 3;
+    services.profile.containers.ProfileV1 profile = 4;
+    services.common.containers.InflationsV1 inflations = 5;
+    services.common.containers.FieldsV1 fields = 6;
+}

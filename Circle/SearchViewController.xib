@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Semibold.ttf">
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="luno" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="Fwr-5i-cVS" id="kWI-hP-ZKE"/>
+                <outlet property="fakeSearchContainer" destination="Wi8-mR-1cl" id="FWl-r7-9cR"/>
+                <outlet property="fakeSearchContainerCenterYConstraint" destination="Mp2-JX-eGR" id="1vE-I2-Msv"/>
+                <outlet property="fakeSearchTextField" destination="ZLl-q4-h7g" id="zJm-ou-FmR"/>
+                <outlet property="orgImageView" destination="upC-eP-cbx" id="blN-4h-DbS"/>
+                <outlet property="poweredByLabel" destination="Ojg-sW-nz3" id="Ios-Hl-ub0"/>
+                <outlet property="searchHeaderContainerView" destination="2Gj-LW-DSH" id="hAH-df-eGN"/>
+                <outlet property="view" destination="WXk-LZ-AcM" id="09h-29-Ed3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="WXk-LZ-AcM">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gj-LW-DSH" userLabel="SearchContainer">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="HHc-cd-RM6"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wi8-mR-1cl" userLabel="FakeSearchContainer">
+                    <rect key="frame" x="0.0" y="115" width="600" height="370"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="upC-eP-cbx" customClass="CircleImageView" customModule="luno" customModuleProvider="target">
+                            <rect key="frame" x="20" y="0.0" width="560" height="120"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="120" id="koW-PN-Iml"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Search People, Teams, &amp; Locations" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZLl-q4-h7g">
+                            <rect key="frame" x="20" y="160" width="560" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="8j7-DU-Dni"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="DUt-xc-wmU"/>
+                            </connections>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POWERED BY LUNO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojg-sW-nz3" userLabel="PoweredByLabel">
+                            <rect key="frame" x="0.0" y="230" width="600" height="15"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="11"/>
+                            <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92636114359999999" green="0.92633336779999997" blue="0.92634910349999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ZLl-q4-h7g" secondAttribute="trailing" constant="20" id="7gS-vR-WqE"/>
+                        <constraint firstItem="Ojg-sW-nz3" firstAttribute="centerX" secondItem="Wi8-mR-1cl" secondAttribute="centerX" id="Cvi-Am-JDN"/>
+                        <constraint firstItem="Ojg-sW-nz3" firstAttribute="leading" secondItem="Wi8-mR-1cl" secondAttribute="leading" id="IQd-qK-6ju"/>
+                        <constraint firstAttribute="height" constant="400" id="Jgb-pf-6p0"/>
+                        <constraint firstItem="ZLl-q4-h7g" firstAttribute="centerX" secondItem="Wi8-mR-1cl" secondAttribute="centerX" id="L83-BK-1zm"/>
+                        <constraint firstItem="upC-eP-cbx" firstAttribute="top" secondItem="Wi8-mR-1cl" secondAttribute="top" id="MBx-bj-YFL"/>
+                        <constraint firstAttribute="trailing" secondItem="upC-eP-cbx" secondAttribute="trailing" constant="20" id="N7h-0I-KCc"/>
+                        <constraint firstItem="ZLl-q4-h7g" firstAttribute="top" secondItem="upC-eP-cbx" secondAttribute="bottom" constant="40" id="TOY-k9-hOt"/>
+                        <constraint firstAttribute="trailing" secondItem="Ojg-sW-nz3" secondAttribute="trailing" id="Tgz-5o-dzq"/>
+                        <constraint firstAttribute="height" constant="370" id="WTc-gu-5MY"/>
+                        <constraint firstItem="Ojg-sW-nz3" firstAttribute="top" secondItem="ZLl-q4-h7g" secondAttribute="bottom" constant="20" id="Y9k-Yg-rwp"/>
+                        <constraint firstItem="ZLl-q4-h7g" firstAttribute="centerY" secondItem="Wi8-mR-1cl" secondAttribute="centerY" id="a4A-Oc-iyF"/>
+                        <constraint firstItem="upC-eP-cbx" firstAttribute="centerX" secondItem="Wi8-mR-1cl" secondAttribute="centerX" id="f3M-Sk-g7n"/>
+                        <constraint firstItem="ZLl-q4-h7g" firstAttribute="leading" secondItem="Wi8-mR-1cl" secondAttribute="leading" constant="20" id="g4h-Zp-E2h"/>
+                        <constraint firstItem="upC-eP-cbx" firstAttribute="leading" secondItem="Wi8-mR-1cl" secondAttribute="leading" constant="20" id="pkN-zi-cbW"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Jgb-pf-6p0"/>
+                            <exclude reference="MBx-bj-YFL"/>
+                        </mask>
+                    </variation>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Fwr-5i-cVS">
+                    <rect key="frame" x="0.0" y="325" width="600" height="275"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="01Q-sJ-cI8">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="delegate" destination="esd-0Q-AEZ" id="hUh-Yb-Rf6"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Fwr-5i-cVS" secondAttribute="bottom" id="1O3-jI-e1c"/>
+                <constraint firstItem="Fwr-5i-cVS" firstAttribute="leading" secondItem="WXk-LZ-AcM" secondAttribute="leading" id="4vu-42-b2K"/>
+                <constraint firstItem="Wi8-mR-1cl" firstAttribute="centerX" secondItem="WXk-LZ-AcM" secondAttribute="centerX" id="6PX-t3-Xqv"/>
+                <constraint firstItem="2Gj-LW-DSH" firstAttribute="top" secondItem="WXk-LZ-AcM" secondAttribute="top" id="Crr-Dc-S2C"/>
+                <constraint firstItem="2Gj-LW-DSH" firstAttribute="leading" secondItem="WXk-LZ-AcM" secondAttribute="leading" id="Fdr-0a-oZZ"/>
+                <constraint firstItem="Wi8-mR-1cl" firstAttribute="centerY" secondItem="WXk-LZ-AcM" secondAttribute="centerY" id="Mp2-JX-eGR"/>
+                <constraint firstAttribute="trailing" secondItem="Fwr-5i-cVS" secondAttribute="trailing" id="NvP-Ty-x2P"/>
+                <constraint firstAttribute="trailing" secondItem="2Gj-LW-DSH" secondAttribute="trailing" id="ZVc-NS-eYS"/>
+                <constraint firstItem="Fwr-5i-cVS" firstAttribute="top" secondItem="Wi8-mR-1cl" secondAttribute="bottom" constant="-160" id="h1R-hl-dWY"/>
+                <constraint firstItem="Wi8-mR-1cl" firstAttribute="leading" secondItem="WXk-LZ-AcM" secondAttribute="leading" id="tpk-qG-h2N"/>
+                <constraint firstAttribute="trailing" secondItem="Wi8-mR-1cl" secondAttribute="trailing" id="vnf-nF-dzE"/>
+            </constraints>
+            <point key="canvasLocation" x="-113" y="49"/>
+        </view>
+        <customObject id="esd-0Q-AEZ" customClass="CardCollectionViewDelegate" customModule="luno" customModuleProvider="target"/>
+    </objects>
+</document>

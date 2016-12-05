@@ -1,0 +1,17 @@
+syntax = "proto3";
+package services.profile.actions.get_profile;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    string profile_id = 1;
+    services.common.containers.InflationsV1 inflations = 2;
+    string email = 3;
+    string authentication_identifier = 4;
+    services.common.containers.FieldsV1 fields = 5;
+}
+
+message ResponseV1 {
+    services.profile.containers.ProfileV1 profile = 1;
+}

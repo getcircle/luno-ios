@@ -1,0 +1,13 @@
+syntax = "proto3";
+package services.organization.actions.get_location;
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    string location_id = 1;
+    string name = 2;
+}
+
+message ResponseV1 {
+    services.organization.containers.LocationV1 location = 1;
+}

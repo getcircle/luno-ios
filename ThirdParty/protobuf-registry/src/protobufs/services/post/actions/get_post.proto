@@ -1,0 +1,15 @@
+syntax = "proto3";
+package services.post.actions.get_post;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/post/containers.proto";
+
+message RequestV1 {
+    string id = 1;
+    services.common.containers.InflationsV1 inflations = 2;
+    services.common.containers.FieldsV1 fields = 3;
+}
+
+message ResponseV1 {
+    services.post.containers.PostV1 post = 1;
+}

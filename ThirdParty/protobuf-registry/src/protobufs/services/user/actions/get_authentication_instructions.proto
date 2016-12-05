@@ -1,0 +1,18 @@
+syntax = "proto3";
+package services.user.actions.get_authentication_instructions;
+
+import "protobufs/services/user/containers/token.proto";
+import "protobufs/services/user/actions/authenticate_user.proto";
+
+message RequestV1 {
+    string email = 1;
+    string redirect_uri = 2;
+    string organization_domain = 3;
+}
+
+message ResponseV1 {
+    services.user.actions.authenticate_user.RequestV1.AuthBackendV1 backend = 1;
+    string authorization_url = 2;
+    string provider_name = 3;
+    string organization_image_url = 4;
+}

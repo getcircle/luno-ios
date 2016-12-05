@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.team.actions.create_team;
+
+import "protobufs/services/team/containers.proto";
+
+message RequestV1 {
+    services.team.containers.TeamV1 team = 1;
+}
+
+message ResponseV1 {
+    services.team.containers.TeamV1 team = 1;
+}

@@ -1,0 +1,17 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+link_with 'Luno', 'LunoTests'
+workspace 'Luno'
+xcodeproj 'Luno.xcodeproj'
+use_frameworks!
+
+pod 'AFNetworking', '~> 2.6'
+pod 'Alamofire', '~> 2.0'
+pod 'libPhoneNumber-iOS', '~> 0.8'
+pod 'Locksmith', '~> 2.0'
+pod 'MBProgressHUD', '~> 0.9'
+pod 'Mixpanel', '~> 2.9'
+pod 'PureLayout', '~> 3.0'
+pod 'RealmSwift', '~> 0.97'
+pod 'UIViewPlusPosition', '~> 0.0.1'
+pod 'VENTouchLock', '~> 1.11'

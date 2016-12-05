@@ -1,0 +1,54 @@
+syntax = "proto3";
+package services.organization.containers;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/common/containers/description.proto";
+import "protobufs/services/profile/containers.proto";
+
+message LocationV1 {
+    string id = 1;
+    string name = 2;
+    string address_1 = 3;
+    string address_2 = 4;
+    string city = 5;
+    string region = 6;
+    string postal_code = 7;
+    string country_code = 8;
+    string latitude = 9;
+    string longitude = 10;
+    string timezone = 11;
+    string organization_id = 12;
+    uint32 profile_count = 13;
+    string image_url = 14;
+    services.common.containers.description.DescriptionV1 description = 15;
+    string established_date = 16;
+    repeated services.profile.containers.ProfileV1 points_of_contact = 17;
+    services.common.containers.PermissionsV1 permissions = 18;
+}
+
+message OrganizationV1 {
+    string id = 1;
+    string name = 2;
+    string domain = 3;
+    string image_url = 4;
+    uint32 profile_count = 5;
+    uint32 team_count = 6;
+    uint32 location_count = 7;
+    uint32 post_count = 8;
+    services.common.containers.InflationsV1 inflations = 9;
+    services.common.containers.FieldsV1 fields = 10;
+}
+
+message TeamV1 {
+    string id = 1;
+    string name = 2;
+    string organization_id = 3;
+    string manager_profile_id = 4;
+    services.profile.containers.ProfileV1 manager = 5;
+    services.common.containers.PermissionsV1 permissions = 6;
+    services.common.containers.description.DescriptionV1 description = 7;
+    string image_url = 8;
+    uint32 child_team_count = 9;
+    uint32 profile_count = 10;
+    string display_name = 11;
+}

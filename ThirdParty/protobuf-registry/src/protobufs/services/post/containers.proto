@@ -1,0 +1,39 @@
+syntax = "proto3";
+package services.post.containers;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/file/containers.proto";
+import "protobufs/services/profile/containers.proto";
+
+enum PostStateV1 {
+    DRAFT = 0;
+    LISTED = 1;
+    UNLISTED = 2;
+}
+
+enum PostSourceV1 {
+    WEB = 0;
+    EMAIL = 1;
+    SLACK = 2;
+}
+
+message PostV1 {
+    string id = 1;
+    string organization_id = 2;
+    string by_profile_id = 3;
+    string title = 4;
+    string content = 5;
+    string created = 6;
+    string changed = 7;
+    services.profile.containers.ProfileV1 by_profile = 8;
+    PostStateV1 state = 9;
+    services.common.containers.InflationsV1 inflations = 10;
+    services.common.containers.FieldsV1 fields = 11;
+    services.common.containers.PermissionsV1 permissions = 12;
+    repeated string file_ids = 13;
+    repeated services.file.containers.FileV1 files = 14;
+    string snippet = 15;
+    string html_document = 16;
+    PostSourceV1 source = 17;
+    string source_id = 18;
+}

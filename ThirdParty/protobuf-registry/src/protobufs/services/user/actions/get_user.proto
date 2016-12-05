@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.user.actions.get_user;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    string email = 1;
+}
+
+message ResponseV1 {
+    services.user.containers.UserV1 user = 1;
+}

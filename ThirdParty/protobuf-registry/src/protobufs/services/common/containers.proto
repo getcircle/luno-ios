@@ -1,0 +1,19 @@
+syntax = "proto3";
+package services.common.containers;
+
+message PermissionsV1 {
+    bool can_edit = 1;
+    bool can_delete = 2;
+    bool can_add = 3;
+}
+
+message InflationsV1 {
+    bool disabled = 1;
+    repeated string only = 2;
+    repeated string exclude = 3;
+}
+
+message FieldsV1 {
+    repeated string only = 1;
+    repeated string exclude = 2;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.file.actions.get_files;
+
+import "protobufs/services/file/containers.proto";
+
+message RequestV1 {
+    repeated string ids = 1;
+}
+
+message ResponseV1 {
+    repeated services.file.containers.FileV1 files = 1;
+}

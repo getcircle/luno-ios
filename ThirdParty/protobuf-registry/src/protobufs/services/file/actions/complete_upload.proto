@@ -1,0 +1,15 @@
+syntax = "proto3";
+package services.file.actions.complete_upload;
+
+import "protobufs/services/file/containers.proto";
+
+message RequestV1 {
+    string upload_id = 1;
+    string upload_key = 2;
+    string file_name = 3;
+    string content_type = 4;
+}
+
+message ResponseV1 {
+    services.file.containers.FileV1 file = 1;
+}

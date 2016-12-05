@@ -1,0 +1,13 @@
+syntax = "proto3";
+package services.team.actions.get_members;
+
+import "protobufs/services/team/containers.proto";
+
+message RequestV1 {
+    string team_id = 1;
+    services.team.containers.TeamMemberV1.RoleV1 role = 2;
+}
+
+message ResponseV1 {
+    repeated services.team.containers.TeamMemberV1 members = 1;
+}

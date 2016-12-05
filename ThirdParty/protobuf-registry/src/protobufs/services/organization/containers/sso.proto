@@ -1,0 +1,25 @@
+syntax = "proto3";
+package services.organization.containers.sso;
+
+enum ProviderV1 {
+    OKTA = 0;
+    GOOGLE = 1;
+}
+
+message SSOV1 {
+    ProviderV1 provider = 1;
+    oneof details {
+        SAMLDetailsV1 saml = 2;
+        GoogleDetailsV1 google = 3;
+    }
+    string organization_id = 4;
+}
+
+message SAMLDetailsV1 {
+    string metadata_url = 1;
+    string metadata = 2;
+}
+
+message GoogleDetailsV1 {
+    repeated string domains = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package services.organization.actions.get_profile_reporting_details;
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    string profile_id = 1;
+}
+
+message ResponseV1 {
+    repeated string peers_profile_ids = 1;
+    string manager_profile_id = 2;
+    repeated string direct_reports_profile_ids = 3;
+    services.organization.containers.TeamV1 manages_team = 4;
+    services.organization.containers.TeamV1 team = 5;
+}

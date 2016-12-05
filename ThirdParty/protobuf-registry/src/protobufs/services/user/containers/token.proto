@@ -1,0 +1,9 @@
+syntax = "proto3";
+package services.user.containers.token;
+
+enum ClientTypeV1 {
+    IOS = 0;
+    ANDROID = 1;
+    WEB = 2;
+    API = 3;
+}

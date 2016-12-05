@@ -1,0 +1,13 @@
+syntax = "proto3";
+package services.organization.actions.set_manager;
+
+import "protobufs/services/organization/containers.proto";
+
+message RequestV1 {
+    string profile_id = 1;
+    string manager_profile_id = 2;
+}
+
+message ResponseV1 {
+    services.organization.containers.TeamV1 team = 1;
+}

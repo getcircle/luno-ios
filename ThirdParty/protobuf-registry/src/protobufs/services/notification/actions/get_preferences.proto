@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.notification.actions.get_preferences;
+
+import "protobufs/services/notification/containers.proto";
+
+message RequestV1 {
+    services.notification.containers.NotificationChannelV1 channel = 1;
+}
+
+message ResponseV1 {
+    repeated services.notification.containers.NotificationPreferenceV1 preferences = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package services.notification.actions.no_search_results;
+
+import "protobufs/services/user/containers/token.proto";
+
+message RequestV1 {
+    services.user.containers.token.ClientTypeV1 client_type = 1;
+    string query = 2;
+    string comment = 3;
+}
+
+message ResponseV1 {}

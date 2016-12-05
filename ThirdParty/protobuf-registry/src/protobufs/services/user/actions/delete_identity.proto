@@ -1,0 +1,10 @@
+syntax = "proto3";
+package services.user.actions.delete_identity;
+
+import "protobufs/services/user/containers.proto";
+
+message RequestV1 {
+    services.user.containers.IdentityV1 identity = 1;
+}
+
+message ResponseV1 {}

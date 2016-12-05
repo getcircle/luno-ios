@@ -1,0 +1,21 @@
+syntax = "proto3";
+package services.profile.actions.get_profiles;
+
+import "protobufs/services/common/containers.proto";
+import "protobufs/services/profile/containers.proto";
+
+message RequestV1 {
+    repeated string ids = 1;
+    string location_id = 2;
+    string team_id = 3;
+    services.common.containers.InflationsV1 inflations = 4;
+    string manager_id = 5;
+    repeated string emails = 6;
+    bool is_admin = 7;
+    repeated string authentication_identifiers = 8;
+    services.common.containers.FieldsV1 fields = 9;
+}
+
+message ResponseV1 {
+    repeated services.profile.containers.ProfileV1 profiles = 1;
+}

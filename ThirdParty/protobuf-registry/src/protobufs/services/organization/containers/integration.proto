@@ -1,0 +1,31 @@
+syntax = "proto3";
+package services.organization.containers.integration;
+
+import "protobufs/services/common/containers.proto";
+
+enum IntegrationTypeV1 {
+    SLACK_SLASH_COMMAND = 0;
+    SLACK_WEB_API = 1;
+}
+
+message IntegrationV1 {
+    string id = 1;
+    string organization_id = 2;
+    IntegrationTypeV1 integration_type = 3;
+    oneof details {
+        SlackSlashCommandDetailsV1 slack_slash_command = 4;
+        SlackWebApiDetailsV1 slack_web_api = 5;
+    }
+    string provider_uid = 6;
+}
+
+message SlackSlashCommandDetailsV1 {
+    string token = 1;
+}
+
+message SlackWebApiDetailsV1 {
+    string token = 1;
+    string by_profile_id = 2;
+    repeated string scopes = 3;
+    string team_id = 4;
+}
